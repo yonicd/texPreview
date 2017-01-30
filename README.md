@@ -2,7 +2,7 @@
 
 Preview and save images of rendered snippets of LaTeX in RStudio viewer
 
-  - Must have pdflatex in PATH
+  - Must have pdflatex in PATH (Windows users can install by running the following in R: `install.packages("installr"); installr::install.MikTeX()`)
   
   - Supports Tabular, equations and other LaTex functionalities.
   - Load TeX packages 
