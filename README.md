@@ -10,7 +10,7 @@ Preview and save images of rendered snippets of LaTeX in RStudio viewer
   
   - Supports xtable inputs
   
-  - Defined as Rstudio Addin so user can highligh text in the editor and invoke preview automatically.
+  - Defined as Rstudio Addin so user can highlight text in the editor and invoke preview automatically.
   
 
 ![](https://github.com/metrumresearchgroup/texPreview/blob/master/texPreview.gif?raw=true)
