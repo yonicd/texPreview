@@ -1,5 +1,40 @@
+#' @title Render and Preview snippets of TeX in R Viewer
 #' @export
-texPreview=function(obj,fileDir=NULL,fileNM,overwrite=T,imgFormat='png',print.xtable.opts=list()){
+#' @description input TeX script into the function and it renders a pdf and converts it an image which is sent to Viewer.
+#' @param obj character, TeX script
+#' @param fileNM character, name to use in output files
+#' @param fileDir character, output destination. If NULL a temp.dir() will be used and no output will be saved
+#' @param overwrite logical, controls if overwriting of output fileNM* files given their existences
+#' @param imgFormat character, defines the type of image the PDF is converted to.
+#' @param print.xtable.opts list containing arguments to pass to print.table, relevant only if xtable is used as the input
+#' @details The function assumes the system has pdflatex installed and it is defined in the PATH. The function does not return anything to R.
+#' If fileDir is specified then two files are written to the directory. An image file of the name fileNM with the extension specified in imgFormat.
+#' The default extension is png.The second file is the TeX script used to create the output of the name fileNM.tex. 
+#' @return 
+#' NULL
+#' @examples
+#' data('iris')
+#' 
+#' texPreview(obj = xtable(head(iris,10)),fileNM = 'eq',imgFormat = 'svg')
+#' 
+#' tex='\\begin{tabular}{llr}
+#' \\hline
+#' \\multicolumn{2}{c}{Item} \\\\
+#' \\cline{1-2}
+#' Animal    & Description & Price (\\$) \\\\
+#' \\hline
+#' Gnat      & per gram    & 13.65      \\\\
+#' & each        & 0.01       \\\\
+#' Gnu       & stuffed     & 92.50      \\\\
+#' Emu       & stuffed     & 33.33      \\\\
+#' Armadillo & frozen      & 8.99       \\\\
+#' \\hline
+#' \\end{tabular}'
+#' 
+#' texPreview(obj = x,fileNM = 'eq',imgFormat = 'png')
+
+
+texPreview=function(obj,fileNM,fileDir=NULL,overwrite=T,imgFormat='png',print.xtable.opts=list()){
 
   if(is.null(fileDir)){
     fileDir <- tempdir()
@@ -21,6 +56,7 @@ texPreview=function(obj,fileDir=NULL,fileNM,overwrite=T,imgFormat='png',print.xt
             '\\usepackage{multirow}',
             '\\usepackage{helvet}',
             '\\usepackage{amsmath}',
+            '\\usepackage{rotating}',
             '\\usepackage{graphicx}',
             '\\renewcommand{\\familydefault}{\\sfdefault}',
             '\\usepackage{setspace}',
@@ -39,7 +75,7 @@ texPreview=function(obj,fileDir=NULL,fileNM,overwrite=T,imgFormat='png',print.xt
   system(paste('pdflatex',
                file.path(fileDir,paste0(fileNM,'Doc.tex')),
                file.path(fileDir,paste0(fileNM,'Doc.pdf')),
-               show.output.on.console=F
+               '-halt-on-error'
   )
   )
   setwd(x)
