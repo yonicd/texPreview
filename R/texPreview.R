@@ -7,6 +7,8 @@
 #' @param overwrite logical, controls if overwriting of output stem* files given their existences
 #' @param imgFormat character, defines the type of image the PDF is converted to.
 #' @param print.xtable.opts list containing arguments to pass to print.table, relevant only if xtable is used as the input
+#' @param returnType one of "viewer", "html", or "tex" determining appropriate return type for the rendering process
+#' @param opts.html a list of html options, currently height and width.  can be specified as percentage or pixels.
 #' @details The function assumes the system has pdflatex installed and it is defined in the PATH. The function does not return anything to R.
 #' If fileDir is specified then two files are written to the directory. An image file of the name stem with the extension specified in imgFormat.
 #' The default extension is png.The second file is the TeX script used to create the output of the name stem.tex. 
@@ -35,7 +37,8 @@
 
 
 texPreview <- function (obj, stem, fileDir = NULL, overwrite = T, imgFormat = "png", 
-                        print.xtable.opts = list(), returnType="viewer") 
+                        print.xtable.opts = list(), returnType="viewer",
+                        opts.html=list(width="100%",height="100%")) 
 {
   if (is.null(fileDir)) {
     fileDir <- tempdir()
@@ -85,15 +88,16 @@ texPreview <- function (obj, stem, fileDir = NULL, overwrite = T, imgFormat = "p
     if ("xtable" %in% class(obj)) 
       do.call("print", print.xtable.opts)
   }
-  print(imgOut)
+  invisible(print(imgOut))
   # suppressWarnings({
   #   junk = sapply(list.files(file.path(fileDir), pattern = "Doc"), 
   #                 function(x) file.remove(file.path(fileDir, x)))
   # })
   switch(returnType,
          nothing = return(NULL),
-         html = return(sprintf('<img src="%s" />', 
-                               file.path(fileDir,paste0(stem,'.',imgFormat)))),
+         html = return(writeLines(
+           sprintf('<img src="%s" height="%s" width="%s" />', 
+                   file.path(fileDir,paste0(stem,'.',imgFormat)), opts.html$height, opts.html$width))),
          tex = return(writeLines(obj))
   )
 }
