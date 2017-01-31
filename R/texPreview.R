@@ -35,7 +35,7 @@
 
 
 texPreview <- function (obj, stem, fileDir = NULL, overwrite = T, imgFormat = "png", 
-                        print.xtable.opts = list(), returnImage=T) 
+                        print.xtable.opts = list(), returnType="viewer") 
 {
   if (is.null(fileDir)) {
     fileDir <- tempdir()
@@ -67,9 +67,10 @@ texPreview <- function (obj, stem, fileDir = NULL, overwrite = T, imgFormat = "p
   writeLines(newobj, con = file.path(fileDir, paste0(stem, "Doc.tex")))
   x = getwd()
   setwd(fileDir)
-  system(paste("pdflatex", file.path(fileDir, paste0(stem, 
-                                                     "Doc.tex")), file.path(fileDir, paste0(stem, "Doc.pdf")), 
-               "-interaction=batchmode"))
+  system(paste("pdflatex", 
+               "-interaction=nonstopmode --halt-on-error",
+               file.path(paste0(stem,  "Doc.tex"))
+              ))
   setwd(x)
   imgOut = image_convert(image = image_read(path = file.path(fileDir, 
                                                              paste0(stem, "Doc.pdf")), density = 150), format = imgFormat, 
@@ -85,9 +86,14 @@ texPreview <- function (obj, stem, fileDir = NULL, overwrite = T, imgFormat = "p
       do.call("print", print.xtable.opts)
   }
   print(imgOut)
-  suppressWarnings({
-    junk = sapply(list.files(file.path(fileDir), pattern = "Doc"), 
-                  function(x) file.remove(file.path(fileDir, x)))
-  })
-  if(returnImage) return(imgOut)
+  # suppressWarnings({
+  #   junk = sapply(list.files(file.path(fileDir), pattern = "Doc"), 
+  #                 function(x) file.remove(file.path(fileDir, x)))
+  # })
+  switch(returnType,
+         nothing = return(NULL),
+         html = return(sprintf('<img src="%s" />', 
+                               file.path(fileDir,paste0(stem,'.',imgFormat)))),
+         tex = return(writeLines(obj))
+  )
 }
