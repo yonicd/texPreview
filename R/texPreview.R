@@ -2,20 +2,20 @@
 #' @export
 #' @description input TeX script into the function and it renders a pdf and converts it an image which is sent to Viewer.
 #' @param obj character, TeX script
-#' @param fileNM character, name to use in output files
+#' @param stem character, name to use in output files
 #' @param fileDir character, output destination. If NULL a temp.dir() will be used and no output will be saved
-#' @param overwrite logical, controls if overwriting of output fileNM* files given their existences
+#' @param overwrite logical, controls if overwriting of output stem* files given their existences
 #' @param imgFormat character, defines the type of image the PDF is converted to.
 #' @param print.xtable.opts list containing arguments to pass to print.table, relevant only if xtable is used as the input
 #' @details The function assumes the system has pdflatex installed and it is defined in the PATH. The function does not return anything to R.
-#' If fileDir is specified then two files are written to the directory. An image file of the name fileNM with the extension specified in imgFormat.
-#' The default extension is png.The second file is the TeX script used to create the output of the name fileNM.tex. 
+#' If fileDir is specified then two files are written to the directory. An image file of the name stem with the extension specified in imgFormat.
+#' The default extension is png.The second file is the TeX script used to create the output of the name stem.tex. 
 #' @return 
 #' NULL
 #' @examples
 #' data('iris')
 #' 
-#' texPreview(obj = xtable(head(iris,10)),fileNM = 'eq',imgFormat = 'svg')
+#' texPreview(obj = xtable(head(iris,10)),stem = 'eq',imgFormat = 'svg')
 #' 
 #' tex='\\begin{tabular}{llr}
 #' \\hline
@@ -31,11 +31,11 @@
 #' \\hline
 #' \\end{tabular}'
 #' 
-#' texPreview(obj = x,fileNM = 'eq',imgFormat = 'png')
+#' texPreview(obj = x,stem = 'eq',imgFormat = 'png')
 
 
-texPreview <- function (obj, fileNM, fileDir = NULL, overwrite = T, imgFormat = "png", 
-                        print.xtable.opts = list()) 
+texPreview <- function (obj, stem, fileDir = NULL, overwrite = T, imgFormat = "png", 
+                        print.xtable.opts = list(), returnImage=T) 
 {
   if (is.null(fileDir)) {
     fileDir <- tempdir()
@@ -51,7 +51,7 @@ texPreview <- function (obj, fileNM, fileDir = NULL, overwrite = T, imgFormat = 
   if ("xtable" %in% class(obj)) {
     print.xtable.opts$x = obj
     if (!"file" %in% names(print.xtable.opts)) 
-      print.xtable.opts$file = file.path(fileDir, paste0(fileNM, 
+      print.xtable.opts$file = file.path(fileDir, paste0(stem, 
                                                          ".tex"))
     obj = do.call("print", print.xtable.opts)
   }
@@ -64,22 +64,22 @@ texPreview <- function (obj, fileNM, fileDir = NULL, overwrite = T, imgFormat = 
     "\\usepackage{caption}", "\\captionsetup{labelformat=empty}", 
     "\\begin{document}", obj, "\\end{document}"    
   )
-  writeLines(newobj, con = file.path(fileDir, paste0(fileNM, "Doc.tex")))
+  writeLines(newobj, con = file.path(fileDir, paste0(stem, "Doc.tex")))
   x = getwd()
   setwd(fileDir)
-  system(paste("pdflatex", file.path(fileDir, paste0(fileNM, 
-                                                     "Doc.tex")), file.path(fileDir, paste0(fileNM, "Doc.pdf")), 
+  system(paste("pdflatex", file.path(fileDir, paste0(stem, 
+                                                     "Doc.tex")), file.path(fileDir, paste0(stem, "Doc.pdf")), 
                "-interaction=batchmode"))
   setwd(x)
   imgOut = image_convert(image = image_read(path = file.path(fileDir, 
-                                                             paste0(fileNM, "Doc.pdf")), density = 150), format = imgFormat, 
+                                                             paste0(stem, "Doc.pdf")), density = 150), format = imgFormat, 
                          depth = 16)
   cat("\f")
   if (writeFlg & overwrite) {
-    image_write(imgOut, file.path(fileDir, paste0(fileNM, 
+    image_write(imgOut, file.path(fileDir, paste0(stem, 
                                                   ".", imgFormat)))
     if (!"file" %in% names(print.xtable.opts)) 
-      print.xtable.opts$file = file.path(fileDir, paste0(fileNM, 
+      print.xtable.opts$file = file.path(fileDir, paste0(stem, 
                                                          ".tex"))
     if ("xtable" %in% class(obj)) 
       do.call("print", print.xtable.opts)
@@ -89,4 +89,5 @@ texPreview <- function (obj, fileNM, fileDir = NULL, overwrite = T, imgFormat = 
     junk = sapply(list.files(file.path(fileDir), pattern = "Doc"), 
                   function(x) file.remove(file.path(fileDir, x)))
   })
+  if(returnImage) return(imgOut)
 }
