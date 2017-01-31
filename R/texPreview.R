@@ -69,7 +69,7 @@ texPreview <- function (obj, fileNM, fileDir = NULL, overwrite = T, imgFormat = 
   setwd(fileDir)
   system(paste("pdflatex", file.path(fileDir, paste0(fileNM, 
                                                      "Doc.tex")), file.path(fileDir, paste0(fileNM, "Doc.pdf")), 
-               "-halt-on-error"))
+               "-interaction=batchmode"))
   setwd(x)
   imgOut = image_convert(image = image_read(path = file.path(fileDir, 
                                                              paste0(fileNM, "Doc.pdf")), density = 150), format = imgFormat, 
