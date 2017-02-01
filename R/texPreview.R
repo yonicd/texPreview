@@ -45,8 +45,12 @@ texPreview <- function (obj, stem, fileDir = NULL, overwrite = T, imgFormat = "p
   }
   else {
     writeFlg = T
-    if (!dir.exists(fileDir)) 
-      return()
+    if (!dir.exists(fileDir)){
+      if(returnType=='viewer') return()
+    }else{
+      suppressWarnings(dir.create(fileDir, recursive = T))
+    }
+      
   }
   if ("xtable" %in% class(obj)) {
     print.xtable.opts$x = obj
@@ -75,7 +79,7 @@ texPreview <- function (obj, stem, fileDir = NULL, overwrite = T, imgFormat = "p
   imgOut = image_convert(image = image_read(path = file.path(fileDir, 
                                                              paste0(stem, "Doc.pdf")), density = 150), format = imgFormat, 
                          depth = 16)
-  cat("\f")
+  cat("\014")
   if (writeFlg & overwrite) {
     image_write(imgOut, file.path(fileDir, paste0(stem, 
                                                   ".", imgFormat)))
@@ -85,13 +89,11 @@ texPreview <- function (obj, stem, fileDir = NULL, overwrite = T, imgFormat = "p
     if ("xtable" %in% class(obj)) 
       do.call("print", print.xtable.opts)
   }
-  print(imgOut)
-  # suppressWarnings({
-  #   junk = sapply(list.files(file.path(fileDir), pattern = "Doc"), 
-  #                 function(x) file.remove(file.path(fileDir, x)))
-  # })
+  
+  capture.output(x <- print(imgOut))
+
   switch(returnType,
-         nothing = return(NULL),
+         viewer = return(NULL),
          html = return(sprintf('<img src="%s" />', 
                                file.path(fileDir,paste0(stem,'.',imgFormat)))),
          tex = return(writeLines(obj))

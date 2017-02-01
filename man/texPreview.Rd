@@ -4,17 +4,17 @@
 \alias{texPreview}
 \title{Render and Preview snippets of TeX in R Viewer}
 \usage{
-texPreview(obj, fileNM, fileDir = NULL, overwrite = T, imgFormat = "png",
-  print.xtable.opts = list())
+texPreview(obj, stem, fileDir = NULL, overwrite = T, imgFormat = "png",
+  print.xtable.opts = list(), returnType = "viewer")
 }
 \arguments{
 \item{obj}{character, TeX script}
 
-\item{fileNM}{character, name to use in output files}
+\item{stem}{character, name to use in output files}
 
 \item{fileDir}{character, output destination. If NULL a temp.dir() will be used and no output will be saved}
 
-\item{overwrite}{logical, controls if overwriting of output fileNM* files given their existences}
+\item{overwrite}{logical, controls if overwriting of output stem* files given their existences}
 
 \item{imgFormat}{character, defines the type of image the PDF is converted to.}
 
@@ -25,13 +25,13 @@ input TeX script into the function and it renders a pdf and converts it an image
 }
 \details{
 The function assumes the system has pdflatex installed and it is defined in the PATH. The function does not return anything to R.
-If fileDir is specified then two files are written to the directory. An image file of the name fileNM with the extension specified in imgFormat.
-The default extension is png.The second file is the TeX script used to create the output of the name fileNM.tex.
+If fileDir is specified then two files are written to the directory. An image file of the name stem with the extension specified in imgFormat.
+The default extension is png.The second file is the TeX script used to create the output of the name stem.tex.
 }
 \examples{
 data('iris')
 
-texPreview(obj = xtable(head(iris,10)),fileNM = 'eq',imgFormat = 'svg')
+texPreview(obj = xtable(head(iris,10)),stem = 'eq',imgFormat = 'svg')
 
 tex='\\\\begin{tabular}{llr}
 \\\\hline
@@ -47,6 +47,6 @@ Armadillo & frozen      & 8.99       \\\\\\\\
 \\\\hline
 \\\\end{tabular}'
 
-texPreview(obj = x,fileNM = 'eq',imgFormat = 'png')
+texPreview(obj = x,stem = 'eq',imgFormat = 'png')
 }
 

@@ -1,4 +1,4 @@
-Package: texViewer
+Package: texPreview
 Type: Package
 Title: Compile and preview snippets of latex in rstudio viewer
 Version: 0.0.1

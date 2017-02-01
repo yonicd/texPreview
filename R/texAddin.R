@@ -16,5 +16,5 @@ texAddin <- function() {
     obj=gsub('\\\\\\\\','\\\\',obj)
   } 
   
-  texPreview(obj = obj,fileNM = 'addinTemp',imgFormat = 'png')
+  texPreview(obj = obj,stem = 'addinTemp',imgFormat = 'png')
 }
