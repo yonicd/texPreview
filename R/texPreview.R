@@ -100,12 +100,17 @@ texPreview <- function (obj, stem, fileDir = NULL, overwrite = T,
 
   capture.output(x <- print(imgOut))
 
-  switch(returnType,
-         viewer = return(NULL),
-         html = return(writeLines(
-           sprintf('<img src="%s" height="%s" width="%s" />', 
-                   file.path(fileDir,paste0(stem,'.',imgFormat)), opts.html$height, opts.html$width))),
-         latex = return(writeLines(obj)),
-         beamer = return(writeLines(obj))
-  )
+  if(returnType=='viewer') return(NULL)
+  
+  if(returnType==c("html", "html5", "s5", "slidy","slideous", "dzslides", "revealjs","md")){
+    return(writeLines(sprintf('<img src="%s" height="%s" width="%s" />', 
+                              file.path(fileDir,paste0(stem,'.',imgFormat)),
+                              opts.html$height, opts.html$width)
+                      )
+           )
+  }  
+  
+  if(returnType%in%c('latex','beamer')) return(writeLines(obj))
+
+
 }
