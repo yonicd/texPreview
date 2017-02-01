@@ -98,7 +98,7 @@ texPreview <- function (obj, stem, fileDir = NULL, overwrite = T,
       do.call("print", print.xtable.opts)
   }
 
-  capture.output(x <- print(imgOut))
+  if(returnType!='shiny') capture.output(x <- print(imgOut))
 
   if(returnType=='viewer') return(NULL)
   
