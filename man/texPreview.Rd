@@ -4,8 +4,10 @@
 \alias{texPreview}
 \title{Render and Preview snippets of TeX in R Viewer}
 \usage{
-texPreview(obj, stem, fileDir = NULL, overwrite = T, imgFormat = "png",
-  print.xtable.opts = list(), returnType = "viewer")
+texPreview(obj, stem, fileDir = NULL, overwrite = T, margin = list(left =
+  10, top = 5, right = 50, bottom = 5), imgFormat = "png",
+  print.xtable.opts = list(), returnType = "viewer",
+  opts.html = list(width = "100\%", height = "100\%"))
 }
 \arguments{
 \item{obj}{character, TeX script}
@@ -16,9 +18,15 @@ texPreview(obj, stem, fileDir = NULL, overwrite = T, imgFormat = "png",
 
 \item{overwrite}{logical, controls if overwriting of output stem* files given their existences}
 
+\item{margin}{table margin for pdflatex call}
+
 \item{imgFormat}{character, defines the type of image the PDF is converted to.}
 
 \item{print.xtable.opts}{list containing arguments to pass to print.table, relevant only if xtable is used as the input}
+
+\item{returnType}{one of "viewer", "html", or "tex" determining appropriate return type for the rendering process}
+
+\item{opts.html}{a list of html options, currently height and width.  can be specified as percentage or pixels.}
 }
 \description{
 input TeX script into the function and it renders a pdf and converts it an image which is sent to Viewer.
