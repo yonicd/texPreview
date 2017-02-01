@@ -102,7 +102,7 @@ texPreview <- function (obj, stem, fileDir = NULL, overwrite = T,
 
   if(returnType=='viewer') return(NULL)
   
-  if(returnType==c("html", "html5", "s5", "slidy","slideous", "dzslides", "revealjs","md")){
+  if(returnType%in%c("html", "html5", "s5", "slidy","slideous", "dzslides", "revealjs","md")){
     return(writeLines(sprintf('<img src="%s" height="%s" width="%s" />', 
                               file.path(fileDir,paste0(stem,'.',imgFormat)),
                               opts.html$height, opts.html$width)
