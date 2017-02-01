@@ -60,11 +60,11 @@ texPreview <- function (obj, stem, fileDir = NULL, overwrite = T,
   }
   if ("xtable" %in% class(obj)) {
     print.xtable.opts$x = obj
-    if (!"file" %in% names(print.xtable.opts)) 
-      print.xtable.opts$file = file.path(fileDir, paste0(stem, 
-                                                         ".tex"))
+    print.xtable.opts$comment=F
+    
+    if (!"file" %in% names(print.xtable.opts)) print.xtable.opts$file = file.path(fileDir, paste0(stem,".tex"))
+      
     obj = do.call("print", print.xtable.opts)
-    obj=obj[!grepl('^%',obj)]
   }
   newobj <- c(
     sprintf("\\documentclass[varwidth, border={%s %s %s %s}]{standalone}",
