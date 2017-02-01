@@ -64,6 +64,7 @@ texPreview <- function (obj, stem, fileDir = NULL, overwrite = T,
       print.xtable.opts$file = file.path(fileDir, paste0(stem, 
                                                          ".tex"))
     obj = do.call("print", print.xtable.opts)
+    obj=obj[!grepl('^%',obj)]
   }
   newobj <- c(
     sprintf("\\documentclass[varwidth, border={%s %s %s %s}]{standalone}",
@@ -104,6 +105,6 @@ texPreview <- function (obj, stem, fileDir = NULL, overwrite = T,
          html = return(writeLines(
            sprintf('<img src="%s" height="%s" width="%s" />', 
                    file.path(fileDir,paste0(stem,'.',imgFormat)), opts.html$height, opts.html$width))),
-         tex = return(writeLines(obj))
+         latex = return(writeLines(obj))
   )
 }
