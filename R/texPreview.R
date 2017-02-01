@@ -5,6 +5,7 @@
 #' @param stem character, name to use in output files
 #' @param fileDir character, output destination. If NULL a temp.dir() will be used and no output will be saved
 #' @param overwrite logical, controls if overwriting of output stem* files given their existences
+#' @param margin table margin for pdflatex call
 #' @param imgFormat character, defines the type of image the PDF is converted to.
 #' @param print.xtable.opts list containing arguments to pass to print.table, relevant only if xtable is used as the input
 #' @param returnType one of "viewer", "html", or "tex" determining appropriate return type for the rendering process
@@ -36,7 +37,9 @@
 #' texPreview(obj = x,stem = 'eq',imgFormat = 'png')
 
 
-texPreview <- function (obj, stem, fileDir = NULL, overwrite = T, imgFormat = "png", 
+texPreview <- function (obj, stem, fileDir = NULL, overwrite = T, 
+                        margin=list(left=10, top=5, right=50, bottom=5),
+                        imgFormat = "png", 
                         print.xtable.opts = list(), returnType="viewer",
                         opts.html=list(width="100%",height="100%")) 
 {
@@ -59,7 +62,8 @@ texPreview <- function (obj, stem, fileDir = NULL, overwrite = T, imgFormat = "p
     obj = do.call("print", print.xtable.opts)
   }
   newobj <- c(
-    "\\documentclass[varwidth, border={10 5 50 5}]{standalone}", 
+    sprintf("\\documentclass[varwidth, border={%s %s %s %s}]{standalone}",
+            margin$left, margin$top, margin$right, margin$bottom), 
     "\\usepackage[usenames,dvispnames,svgnames,table]{xcolor}", 
     "\\usepackage{multirow}", "\\usepackage{helvet}", "\\usepackage{amsmath}", 
     "\\usepackage{rotating}", "\\usepackage{graphicx}", 
