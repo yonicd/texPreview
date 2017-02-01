@@ -87,7 +87,7 @@ texPreview <- function (obj, stem, fileDir = NULL, overwrite = T,
   imgOut = image_convert(image = image_read(path = file.path(fileDir, 
                                                              paste0(stem, "Doc.pdf")), density = 150), format = imgFormat, 
                          depth = 16)
-  cat("\014")
+  #cat("\014")
   if (writeFlg & overwrite) {
     image_write(imgOut, file.path(fileDir, paste0(stem, 
                                                   ".", imgFormat)))

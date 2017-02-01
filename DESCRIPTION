@@ -3,7 +3,10 @@ Type: Package
 Title: Compile and preview snippets of latex in rstudio viewer
 Version: 0.0.1
 Date: 2017-01-27
-Author: Jonathan Sidi [aut, cre]
+Authors@R: c(
+              person(given = 'Jonathan',family = 'Sidi',email = 'yonis@metrumrg.com',role = c('aut','cre')),
+              person(given = 'Daniel',family = 'Polhamus',email = 'danp@metrumrg.com',role = c('aut'))
+              )
 Maintainer: Jonathan Sidi <yonis@metrumrg.com>
 Description: Compile and preview snippets of latex in rstudio viewer
 Depends:
