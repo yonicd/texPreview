@@ -105,6 +105,7 @@ texPreview <- function (obj, stem, fileDir = NULL, overwrite = T,
          html = return(writeLines(
            sprintf('<img src="%s" height="%s" width="%s" />', 
                    file.path(fileDir,paste0(stem,'.',imgFormat)), opts.html$height, opts.html$width))),
-         latex = return(writeLines(obj))
+         latex = return(writeLines(obj)),
+         beamer = return(writeLines(obj))
   )
 }

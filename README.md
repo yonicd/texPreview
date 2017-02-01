@@ -12,5 +12,7 @@ Preview and save images of rendered snippets of LaTeX in RStudio viewer
   
   - Defined as Rstudio Addin so user can highlight text in the editor and invoke preview automatically.
   
+  - Can be run in rmarkdown enviornment pdf/html/beamer/book,...
+  
 
 ![](https://github.com/metrumresearchgroup/texPreview/blob/master/texPreview.gif?raw=true)
