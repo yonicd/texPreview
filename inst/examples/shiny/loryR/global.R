@@ -1,6 +1,6 @@
 library(loryR)
 library(texPreview)
 
-outDir='~/projects/svn-user-yonis/tabularPreview/shiny/loryR/www'
+outDir='www'
 sapply(list.files(outDir,full.names = T),file.remove)
 
