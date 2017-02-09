@@ -10,6 +10,7 @@
 #' @param print.xtable.opts list containing arguments to pass to print.table, relevant only if xtable is used as the input
 #' @param returnType one of "viewer", "html", or "tex" determining appropriate return type for the rendering process
 #' @param opts.html a list of html options, currently height and width.  can be specified as percentage or pixels.
+#' @param show.output.on.console passed to \code{system}
 #' @details The function assumes the system has pdflatex installed and it is defined in the PATH. The function does not return anything to R.
 #' If fileDir is specified then two files are written to the directory. An image file of the name stem with the extension specified in imgFormat.
 #' The default extension is png.The second file is the TeX script used to create the output of the name stem.tex. 
@@ -39,7 +40,7 @@
 
 texPreview <- function (obj, stem, fileDir = NULL, overwrite = T, 
                         margin=list(left=10, top=5, right=50, bottom=5),
-                        imgFormat = "png", 
+                        imgFormat = "png", show.output.on.console=F,
                         print.xtable.opts = list(), returnType="viewer",
                         opts.html=list(width="100%",height="100%")) 
 {
@@ -82,7 +83,8 @@ texPreview <- function (obj, stem, fileDir = NULL, overwrite = T,
   system(paste("pdflatex", 
                "-interaction=nonstopmode --halt-on-error",
                file.path(paste0(stem,  "Doc.tex"))
-              ))
+              ),
+         show.output.on.console=show.output.on.console)
   setwd(x)
   imgOut = image_convert(image = image_read(path = file.path(fileDir, 
                                                              paste0(stem, "Doc.pdf")), density = 150), format = imgFormat, 
