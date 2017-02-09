@@ -6,9 +6,8 @@
 \usage{
 texPreview(obj, stem, fileDir = NULL, overwrite = T, margin = list(left =
   10, top = 5, right = 50, bottom = 5), imgFormat = "png",
-  show.output.on.console = F, print.xtable.opts = list(),
-  returnType = "viewer", opts.html = list(width = "100\%", height =
-  "100\%"))
+  print.xtable.opts = list(), returnType = "viewer",
+  opts.html = list(width = "100\%", height = "100\%"), ...)
 }
 \arguments{
 \item{obj}{character, TeX script}
@@ -23,13 +22,13 @@ texPreview(obj, stem, fileDir = NULL, overwrite = T, margin = list(left =
 
 \item{imgFormat}{character, defines the type of image the PDF is converted to.}
 
-\item{show.output.on.console}{passed to \code{system}}
-
 \item{print.xtable.opts}{list containing arguments to pass to print.table, relevant only if xtable is used as the input}
 
 \item{returnType}{one of "viewer", "html", or "tex" determining appropriate return type for the rendering process}
 
 \item{opts.html}{a list of html options, currently height and width.  can be specified as percentage or pixels.}
+
+\item{...}{passed to \code{system}}
 }
 \description{
 input TeX script into the function and it renders a pdf and converts it an image which is sent to Viewer.
@@ -37,7 +36,8 @@ input TeX script into the function and it renders a pdf and converts it an image
 \details{
 The function assumes the system has pdflatex installed and it is defined in the PATH. The function does not return anything to R.
 If fileDir is specified then two files are written to the directory. An image file of the name stem with the extension specified in imgFormat.
-The default extension is png.The second file is the TeX script used to create the output of the name stem.tex.
+The default extension is png.The second file is the TeX script used to create the output of the name stem.tex.   If you do not wish to view the 
+console output, pass the corresponding arguments to \code{...}, e.g., ignore.stdout=T
 }
 \examples{
 data('iris')
