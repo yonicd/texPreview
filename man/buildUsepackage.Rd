@@ -4,12 +4,14 @@
 \alias{buildUsepackage}
 \title{Build usepackage command for TeX document}
 \usage{
-buildUsepackage(pkg, opts = NULL)
+buildUsepackage(pkg, opts = NULL, chk.inst = FALSE)
 }
 \arguments{
 \item{pkg}{character, name of TeX package}
 
 \item{opts}{character, name(s) of functions to call in the package}
+
+\item{chk.pkg}{logical, invokes a check to see if pkg is currently installed on system}
 }
 \value{
 character
@@ -20,7 +22,7 @@ input TeX package name and optional package functions to create usepackage call
 \details{
 opts is an optional argument, if it is NULL (default) then only the call for the package is returned.
 See the TeX wikibook for more information \url{https://en.wikibooks.org/wiki/LaTeX/Document_Structure#Packages} on 
-the usepackage command
+the usepackage command. If chk.pkg finds that the package is not installed on system function returns NULL.
 }
 \examples{
 buildUsepackage(pkg = 'xcolor')
