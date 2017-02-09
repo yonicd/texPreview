@@ -6,8 +6,9 @@
 \usage{
 texPreview(obj, stem, fileDir = NULL, overwrite = T, margin = list(left =
   10, top = 5, right = 50, bottom = 5), imgFormat = "png",
-  print.xtable.opts = list(), returnType = "viewer",
-  opts.html = list(width = "100\%", height = "100\%"))
+  show.output.on.console = F, print.xtable.opts = list(),
+  returnType = "viewer", opts.html = list(width = "100\%", height =
+  "100\%"))
 }
 \arguments{
 \item{obj}{character, TeX script}
@@ -21,6 +22,8 @@ texPreview(obj, stem, fileDir = NULL, overwrite = T, margin = list(left =
 \item{margin}{table margin for pdflatex call}
 
 \item{imgFormat}{character, defines the type of image the PDF is converted to.}
+
+\item{show.output.on.console}{passed to \code{system}}
 
 \item{print.xtable.opts}{list containing arguments to pass to print.table, relevant only if xtable is used as the input}
 
@@ -57,4 +60,3 @@ Armadillo & frozen      & 8.99       \\\\\\\\
 
 texPreview(obj = x,stem = 'eq',imgFormat = 'png')
 }
-
