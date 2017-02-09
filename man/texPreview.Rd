@@ -58,5 +58,6 @@ Armadillo & frozen      & 8.99       \\\\\\\\
 \\\\hline
 \\\\end{tabular}'
 
-texPreview(obj = x,stem = 'eq',imgFormat = 'png')
+texPreview(obj = tex,stem = 'eq',imgFormat = 'png')
 }
+

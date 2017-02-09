@@ -36,7 +36,7 @@
 #' \\hline
 #' \\end{tabular}'
 #' 
-#' texPreview(obj = x,stem = 'eq',imgFormat = 'png')
+#' texPreview(obj = tex,stem = 'eq',imgFormat = 'png')
 
 
 texPreview <- function (obj, stem, fileDir = NULL, overwrite = T, 
