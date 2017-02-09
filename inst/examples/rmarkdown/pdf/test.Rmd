@@ -19,8 +19,6 @@ if(rt%in%c("html", "html5", "s5", "slidy","slideous", "dzslides", "revealjs","md
      writeLines('<script src="zoomImage.js"></script>')
    }
 }
-
-
 ```
 
 
