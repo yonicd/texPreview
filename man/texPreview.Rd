@@ -8,7 +8,7 @@ texPreview(obj, stem, fileDir = NULL, overwrite = T, margin = list(left =
   10, top = 5, right = 50, bottom = 5), imgFormat = "png",
   print.xtable.opts = list(), returnType = "viewer",
   opts.html = list(width = "100\%", height = "100\%"), usrPackages = NULL,
-  ...)
+  engine = c("pdflatex", "xelatex", "lualatex"), ...)
 }
 \arguments{
 \item{obj}{character, TeX script}
@@ -30,6 +30,8 @@ texPreview(obj, stem, fileDir = NULL, overwrite = T, margin = list(left =
 \item{opts.html}{a list of html options, currently height and width.  can be specified as percentage or pixels.}
 
 \item{usrPackages}{character of usepackage commands, see details for string format}
+
+\item{engine}{character specifies which latex to pdf engine to use ('pdflatex' default,'xelatex','lualatex')}
 
 \item{...}{passed to \code{system}}
 }
@@ -64,5 +66,11 @@ Armadillo & frozen      & 8.99       \\\\\\\\
 \\\\end{tabular}'
 
 texPreview(obj = tex,stem = 'eq',imgFormat = 'png')
+
+tikzEx=readLines('http://www.texample.net/media/tikz/examples/TEX/credit-rationing.tex')
+usetikz=paste(tikzEx[14:23],collapse="\\n")
+bodytikz=paste(tikzEx[25:90],collapse="\\n")
+
+texPreview(obj = bodytikz,stem='tikzTest',imgFormat = 'svg',usrPackages = buildUsepackage(pkg = 'tikz',uselibrary = usetikz))
 }
 

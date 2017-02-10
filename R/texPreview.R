@@ -11,6 +11,7 @@
 #' @param returnType one of "viewer", "html", or "tex" determining appropriate return type for the rendering process
 #' @param opts.html a list of html options, currently height and width.  can be specified as percentage or pixels.
 #' @param usrPackages character of usepackage commands, see details for string format
+#' @param engine character specifies which latex to pdf engine to use ('pdflatex' default,'xelatex','lualatex')
 #' @param ... passed to \code{system}
 #' @details The function assumes the system has pdflatex installed and it is defined in the PATH. The function does not return anything to R.
 #' If fileDir is specified then two files are written to the directory. An image file of the name stem with the extension specified in imgFormat.
@@ -40,13 +41,20 @@
 #' \\end{tabular}'
 #' 
 #' texPreview(obj = tex,stem = 'eq',imgFormat = 'png')
+#' 
+#' tikzEx=readLines('http://www.texample.net/media/tikz/examples/TEX/credit-rationing.tex')
+#' usetikz=paste(tikzEx[14:23],collapse="\n")
+#' bodytikz=paste(tikzEx[25:90],collapse="\n")
+#' 
+#' texPreview(obj = bodytikz,stem='tikzTest',imgFormat = 'svg',usrPackages = buildUsepackage(pkg = 'tikz',uselibrary = usetikz))
 
 
 texPreview <- function (obj, stem, fileDir = NULL, overwrite = T, 
                         margin=list(left=10, top=5, right=50, bottom=5),
                         imgFormat = "png", 
                         print.xtable.opts = list(), returnType="viewer",
-                        opts.html=list(width="100%",height="100%"),usrPackages=NULL,
+                        opts.html=list(width="100%",height="100%"),
+                        usrPackages=NULL,engine=c('pdflatex','xelatex','lualatex'),
                         ...) 
 {
   if (is.null(fileDir)) {
@@ -85,10 +93,7 @@ texPreview <- function (obj, stem, fileDir = NULL, overwrite = T,
   writeLines(newobj, con = file.path(fileDir, paste0(stem, "Doc.tex")))
   x = getwd()
   setwd(fileDir)
-  system(paste("pdflatex", 
-               "-interaction=nonstopmode --halt-on-error",
-               file.path(paste0(stem,  "Doc.tex"))
-              ),
+  system(paste(engine, "-synctex=1 -interaction=nonstopmode --halt-on-error",file.path(paste0(stem,  "Doc.tex"))),
          ...)
   setwd(x)
   imgOut = image_convert(image = image_read(path = file.path(fileDir, 

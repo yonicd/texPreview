@@ -4,14 +4,16 @@
 \alias{buildUsepackage}
 \title{Build usepackage command for TeX document}
 \usage{
-buildUsepackage(pkg, opts = NULL, chk.inst = FALSE)
+buildUsepackage(pkg, options = NULL, uselibrary = NULL, chk.inst = FALSE)
 }
 \arguments{
 \item{pkg}{character, name of TeX package}
 
-\item{opts}{character, name(s) of functions to call in the package}
+\item{options}{character, name(s) of options to use in the package}
 
-\item{chk.pkg}{logical, invokes a check to see if pkg is currently installed on system}
+\item{uselibrary}{character, part of document preamble to specify a uselibrary call related to package}
+
+\item{chk.pkg}{logical, invokes a check to see if pkg is currently installed on system (default FALSE)}
 }
 \value{
 character

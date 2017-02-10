@@ -7,7 +7,7 @@
 getTexPackages()
 }
 \value{
-data.frame
+character
 }
 \description{
 Fetch all TeX packages currently installed on system
