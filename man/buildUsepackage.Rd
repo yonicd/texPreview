@@ -22,16 +22,23 @@ character
 input TeX package name and optional package functions to create usepackage call
 }
 \details{
-opts is an optional argument, if it is NULL (default) then only the call for the package is returned.
+if options and uselibrary are NULL (default) then only the call for the package is returned.
 See the TeX wikibook for more information \url{https://en.wikibooks.org/wiki/LaTeX/Document_Structure#Packages} on 
 the usepackage command. If chk.pkg finds that the package is not installed on system function returns NULL.
 }
 \examples{
 buildUsepackage(pkg = 'xcolor')
-buildUsepackage(pkg = 'xcolor',opts = 'usenames')
+buildUsepackage(pkg = 'xcolor',options = 'usenames')
 
 #build many at once using mapply
-mapply(buildUsepackage,pkg=list('xcolor','multrow','helvet','amsmath','rotating','graphicx'),
-opts=list(c('usenames','dvispnames','svgnames','table'),NULL,NULL,NULL,NULL,NULL))
+
+geom.opts=c('paperwidth=35cm','paperheight=35cm','left=2.5cm','top=2.5cm')
+use.opts="\\\\usetikzlibrary{mindmap,backgrounds}"
+
+unlist(mapply(buildUsepackage,
+pkg =        list('times','geometry','tikz'),
+options=     list(NULL   ,geom.opts ,NULL),
+uselibrary = list(NULL   ,NULL      ,use.opts)
+))
 }
 
