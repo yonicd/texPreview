@@ -19,3 +19,5 @@ Preview and save images of rendered snippets of LaTeX in RStudio viewer
 ![](https://github.com/metrumresearchgroup/texPreview/blob/master/texPreview.gif?raw=true)
 
 When the output is set to 'svg' the default output to the viewer is [svgPanZoom](https://github.com/timelyportfolio/svgPanZoom), which allows for panning and zooming on the image in the viewer. If the package is not installed a static image will be loaded. 
+
+![](https://github.com/metrumresearchgroup/texPreview/blob/master/texPreviewPanZoom.gif?raw=true)
