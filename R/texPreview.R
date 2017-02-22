@@ -1,5 +1,7 @@
 #' @title Render and Preview snippets of TeX in R Viewer
 #' @export
+#' @import svgPanZoom
+#' @import xml2
 #' @description input TeX script into the function and it renders a pdf and converts it an image which is sent to Viewer.
 #' @param obj character, TeX script
 #' @param stem character, name to use in output files
@@ -101,8 +103,7 @@ texPreview <- function (obj, stem, fileDir = NULL, overwrite = T,
                          depth = 16)
   #cat("\014")
   if (writeFlg & overwrite) {
-    image_write(imgOut, file.path(fileDir, paste0(stem, 
-                                                  ".", imgFormat)))
+    image_write(imgOut, file.path(fileDir, paste0(stem,".", imgFormat)))
     if (!"file" %in% names(print.xtable.opts)) 
       print.xtable.opts$file = file.path(fileDir, paste0(stem, 
                                                          ".tex"))
@@ -110,7 +111,15 @@ texPreview <- function (obj, stem, fileDir = NULL, overwrite = T,
       do.call("print", print.xtable.opts)
   }
 
-  if(returnType!='shiny') capture.output(x <- print(imgOut))
+  if(returnType!='shiny'){
+    if(imgFormat=='svg'){
+      image_write(imgOut, file.path(fileDir, paste0(stem,".", imgFormat)))
+      xmlSvg=paste0(readLines(file.path(fileDir, paste0(stem,".", imgFormat))),collapse = '\n')
+      print(svgPanZoom(read_xml(xmlSvg)))
+    }else{
+      capture.output(x <- print(imgOut))
+    } 
+  }
 
   if(returnType=='viewer') return(NULL)
   

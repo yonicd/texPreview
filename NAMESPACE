@@ -3,3 +3,5 @@
 export(buildUsepackage)
 export(getTexPackages)
 export(texPreview)
+import(svgPanZoom)
+import(xml2)
