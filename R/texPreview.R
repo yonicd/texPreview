@@ -112,7 +112,7 @@ texPreview <- function (obj, stem, fileDir = NULL, overwrite = T,
   }
 
   if(returnType!='shiny'){
-    if(imgFormat=='svg'){
+    if(imgFormat=='svg'&'svgPanZoom'%in%rownames(installed.packages())){
       image_write(imgOut, file.path(fileDir, paste0(stem,".", imgFormat)))
       xmlSvg=paste0(readLines(file.path(fileDir, paste0(stem,".", imgFormat))),collapse = '\n')
       print(svgPanZoom(read_xml(xmlSvg)))
