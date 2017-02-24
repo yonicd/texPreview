@@ -1,0 +1,46 @@
+\begin{tikzpicture}[
+    mycircle/.style={
+    circle,
+    draw=black,
+    fill=white,
+    fill opacity = 0.3,
+    text opacity=1,
+    inner sep=0pt,
+    minimum size=20pt,
+    font=\small,
+    align=center},
+    myarrow/.style={-Stealth},
+    node distance=0.6cm and 1.0cm
+    ]
+
+  \node[mycircle] (c1) {1\\(central)\\$V_1$};
+  \node[mycircle,draw=white,above left=of c1] (c2) {IV bolus};
+  \node[mycircle,draw=white,above right=0.5cm of c1] (c3) {sample};
+  \node[mycircle,draw=white,below=of c1] (c4) {};
+  \node[mycircle,right=of c1] (c5) {2\\(peripheral)\ };
+  \node[mycircle,draw=white,below=of c5] (c6) {};
+
+%loop to create standard edges
+  \foreach \i/\j/\txt/\p/\r in {% start node/end node/text/position
+    c1/c4/$K_{10}$/left/90,
+    c5/c6/$K_{20}$/left/90,
+    c1.350/c5.190/$K_{21}$/below/0
+  }
+  \draw [myarrow] (\i) -- node[sloped,font=\small,\p,rotate=\r] {\txt} (\j);
+
+%draw special edges
+  \draw [-Stealth,dashed] (c2) edge[in=130,out=-90](c1);
+  \draw [*-] (c3) -- node[font=\small] {} (c1);
+  \draw [myarrow] (c5.168) -- node[font=\small,above] {$K_{12}$} (c1.15);
+
+% title
+	\node[align=center,font=\bfseries, yshift=2em] (title) 
+    at (current bounding box.north)
+    {Unidentifiable Two-compartment Model};
+
+% caption
+	\node[align=center,font=\bfseries, yshift=-2em] (caption) 
+    at (current bounding box.south)
+    {The model parameters cannot be estimated uniquely \\ unless concentration data is  available from both compartments};
+
+\end{tikzpicture}
