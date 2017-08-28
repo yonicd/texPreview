@@ -1,3 +1,7 @@
+[![CRAN\_Status\_Badge](https://www.r-pkg.org/badges/version/texPreview)](https://cran.r-project.org/package=texPreview)
+[![Project Status: Active - The project has reached a stable, usable state and is being actively developed.](http://www.repostatus.org/badges/0.1.0/active.svg)](http://www.repostatus.org/#active) 
+![downloads](http://cranlogs.r-pkg.org/badges/grand-total/texPreview)
+
 # texPreview
 
 Preview and save images of rendered snippets of LaTeX in RStudio viewer
@@ -14,7 +18,7 @@ Preview and save images of rendered snippets of LaTeX in RStudio viewer
   
   - Can be run in a rmarkdown enviornment pdf/html/book/beamer/ioslides/slidy/revealjs ...
   
-  - Can be run in a shiny enviornment, as `shiny::renderImage` or as part of htmlwidgets like [bsplus::carousel](https://github.com/ijlyttle/bsplus) and [loryR::renderLoryR](https://github.com/timelyportfolio/loryR)
+  - Can be run in a shiny enviornment, as `shiny::renderImage` or as part of htmlwidgets like [bsplus::carousel](https://github.com/ijlyttle/bsplus),  [loryR::renderLoryR](https://github.com/timelyportfolio/loryR) and [slickR::renderSlickR](https://github.com/metrumresearchgroup/slickR).
 
 ![](https://github.com/metrumresearchgroup/texPreview/blob/master/texPreview.gif?raw=true)
 
