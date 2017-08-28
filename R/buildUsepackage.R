@@ -47,3 +47,9 @@ buildUsepackage=function(pkg,options=NULL,uselibrary=NULL,chk.inst=FALSE){
   
     return(c(out,uselibrary))
 }
+
+#' @export
+#' @rdname buildUsepackage
+buildUsepackages <- function(pkgs) {
+  
+}

@@ -15,7 +15,10 @@
 #' @param usrPackages character, vector of usepackage commands, see details for string format
 #' @param engine character, specifies which latex to pdf engine to use ('pdflatex' default,'xelatex','lualatex')
 #' @param cleanup character, vector of file extensions to clean up after building pdf, Defualt: tex_opts$get('cleanup')
+#' @param tex_message logical, controls if latex executing messages are displayed in console. Default is FALSE. 
 #' @param ... passed to \code{system}
+#' 
+#' 
 #' @details The function assumes the system has pdflatex installed and it is defined in the PATH. The function does not return anything to R.
 #' If fileDir is specified then two files are written to the directory. An image file of the name stem with the extension specified in imgFormat.
 #' The default extension is png.The second file is the TeX script used to create the output of the name stem.tex.   If you do not wish to view the 
@@ -63,81 +66,93 @@
 #' @importFrom xtable xtable
 
 
-texPreview <- function (obj, 
-                        stem = paste0("tex_", format(Sys.time(), "%Y-%m-%d_%H:%M:%S")),
-                        fileDir = NULL, 
-                        overwrite = TRUE, 
-                        margin=tex_opts$get('margin'),
-                        imgFormat = tex_opts$get('imgFormat'), 
-                        print.xtable.opts = tex_opts$get('print.xtable.opts'),
-                        returnType=tex_opts$get('returnType'),
-                        opts.html=tex_opts$get('opts.html'),
-                        usrPackages=NULL,
-                        engine=c('pdflatex','xelatex','lualatex'),
-                        cleanup=tex_opts$get('cleanup'),
-                        ...) 
+texPreview <- function(obj, 
+                       stem = NULL,
+                       fileDir = NULL,
+                       overwrite = TRUE, 
+                       margin=tex_opts$get('margin'),
+                       imgFormat = tex_opts$get('imgFormat'), 
+                       print.xtable.opts = tex_opts$get('print.xtable.opts'),
+                       returnType = tex_opts$get('returnType'),
+                       opts.html = tex_opts$get('opts.html'),
+                       usrPackages = NULL,
+                       engine = c('pdflatex','xelatex','lualatex'),
+                       cleanup = tex_opts$get('cleanup'),
+                       tex_message = FALSE, 
+                       density = tex_opts$get('density'),
+                       keep_pdf = FALSE, 
+                       ...) 
 {
-  if (is.null(fileDir)) {
-    fileDir <- tempdir()
-    if (!dir.exists(fileDir)) 
-      dir.create(fileDir, recursive = TRUE,showWarnings = FALSE)
-    writeFlg = FALSE
+  
+  if (!is.null(fileDir)) {
+    current_dir <- getwd()
+    setwd(fileDir)
   }
-  else {
-    writeFlg = TRUE
-    if (!dir.exists(fileDir)){
-      if(returnType=='viewer') return()
-    }else{
-      dir.create(fileDir, recursive = TRUE,showWarnings = FALSE)
-    }
-      
-  }
+  
   if ("xtable" %in% class(obj)) {
     print.xtable.opts$x = obj
-    print.xtable.opts$comment=FALSE
+    print.xtable.opts$comment = FALSE
     
-    if (!"file" %in% names(print.xtable.opts)) print.xtable.opts$file = file.path(fileDir, paste0(stem,".tex"))
-      
+    if (!"file" %in% names(print.xtable.opts)) {
+      print.xtable.opts$file = paste0(temp_file, ".tex")
+    }
+    
     obj = do.call("print", print.xtable.opts)
   }
-
+  
   newobj <- c(
     sprintf("\\documentclass[varwidth, border={%s %s %s %s}]{standalone}",
             margin$left, margin$top, margin$right, margin$bottom), 
     "\\usepackage[usenames,dvispnames,svgnames,table]{xcolor}", 
-    "\\usepackage{multirow}", "\\usepackage{helvet}", "\\usepackage{amsmath}", 
-    "\\usepackage{rotating}", "\\usepackage{graphicx}", 
-    "\\renewcommand{\\familydefault}{\\sfdefault}", "\\usepackage{setspace}", 
-    "\\usepackage{caption}", "\\captionsetup{labelformat=empty}",usrPackages, 
-    "\\begin{document}", obj, "\\end{document}"    
+    "\\usepackage{multirow}", 
+    "\\usepackage{helvet}", 
+    "\\usepackage{amsmath}", 
+    "\\usepackage{rotating}", 
+    "\\usepackage{graphicx}", 
+    "\\renewcommand{\\familydefault}{\\sfdefault}", 
+    "\\usepackage{setspace}", 
+    "\\usepackage{caption}", 
+    "\\captionsetup{labelformat=empty}",
+    usrPackages, 
+    "\\begin{document}", 
+    obj, 
+    "\\end{document}"    
   )
   
-  writeLines(newobj, con = file.path(fileDir, paste0(stem, "Doc.tex")))
+  temp_file <- paste0("table_", format(Sys.time(), "%Y-%m-%d_%H:%M:%S"))
+  writeLines(newobj, con = paste0(temp_file, ".tex"))
   
-  x = getwd()
-  
-  setwd(fileDir)
-  
-  system(paste(engine, "-synctex=1 -interaction=nonstopmode --halt-on-error",file.path(paste0(stem,  "Doc.tex"))),
+  interaction_mode <- ifelse(tex_message, "nonstopmode", "batchmode")
+  system(paste0(engine, " -synctex=1 -interaction=", interaction_mode, 
+                " --halt-on-error ", temp_file, ".tex"),
          ...)
   
-  if(!is.null(cleanup)) unlink(list.files(pattern = paste0(cleanup,collapse ='|')))
+  if (!is.null(cleanup)) {
+    files_to_unlink <- paste0(temp_file,".", cleanup)
+    unlink(files_to_unlink)
+  }
   
-  setwd(x)
+  imgOut <- magick::image_read(path = paste0(temp_file, ".pdf"), 
+                               density = density)
+  imgOut <- magick::image_convert(imgOut, format = imgFormat, depth = 16)
   
-  imgOut = magick::image_convert(image =  magick::image_read(path = file.path(fileDir, 
-                                                             paste0(stem, "Doc.pdf")), density = 150), format = imgFormat, 
-                         depth = 16)
+  if (!keep_pdf) {
+    unlink(paste0(temp_file, ".pdf"))
+  }
+  
   #cat("\014")
-  if (writeFlg & overwrite) {
-    magick::image_write(imgOut, file.path(fileDir, paste0(stem,".", imgFormat)))
+  if (!is.null(fileDir)) {
+    setwd(current_dir)
+  }
+  
+  if (!is.null(stem) & overwrite) {
+    magick::image_write(imgOut, paste0(stem,".", imgFormat))
     if (!"file" %in% names(print.xtable.opts)) 
-      print.xtable.opts$file = file.path(fileDir, paste0(stem, 
-                                                         ".tex"))
+      print.xtable.opts$file = file.path(fileDir, paste0(stem, ".tex"))
     if ("xtable" %in% class(obj)) 
       do.call("print", print.xtable.opts)
   }
-
+  
   if(returnType!='shiny'){
     if(imgFormat=='svg'&'svgPanZoom'%in%rownames(utils::installed.packages())){
       magick::image_write(imgOut, file.path(fileDir, paste0(stem,".", imgFormat)))
@@ -147,18 +162,18 @@ texPreview <- function (obj,
       utils::capture.output(x <- print(imgOut))
     } 
   }
-
+  
   if(returnType=='viewer') return(NULL)
   
   if(returnType%in%c("html", "html5", "s5", "slidy","slideous", "dzslides", "revealjs","md")){
     return(writeLines(sprintf('<img src="%s" height="%s" width="%s" />', 
                               file.path(fileDir,paste0(stem,'.',imgFormat)),
                               opts.html$height, opts.html$width)
-                      )
-           )
+    )
+    )
   }  
   
   if(returnType%in%c('latex','beamer')) return(writeLines(obj))
-
-
+  
+  
 }
