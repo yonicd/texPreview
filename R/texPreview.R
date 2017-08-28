@@ -51,8 +51,8 @@
 #' texPreview(obj = bodytikz,stem='tikzTest',imgFormat = 'svg',usrPackages = buildUsepackage(pkg = 'tikz',uselibrary = usetikz))
 
 
-texPreview <- function (obj, stem, fileDir = NULL, overwrite = T, 
-                        margin=list(left=10, top=5, right=50, bottom=5),
+texPreview <- function (obj, stem, fileDir = NULL, overwrite = TRUE, 
+                        margin=list(left=10, top=5, right=10, bottom=5),
                         imgFormat = "png", 
                         print.xtable.opts = list(), returnType="viewer",
                         opts.html=list(width="100%",height="100%"),
@@ -62,7 +62,7 @@ texPreview <- function (obj, stem, fileDir = NULL, overwrite = T,
   if (is.null(fileDir)) {
     fileDir <- tempdir()
     if (!dir.exists(fileDir)) 
-      dir.create(fileDir, recursive = T)
+      dir.create(fileDir, recursive = TRUE)
     writeFlg = F
   }
   else {
@@ -70,13 +70,13 @@ texPreview <- function (obj, stem, fileDir = NULL, overwrite = T,
     if (!dir.exists(fileDir)){
       if(returnType=='viewer') return()
     }else{
-      suppressWarnings(dir.create(fileDir, recursive = T))
+      suppressWarnings(dir.create(fileDir, recursive = TRUE))
     }
       
   }
   if ("xtable" %in% class(obj)) {
     print.xtable.opts$x = obj
-    print.xtable.opts$comment=F
+    print.xtable.opts$comment=FALSE
     
     if (!"file" %in% names(print.xtable.opts)) print.xtable.opts$file = file.path(fileDir, paste0(stem,".tex"))
       
