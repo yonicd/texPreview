@@ -15,7 +15,13 @@
 #' @param usrPackages character, vector of usepackage commands, see details for string format
 #' @param engine character, specifies which latex to pdf engine to use ('pdflatex' default,'xelatex','lualatex')
 #' @param cleanup character, vector of file extensions to clean up after building pdf, Defualt: tex_opts$get('cleanup')
+#' @param keep_pdf logical, controls if the rendered pdf file should be kept or deleted. Default is FALSE
 #' @param tex_message logical, controls if latex executing messages are displayed in console. Default is FALSE. 
+#' @param density numeric, controls the density of the image. Default is 150: tex_opts$get('density)
+#' @param tex_lines vector of character, in case of special needs, instead of asking 
+#' texPreview to build up, you may choose to pass in the contents of the 
+#' complete LaTeX file directly. It should be a vector of character with each 
+#' element as a line of raw TeX code. 
 #' @param ... passed to \code{system}
 #' 
 #' 
@@ -78,9 +84,10 @@ texPreview <- function(obj,
                        usrPackages = NULL,
                        engine = c('pdflatex','xelatex','lualatex'),
                        cleanup = tex_opts$get('cleanup'),
+                       keep_pdf = FALSE, 
                        tex_message = FALSE, 
                        density = tex_opts$get('density'),
-                       keep_pdf = FALSE, 
+                       tex_lines = NULL, 
                        ...) 
 {
   
@@ -89,38 +96,41 @@ texPreview <- function(obj,
     setwd(fileDir)
   }
   
-  if ("xtable" %in% class(obj)) {
-    print.xtable.opts$x = obj
-    print.xtable.opts$comment = FALSE
-    
-    if (!"file" %in% names(print.xtable.opts)) {
-      print.xtable.opts$file = paste0(temp_file, ".tex")
+  temp_file <- paste0("table_", format(Sys.time(), "%Y-%m-%d_%H:%M:%S"))
+  
+  if (is.null(tex_lines)) {
+    if ("xtable" %in% class(obj)) {
+      print.xtable.opts$x = obj
+      print.xtable.opts$comment = FALSE
+      
+      if (!"file" %in% names(print.xtable.opts)) {
+        print.xtable.opts$file = paste0(temp_file, ".tex")
+      }
+      
+      obj = do.call("print", print.xtable.opts)
     }
     
-    obj = do.call("print", print.xtable.opts)
+    tex_lines <- c(
+      sprintf("\\documentclass[varwidth, border={%s %s %s %s}]{standalone}",
+              margin$left, margin$top, margin$right, margin$bottom), 
+      "\\usepackage[usenames,dvispnames,svgnames,table]{xcolor}", 
+      "\\usepackage{multirow}", 
+      "\\usepackage{helvet}", 
+      "\\usepackage{amsmath}", 
+      "\\usepackage{rotating}", 
+      "\\usepackage{graphicx}", 
+      "\\renewcommand{\\familydefault}{\\sfdefault}", 
+      "\\usepackage{setspace}", 
+      "\\usepackage{caption}", 
+      "\\captionsetup{labelformat=empty}",
+      usrPackages, 
+      "\\begin{document}", 
+      obj, 
+      "\\end{document}"    
+    )
   }
   
-  newobj <- c(
-    sprintf("\\documentclass[varwidth, border={%s %s %s %s}]{standalone}",
-            margin$left, margin$top, margin$right, margin$bottom), 
-    "\\usepackage[usenames,dvispnames,svgnames,table]{xcolor}", 
-    "\\usepackage{multirow}", 
-    "\\usepackage{helvet}", 
-    "\\usepackage{amsmath}", 
-    "\\usepackage{rotating}", 
-    "\\usepackage{graphicx}", 
-    "\\renewcommand{\\familydefault}{\\sfdefault}", 
-    "\\usepackage{setspace}", 
-    "\\usepackage{caption}", 
-    "\\captionsetup{labelformat=empty}",
-    usrPackages, 
-    "\\begin{document}", 
-    obj, 
-    "\\end{document}"    
-  )
-  
-  temp_file <- paste0("table_", format(Sys.time(), "%Y-%m-%d_%H:%M:%S"))
-  writeLines(newobj, con = paste0(temp_file, ".tex"))
+  writeLines(tex_lines, con = paste0(temp_file, ".tex"))
   
   interaction_mode <- ifelse(tex_message, "nonstopmode", "batchmode")
   system(paste0(engine, " -synctex=1 -interaction=", interaction_mode, 

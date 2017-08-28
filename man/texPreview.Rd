@@ -4,14 +4,15 @@
 \alias{texPreview}
 \title{Render and Preview snippets of TeX in R Viewer}
 \usage{
-texPreview(obj, stem = paste0("tex_", format(Sys.time(),
-  "\%Y-\%m-\%d_\%H:\%M:\%S")), fileDir = NULL, overwrite = TRUE,
+texPreview(obj, stem = NULL, fileDir = NULL, overwrite = TRUE,
   margin = tex_opts$get("margin"), imgFormat = tex_opts$get("imgFormat"),
   print.xtable.opts = tex_opts$get("print.xtable.opts"),
   returnType = tex_opts$get("returnType"),
   opts.html = tex_opts$get("opts.html"), usrPackages = NULL,
   engine = c("pdflatex", "xelatex", "lualatex"),
-  cleanup = tex_opts$get("cleanup"), ...)
+  cleanup = tex_opts$get("cleanup"), keep_pdf = FALSE,
+  tex_message = FALSE, density = tex_opts$get("density"),
+  tex_lines = NULL, ...)
 }
 \arguments{
 \item{obj}{character, TeX script}
@@ -39,6 +40,17 @@ return type for the rendering process, Default: tex_opts$get('returnType')}
 \item{engine}{character, specifies which latex to pdf engine to use ('pdflatex' default,'xelatex','lualatex')}
 
 \item{cleanup}{character, vector of file extensions to clean up after building pdf, Defualt: tex_opts$get('cleanup')}
+
+\item{keep_pdf}{logical, controls if the rendered pdf file should be kept or deleted. Default is FALSE}
+
+\item{tex_message}{logical, controls if latex executing messages are displayed in console. Default is FALSE.}
+
+\item{density}{numeric, controls the density of the image. Default is 150: tex_opts$get('density)}
+
+\item{tex_lines}{vector of character, in case of special needs, instead of asking 
+texPreview to build up, you may choose to pass in the contents of the 
+complete LaTeX file directly. It should be a vector of character with each 
+element as a line of raw TeX code.}
 
 \item{...}{passed to \code{system}}
 }

@@ -2,9 +2,12 @@
 % Please edit documentation in R/buildUsepackage.R
 \name{buildUsepackage}
 \alias{buildUsepackage}
+\alias{buildUsepackages}
 \title{Build usepackage command for TeX document}
 \usage{
 buildUsepackage(pkg, options = NULL, uselibrary = NULL, chk.inst = FALSE)
+
+buildUsepackages(pkgs)
 }
 \arguments{
 \item{pkg}{character, name of TeX package}
