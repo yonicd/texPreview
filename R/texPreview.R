@@ -1,21 +1,20 @@
 #' @title Render and Preview snippets of TeX in R Viewer
 #' @export
-#' @import svgPanZoom
-#' @import xml2
-#' @import magick
-#' @import xtable
 #' @description input TeX script into the function and it renders a pdf and converts it an image which is sent to Viewer.
 #' @param obj character, TeX script
-#' @param stem character, name to use in output files
+#' @param stem character, name to use in output files, Default: paste0("tex_", format(Sys.time(), "\%Y-\%m-\%d_\%H:\%M:\%S"))
 #' @param fileDir character, output destination. If NULL a temp.dir() will be used and no output will be saved
 #' @param overwrite logical, controls if overwriting of output stem* files given their existences
-#' @param margin table margin for pdflatex call
-#' @param imgFormat character, defines the type of image the PDF is converted to.
-#' @param print.xtable.opts list containing arguments to pass to print.table, relevant only if xtable is used as the input
-#' @param returnType one of "viewer", "html", or "tex" determining appropriate return type for the rendering process
-#' @param opts.html a list of html options, currently height and width.  can be specified as percentage or pixels.
-#' @param usrPackages character of usepackage commands, see details for string format
-#' @param engine character specifies which latex to pdf engine to use ('pdflatex' default,'xelatex','lualatex')
+#' @param margin table margin for pdflatex call, Default: tex_opts$get('margin')
+#' @param imgFormat character, defines the type of image the PDF is converted to. Default: tex_opts$get('imgFormat')
+#' @param print.xtable.opts list, contains arguments to pass to print.table, 
+#' relevant only if xtable is used as the input, Default: tex_opts$get('print.xtable.opts')
+#' @param returnType character, one of "viewer", "html", or "tex" determining appropriate 
+#' return type for the rendering process, Default: tex_opts$get('returnType')
+#' @param opts.html list, html options, Default: tex_opts$get('opts.html')
+#' @param usrPackages character, vector of usepackage commands, see details for string format
+#' @param engine character, specifies which latex to pdf engine to use ('pdflatex' default,'xelatex','lualatex')
+#' @param cleanup character, vector of file extensions to clean up after building pdf, Defualt: tex_opts$get('cleanup')
 #' @param ... passed to \code{system}
 #' @details The function assumes the system has pdflatex installed and it is defined in the PATH. The function does not return anything to R.
 #' If fileDir is specified then two files are written to the directory. An image file of the name stem with the extension specified in imgFormat.
@@ -58,28 +57,38 @@
 #' }
 #' }
 #' }
+#' @importFrom svgPanZoom svgPanZoom
+#' @importFrom xml2 read_xml
+#' @importFrom magick image_convert image_read image_write
+#' @importFrom xtable xtable
 
 
-texPreview <- function (obj, stem, fileDir = NULL, overwrite = TRUE, 
-                        margin=list(left=10, top=5, right=10, bottom=5),
-                        imgFormat = "png", 
-                        print.xtable.opts = list(), returnType="viewer",
-                        opts.html=list(width="100%",height="100%"),
-                        usrPackages=NULL,engine=c('pdflatex','xelatex','lualatex'),
+texPreview <- function (obj, 
+                        stem = paste0("tex_", format(Sys.time(), "%Y-%m-%d_%H:%M:%S")),
+                        fileDir = NULL, 
+                        overwrite = TRUE, 
+                        margin=tex_opts$get('margin'),
+                        imgFormat = tex_opts$get('imgFormat'), 
+                        print.xtable.opts = tex_opts$get('print.xtable.opts'),
+                        returnType=tex_opts$get('returnType'),
+                        opts.html=tex_opts$get('opts.html'),
+                        usrPackages=NULL,
+                        engine=c('pdflatex','xelatex','lualatex'),
+                        cleanup=tex_opts$get('cleanup'),
                         ...) 
 {
   if (is.null(fileDir)) {
     fileDir <- tempdir()
     if (!dir.exists(fileDir)) 
-      dir.create(fileDir, recursive = TRUE)
-    writeFlg = F
+      dir.create(fileDir, recursive = TRUE,showWarnings = FALSE)
+    writeFlg = FALSE
   }
   else {
-    writeFlg = T
+    writeFlg = TRUE
     if (!dir.exists(fileDir)){
       if(returnType=='viewer') return()
     }else{
-      suppressWarnings(dir.create(fileDir, recursive = TRUE))
+      dir.create(fileDir, recursive = TRUE,showWarnings = FALSE)
     }
       
   }
@@ -91,6 +100,7 @@ texPreview <- function (obj, stem, fileDir = NULL, overwrite = TRUE,
       
     obj = do.call("print", print.xtable.opts)
   }
+
   newobj <- c(
     sprintf("\\documentclass[varwidth, border={%s %s %s %s}]{standalone}",
             margin$left, margin$top, margin$right, margin$bottom), 
@@ -101,12 +111,20 @@ texPreview <- function (obj, stem, fileDir = NULL, overwrite = TRUE,
     "\\usepackage{caption}", "\\captionsetup{labelformat=empty}",usrPackages, 
     "\\begin{document}", obj, "\\end{document}"    
   )
+  
   writeLines(newobj, con = file.path(fileDir, paste0(stem, "Doc.tex")))
+  
   x = getwd()
+  
   setwd(fileDir)
+  
   system(paste(engine, "-synctex=1 -interaction=nonstopmode --halt-on-error",file.path(paste0(stem,  "Doc.tex"))),
          ...)
+  
+  if(!is.null(cleanup)) unlink(list.files(pattern = paste0(cleanup,collapse ='|')))
+  
   setwd(x)
+  
   imgOut = magick::image_convert(image =  magick::image_read(path = file.path(fileDir, 
                                                              paste0(stem, "Doc.pdf")), density = 150), format = imgFormat, 
                          depth = 16)

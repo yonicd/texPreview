@@ -4,34 +4,41 @@
 \alias{texPreview}
 \title{Render and Preview snippets of TeX in R Viewer}
 \usage{
-texPreview(obj, stem, fileDir = NULL, overwrite = T, margin = list(left =
-  10, top = 5, right = 50, bottom = 5), imgFormat = "png",
-  print.xtable.opts = list(), returnType = "viewer",
-  opts.html = list(width = "100\%", height = "100\%"), usrPackages = NULL,
-  engine = c("pdflatex", "xelatex", "lualatex"), ...)
+texPreview(obj, stem = paste0("tex_", format(Sys.time(),
+  "\%Y-\%m-\%d_\%H:\%M:\%S")), fileDir = NULL, overwrite = TRUE,
+  margin = tex_opts$get("margin"), imgFormat = tex_opts$get("imgFormat"),
+  print.xtable.opts = tex_opts$get("print.xtable.opts"),
+  returnType = tex_opts$get("returnType"),
+  opts.html = tex_opts$get("opts.html"), usrPackages = NULL,
+  engine = c("pdflatex", "xelatex", "lualatex"),
+  cleanup = tex_opts$get("cleanup"), ...)
 }
 \arguments{
 \item{obj}{character, TeX script}
 
-\item{stem}{character, name to use in output files}
+\item{stem}{character, name to use in output files, Default: paste0("tex_", format(Sys.time(), "\%Y-\%m-\%d_\%H:\%M:\%S"))}
 
 \item{fileDir}{character, output destination. If NULL a temp.dir() will be used and no output will be saved}
 
 \item{overwrite}{logical, controls if overwriting of output stem* files given their existences}
 
-\item{margin}{table margin for pdflatex call}
+\item{margin}{table margin for pdflatex call, Default: tex_opts$get('margin')}
 
-\item{imgFormat}{character, defines the type of image the PDF is converted to.}
+\item{imgFormat}{character, defines the type of image the PDF is converted to. Default: tex_opts$get('imgFormat')}
 
-\item{print.xtable.opts}{list containing arguments to pass to print.table, relevant only if xtable is used as the input}
+\item{print.xtable.opts}{list, contains arguments to pass to print.table, 
+relevant only if xtable is used as the input, Default: tex_opts$get('print.xtable.opts')}
 
-\item{returnType}{one of "viewer", "html", or "tex" determining appropriate return type for the rendering process}
+\item{returnType}{character, one of "viewer", "html", or "tex" determining appropriate 
+return type for the rendering process, Default: tex_opts$get('returnType')}
 
-\item{opts.html}{a list of html options, currently height and width.  can be specified as percentage or pixels.}
+\item{opts.html}{list, html options, Default: tex_opts$get('opts.html')}
 
-\item{usrPackages}{character of usepackage commands, see details for string format}
+\item{usrPackages}{character, vector of usepackage commands, see details for string format}
 
-\item{engine}{character specifies which latex to pdf engine to use ('pdflatex' default,'xelatex','lualatex')}
+\item{engine}{character, specifies which latex to pdf engine to use ('pdflatex' default,'xelatex','lualatex')}
+
+\item{cleanup}{character, vector of file extensions to clean up after building pdf, Defualt: tex_opts$get('cleanup')}
 
 \item{...}{passed to \code{system}}
 }
