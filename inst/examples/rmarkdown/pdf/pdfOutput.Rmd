@@ -1,14 +1,13 @@
 ---
-title: "revesaljs output that has embeded LaTeX tables"
+title: "pdf output with texPreview"
 author: "Jonathan Sidi"
 date: "January 31, 2017"
-output: 
-  revealjs::revealjs_presentation
-    
+output: pdf_document
 ---
 
-```{r setup, echo=FALSE,results='asis'}
+```{r setup, echo=FALSE}
 suppressMessages(library(texPreview))
+suppressMessages(library(xtable))
 
 rt=knitr::opts_knit$get('rmarkdown.pandoc.to')
 fd=NULL 
@@ -17,31 +16,33 @@ if(rt%in%c("html", "html5", "s5", "slidy","slideous", "dzslides", "revealjs","md
   fd="test_files/texPreview"
   if(!dir.exists(fd)) dir.create(fd,recursive = T)
   
+   if(rt%in%c('html')){
+     writeLines('<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>')
+     writeLines('<script src="zoomImage.js"></script>')
+   }
 }
-
-
 ```
 
-# Slides
 
-## Slide 1
+## Table 1
+Using scalebox option
+```{r testOut, cache=FALSE, echo=TRUE, results='asis'}
 
-```{r testOut, cache=FALSE, echo=FALSE, results='asis'}
-
-      texPreview( obj = xtable(head(iris,20)),
+      texPreview( obj = xtable::xtable(head(iris,20)),
                   stem="testOut",
                   fileDir = fd,
                   returnType=rt,
                   imgFormat = 'png',
-                  opts.html = list(width='70%',height='70%')
+                  print.xtable.opts = list(scalebox=0.5)
                   
              )
 
 ```
 
-## Slide 2
+## Table 2
+Intputting regular $TeX$ 
 
-```{r testOut2, cache=FALSE, echo=FALSE, results='asis'}
+```{r testOut2, cache=FALSE, echo=TRUE, results='asis'}
 
 tab='
 \\begin{tabular}{llr}
@@ -61,6 +62,6 @@ Armadillo & frozen      & 8.99       \\\\
       texPreview( obj = tab,
                   stem="testOut2",
                   fileDir = fd,imgFormat = 'svg',
-                  returnType=rt,opts.html = list(width='40%',height='50%')
+                  returnType=rt
                   )
 ```

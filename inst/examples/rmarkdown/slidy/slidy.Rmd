@@ -1,14 +1,15 @@
 ---
-title: "ioslides output that has embeded LaTeX tables"
+title: "slidy output that has embeded LaTeX tables"
 author: "Jonathan Sidi"
 date: "January 31, 2017"
 output: 
-  ioslides_presentation:
-    css: style.css
+  slidy_presentation
+    
 ---
 
 ```{r setup, echo=FALSE,results='asis'}
 suppressMessages(library(texPreview))
+suppressMessages(library(xtable))
 
 rt=knitr::opts_knit$get('rmarkdown.pandoc.to')
 fd=NULL 
@@ -17,10 +18,6 @@ if(rt%in%c("html", "html5", "s5", "slidy","slideous", "dzslides", "revealjs","md
   fd="test_files/texPreview"
   if(!dir.exists(fd)) dir.create(fd,recursive = T)
   
-   if(rt%in%c('html')){
-     writeLines('<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>')
-     writeLines('<script src="zoomImage.js"></script>')
-   }
 }
 
 
@@ -32,7 +29,7 @@ if(rt%in%c("html", "html5", "s5", "slidy","slideous", "dzslides", "revealjs","md
 
 ```{r testOut, cache=FALSE, echo=FALSE, results='asis'}
 
-      texPreview( obj = xtable(head(iris,20)),
+      texPreview( obj = xtable::xtable(head(iris,20)),
                   stem="testOut",
                   fileDir = fd,
                   returnType=rt,

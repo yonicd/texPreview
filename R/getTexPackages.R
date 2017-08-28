@@ -5,7 +5,7 @@
 #' @return 
 #' character
 #' @examples
-#' head(getTexPackages())
+#' \dontrun{head(getTexPackages())}
 
 getTexPackages=function(){
   if (Sys.info()[1] == "Windows"){

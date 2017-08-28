@@ -1,14 +1,13 @@
 ---
-title: "slidy output that has embeded LaTeX tables"
+title: "HTML output that has embeded LaTeX tables"
 author: "Jonathan Sidi"
 date: "January 31, 2017"
-output: 
-  slidy_presentation
-    
+output: html_document
 ---
 
 ```{r setup, echo=FALSE,results='asis'}
 suppressMessages(library(texPreview))
+suppressMessages(library(xtable))
 
 rt=knitr::opts_knit$get('rmarkdown.pandoc.to')
 fd=NULL 
@@ -22,13 +21,11 @@ if(rt%in%c("html", "html5", "s5", "slidy","slideous", "dzslides", "revealjs","md
 
 ```
 
-# Slides
+## Table 1
 
-## Slide 1
+```{r testOut, cache=FALSE, echo=TRUE, results='asis'}
 
-```{r testOut, cache=FALSE, echo=FALSE, results='asis'}
-
-      texPreview( obj = xtable(head(iris,20)),
+      texPreview( obj = xtable::xtable(head(iris,20)),
                   stem="testOut",
                   fileDir = fd,
                   returnType=rt,
@@ -39,9 +36,9 @@ if(rt%in%c("html", "html5", "s5", "slidy","slideous", "dzslides", "revealjs","md
 
 ```
 
-## Slide 2
+## Table 2
 
-```{r testOut2, cache=FALSE, echo=FALSE, results='asis'}
+```{r testOut2, cache=FALSE, echo=TRUE, results='asis'}
 
 tab='
 \\begin{tabular}{llr}
@@ -60,7 +57,7 @@ Armadillo & frozen      & 8.99       \\\\
 
       texPreview( obj = tab,
                   stem="testOut2",
-                  fileDir = fd,imgFormat = 'svg',
+                  fileDir = fd,imgFormat = 'png',
                   returnType=rt,opts.html = list(width='40%',height='50%')
                   )
 ```

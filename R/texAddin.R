@@ -1,5 +1,5 @@
+#' @importFrom rstudioapi getActiveDocumentContext
 texAddin <- function() {
-  require(texViewer)
   # Get the document context.
   context <- rstudioapi::getActiveDocumentContext()
   

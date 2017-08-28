@@ -48,9 +48,11 @@ usrPackage accepts a vector of character strings built by the function \code{\li
 }
 \examples{
 data('iris')
+\donttest{
+if(interactive()){
+texPreview(obj = xtable::xtable(head(iris,10)),stem = 'eq',imgFormat = 'svg')
 
-texPreview(obj = xtable(head(iris,10)),stem = 'eq',imgFormat = 'svg')
-
+\dontrun{
 tex='\\\\begin{tabular}{llr}
 \\\\hline
 \\\\multicolumn{2}{c}{Item} \\\\\\\\
@@ -65,12 +67,16 @@ Armadillo & frozen      & 8.99       \\\\\\\\
 \\\\hline
 \\\\end{tabular}'
 
-texPreview(obj = tex,stem = 'eq',imgFormat = 'png')
+texPreview(obj = tex,stem = 'eq',imgFormat = 'svg')
 
 tikzEx=readLines('http://www.texample.net/media/tikz/examples/TEX/credit-rationing.tex')
 usetikz=paste(tikzEx[14:23],collapse="\\n")
 bodytikz=paste(tikzEx[25:90],collapse="\\n")
 
-texPreview(obj = bodytikz,stem='tikzTest',imgFormat = 'svg',usrPackages = buildUsepackage(pkg = 'tikz',uselibrary = usetikz))
+texPreview(obj = bodytikz,
+stem='tikzTest',imgFormat = 'svg',
+usrPackages = buildUsepackage(pkg = 'tikz',uselibrary = usetikz))
 }
-
+}
+}
+}

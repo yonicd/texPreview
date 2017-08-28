@@ -13,7 +13,7 @@ buildUsepackage(pkg, options = NULL, uselibrary = NULL, chk.inst = FALSE)
 
 \item{uselibrary}{character, part of document preamble to specify a uselibrary call related to package}
 
-\item{chk.pkg}{logical, invokes a check to see if pkg is currently installed on system (default FALSE)}
+\item{chk.inst}{logical, invokes a check to see if pkg is currently installed on system (default FALSE)}
 }
 \value{
 character
@@ -24,7 +24,7 @@ input TeX package name and optional package functions to create usepackage call
 \details{
 if options and uselibrary are NULL (default) then only the call for the package is returned.
 See the TeX wikibook for more information \url{https://en.wikibooks.org/wiki/LaTeX/Document_Structure#Packages} on 
-the usepackage command. If chk.pkg finds that the package is not installed on system function returns NULL.
+the usepackage command. If chk.inst finds that the package is not installed on system function returns NULL.
 }
 \examples{
 buildUsepackage(pkg = 'xcolor')
@@ -41,4 +41,3 @@ options=     list(NULL   ,geom.opts ,NULL),
 uselibrary = list(NULL   ,NULL      ,use.opts)
 ))
 }
-

@@ -4,10 +4,10 @@
 #' @param pkg character, name of TeX package
 #' @param options character, name(s) of options to use in the package 
 #' @param uselibrary character, part of document preamble to specify a uselibrary call related to package
-#' @param chk.pkg logical, invokes a check to see if pkg is currently installed on system (default FALSE)
+#' @param chk.inst logical, invokes a check to see if pkg is currently installed on system (default FALSE)
 #' @details if options and uselibrary are NULL (default) then only the call for the package is returned.
 #' See the TeX wikibook for more information \url{https://en.wikibooks.org/wiki/LaTeX/Document_Structure#Packages} on 
-#' the usepackage command. If chk.pkg finds that the package is not installed on system function returns NULL.
+#' the usepackage command. If chk.inst finds that the package is not installed on system function returns NULL.
 #' @return 
 #' character
 #' @examples

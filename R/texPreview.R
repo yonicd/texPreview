@@ -2,6 +2,8 @@
 #' @export
 #' @import svgPanZoom
 #' @import xml2
+#' @import magick
+#' @import xtable
 #' @description input TeX script into the function and it renders a pdf and converts it an image which is sent to Viewer.
 #' @param obj character, TeX script
 #' @param stem character, name to use in output files
@@ -25,9 +27,11 @@
 #' NULL
 #' @examples
 #' data('iris')
+#' \donttest{
+#' if(interactive()){
+#' texPreview(obj = xtable::xtable(head(iris,10)),stem = 'eq',imgFormat = 'svg')
 #' 
-#' texPreview(obj = xtable(head(iris,10)),stem = 'eq',imgFormat = 'svg')
-#' 
+#' \dontrun{
 #' tex='\\begin{tabular}{llr}
 #' \\hline
 #' \\multicolumn{2}{c}{Item} \\\\
@@ -42,13 +46,18 @@
 #' \\hline
 #' \\end{tabular}'
 #' 
-#' texPreview(obj = tex,stem = 'eq',imgFormat = 'png')
+#' texPreview(obj = tex,stem = 'eq',imgFormat = 'svg')
 #' 
 #' tikzEx=readLines('http://www.texample.net/media/tikz/examples/TEX/credit-rationing.tex')
 #' usetikz=paste(tikzEx[14:23],collapse="\n")
 #' bodytikz=paste(tikzEx[25:90],collapse="\n")
 #' 
-#' texPreview(obj = bodytikz,stem='tikzTest',imgFormat = 'svg',usrPackages = buildUsepackage(pkg = 'tikz',uselibrary = usetikz))
+#' texPreview(obj = bodytikz,
+#' stem='tikzTest',imgFormat = 'svg',
+#' usrPackages = buildUsepackage(pkg = 'tikz',uselibrary = usetikz))
+#' }
+#' }
+#' }
 
 
 texPreview <- function (obj, stem, fileDir = NULL, overwrite = T, 
@@ -98,12 +107,12 @@ texPreview <- function (obj, stem, fileDir = NULL, overwrite = T,
   system(paste(engine, "-synctex=1 -interaction=nonstopmode --halt-on-error",file.path(paste0(stem,  "Doc.tex"))),
          ...)
   setwd(x)
-  imgOut = image_convert(image = image_read(path = file.path(fileDir, 
+  imgOut = magick::image_convert(image =  magick::image_read(path = file.path(fileDir, 
                                                              paste0(stem, "Doc.pdf")), density = 150), format = imgFormat, 
                          depth = 16)
   #cat("\014")
   if (writeFlg & overwrite) {
-    image_write(imgOut, file.path(fileDir, paste0(stem,".", imgFormat)))
+    magick::image_write(imgOut, file.path(fileDir, paste0(stem,".", imgFormat)))
     if (!"file" %in% names(print.xtable.opts)) 
       print.xtable.opts$file = file.path(fileDir, paste0(stem, 
                                                          ".tex"))
@@ -112,12 +121,12 @@ texPreview <- function (obj, stem, fileDir = NULL, overwrite = T,
   }
 
   if(returnType!='shiny'){
-    if(imgFormat=='svg'&'svgPanZoom'%in%rownames(installed.packages())){
-      image_write(imgOut, file.path(fileDir, paste0(stem,".", imgFormat)))
+    if(imgFormat=='svg'&'svgPanZoom'%in%rownames(utils::installed.packages())){
+      magick::image_write(imgOut, file.path(fileDir, paste0(stem,".", imgFormat)))
       xmlSvg=paste0(readLines(file.path(fileDir, paste0(stem,".", imgFormat))),collapse = '\n')
-      print(svgPanZoom(read_xml(xmlSvg)))
+      print(svgPanZoom::svgPanZoom(xml2::read_xml(xmlSvg)))
     }else{
-      capture.output(x <- print(imgOut))
+      utils::capture.output(x <- print(imgOut))
     } 
   }
 

@@ -3,5 +3,8 @@
 export(buildUsepackage)
 export(getTexPackages)
 export(texPreview)
+import(magick)
 import(svgPanZoom)
 import(xml2)
+import(xtable)
+importFrom(rstudioapi,getActiveDocumentContext)

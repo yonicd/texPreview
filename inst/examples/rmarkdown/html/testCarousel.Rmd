@@ -10,6 +10,7 @@ output:
 ```{r setup, echo=FALSE,results='asis'}
 suppressMessages(library(texPreview))
 suppressMessages(library(bsplus))
+suppressMessages(library(xtable))
 
 rt=knitr::opts_knit$get('rmarkdown.pandoc.to')
 fd=NULL 
@@ -27,7 +28,7 @@ if(rt%in%c("html", "html5", "s5", "slidy","slideous", "dzslides", "revealjs","md
 
 ```{r testOut, cache=FALSE, echo=TRUE, results='asis'}
 
-      texPreview( obj = xtable(head(iris,20)),
+      texPreview( obj = xtable::xtable(head(iris,20)),
                   stem="testOut",
                   fileDir = fd,
                   returnType=rt,
@@ -68,12 +69,12 @@ Armadillo & frozen      & 8.99       \\\\
 
 ```{r testOut3, cache=FALSE, echo=FALSE, results='asis'}
 
-bs_carousel(id = "tabPrev", use_indicators = TRUE)%>%
-  bs_append(
-          content = bs_carousel_image(src = file.path(getwd(),fd,'testOut.png'))
+bsplus::bs_carousel(id = "tabPrev", use_indicators = TRUE)%>%
+  bsplus::bs_append(
+          content = bsplus::bs_carousel_image(src = file.path(getwd(),fd,'testOut.png'))
         )%>%
-  bs_append(
-          content = bs_carousel_image(src = file.path(getwd(),fd,'testOut2.png'))
+  bsplus::bs_append(
+          content = bsplus::bs_carousel_image(src = file.path(getwd(),fd,'testOut2.png'))
         ) 
 
 ```
