@@ -11,12 +11,14 @@ output:
 suppressMessages(library(texPreview))
 suppressMessages(library(xtable))
 
-rt=knitr::opts_knit$get('rmarkdown.pandoc.to')
-fd=NULL 
+rt <- knitr::opts_knit$get('rmarkdown.pandoc.to')
+tex_opts$set(list('returnType'= rt))
+
+fd <- NULL  
 
 if(rt%in%c("html", "html5", "s5", "slidy","slideous", "dzslides", "revealjs","md")){
   fd="test_files/texPreview"
-  if(!dir.exists(fd)) dir.create(fd,recursive = T)
+  if(!dir.exists(fd)) dir.create(fd,recursive = TRUE)
   
 }
 
@@ -32,8 +34,6 @@ if(rt%in%c("html", "html5", "s5", "slidy","slideous", "dzslides", "revealjs","md
       texPreview( obj = xtable::xtable(head(iris,20)),
                   stem="testOut",
                   fileDir = fd,
-                  returnType=rt,
-                  imgFormat = 'png',
                   opts.html = list(width='70%',height='70%')
                   
              )
@@ -61,7 +61,8 @@ Armadillo & frozen      & 8.99       \\\\
 
       texPreview( obj = tab,
                   stem="testOut2",
-                  fileDir = fd,imgFormat = 'svg',
-                  returnType=rt,opts.html = list(width='40%',height='50%')
+                  fileDir = fd,
+                  imgFormat = 'svg',
+                  opts.html = list(width='40%',height='50%')
                   )
 ```

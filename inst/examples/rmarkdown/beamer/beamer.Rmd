@@ -8,12 +8,15 @@ output: beamer_presentation
 ```{r setup, echo=FALSE}
 suppressMessages(library(texPreview))
 suppressMessages(library(xtable))
-rt=knitr::opts_knit$get('rmarkdown.pandoc.to')
-fd=NULL 
+
+rt <- knitr::opts_knit$get('rmarkdown.pandoc.to')
+tex_opts$set(list('returnType'= rt))
+
+fd <- NULL 
 
 if(rt%in%c("html", "html5", "s5", "slidy","slideous", "dzslides", "revealjs","md")){
   fd="test_files/texPreview"
-  if(!dir.exists(fd)) dir.create(fd,recursive = T)
+  if(!dir.exists(fd)) dir.create(fd,recursive = TRUE)
   
    if(rt%in%c('html')){
      writeLines('<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>')
@@ -32,10 +35,7 @@ Using scalebox option
       texPreview( obj = xtable(head(iris,20)),
                   stem="testOut",
                   fileDir = fd,
-                  returnType=rt,
-                  imgFormat = 'png',
                   print.xtable.opts = list(scalebox=0.5)
-                  
              )
 
 ```
@@ -62,7 +62,7 @@ Armadillo & frozen      & 8.99       \\\\
 
       texPreview( obj = tab,
                   stem="testOut2",
-                  fileDir = fd,imgFormat = 'svg',
-                  returnType=rt
+                  fileDir = fd,
+                  imgFormat = 'svg'
                   )
 ```

@@ -9,11 +9,11 @@
 
 getTexPackages=function(){
   if (Sys.info()[1] == "Windows"){
-    system('mpm --list-package-names',intern = T)
+    system('mpm --list-package-names',intern = TRUE)
   }else{
-    x=system('tlmgr list --only-installed',intern = T)
-    x=gsub('^i ','',x)
-    xl=strsplit(x,':')
+    x <- system('tlmgr list --only-installed',intern = TRUE)
+    x <- gsub('^i ','',x)
+    xl <- strsplit(x,':')
     sapply(xl,'[',1)
   }
 }

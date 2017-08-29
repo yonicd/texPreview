@@ -65,12 +65,14 @@ new_defaults = function(value = list()) {
 #' @export
 #' @examples tex_opts$get('margin')
 tex_opts = new_defaults(list(
-  margin=list(left=10, top=5, right=10, bottom=5),
+  margin = list(left = 10, top=5, right=10, bottom=5),
   imgFormat = "png",
-  print.xtable.opts=list(),
-  html.opts=list(width="100%",height="100%"),
-  cleanup=c('aux','log'),
-  returnType='viewer'
+  print.xtable.opts = list(),
+  html.opts = list(width="100%",height="100%"),
+  cleanup = c('aux','log','Doc'),
+  engine = 'pdflatex',
+  returnType = 'viewer',
+  density = 150
 ))
 
 #' @rdname tex_opts

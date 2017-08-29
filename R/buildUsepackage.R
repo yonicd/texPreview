@@ -26,24 +26,24 @@
 #' ))
 
 buildUsepackage=function(pkg,options=NULL,uselibrary=NULL,chk.inst=FALSE){
-  if(chk.inst){
-    if (Sys.info()[1] == "Windows"){
-      x=length(shell(sprintf("mpm --list-package-names | grep %s",pkg),intern=T))>0
+  if( chk.inst ){
+    if ( Sys.info()[1] == "Windows" ){
+      x <- length(shell(sprintf("mpm --list-package-names | grep %s",pkg),intern=TRUE))>0
     }else{
-      x=grepl('Yes',system(sprintf('tlmgr list --only-installed %s | grep installed',pkg),intern=T))
+      x <- grepl('Yes',system(sprintf('tlmgr list --only-installed %s | grep installed',pkg),intern=TRUE))
     }
     
-    if(!x){
+    if( !x ){
       warning(sprintf("package '%s' not installed",pkg))
       return(NULL)
     } 
   }
 
-    if(!is.null(options)){
-      out=sprintf('\\usepackage[%s]{%s}',paste0(options,collapse=','),pkg)
+    if( !is.null(options) ){
+      out <- sprintf('\\usepackage[%s]{%s}',paste0(options,collapse=','),pkg)
     }else{
-      out=sprintf('\\usepackage{%s}',pkg)
+      out <- sprintf('\\usepackage{%s}',pkg)
     }
   
-    return(c(out,uselibrary))
+    return( c(out,uselibrary) )
 }
