@@ -2,6 +2,10 @@
 #' @export
 #' @description input TeX script into the function and it renders a pdf and converts it an image which is sent to Viewer.
 #' @param obj character, TeX script
+#' @param tex_lines vector of character, in case of special needs, instead of asking 
+#' texPreview to build up, you may choose to pass in the contents of the 
+#' complete LaTeX file directly. It should be a vector of character with each 
+#' element as a line of raw TeX code. 
 #' @param stem character, name to use in output files, Default: NULL
 #' @param fileDir character, output destination. If NULL a temp.dir() 
 #' will be used and no output will be saved
@@ -9,11 +13,10 @@
 #' @param margin table margin for pdflatex call, Default: tex_opts$get('margin')
 #' @param imgFormat character, defines the type of image the PDF is 
 #' converted to Default: tex_opts$get('imgFormat')
-#' @param print.xtable.opts list, contains arguments to pass to print.table, 
-#' relevant only if xtable is used as the input, Default: tex_opts$get('print.xtable.opts')
 #' @param returnType character, one of "viewer", "html", or "tex" determining appropriate 
 #' return type for the rendering process, Default: tex_opts$get('returnType')
-#' @param opts.html list, html options, Default: tex_opts$get('opts.html')
+#' @param resizebox logical, forces a tabular tex object to be constrained on the
+#'  margins of the document, Default: tex_opts$get('resizebox')
 #' @param usrPackages character, vector of usepackage commands, see details for string format
 #' @param engine character, specifies which latex to pdf engine to use
 #'  ('pdflatex','xelatex','lualatex'), Default: tex_opts$get('engine')
@@ -24,10 +27,9 @@
 #' @param tex_message logical, controls if latex executing messages 
 #' are displayed in console. Default is FALSE
 #' @param density numeric, controls the density of the image. Default is 150: tex_opts$get('density)
-#' @param tex_lines vector of character, in case of special needs, instead of asking 
-#' texPreview to build up, you may choose to pass in the contents of the 
-#' complete LaTeX file directly. It should be a vector of character with each 
-#' element as a line of raw TeX code. 
+#' @param print.xtable.opts list, contains arguments to pass to print.table, 
+#' relevant only if xtable is used as the input, Default: tex_opts$get('print.xtable.opts')
+#' @param opts.html list, html options, Default: tex_opts$get('opts.html')
 #' @param ... passed to \code{system}
 #' @details The function assumes the system has pdflatex installed and it is defined in the PATH. The function does not return anything to R.
 #' If fileDir is specified then two files are written to the directory. An image file of the name stem with the extension specified in imgFormat.
@@ -39,11 +41,14 @@
 #' NULL
 #' @examples
 #' data('iris')
-#' \donttest{
 #' if(interactive()){
-#' texPreview(obj = xtable::xtable(head(iris,10)),stem = 'eq',imgFormat = 'svg')
 #' 
-#' \dontrun{
+#' #use xtable to create tex output
+#'  texPreview(obj = xtable::xtable(head(iris,10)))
+#' 
+#' #use knitr kable to create tex output
+#'  texPreview(knitr::kable(mtcars, "latex"))
+#' 
 #' tex='\\begin{tabular}{llr}
 #' \\hline
 #' \\multicolumn{2}{c}{Item} \\\\
@@ -59,38 +64,38 @@
 #' \\end{tabular}'
 #' 
 #' texPreview(obj = tex,stem = 'eq',imgFormat = 'svg')
+#' tikz_example <- system.file('examples/tikz/credit-rationing.tex',package = 'texPreview')
+#' tikzEx=readLines(tikz_example,warn = FALSE)
 #' 
-#' tikzEx=readLines('http://www.texample.net/media/tikz/examples/TEX/credit-rationing.tex')
-#' usetikz=paste(tikzEx[14:23],collapse="\n")
-#' bodytikz=paste(tikzEx[25:90],collapse="\n")
+#' #use tex_lines parameter to pass full document
+#'   texPreview(tex_lines = tikzEx)
 #' 
-#' texPreview(obj = bodytikz,
-#' usrPackages = buildUsepackage(pkg = 'tikz',uselibrary = usetikz))
+#' #use texPreview preamble to build document chunks
+#'   usetikz=paste(tikzEx[14:23],collapse="\n")
+#'   bodytikz=paste(tikzEx[25:90],collapse="\n")
+#'   texPreview(obj = bodytikz,usrPackages = buildUsepackage(pkg = 'tikz',uselibrary = usetikz))
 #' }
-#' }
-#' }
-#' @importFrom svgPanZoom svgPanZoom
-#' @importFrom xml2 read_xml
 #' @importFrom magick image_convert image_read image_write
-#' @importFrom xtable xtable
-
-
+#' @importFrom svgPanZoom svgPanZoom
+#' @importFrom utils installed.packages capture.output
+#' @importFrom xml2 read_xml
 texPreview <- function (obj, 
+                        tex_lines = NULL,
                         stem = NULL,
                         fileDir = NULL, 
                         overwrite = TRUE, 
                         margin = tex_opts$get('margin'),
                         imgFormat = tex_opts$get('imgFormat'), 
-                        print.xtable.opts = tex_opts$get('print.xtable.opts'),
                         returnType = tex_opts$get('returnType'),
-                        opts.html = tex_opts$get('opts.html'),
+                        resizebox = tex_opts$get('resizebox'),
                         usrPackages = NULL,
                         engine = tex_opts$get('engine'),
                         cleanup = tex_opts$get('cleanup'),
                         keep_pdf = FALSE, 
                         tex_message = FALSE, 
                         density = tex_opts$get('density'),
-                        tex_lines = NULL, 
+                        print.xtable.opts = tex_opts$get('print.xtable.opts'),
+                        opts.html = tex_opts$get('opts.html'),
                         ...) 
 {
   
@@ -121,7 +126,6 @@ texPreview <- function (obj,
   }
   
   if(is.null(stem))
-    #stem <- paste0("tex_", format(Sys.time(), "%Y-%m-%d_%H:%M:%S"))
     stem <- "tex_temp"
   
   if (is.null(tex_lines)) {
@@ -135,6 +139,13 @@ texPreview <- function (obj,
       obj <- do.call("print", print.xtable.opts)
     }
 
+    if( resizebox ){
+      
+      obj <- gsub('\\\\begin\\{tabular\\}','\\\\resizebox\\{\\\\textwidth\\}\\{!\\}\\{\\\\begin\\{tabular\\}',obj)
+      obj <- gsub('\\\\end\\{tabular\\}','\\\\end\\{tabular\\}\\}',obj)
+      
+    }
+    
     tex_lines <- c(
       sprintf("\\documentclass[varwidth, border={%s %s %s %s}]{standalone}", margin$left, margin$top, margin$right, margin$bottom), 
       "\\usepackage[usenames,dvispnames,svgnames,table]{xcolor}", 

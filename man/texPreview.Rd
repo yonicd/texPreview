@@ -4,17 +4,24 @@
 \alias{texPreview}
 \title{Render and Preview snippets of TeX in R Viewer}
 \usage{
-texPreview(obj, stem = NULL, fileDir = NULL, overwrite = TRUE,
-  margin = tex_opts$get("margin"), imgFormat = tex_opts$get("imgFormat"),
-  print.xtable.opts = tex_opts$get("print.xtable.opts"),
+texPreview(obj, tex_lines = NULL, stem = NULL, fileDir = NULL,
+  overwrite = TRUE, margin = tex_opts$get("margin"),
+  imgFormat = tex_opts$get("imgFormat"),
   returnType = tex_opts$get("returnType"),
-  opts.html = tex_opts$get("opts.html"), usrPackages = NULL,
+  resizebox = tex_opts$get("resizebox"), usrPackages = NULL,
   engine = tex_opts$get("engine"), cleanup = tex_opts$get("cleanup"),
   keep_pdf = FALSE, tex_message = FALSE,
-  density = tex_opts$get("density"), tex_lines = NULL, ...)
+  density = tex_opts$get("density"),
+  print.xtable.opts = tex_opts$get("print.xtable.opts"),
+  opts.html = tex_opts$get("opts.html"), ...)
 }
 \arguments{
 \item{obj}{character, TeX script}
+
+\item{tex_lines}{vector of character, in case of special needs, instead of asking 
+texPreview to build up, you may choose to pass in the contents of the 
+complete LaTeX file directly. It should be a vector of character with each 
+element as a line of raw TeX code.}
 
 \item{stem}{character, name to use in output files, Default: NULL}
 
@@ -28,13 +35,11 @@ will be used and no output will be saved}
 \item{imgFormat}{character, defines the type of image the PDF is 
 converted to Default: tex_opts$get('imgFormat')}
 
-\item{print.xtable.opts}{list, contains arguments to pass to print.table, 
-relevant only if xtable is used as the input, Default: tex_opts$get('print.xtable.opts')}
-
 \item{returnType}{character, one of "viewer", "html", or "tex" determining appropriate 
 return type for the rendering process, Default: tex_opts$get('returnType')}
 
-\item{opts.html}{list, html options, Default: tex_opts$get('opts.html')}
+\item{resizebox}{logical, forces a tabular tex object to be constrained on the
+margins of the document, Default: tex_opts$get('resizebox')}
 
 \item{usrPackages}{character, vector of usepackage commands, see details for string format}
 
@@ -52,10 +57,10 @@ are displayed in console. Default is FALSE}
 
 \item{density}{numeric, controls the density of the image. Default is 150: tex_opts$get('density)}
 
-\item{tex_lines}{vector of character, in case of special needs, instead of asking 
-texPreview to build up, you may choose to pass in the contents of the 
-complete LaTeX file directly. It should be a vector of character with each 
-element as a line of raw TeX code.}
+\item{print.xtable.opts}{list, contains arguments to pass to print.table, 
+relevant only if xtable is used as the input, Default: tex_opts$get('print.xtable.opts')}
+
+\item{opts.html}{list, html options, Default: tex_opts$get('opts.html')}
 
 \item{...}{passed to \code{system}}
 }
@@ -72,11 +77,14 @@ usrPackage accepts a vector of character strings built by the function \code{\li
 }
 \examples{
 data('iris')
-\donttest{
 if(interactive()){
-texPreview(obj = xtable::xtable(head(iris,10)),stem = 'eq',imgFormat = 'svg')
 
-\dontrun{
+#use xtable to create tex output
+ texPreview(obj = xtable::xtable(head(iris,10)))
+
+#use knitr kable to create tex output
+ texPreview(knitr::kable(mtcars, "latex"))
+
 tex='\\\\begin{tabular}{llr}
 \\\\hline
 \\\\multicolumn{2}{c}{Item} \\\\\\\\
@@ -92,14 +100,15 @@ Armadillo & frozen      & 8.99       \\\\\\\\
 \\\\end{tabular}'
 
 texPreview(obj = tex,stem = 'eq',imgFormat = 'svg')
+tikz_example <- system.file('examples/tikz/credit-rationing.tex',package = 'texPreview')
+tikzEx=readLines(tikz_example,warn = FALSE)
 
-tikzEx=readLines('http://www.texample.net/media/tikz/examples/TEX/credit-rationing.tex')
-usetikz=paste(tikzEx[14:23],collapse="\\n")
-bodytikz=paste(tikzEx[25:90],collapse="\\n")
+#use tex_lines parameter to pass full document
+  texPreview(tex_lines = tikzEx)
 
-texPreview(obj = bodytikz,
-usrPackages = buildUsepackage(pkg = 'tikz',uselibrary = usetikz))
-}
-}
+#use texPreview preamble to build document chunks
+  usetikz=paste(tikzEx[14:23],collapse="\\n")
+  bodytikz=paste(tikzEx[25:90],collapse="\\n")
+  texPreview(obj = bodytikz,usrPackages = buildUsepackage(pkg = 'tikz',uselibrary = usetikz))
 }
 }

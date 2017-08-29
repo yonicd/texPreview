@@ -12,16 +12,10 @@ Description: Compile and preview snippets of 'LaTeX'. Can be used directly from 
     in Shiny apps and R Markdown documents. Must have 'pdflatex' or 'xelatex' or 'lualatex' in 'PATH'.
 Depends:
     R (>= 2.3.0)
-Imports:
-    magrittr (>= 1.0.1),
-    xtable,
-    rstudioapi,
-    magick,
-    xml2,
-    svgPanZoom
+Imports: 
+    rstudioapi,magick,svgPanZoom,utils,xml2
 Suggests:
-    shiny,
-    rmarkdown
+    magrittr (>= 1.0.1),xtable,shiny,rmarkdown, knitr
 License: GPL-2 | GPL-3
 URL: https://github.com/metrumresearchgroup/texPreview
 BugReports: https://github.com/metrumresearchgroup/texPreview/issues

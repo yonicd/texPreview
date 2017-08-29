@@ -72,7 +72,8 @@ tex_opts = new_defaults(list(
   cleanup = c('aux','log','Doc'),
   engine = 'pdflatex',
   returnType = 'viewer',
-  density = 150
+  density = 150,
+  resizebox=TRUE
 ))
 
 #' @rdname tex_opts
