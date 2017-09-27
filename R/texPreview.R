@@ -137,6 +137,11 @@ texPreview <- function (obj,
       if (!"file" %in% names(print.xtable.opts)) print.xtable.opts$file <- file.path(fileDir, paste0(stem,".tex"))
         
       obj <- do.call("print", print.xtable.opts)
+      
+    }else{
+      
+      cat(obj, file= file.path(fileDir, paste0(stem,".tex")), sep= '\n')
+      
     }
 
     if( resizebox ){
@@ -205,7 +210,16 @@ texPreview <- function (obj,
     } 
   }
 
-  if(!is.null(cleanup)) unlink(list.files(fileDir,pattern = paste0(cleanup,collapse ='|'),full.names = TRUE))
+  if( !is.null(cleanup) ){
+
+    tempDel <- list.files(fileDir,sprintf('%s(.*?)(%s)',stem,paste0(cleanup,collapse ='|')),full.names = TRUE)
+    
+    if(keep_pdf)
+      tempDel<- tempDel[-grep('pdf',tempDel)]
+    
+    unlink(tempDel)
+    
+  }
   
   if(returnType=='viewer') return(NULL)
   
@@ -217,7 +231,6 @@ texPreview <- function (obj,
            )
   } 
   
-  if(returnType%in%c('latex','beamer')) return(writeLines(obj))
-
-
+  if(returnType%in%c('latex','beamer')) return(writeLines(obj)) 
+  
 }

@@ -2,3 +2,5 @@
 ^\.Rproj\.user$
 Miscellaneous
 myTemp
+^cran-comments\.md$
+^\.travis\.yml$

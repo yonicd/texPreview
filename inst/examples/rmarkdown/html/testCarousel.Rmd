@@ -67,6 +67,6 @@ Armadillo & frozen      & 8.99       \\\\
 
 ## Carousel (slickR htmlwidget)
 
-```{r testOut3, cache=FALSE, echo=FALSE, results='asis'}
+```{r testOut3, cache=FALSE, echo=TRUE, results='asis'}
 slickR::slickR(list.files(file.path(getwd(),fd),pattern = tex_opts$get('imgFormat'),full.names = TRUE))
 ```
