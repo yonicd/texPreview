@@ -8,7 +8,7 @@
 #' element as a line of raw TeX code. 
 #' @param stem character, name to use in output files, Default: NULL
 #' @param fileDir character, output destination. If NULL a temp.dir() 
-#' will be used and no output will be saved
+#' will be used and no output will be saved, Default: tex_opts$get('fileDir')
 #' @param overwrite logical, controls if overwriting of output stem* files given their existences
 #' @param margin table margin for pdflatex call, Default: tex_opts$get('margin')
 #' @param imgFormat character, defines the type of image the PDF is 
@@ -82,7 +82,7 @@
 texPreview <- function (obj, 
                         tex_lines = NULL,
                         stem = NULL,
-                        fileDir = NULL, 
+                        fileDir = tex_opts$get('fileDir'), 
                         overwrite = TRUE, 
                         margin = tex_opts$get('margin'),
                         imgFormat = tex_opts$get('imgFormat'), 
@@ -203,8 +203,10 @@ texPreview <- function (obj,
   if(returnType!='shiny'){
     if(imgFormat=='svg'&'svgPanZoom'%in%rownames(utils::installed.packages())){
       magick::image_write(imgOut, file.path(fileDir, paste0(stem,".", imgFormat)))
-      xmlSvg <- paste0(readLines(file.path(fileDir, paste0(stem,".", imgFormat))),collapse = '\n')
-      print(svgPanZoom::svgPanZoom(xml2::read_xml(xmlSvg)))
+      if(returnType=='viewer'){
+        xmlSvg <- paste0(readLines(file.path(fileDir, paste0(stem,".", imgFormat))),collapse = '\n')
+        print(svgPanZoom::svgPanZoom(xml2::read_xml(xmlSvg)))
+      }
     }else{
       utils::capture.output(x <- print(imgOut))
     } 
@@ -231,6 +233,6 @@ texPreview <- function (obj,
            )
   } 
   
-  if(returnType%in%c('latex','beamer')) return(writeLines(obj)) 
+  if(returnType%in%c('tex','beamer')) return(writeLines(obj)) 
   
 }

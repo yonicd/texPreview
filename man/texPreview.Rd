@@ -4,9 +4,9 @@
 \alias{texPreview}
 \title{Render and Preview snippets of TeX in R Viewer}
 \usage{
-texPreview(obj, tex_lines = NULL, stem = NULL, fileDir = NULL,
-  overwrite = TRUE, margin = tex_opts$get("margin"),
-  imgFormat = tex_opts$get("imgFormat"),
+texPreview(obj, tex_lines = NULL, stem = NULL,
+  fileDir = tex_opts$get("fileDir"), overwrite = TRUE,
+  margin = tex_opts$get("margin"), imgFormat = tex_opts$get("imgFormat"),
   returnType = tex_opts$get("returnType"),
   resizebox = tex_opts$get("resizebox"), usrPackages = NULL,
   engine = tex_opts$get("engine"), cleanup = tex_opts$get("cleanup"),
@@ -26,7 +26,7 @@ element as a line of raw TeX code.}
 \item{stem}{character, name to use in output files, Default: NULL}
 
 \item{fileDir}{character, output destination. If NULL a temp.dir() 
-will be used and no output will be saved}
+will be used and no output will be saved, Default: tex_opts$get('fileDir')}
 
 \item{overwrite}{logical, controls if overwriting of output stem* files given their existences}
 
