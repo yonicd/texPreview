@@ -235,6 +235,7 @@ texPreview <- function (obj,
   } 
   
   if(returnType%in%c('tex','beamer')){
+    cat(obj, file= file.path(fileDir, paste0(stem,".tex")), sep= '\n')
     writeLines(obj)
     invisible(obj)
   }
