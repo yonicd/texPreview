@@ -3,7 +3,8 @@ title: "revesaljs output that has embeded LaTeX tables"
 author: "Jonathan Sidi"
 date: "January 31, 2017"
 output: 
-  revealjs::revealjs_presentation
+  revealjs::revealjs_presentation:
+    css: style.css
     
 ---
 
@@ -20,6 +21,10 @@ if(rt%in%c("html", "html5", "s5", "slidy","slideous", "dzslides", "revealjs","md
   fd="test_files/texPreview"
   if(!dir.exists(fd)) dir.create(fd,recursive = TRUE)
   
+  if(rt%in%c('html')){
+     writeLines('<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>')
+     writeLines('<script src="zoomImage.js"></script>')
+   }
 }
 
 

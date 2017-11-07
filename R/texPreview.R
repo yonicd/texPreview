@@ -208,7 +208,8 @@ texPreview <- function (obj,
         print(svgPanZoom::svgPanZoom(xml2::read_xml(xmlSvg)))
       }
     }else{
-      utils::capture.output(x <- print(imgOut))
+      if(!returnType%in%c('tex','beamer'))
+        utils::capture.output(x <- print(imgOut))
     } 
   }
 
@@ -233,6 +234,9 @@ texPreview <- function (obj,
            )
   } 
   
-  if(returnType%in%c('tex','beamer')) return(writeLines(obj)) 
+  if(returnType%in%c('tex','beamer')){
+    writeLines(obj)
+    invisible(obj)
+  }
   
 }

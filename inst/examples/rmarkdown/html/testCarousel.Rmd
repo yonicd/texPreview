@@ -2,9 +2,7 @@
 title: "HTML output that has embeded LaTeX tables and htmlwidget"
 author: "Jonathan Sidi"
 date: "January 31, 2017"
-output: 
-  html_document:
-    self_contained: no
+output: html_document
 ---
 
 ```{r setup, echo=FALSE,results='asis'}
@@ -68,5 +66,7 @@ Armadillo & frozen      & 8.99       \\\\
 ## Carousel (slickR htmlwidget)
 
 ```{r testOut3, cache=FALSE, echo=TRUE, results='asis'}
-slickR::slickR(list.files(file.path(getwd(),fd),pattern = tex_opts$get('imgFormat'),full.names = TRUE))
+slickR::slickR(list.files(file.path(getwd(),fd),
+                          pattern = tex_opts$get('imgFormat'),
+                          full.names = TRUE))
 ```

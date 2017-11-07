@@ -5,7 +5,10 @@ date: "January 31, 2017"
 output: 
   html_document:
     self_contained: no
+    css: styles.css
 ---
+
+<script src="zoomImage.js"></script>
 
 ```{r setup, echo=FALSE,results='asis'}
 suppressMessages(library(texPreview))
