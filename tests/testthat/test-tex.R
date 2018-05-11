@@ -114,6 +114,6 @@ if(interactive()){
  
   context('core tex function not running')
    
-  expect_equal(2+2==4)
+  testthat::expect_true(2+2==4)
   
 }
