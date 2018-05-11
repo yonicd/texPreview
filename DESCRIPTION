@@ -15,7 +15,11 @@ Depends:
 Imports:
     rstudioapi,magick,svgPanZoom,utils,xml2
 Suggests:
-    magrittr (>= 1.0.1),xtable,shiny,rmarkdown, knitr,
+    magrittr (>= 1.0.1),
+    xtable,
+    shiny,
+    rmarkdown, 
+    knitr,
     testthat,
     covr
 License: GPL-2 | GPL-3
