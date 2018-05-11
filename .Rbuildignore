@@ -1,6 +1,6 @@
 ^.*\.Rproj$
 ^\.Rproj\.user$
 Miscellaneous
-myTemp
 ^cran-comments\.md$
 ^\.travis\.yml$
+^codecov\.yml$

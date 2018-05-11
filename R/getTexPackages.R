@@ -8,12 +8,25 @@
 #' \dontrun{head(getTexPackages())}
 
 getTexPackages=function(){
+  
   if (Sys.info()[1] == "Windows"){
+    
+    if(length(system('mpm --version',intern = TRUE))==0)
+      stop('mpm not installed')
+    
     system('mpm --list-package-names',intern = TRUE)
+    
   }else{
+    
+    if(length(system('tlmgr --version',intern = TRUE))==0)
+      stop('tex live not installed')
+    
     x <- system('tlmgr list --only-installed',intern = TRUE)
+    
     x <- gsub('^i ','',x)
+    
     xl <- strsplit(x,':')
+    
     sapply(xl,'[',1)
   }
 }
