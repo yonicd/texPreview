@@ -23,7 +23,9 @@ testthat::context('core tex function')
   tex_opts$set(returnType = 'tex',fileDir = path)
   
   testthat::describe('porting to tex',{
-    
+  
+    testthat::skip_on_travis()
+      
       x <- texPreview(obj = xtable::xtable(head(iris,10)))
 
       it('files generated', {
@@ -41,7 +43,9 @@ testthat::context('core tex function')
   tex_opts$set(returnType = 'tex')
   
   testthat::describe('porting to tex no filedir',{
-  
+    
+    testthat::skip_on_travis()
+    
     x <- texPreview(obj = xtable::xtable(head(iris,10)))
 
     it('no files generated', {
@@ -60,6 +64,8 @@ testthat::context('core tex function')
   
   testthat::describe('keep pdf as an output',{
   
+    testthat::skip_on_travis()
+    
     x <- texPreview(obj = xtable::xtable(head(iris,10)),keep_pdf = TRUE)
   
     it('files generated', {
@@ -79,6 +85,9 @@ testthat::context('core tex function')
   testthat::describe('html output',{
   
     it('print to console the html script', {
+      
+      testthat::skip_on_travis()
+      
       expect_output(texPreview(obj = xtable::xtable(head(iris,10)),keep_pdf = TRUE))
     })
   
@@ -101,6 +110,8 @@ testthat::context('core tex function')
   cleanup(path)
   
   tex_opts$set(returnType = 'tex',fileDir = path)
+  
+  testthat::skip_on_travis()
   
   testthat::describe('tex lines directly input',{
     
