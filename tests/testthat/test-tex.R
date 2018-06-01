@@ -1,14 +1,12 @@
 library(texPreview)
 
-context('core tex function')
+testthat::context('core tex function')
 
-if(interactive()){
+# if(interactive()){
 
-  context('core tex function running')
-  
   cleanup <- function(path, create = TRUE){
-    
-    unlink(path)
+
+    unlink(path,recursive = TRUE,force = TRUE)
     
     tex_opts$restore()
     
@@ -24,25 +22,35 @@ if(interactive()){
   
   tex_opts$set(returnType = 'tex',fileDir = path)
   
-  testthat::test_that('porting to tex',{
+  testthat::describe('porting to tex',{
     
-    x <- texPreview(obj = xtable::xtable(head(iris,10)))
-    
-    expect_equal(length(list.files(path)),2)
-    expect_is(x,'character')
-    
+      x <- texPreview(obj = xtable::xtable(head(iris,10)))
+
+      it('files generated', {
+        testthat::expect_equal(length(list.files(path)),2)
+      })
+      
+      it('class of output', {
+        testthat::expect_is(x,'character')
+      })  
+
   })
   
   cleanup(path)
   
   tex_opts$set(returnType = 'tex')
   
-  testthat::test_that('porting to tex no filedir',{
+  testthat::describe('porting to tex no filedir',{
   
     x <- texPreview(obj = xtable::xtable(head(iris,10)))
-  
-    expect_equal(length(list.files(path)),2)
-    expect_is(x,'character')
+
+    it('no files generated', {
+      testthat::expect_equal(length(list.files(path)),0)
+    })
+    
+    it('class of output', {
+      testthat::expect_is(x,'character')
+    })
   
   })
   
@@ -50,12 +58,17 @@ if(interactive()){
   
   tex_opts$set(returnType = 'tex',fileDir = path)
   
-  testthat::test_that('keep_pdf',{
+  testthat::describe('keep pdf as an output',{
   
     x <- texPreview(obj = xtable::xtable(head(iris,10)),keep_pdf = TRUE)
   
-    expect_equal(length(list.files(path)),3)
-    expect_is(x,'character')
+    it('files generated', {
+      testthat::expect_equal(length(list.files(path)),3)
+    })
+    
+    it('class of output', {
+      testthat::expect_is(x,'character')
+    })
   
   })
   
@@ -63,9 +76,11 @@ if(interactive()){
   
   tex_opts$set(returnType = 'html',fileDir = path)
   
-  testthat::test_that('html',{
+  testthat::describe('html output',{
   
-    expect_output(texPreview(obj = xtable::xtable(head(iris,10)),keep_pdf = TRUE))
+    it('print to console the html script', {
+      expect_output(texPreview(obj = xtable::xtable(head(iris,10)),keep_pdf = TRUE))
+    })
   
   })
   
@@ -73,11 +88,13 @@ if(interactive()){
   
   tex_opts$set(returnType = 'viewer',fileDir = path,imgFormat='svg')
   
-  testthat::test_that('svg',{
+  testthat::describe('use svg device',{
   
     x <- texPreview(obj = xtable::xtable(head(iris,10)))
   
-    expect_equal(length(list.files(path,pattern = 'svg$')),1)
+    it('check if file created', {
+      expect_equal(length(list.files(path,pattern = 'svg$')),1)
+    })
   
   })
   
@@ -85,7 +102,7 @@ if(interactive()){
   
   tex_opts$set(returnType = 'tex',fileDir = path)
   
-  testthat::test_that('tex lines',{
+  testthat::describe('tex lines directly input',{
     
     tex='\\begin{tabular}{llr}
     \\hline
@@ -103,17 +120,20 @@ if(interactive()){
     
     x <- texPreview(obj = tex)
     
-    expect_equal(x,paste0(readLines(file.path(path,'tex_temp.tex')),collapse='\n'))
+    it('validate benchmark', {
+      expect_equal(x,paste0(readLines(file.path(path,'tex_temp.tex')),collapse='\n'))
+    })
     
   })
   
-  
   cleanup(path,create = FALSE)
 
-}else{
- 
-  context('core tex function not running')
-   
-  testthat::expect_true(2+2==4)
-  
-}
+# }else{
+#  
+#   testthat::describe('core tex function not running',{
+#     it('fake test',{
+#       testthat::expect_true(2+2==4)
+#     })  
+#   })
+# 
+# }

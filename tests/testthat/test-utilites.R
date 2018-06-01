@@ -1,20 +1,28 @@
 library(texPreview)
 
-context('test for usepackage')
+testthat::context('utility functions of package')
 
-testthat::test_that('build usepackage call',{
+testthat::describe('build usepackage call',{
 
-  testthat::expect_equal(buildUsepackage(pkg = 'xcolor'),"\\usepackage{xcolor}")
+  it('basic call', {
+      testthat::expect_equal(buildUsepackage(pkg = 'xcolor'),"\\usepackage{xcolor}")
+    })
   
-  testthat::expect_equal(buildUsepackage(pkg = 'xcolor',chk.inst = TRUE),"\\usepackage{xcolor}")
+  it('check library is installed', {
+      testthat::expect_equal(buildUsepackage(pkg = 'xcolor',chk.inst = TRUE),"\\usepackage{xcolor}")
+    })
   
-  testthat::expect_equal(buildUsepackage(pkg = 'xcolor',options = 'usenames'),"\\usepackage[usenames]{xcolor}")
+  it('add options', {
+      testthat::expect_equal(buildUsepackage(pkg = 'xcolor',options = 'usenames'),"\\usepackage[usenames]{xcolor}")
+    })
    
-  testthat::expect_warning(buildUsepackage(pkg = 'nopack',chk.inst = TRUE))
+  it('use bad library name', {
+      testthat::expect_warning(buildUsepackage(pkg = 'nopack',chk.inst = TRUE))
+    })
   
 })
 
-testthat::test_that('build usepackage multiple calls',{
+testthat::describe('build usepackage multiple calls',{
   
 
   geom.opts <- c('paperwidth=35cm','paperheight=35cm','left=2.5cm','top=2.5cm')
@@ -27,33 +35,39 @@ testthat::test_that('build usepackage multiple calls',{
     uselibrary = list(NULL   ,NULL      ,use.opts)
   )
   
-  testthat::expect_is(l,'list')
+  it('class', {
+      testthat::expect_is(l,'list')
+    })
   
-  testthat::expect_equal(length(l),3)
+  it('dimension', {
+      testthat::expect_equal(length(l),3)
+    })
   
 })
 
-context('find install tex packages')
-
-testthat::test_that('find packages',{
+testthat::describe('find packages',{
   
   if(length(system('tlmgr --version',intern = TRUE))>0){
     
     x <- head(getTexPackages())
     
-    testthat::expect_is(x,'character')
-    testthat::expect_true(length(x)>0)    
+  it('check class', {
+      testthat::expect_is(x,'character')
+      testthat::expect_true(length(x)>0)    
+  })
     
   }else{
     
-    testthat::expect_true(2+2==4)
+    it('fake test', {
+      testthat::expect_true(2+2==4)
+    })
     
   }
   
 })
 
-context('addin')
-
-testthat::test_that('empty call',{
-  testthat::expect_error(texAddin())
+testthat::describe('empty call to addin',{
+    it('cause addin to crash', {
+      testthat::expect_error(texAddin())
+    })
 })

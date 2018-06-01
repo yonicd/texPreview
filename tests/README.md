@@ -1,6 +1,6 @@
 Tests and Coverage
 ================
-11 May, 2018 12:22:10
+01 June, 2018 12:57:38
 
 This output is created by
 [covrpage](https://github.com/yonicd/covrpage).
@@ -27,20 +27,27 @@ Unit Test summary is created using the
 [testthat](https://github.com/r-lib/testthat)
 package.
 
-| file                                        | n |  time | error | failed | skipped | warning |
-| :------------------------------------------ | -: | ----: | ----: | -----: | ------: | ------: |
-| [test-tex.R](testthat/test-tex.R)           | 9 | 3.711 |     0 |      0 |       0 |       0 |
-| [test-utilites.R](testthat/test-utilites.R) | 9 | 4.179 |     0 |      0 |       0 |       0 |
+|                 | file                                        | n |  time | error | failed | skipped | warning |
+| --------------- | :------------------------------------------ | -: | ----: | ----: | -----: | ------: | ------: |
+| test-tex.R      | [test-tex.R](testthat/test-tex.R)           | 9 | 0.637 |     0 |      0 |       0 |       0 |
+| test-utilites.R | [test-utilites.R](testthat/test-utilites.R) | 9 | 2.583 |     0 |      0 |       0 |       0 |
 
-| file                                        | test                            | context                   | status | n |  time |
-| :------------------------------------------ | :------------------------------ | :------------------------ | :----- | -: | ----: |
-| [test-tex.R](testthat/test-tex.R)           | porting to tex                  | core tex function         | PASS   | 2 | 0.617 |
-| [test-tex.R](testthat/test-tex.R)           | porting to tex no filedir       | core tex function         | PASS   | 2 | 0.563 |
-| [test-tex.R](testthat/test-tex.R)           | keep\_pdf                       | core tex function         | PASS   | 2 | 0.624 |
-| [test-tex.R](testthat/test-tex.R)           | html                            | core tex function         | PASS   | 1 | 0.623 |
-| [test-tex.R](testthat/test-tex.R)           | svg                             | core tex function         | PASS   | 1 | 0.661 |
-| [test-tex.R](testthat/test-tex.R)           | tex lines                       | core tex function         | PASS   | 1 | 0.623 |
-| [test-utilites.R](testthat/test-utilites.R) | build usepackage call           | test for usepackage       | PASS   | 4 | 2.501 |
-| [test-utilites.R](testthat/test-utilites.R) | build usepackage multiple calls | test for usepackage       | PASS   | 2 | 0.003 |
-| [test-utilites.R](testthat/test-utilites.R) | find packages                   | find install tex packages | PASS   | 2 | 1.673 |
-| [test-utilites.R](testthat/test-utilites.R) | empty call                      | addin                     | PASS   | 1 | 0.002 |
+| file                                            | context                      | test                                              | status | n |  time |
+| :---------------------------------------------- | :--------------------------- | :------------------------------------------------ | :----- | -: | ----: |
+| [test-tex.R](testthat/test-tex.R#L30)           | core tex function            | porting to tex: files generated                   | PASS   | 1 | 0.003 |
+| [test-tex.R](testthat/test-tex.R#L34)           | core tex function            | porting to tex: class of output                   | PASS   | 1 | 0.001 |
+| [test-tex.R](testthat/test-tex.R#L48)           | core tex function            | porting to tex no filedir: no files generated     | PASS   | 1 | 0.003 |
+| [test-tex.R](testthat/test-tex.R#L52)           | core tex function            | porting to tex no filedir: class of output        | PASS   | 1 | 0.001 |
+| [test-tex.R](testthat/test-tex.R#L66)           | core tex function            | keep pdf as an output: files generated            | PASS   | 1 | 0.003 |
+| [test-tex.R](testthat/test-tex.R#L70)           | core tex function            | keep pdf as an output: class of output            | PASS   | 1 | 0.001 |
+| [test-tex.R](testthat/test-tex.R#L82)           | core tex function            | html output: print to console the html script     | PASS   | 1 | 0.620 |
+| [test-tex.R](testthat/test-tex.R#L96)           | core tex function            | use svg device: check if file created             | PASS   | 1 | 0.003 |
+| [test-tex.R](testthat/test-tex.R#L124)          | core tex function            | tex lines directly input: validate benchmark      | PASS   | 1 | 0.002 |
+| [test-utilites.R](testthat/test-utilites.R#L8)  | utility functions of package | build usepackage call: basic call                 | PASS   | 1 | 0.003 |
+| [test-utilites.R](testthat/test-utilites.R#L12) | utility functions of package | build usepackage call: check library is installed | PASS   | 1 | 1.322 |
+| [test-utilites.R](testthat/test-utilites.R#L16) | utility functions of package | build usepackage call: add options                | PASS   | 1 | 0.001 |
+| [test-utilites.R](testthat/test-utilites.R#L20) | utility functions of package | build usepackage call: use bad library name       | PASS   | 1 | 1.239 |
+| [test-utilites.R](testthat/test-utilites.R#L39) | utility functions of package | build usepackage multiple calls: class            | PASS   | 1 | 0.002 |
+| [test-utilites.R](testthat/test-utilites.R#L43) | utility functions of package | build usepackage multiple calls: dimension        | PASS   | 1 | 0.001 |
+| [test-utilites.R](testthat/test-utilites.R#L55) | utility functions of package | find packages: check class                        | PASS   | 2 | 0.002 |
+| [test-utilites.R](testthat/test-utilites.R#L71) | utility functions of package | empty call to addin: cause addin to crash         | PASS   | 1 | 0.013 |
