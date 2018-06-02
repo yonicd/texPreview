@@ -79,6 +79,9 @@
 #' @importFrom svgPanZoom svgPanZoom
 #' @importFrom utils installed.packages capture.output
 #' @importFrom xml2 read_xml
+#' @importFrom htmltools html_print tags
+#' @importFrom base64enc base64encode
+#' 
 texPreview <- function (obj, 
                         tex_lines = NULL,
                         stem = NULL,
@@ -200,16 +203,26 @@ texPreview <- function (obj,
       do.call("print", print.xtable.opts)
   }
 
+  thispath <- normalizePath(file.path(fileDir, paste0(stem,".", imgFormat)))
+  
   if(returnType!='shiny'){
     if(imgFormat=='svg'&'svgPanZoom'%in%rownames(utils::installed.packages())){
-      magick::image_write(imgOut, file.path(fileDir, paste0(stem,".", imgFormat)))
+      
+      magick::image_write(imgOut, thispath)
+      
       if(returnType=='viewer'){
-        xmlSvg <- paste0(readLines(file.path(fileDir, paste0(stem,".", imgFormat))),collapse = '\n')
+        
+        xmlSvg <- paste0(readLines(thispath),collapse = '\n')
         print(svgPanZoom::svgPanZoom(xml2::read_xml(xmlSvg)))
+        
       }
     }else{
-      if(!returnType%in%c('tex','beamer'))
-        utils::capture.output(x <- print(imgOut))
+      if(!returnType%in%c('tex','beamer')){
+        
+          magick::image_write(imgOut, thispath)
+          htmltools::html_print(htmltools::tags$img(src = sprintf("data:image/%s;base64,%s",imgFormat,base64enc::base64encode(thispath))))
+          
+        }
     } 
   }
 

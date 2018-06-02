@@ -2,8 +2,6 @@ library(texPreview)
 
 testthat::context('core tex function')
 
-# if(interactive()){
-
   cleanup <- function(path, create = TRUE){
 
     unlink(path,recursive = TRUE,force = TRUE)
@@ -16,7 +14,7 @@ testthat::context('core tex function')
     
   }
   
-  path <- file.path(tempdir(),'tex')
+  path <- file.path(testthat::test_path('tex'))
   
   dir.create(path)
   
@@ -24,8 +22,6 @@ testthat::context('core tex function')
   
   testthat::describe('porting to tex',{
   
-    testthat::skip_on_travis()
-      
       x <- texPreview(obj = xtable::xtable(head(iris,10)))
 
       it('files generated', {
@@ -43,8 +39,6 @@ testthat::context('core tex function')
   tex_opts$set(returnType = 'tex')
   
   testthat::describe('porting to tex no filedir',{
-    
-    testthat::skip_on_travis()
     
     x <- texPreview(obj = xtable::xtable(head(iris,10)))
 
@@ -64,8 +58,6 @@ testthat::context('core tex function')
   
   testthat::describe('keep pdf as an output',{
   
-    testthat::skip_on_travis()
-    
     x <- texPreview(obj = xtable::xtable(head(iris,10)),keep_pdf = TRUE)
   
     it('files generated', {
@@ -86,9 +78,8 @@ testthat::context('core tex function')
   
     it('print to console the html script', {
       
-      testthat::skip_on_travis()
+      expect_output(texPreview(obj = xtable::xtable(head(iris,10))))
       
-      expect_output(texPreview(obj = xtable::xtable(head(iris,10)),keep_pdf = TRUE))
     })
   
   })
@@ -110,9 +101,7 @@ testthat::context('core tex function')
   cleanup(path)
   
   tex_opts$set(returnType = 'tex',fileDir = path)
-  
-  testthat::skip_on_travis()
-  
+
   testthat::describe('tex lines directly input',{
     
     tex='\\begin{tabular}{llr}
@@ -138,13 +127,3 @@ testthat::context('core tex function')
   })
   
   cleanup(path,create = FALSE)
-
-# }else{
-#  
-#   testthat::describe('core tex function not running',{
-#     it('fake test',{
-#       testthat::expect_true(2+2==4)
-#     })  
-#   })
-# 
-# }
