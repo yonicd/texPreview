@@ -1,5 +1,6 @@
 library(texPreview)
 
+
 testthat::context('core tex function')
 
   cleanup <- function(path, create = TRUE){
@@ -20,10 +21,12 @@ testthat::context('core tex function')
   
   tex_opts$set(returnType = 'tex',fileDir = path)
   
+  testthat::skip_on_travis()
+  
   testthat::describe('porting to tex',{
   
       x <- texPreview(obj = xtable::xtable(head(iris,10)))
-
+    
       it('files generated', {
         testthat::expect_equal(length(list.files(path)),2)
       })
