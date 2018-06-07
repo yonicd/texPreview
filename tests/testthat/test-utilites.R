@@ -3,33 +3,33 @@ library(texPreview)
 testthat::context('utility functions of package')
 
 testthat::describe('build usepackage call',{
-
+testthat::skip_on_cran()
   it('basic call', {
-      testthat::expect_equal(buildUsepackage(pkg = 'xcolor'),"\\usepackage{xcolor}")
+      testthat::expect_equal(texPreview:::buildUsepackage(pkg = 'xcolor'),"\\usepackage{xcolor}")
     })
   
   it('check library is installed', {
-      testthat::expect_equal(buildUsepackage(pkg = 'xcolor',chk.inst = TRUE),"\\usepackage{xcolor}")
+      testthat::expect_equal(texPreview:::buildUsepackage(pkg = 'xcolor',chk.inst = TRUE),"\\usepackage{xcolor}")
     })
   
   it('add options', {
-      testthat::expect_equal(buildUsepackage(pkg = 'xcolor',options = 'usenames'),"\\usepackage[usenames]{xcolor}")
+      testthat::expect_equal(texPreview:::buildUsepackage(pkg = 'xcolor',options = 'usenames'),"\\usepackage[usenames]{xcolor}")
     })
    
   it('use bad library name', {
-      testthat::expect_warning(buildUsepackage(pkg = 'nopack',chk.inst = TRUE))
+      testthat::expect_warning(texPreview:::buildUsepackage(pkg = 'nopack',chk.inst = TRUE))
     })
   
 })
 
 testthat::describe('build usepackage multiple calls',{
-  
+  testthat::skip_on_cran()
 
   geom.opts <- c('paperwidth=35cm','paperheight=35cm','left=2.5cm','top=2.5cm')
   
   use.opts <- "\\usetikzlibrary{mindmap,backgrounds}"
   
-  l <- mapply(buildUsepackage,
+  l <- mapply(texPreview:::buildUsepackage,
     pkg =        list('times','geometry','tikz'),
     options=     list(NULL   ,geom.opts ,NULL),
     uselibrary = list(NULL   ,NULL      ,use.opts)
@@ -46,6 +46,8 @@ testthat::describe('build usepackage multiple calls',{
 })
 
 testthat::describe('find packages',{
+  
+  testthat::skip_on_cran()
   
   if(length(system('tlmgr --version',intern = TRUE))>0){
     
@@ -68,6 +70,6 @@ testthat::describe('find packages',{
 
 testthat::describe('empty call to addin',{
     it('cause addin to crash', {
-      testthat::expect_error(texAddin())
+      testthat::expect_error(texPreview:::texAddin())
     })
 })

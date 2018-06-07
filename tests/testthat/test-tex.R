@@ -25,7 +25,7 @@ testthat::context('core tex function')
   
   testthat::describe('porting to tex',{
   
-      x <- texPreview(obj = xtable::xtable(head(iris,10)))
+      x <- texPreview::texPreview(obj = xtable::xtable(head(iris,10)))
     
       it('files generated', {
         testthat::expect_equal(length(list.files(path)),2)
@@ -43,7 +43,7 @@ testthat::context('core tex function')
   
   testthat::describe('porting to tex no filedir',{
     
-    x <- texPreview(obj = xtable::xtable(head(iris,10)))
+    x <- texPreview::texPreview(obj = xtable::xtable(head(iris,10)))
 
     it('no files generated', {
       testthat::expect_equal(length(list.files(path)),0)
@@ -61,7 +61,7 @@ testthat::context('core tex function')
   
   testthat::describe('keep pdf as an output',{
   
-    x <- texPreview(obj = xtable::xtable(head(iris,10)),keep_pdf = TRUE)
+    x <- texPreview::texPreview(obj = xtable::xtable(head(iris,10)),keep_pdf = TRUE)
   
     it('files generated', {
       testthat::expect_equal(length(list.files(path)),3)
@@ -81,7 +81,7 @@ testthat::context('core tex function')
   
     it('print to console the html script', {
       
-      expect_output(texPreview(obj = xtable::xtable(head(iris,10))))
+      expect_output(texPreview::texPreview(obj = xtable::xtable(head(iris,10))))
       
     })
   
@@ -93,7 +93,7 @@ testthat::context('core tex function')
   
   testthat::describe('use svg device',{
   
-    x <- texPreview(obj = xtable::xtable(head(iris,10)))
+    x <- texPreview::texPreview(obj = xtable::xtable(head(iris,10)))
   
     it('check if file created', {
       expect_equal(length(list.files(path,pattern = 'svg$')),1)
@@ -121,7 +121,7 @@ testthat::context('core tex function')
     \\hline
     \\end{tabular}'
     
-    x <- texPreview(obj = tex)
+    x <- texPreview::texPreview(obj = tex)
     
     it('validate benchmark', {
       expect_equal(x,paste0(readLines(file.path(path,'tex_temp.tex')),collapse='\n'))
