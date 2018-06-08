@@ -4,3 +4,5 @@ Miscellaneous
 ^cran-comments\.md$
 ^\.travis\.yml$
 ^codecov\.yml$
+doc
+application
