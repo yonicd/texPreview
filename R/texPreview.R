@@ -220,7 +220,10 @@ texPreview <- function (obj,
       if(!returnType%in%c('tex','beamer')){
         
           magick::image_write(imgOut, thispath)
-          htmltools::html_print(htmltools::tags$img(src = sprintf("data:image/%s;base64,%s",imgFormat,base64enc::base64encode(thispath))))
+          htmltools::html_print(
+            htmltools::tags$img(src = sprintf("data:image/%s;base64,%s",imgFormat,base64enc::base64encode(thispath))),
+            viewer = getOption("viewer")
+            )
           
         }
     } 
