@@ -1,6 +1,6 @@
 Tests and Coverage
 ================
-31 July, 2018 11:15:30
+31 July, 2018 11:20:00
 
 This output is created by
 [covrpage](https://github.com/yonicd/covrpage).
@@ -29,7 +29,7 @@ package.
 
 |            | file                              | n |  time | error | failed | skipped | warning |
 | ---------- | :-------------------------------- | -: | ----: | ----: | -----: | ------: | ------: |
-| test-tex.R | [test-tex.R](testthat/test-tex.R) | 9 | 0.677 |     0 |      0 |       0 |       0 |
+| test-tex.R | [test-tex.R](testthat/test-tex.R) | 9 | 0.737 |     0 |      0 |       0 |       0 |
 
 <details closed>
 
@@ -38,15 +38,15 @@ package.
 
 | file                                   | context           | test                                          | status | n |  time |
 | :------------------------------------- | :---------------- | :-------------------------------------------- | :----- | -: | ----: |
-| [test-tex.R](testthat/test-tex.R#L31)  | core tex function | porting to tex: files generated               | PASS   | 1 | 0.017 |
-| [test-tex.R](testthat/test-tex.R#L35)  | core tex function | porting to tex: class of output               | PASS   | 1 | 0.001 |
-| [test-tex.R](testthat/test-tex.R#L49)  | core tex function | porting to tex no filedir: no files generated | PASS   | 1 | 0.003 |
-| [test-tex.R](testthat/test-tex.R#L53)  | core tex function | porting to tex no filedir: class of output    | PASS   | 1 | 0.023 |
+| [test-tex.R](testthat/test-tex.R#L31)  | core tex function | porting to tex: files generated               | PASS   | 1 | 0.018 |
+| [test-tex.R](testthat/test-tex.R#L35)  | core tex function | porting to tex: class of output               | PASS   | 1 | 0.002 |
+| [test-tex.R](testthat/test-tex.R#L49)  | core tex function | porting to tex no filedir: no files generated | PASS   | 1 | 0.002 |
+| [test-tex.R](testthat/test-tex.R#L53)  | core tex function | porting to tex no filedir: class of output    | PASS   | 1 | 0.002 |
 | [test-tex.R](testthat/test-tex.R#L67)  | core tex function | keep pdf as an output: files generated        | PASS   | 1 | 0.002 |
 | [test-tex.R](testthat/test-tex.R#L71)  | core tex function | keep pdf as an output: class of output        | PASS   | 1 | 0.001 |
-| [test-tex.R](testthat/test-tex.R#L84)  | core tex function | html output: print to console the html script | PASS   | 1 | 0.626 |
+| [test-tex.R](testthat/test-tex.R#L84)  | core tex function | html output: print to console the html script | PASS   | 1 | 0.704 |
 | [test-tex.R](testthat/test-tex.R#L99)  | core tex function | use svg device: check if file created         | PASS   | 1 | 0.002 |
-| [test-tex.R](testthat/test-tex.R#L127) | core tex function | tex lines directly input: validate benchmark  | PASS   | 1 | 0.002 |
+| [test-tex.R](testthat/test-tex.R#L127) | core tex function | tex lines directly input: validate benchmark  | PASS   | 1 | 0.004 |
 
 </details>
 
