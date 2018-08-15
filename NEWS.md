@@ -1,4 +1,4 @@
-# texPreview 1.1.6
+# texPreview 1.1.5
 
 * fix viewer issue to keep new pages in internal viewer
 
