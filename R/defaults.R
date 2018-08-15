@@ -54,8 +54,6 @@ new_defaults = function(value = list()) {
 #' Below is a list of default chunk options, retrieved via
 #' \code{tex_opts$get()}:
 #'
-#' \Sexpr[results=verbatim]{str(texPreview::tex_opts$get())}
-#'
 #' These options correspond to fields in the direct call to \code{\link{texPreview}}, which are listed in explained
 #' 
 #' in the help manual.

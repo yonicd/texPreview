@@ -6,3 +6,5 @@ Miscellaneous
 ^codecov\.yml$
 docs
 application
+^_pkgdown\.yml$
+^docs$
