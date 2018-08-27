@@ -124,7 +124,7 @@ texPreview <- function (obj,
     
   },add = TRUE)
 
-  writeFlg <- tex_dir_setup()
+  write_flag <- tex_dir_setup()
 
   if (is.null(tex_lines)) {
   
@@ -134,7 +134,7 @@ texPreview <- function (obj,
   
   tex_build(tex_lines,stem,tex_message,...)
 
-  imgOut <- tex_image(obj,stem, writeFlg, overwrite)
+  imgOut <- tex_image(obj,stem, write_flag, overwrite)
 
   tex_viewer(imgOut, stem)
 

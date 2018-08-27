@@ -2,7 +2,7 @@
 tex_image <- function(
   obj,
   stem = "tex_temp",
-  writeFlg, 
+  write_flag, 
   overwrite,
   fileDir = tex_opts$get('fileDir'),
   density = tex_opts$get('density'),
@@ -18,7 +18,7 @@ tex_image <- function(
     depth = 16
   )
   
-  if (writeFlg & overwrite) {
+  if (write_flag & overwrite) {
     
     magick::image_write(
       imgOut, 
