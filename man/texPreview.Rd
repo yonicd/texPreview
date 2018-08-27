@@ -111,4 +111,5 @@ tikzEx=readLines(tikz_example,warn = FALSE)
   bodytikz=paste(tikzEx[25:90],collapse="\\n")
   texPreview(obj = bodytikz,usrPackages = buildUsepackage(pkg = 'tikz',uselibrary = usetikz))
 }
+
 }

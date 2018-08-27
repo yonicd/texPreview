@@ -1,4 +1,11 @@
-tex_return <- function(obj,returnType,fileDir,stem,dev = 'tex',opts.html){
+tex_return <- function(
+  obj,
+  stem = "tex_temp",
+  dev = 'tex',
+  returnType = tex_opts$get('returnType'),
+  fileDir = tex_opts$get('fileDir'),
+  opts.html = tex_opts$get('opts.html')
+  ){
   
   path <- tex_path(fileDir,stem,dev)
   
@@ -7,12 +14,19 @@ tex_return <- function(obj,returnType,fileDir,stem,dev = 'tex',opts.html){
   }
   
   if(returnType%in%c("html", "html5", "s5", "slidy","slideous", "dzslides", "revealjs","md")){
-    return(sprintf('<img src="%s" height="%s" width="%s" />', path,opts.html$height, opts.html$width))
+    return(
+      writeLines(sprintf('<img src="%s" height="%s" width="%s" />',
+                   path,opts.html$height,
+                   opts.html$width)
+           )
+    )
   } 
   
-  if(grepl('^input_',returnType)){
+  if(grepl('^input',returnType)){
     cat(obj, file = path, sep= '\n')
-    return(sprintf('\input{%s}',path))
+    return(
+      writeLines(sprintf('\\input{%s}',path))
+    )
   }
   
   if(returnType%in%c('tex','beamer')){
