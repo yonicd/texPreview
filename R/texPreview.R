@@ -240,20 +240,32 @@ texPreview <- function (obj,
     
   }
   
-  if(returnType=='viewer') return(NULL)
+  # What is returned
+  
+  if(returnType=='viewer') RET <- NULL
   
   if(returnType%in%c("html", "html5", "s5", "slidy","slideous", "dzslides", "revealjs","md")){
-    return(writeLines(sprintf('<img src="%s" height="%s" width="%s" />', 
-                              file.path(fileDir,paste0(stem,'.',imgFormat)),
-                              opts.html$height, opts.html$width)
-                      )
-           )
-  } 
+    RET <- sprintf('<img src="%s" height="%s" width="%s" />', 
+            file.path(fileDir,paste0(stem,'.',imgFormat)),
+            opts.html$height, opts.html$width)
+    } 
   
   if(returnType%in%c('tex','beamer')){
     cat(obj, file= file.path(fileDir, paste0(stem,".tex")), sep= '\n')
-    writeLines(obj)
-    invisible(obj)
+    
+    if(tex_input){
+      
+      RET <- sprintf('\input{%s}',file.path(fileDir, paste0(stem,".tex")))
+      
+    }else{
+      
+      RET <- obj
+      
+    }
+    
+    
   }
   
+  return(RET)
+
 }
