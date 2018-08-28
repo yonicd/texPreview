@@ -1,6 +1,6 @@
 Tests and Coverage
 ================
-27 August, 2018 14:59:03
+28 August, 2018 13:06:51
 
 This output is created by
 [covrpage](https://github.com/yonicd/covrpage).
@@ -12,13 +12,13 @@ Coverage summary is created using the
 
 | Object                                        | Coverage (%) |
 | :-------------------------------------------- | :----------: |
-| texPreview                                    |    63.49     |
+| texPreview                                    |    64.02     |
 | [R/buildUsepackage.R](../R/buildUsepackage.R) |     0.00     |
 | [R/getTexPackages.R](../R/getTexPackages.R)   |     0.00     |
 | [R/texAddin.R](../R/texAddin.R)               |     0.00     |
 | [R/defaults.R](../R/defaults.R)               |     6.06     |
 | [R/tex\_dir\_setup.R](../R/tex_dir_setup.R)   |    78.95     |
-| [R/tex\_return.R](../R/tex_return.R)          |    78.95     |
+| [R/tex\_return.R](../R/tex_return.R)          |    83.33     |
 | [R/tex\_viewer.R](../R/tex_viewer.R)          |    93.75     |
 | [R/build\_lines.R](../R/build_lines.R)        |    100.00    |
 | [R/tex\_build.R](../R/tex_build.R)            |    100.00    |
@@ -36,7 +36,7 @@ package.
 
 |            | file                              | n |  time | error | failed | skipped | warning |
 | ---------- | :-------------------------------- | -: | ----: | ----: | -----: | ------: | ------: |
-| test-tex.R | [test-tex.R](testthat/test-tex.R) | 9 | 0.634 |     0 |      0 |       0 |       0 |
+| test-tex.R | [test-tex.R](testthat/test-tex.R) | 9 | 0.643 |     0 |      0 |       0 |       0 |
 
 <details closed>
 
@@ -45,13 +45,13 @@ package.
 
 | file                                   | context           | test                                          | status | n |  time |
 | :------------------------------------- | :---------------- | :-------------------------------------------- | :----- | -: | ----: |
-| [test-tex.R](testthat/test-tex.R#L31)  | core tex function | porting to tex: files generated               | PASS   | 1 | 0.002 |
+| [test-tex.R](testthat/test-tex.R#L31)  | core tex function | porting to tex: files generated               | PASS   | 1 | 0.017 |
 | [test-tex.R](testthat/test-tex.R#L35)  | core tex function | porting to tex: class of output               | PASS   | 1 | 0.001 |
 | [test-tex.R](testthat/test-tex.R#L49)  | core tex function | porting to tex no filedir: no files generated | PASS   | 1 | 0.002 |
-| [test-tex.R](testthat/test-tex.R#L53)  | core tex function | porting to tex no filedir: class of output    | PASS   | 1 | 0.002 |
-| [test-tex.R](testthat/test-tex.R#L67)  | core tex function | keep pdf as an output: files generated        | PASS   | 1 | 0.003 |
-| [test-tex.R](testthat/test-tex.R#L71)  | core tex function | keep pdf as an output: class of output        | PASS   | 1 | 0.001 |
-| [test-tex.R](testthat/test-tex.R#L84)  | core tex function | html output: print to console the html script | PASS   | 1 | 0.619 |
+| [test-tex.R](testthat/test-tex.R#L53)  | core tex function | porting to tex no filedir: class of output    | PASS   | 1 | 0.001 |
+| [test-tex.R](testthat/test-tex.R#L67)  | core tex function | keep pdf as an output: files generated        | PASS   | 1 | 0.002 |
+| [test-tex.R](testthat/test-tex.R#L71)  | core tex function | keep pdf as an output: class of output        | PASS   | 1 | 0.002 |
+| [test-tex.R](testthat/test-tex.R#L84)  | core tex function | html output: print to console the html script | PASS   | 1 | 0.614 |
 | [test-tex.R](testthat/test-tex.R#L99)  | core tex function | use svg device: check if file created         | PASS   | 1 | 0.002 |
 | [test-tex.R](testthat/test-tex.R#L127) | core tex function | tex lines directly input: validate benchmark  | PASS   | 1 | 0.002 |
 

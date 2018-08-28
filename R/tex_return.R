@@ -22,11 +22,10 @@ tex_return <- function(
     )
   } 
   
-  if(grepl('^input',returnType)){
+  if(returnType=='input'){
     cat(obj, file = path, sep= '\n')
-    return(
-      writeLines(sprintf('\\input{%s}',path))
-    )
+    obj <- sprintf('\\input{%s}',path)
+    return(obj)
   }
   
   if(returnType%in%c('tex','beamer')){

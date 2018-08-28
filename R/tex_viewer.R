@@ -13,7 +13,7 @@ tex_viewer <- function(imgOut,
   if(returnType=='shiny')
     return()
   
-  thispath <- normalizePath(file.path(fileDir, paste0(stem,".", imgFormat)))
+  thispath <- normalizePath(file.path(fileDir, paste0(stem,".", imgFormat)),mustWork = FALSE)
   
     if(imgFormat=='svg'&'svgPanZoom'%in%rownames(utils::installed.packages())){
       
@@ -29,7 +29,7 @@ tex_viewer <- function(imgOut,
       
     } else {
       
-      if(!returnType%in%c('tex','beamer')){
+      if(!returnType%in%c('tex','beamer','input')){
         
         magick::image_write(imgOut, thispath)
         

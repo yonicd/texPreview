@@ -124,7 +124,7 @@ testthat::context('core tex function')
     x <- texPreview::texPreview(obj = tex)
     
     it('validate benchmark', {
-      expect_equal(x,paste0(readLines(file.path(path,'tex_temp.tex')),collapse='\n'))
+      expect_equal(x,readLines(file.path(path,'tex_temp.tex')))
     })
     
   })
