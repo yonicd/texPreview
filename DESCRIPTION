@@ -1,7 +1,7 @@
 Package: texPreview
 Type: Package
 Title: Compile and Preview Snippets of 'LaTeX' in 'RStudio'
-Version: 1.2
+Version: 1.2.1
 Date: 2018-08-27
 Authors@R: c(
               person(given = 'Jonathan',family = 'Sidi',email = 'yonis@metrumrg.com',role = c('aut','cre')),
@@ -13,7 +13,7 @@ Description: Compile and preview snippets of 'LaTeX'. Can be used directly from 
 Depends:
     R (>= 2.3.0)
 Imports:
-    rstudioapi,magick,svgPanZoom,utils,xml2, htmltools, base64enc, whisker
+    rstudioapi,magick,svgPanZoom,utils,xml2, htmltools, base64enc, whisker, completeme
 Suggests:
     magrittr (>= 1.0.1),
     xtable,
@@ -22,6 +22,8 @@ Suggests:
     knitr,
     testthat,
     covr
+Remotes:
+    jimhester/completeme
 License: GPL-2 | GPL-3
 URL: https://github.com/metrumresearchgroup/texPreview
 BugReports: https://github.com/metrumresearchgroup/texPreview/issues
