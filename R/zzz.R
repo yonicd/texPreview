@@ -1,3 +1,4 @@
 .onLoad <- function(pkg, lib) {
-  completeme::register_completion(texPreview = populate)
+  rc.options(custom.completer = completeme)
+  register_completion(texPreview = populate)
 }

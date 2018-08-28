@@ -91,21 +91,3 @@ setNames<-function(object = nm, nm){
   names(object) <- nm
   object
 }
-
-populate <- function(env){
-  
-  fun <- completeme::current_function(env)
-  
-  if(length(fun) > 0){
-    comp <- switch(fun,
-                   `texPreview::tex_opts$set` = names(tex_opts$get()),
-                   `tex_opts$set` = names(tex_opts$get()),
-                   `texPreview::tex_opts$append` = names(tex_opts$get()),
-                   `tex_opts$append` = names(tex_opts$get())
-    )
-    
-  }
-  
-  return(comp)
-  
-}
