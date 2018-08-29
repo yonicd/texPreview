@@ -13,6 +13,7 @@ complete_token <- get(".completeToken", asNamespace("utils"))
 # If all registered completions do not have any completions for a given
 # context, than R's standard completions are used.
 # @param ... One or more completion functions specified as named parameters.
+#' @importFrom utils modifyList
 register_completion <- function(...) {
   funs <- list(...)
   
@@ -23,19 +24,19 @@ register_completion <- function(...) {
   }
   
   old <- the$completions
-  the$completions <- modifyList(the$completions, funs)
+  the$completions <- utils::modifyList(the$completions, funs)
   
   invisible(old)
 }
 
 #' @importFrom utils rc.options
-#' @importFrom rlang %||%
 completeme <- function(env) {
   env$fileName <- FALSE
   for (fun in the$completions) {
     env$comps <- fun(env)
     if (length(env$comps) > 0) {
-      attributes(env$comps) <- list(class = "completions", type = attr(env$comps, "type") %||% 15)
+      attributes(env$comps) <- list(class = "completions", type = 15)
+      # this_type <- attr(env$comps, "type") %||% 15
       return(invisible(env$comps))
     }
   }
@@ -44,7 +45,7 @@ completeme <- function(env) {
   
   # if in the IDE, throw an error to fallback on normal completion
   if (rstudioapi::isAvailable()) {
-    abort("No custom completions", type = "no_completions")
+    stop("No custom completions")
   }
   
   # If on the command line, fall back to using the default completer
@@ -69,26 +70,38 @@ populate <- function(env){
   
   fun <- current_function(env)
   
-  this_ns <- environmentName(parent.env(environment()))
-    
-  this_fn <- ls(envir = asNamespace(this_ns),pattern = 'opts$')
+  this_ns <- find_the()
   
-  nms <- names(get(this_fn)$get())
+  this_fn <- lapply(this_ns,function(x) ls(envir = asNamespace(x),pattern = 'opts$'))
+  
+  nms <- lapply(this_fn,function(x) names(get(x)$get()))
   
   comp <- NULL
   
   if(length(fun) > 0){
-
-       if(fun %in% c(sprintf('%s::%s$set',this_ns,this_fn),
-                   sprintf('%s$set',this_fn),
-                   sprintf('%s::%s$append',this_ns,this_fn),
-                   sprintf('%s$append',this_ns,this_fn)
-                   )){
-         comp = nms
-        }
-    
+    for(i in seq_along(this_ns)){
+      if(fun %in% build_fields(ns = this_ns[i],fn = this_fn[[i]])){
+        comp <- nms[[i]]
+      } 
+    }
   }
   
   return(comp)
   
+}
+
+build_fields <- function(fields = c('set','append'),ns='ns',fn='fn'){
+  c(
+    sprintf('%s::%s$%s',ns,fn,fields),
+    sprintf('%s$%s',fn,fields)
+  )
+}
+
+find_the <- function(){
+  names(which(sapply(loadedNamespaces(),function(x) any(grepl('^the$',ls(envir = asNamespace(x)))))))
+}
+
+.onLoad <- function(lib,pkg) {
+  rc.options(custom.completer = completeme)
+  register_completion(thispkg = populate)
 }
