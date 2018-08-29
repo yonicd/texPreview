@@ -15,7 +15,7 @@ testthat::context('core tex function')
     
   }
   
-  path <- file.path(testthat::test_path('tex'))
+  path <- file.path(tempdir(),'tex')
   
   dir.create(path)
   

@@ -75,12 +75,6 @@
 #'   bodytikz=paste(tikzEx[25:90],collapse="\n")
 #'   texPreview(obj = bodytikz,usrPackages = buildUsepackage(pkg = 'tikz',uselibrary = usetikz))
 #' }
-#' @importFrom magick image_convert image_read image_write
-#' @importFrom svgPanZoom svgPanZoom
-#' @importFrom utils installed.packages capture.output
-#' @importFrom xml2 read_xml
-#' @importFrom htmltools html_print tags
-#' @importFrom base64enc base64encode
 #' 
 texPreview <- function (obj, 
                         tex_lines = NULL,
@@ -101,159 +95,49 @@ texPreview <- function (obj,
                         opts.html = tex_opts$get('opts.html'),
                         ...) 
 {
+
+  session_opts <- tex_opts$get()
   
-  if (is.null(fileDir)) {
+  tex_opts$set(
+    fileDir = fileDir,
+    margin = margin,
+    imgFormat = imgFormat,
+    returnType = returnType,
+    resizebox = resizebox,
+    engine = engine,
+    cleanup = cleanup,
+    density = density,
+    print.xtable.opts = print.xtable.opts,
+    opts.html = opts.html
+  )
+  
+  if(is.null(stem)){
     
-    fileDir <- tempdir()
+    stem = "tex_temp"  
     
-    if (!dir.exists(fileDir)) 
-      dir.create(fileDir, recursive = TRUE,showWarnings = FALSE)
-    
-    writeFlg <- FALSE
-    
-  }else {
-    
-    writeFlg <- TRUE
-    
-    if (!dir.exists(fileDir)){
-      
-      if(returnType=='viewer') 
-        return()
-      
-    }else{
-      
-      dir.create(fileDir, recursive = TRUE,showWarnings = FALSE)
-      
-    }
-      
   }
   
-  if(is.null(stem))
-    stem <- "tex_temp"
-  
+  on.exit({
+    
+    tex_cleanup(cleanup,stem,keep_pdf)
+    tex_opts$set(session_opts)
+    
+  },add = TRUE)
+
+  write_flag <- tex_dir_setup()
+
   if (is.null(tex_lines)) {
   
-    if ("xtable" %in% class(obj)) {
-      print.xtable.opts$x <- obj
-      print.xtable.opts$comment <- FALSE
-      
-      if (!"file" %in% names(print.xtable.opts)) print.xtable.opts$file <- file.path(fileDir, paste0(stem,".tex"))
-        
-      obj <- do.call("print", print.xtable.opts)
-      
-    }else{
-      
-      cat(obj, file= file.path(fileDir, paste0(stem,".tex")), sep= '\n')
-      
-    }
-
-    if( resizebox ){
-      
-      obj <- gsub('\\\\begin\\{tabular\\}','\\\\resizebox\\{\\\\textwidth\\}\\{!\\}\\{\\\\begin\\{tabular\\}',obj)
-      obj <- gsub('\\\\end\\{tabular\\}','\\\\end\\{tabular\\}\\}',obj)
-      
-    }
-    
-    tex_lines <- c(
-      sprintf("\\documentclass[varwidth, border={%s %s %s %s}]{standalone}", margin$left, margin$top, margin$right, margin$bottom), 
-      "\\usepackage[usenames,dvispnames,svgnames,table]{xcolor}", 
-      "\\usepackage{multirow}",
-      "\\usepackage{helvet}", 
-      "\\usepackage{amsmath}", 
-      "\\usepackage{rotating}", 
-      "\\usepackage{graphicx}", 
-      "\\renewcommand{\\familydefault}{\\sfdefault}", 
-      "\\usepackage{setspace}", 
-      "\\usepackage{caption}", 
-      "\\captionsetup{labelformat=empty}",
-      usrPackages, 
-      "\\begin{document}",
-      obj,
-      "\\end{document}"    
-    )
+    tex_lines <- build_lines(obj, stem, usrPackages)
   
   }
   
-  
-  x <- getwd()
-  
+  tex_build(tex_lines,stem,tex_message,...)
 
-  setwd(fileDir)
-  
-  interaction_mode <- ifelse(tex_message, "nonstopmode", "batchmode")
-  
-  temp_file <- file.path(getwd(),sprintf("%sDoc.tex",stem))
-  
-  writeLines(tex_lines, con = temp_file)
-  
-  system(sprintf("%s -synctex=1 -interaction=%s --halt-on-error %s",engine,interaction_mode,temp_file),...)
-  
-  setwd(x)
-  
-  imgOut <- magick::image_convert(image =  magick::image_read(path = file.path(fileDir, paste0(stem, "Doc.pdf")),
-                                                             density = density),
-                                 format = imgFormat, 
-                                 depth = 16)
-  
-  if (writeFlg & overwrite) {
-    magick::image_write(imgOut, file.path(fileDir, paste0(stem,".", imgFormat)))
-    if (!"file" %in% names(print.xtable.opts)) 
-      print.xtable.opts$file <- file.path(fileDir, paste0(stem,".tex"))
-    if ("xtable" %in% class(obj)) 
-      do.call("print", print.xtable.opts)
-  }
+  imgOut <- tex_image(obj,stem, write_flag, overwrite)
 
-  thispath <- normalizePath(file.path(fileDir, paste0(stem,".", imgFormat)))
-  
-  if(returnType!='shiny'){
-    if(imgFormat=='svg'&'svgPanZoom'%in%rownames(utils::installed.packages())){
-      
-      magick::image_write(imgOut, thispath)
-      
-      if(returnType=='viewer'){
-        
-        xmlSvg <- paste0(readLines(thispath),collapse = '\n')
-        print(svgPanZoom::svgPanZoom(xml2::read_xml(xmlSvg)))
-        
-      }
-    }else{
-      if(!returnType%in%c('tex','beamer')){
-        
-          magick::image_write(imgOut, thispath)
-          htmltools::html_print(
-            htmltools::tags$img(src = sprintf("data:image/%s;base64,%s",imgFormat,base64enc::base64encode(thispath))),
-            viewer = getOption("viewer")
-            )
-          
-        }
-    } 
-  }
+  tex_viewer(imgOut, stem)
 
-  if( !is.null(cleanup) ){
-
-    tempDel <- list.files(fileDir,sprintf('%s(.*?)(%s)',stem,paste0(cleanup,collapse ='|')),full.names = TRUE)
-    
-    if(keep_pdf)
-      tempDel<- tempDel[-grep('pdf',tempDel)]
-    
-    unlink(tempDel)
-    
-  }
-  
-  if(returnType=='viewer') return(NULL)
-  
-  if(returnType%in%c("html", "html5", "s5", "slidy","slideous", "dzslides", "revealjs","md")){
-    return(writeLines(sprintf('<img src="%s" height="%s" width="%s" />', 
-                              file.path(fileDir,paste0(stem,'.',imgFormat)),
-                              opts.html$height, opts.html$width)
-                      )
-           )
-  } 
-  
-  if(returnType%in%c('tex','beamer')){
-    cat(obj, file= file.path(fileDir, paste0(stem,".tex")), sep= '\n')
-    writeLines(obj)
-    invisible(obj)
-  }
+  return(tex_return(obj = tex_lines,stem))
   
 }
