@@ -79,9 +79,11 @@ testthat::context('core tex function')
   
   testthat::describe('html output',{
   
-    it('print to console the html script', {
+    it('return magick object', {
       
-      expect_output(texPreview::texPreview(obj = xtable::xtable(head(iris,10))))
+      x <- texPreview::texPreview(obj = xtable::xtable(head(iris,10)))
+      
+      expect_true(inherits(x,"magick-image"))
       
     })
   
