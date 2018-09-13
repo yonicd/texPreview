@@ -9,37 +9,20 @@ output: html_document
 suppressMessages(library(texPreview))
 suppressMessages(library(xtable))
 
-rt <- knitr::opts_knit$get('rmarkdown.pandoc.to')
-tex_opts$set(list('returnType'= rt))
-
-fd <- NULL 
-
-if(rt%in%c("html", "html5", "s5", "slidy","slideous", "dzslides", "revealjs","md")){
-  fd="test_files/texPreview"
-  if(!dir.exists(fd)) dir.create(fd,recursive = T)
-  
-}
-
+tex_opts$set(list('returnType'= knitr::opts_knit$get('rmarkdown.pandoc.to')))
 
 ```
 
 ## Table 1
 
-```{r testOut, cache=FALSE, echo=TRUE, results='asis'}
-
-      texPreview( obj = xtable::xtable(head(iris,20)),
-                  stem="testOut",
-                  fileDir = fd,
-                  opts.html = list(width='70%',height='70%')
-                  
-             )
+```{r testOut}
+texPreview( obj = xtable::xtable(head(iris,20)))
 
 ```
 
 ## Table 2
 
-```{r testOut2, cache=FALSE, echo=TRUE, results='asis'}
-
+```{r testOut2}
 tab='
 \\begin{tabular}{llr}
 \\hline
@@ -55,10 +38,6 @@ Armadillo & frozen      & 8.99       \\\\
 \\hline
 \\end{tabular}'
 
-      texPreview( obj = tab,
-                  stem="testOut2",
-                  fileDir = fd,
-                  imgFormat = 'png',
-                  opts.html = list(width='40%',height='50%')
-                  )
+texPreview(obj = tab)
+
 ```

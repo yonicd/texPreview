@@ -140,6 +140,6 @@ texPreview <- function (obj,
 
   tex_viewer(imgOut, stem)
 
-  return(tex_return(obj = tab_lines,stem))
+  return(tex_return(obj = tab_lines,stem, img_format = imgFormat))
   
 }
