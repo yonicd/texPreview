@@ -10,36 +10,21 @@ suppressMessages(library(texPreview))
 suppressMessages(library(slickR))
 suppressMessages(library(xtable))
 
-rt <- knitr::opts_knit$get('rmarkdown.pandoc.to')
-tex_opts$set(list('returnType'= rt,'imgFormat'='svg'))
-
-fd <- NULL 
-
-if(rt%in%c("html", "html5", "s5", "slidy","slideous", "dzslides", "revealjs","md")){
-  fd="testCarousel_files/texPreview"
-  if(!dir.exists(fd)) dir.create(fd,recursive = TRUE)
-  
-}
-
+tex_opts$set(list('returnType'= knitr::opts_knit$get('rmarkdown.pandoc.to'),'imgFormat'='svg'))
 
 ```
 
 ## Table 1
 
-```{r testOut, cache=FALSE, echo=TRUE, results='asis'}
+```{r testOut}
 
-      texPreview( obj = knitr::kable(mtcars,'latex'),
-                  stem="testOut",
-                  fileDir = fd,
-                  opts.html = list(width='70%',height='70%')
-                  
-             )
+texPreview( obj = knitr::kable(mtcars,'latex'))
 
 ```
 
 ## Table 2
 
-```{r testOut2, cache=FALSE, echo=TRUE, results='asis'}
+```{r testOut2}
 
 tab='
 \\begin{tabular}{llr}
@@ -56,17 +41,11 @@ Armadillo & frozen      & 8.99       \\\\
 \\hline
 \\end{tabular}'
 
-      texPreview( obj = tab,
-                  stem="testOut2",
-                  fileDir = fd,
-                  opts.html = list(width='40%',height='50%')
-                  )
+texPreview(obj = tab)
 ```
 
 ## Carousel (slickR htmlwidget)
 
-```{r testOut3, cache=FALSE, echo=TRUE, results='asis'}
-slickR::slickR(list.files(file.path(getwd(),fd),
-                          pattern = tex_opts$get('imgFormat'),
-                          full.names = TRUE))
+```{r testOut3}
+slickR::slickR(list.files(file.path(getwd(),"testCarousel_files/figure-html"),full.names = TRUE))
 ```

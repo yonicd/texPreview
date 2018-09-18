@@ -132,12 +132,14 @@ texPreview <- function (obj,
   
   }
   
+  tab_lines <- readLines(file.path(tex_opts$get('fileDir'),sprintf('%s.tex',stem)))
+  
   tex_build(tex_lines,stem,tex_message,...)
 
   imgOut <- tex_image(obj,stem, write_flag, overwrite)
 
   tex_viewer(imgOut, stem)
 
-  return(tex_return(obj = tex_lines,stem))
+  return(tex_return(obj = tab_lines,stem, img_format = imgFormat))
   
 }
