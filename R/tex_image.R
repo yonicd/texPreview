@@ -1,4 +1,4 @@
-#' @importFrom magick image_convert image_read image_write
+#' @importFrom magick image_convert image_read image_write image_background
 tex_image <- function(
   obj,
   stem = "tex_temp",
@@ -16,7 +16,8 @@ tex_image <- function(
       density = density),
     format = imgFormat, 
     depth = 16
-  )
+  )%>%
+    magick::image_background('white')
   
   if (write_flag & overwrite) {
     

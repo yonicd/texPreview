@@ -16,10 +16,6 @@ tex_return <- function(
   
   if(returnType%in%c("html", "html5", "s5", "slidy","slideous", "dzslides", "revealjs","md")){
     return(
-      # writeLines(sprintf('<img src="%s" height="%s" width="%s" />',
-      #              path,opts.html$height,
-      #              opts.html$width)
-      #      )
       magick::image_read(tex_path(fileDir,stem,img_format))
     )
   } 
