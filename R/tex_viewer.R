@@ -35,7 +35,8 @@ tex_viewer <- function(imgOut,
         
         htmltools::html_print(
           htmltools::tags$img(
-            src = sprintf("data:image/%s;base64,%s",imgFormat,base64enc::base64encode(thispath))
+            src = sprintf("data:image/%s;base64,%s",imgFormat,base64enc::base64encode(thispath)),
+            width='100%'
           ),
           viewer = getOption("viewer")
         )

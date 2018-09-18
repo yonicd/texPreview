@@ -69,7 +69,6 @@ tex_opts = new_defaults(list(
   cleanup = c('aux','log','Doc'),
   engine = 'pdflatex',
   returnType = 'viewer',
-  tex_input = FALSE,
   density = 150,
   resizebox=TRUE
 ))
