@@ -16,16 +16,11 @@ tex_image <- function(
     readfn <- magick::image_read
   }
 
-  imgOut <- 
-    magick::image_background(
-      magick::image_convert(
-        image =  readfn(
-          path = file.path(fileDir, paste0(stem, "Doc.pdf")),
-          density = density),
-        format = imgFormat, 
-        depth = 16),
-      color = tex_opts$get('bg_fill')
-      )
+  this_image      <- readfn(path = file.path(fileDir, paste0(stem, "Doc.pdf")), density = density)
+  
+  imgOut <- magick::image_convert(this_image,format = imgFormat, depth = 16)
+  
+  #imgOut <- magick::image_background(converted_image,color = tex_opts$get('bg_fill'))
   
   if (write_flag & overwrite) {
     
