@@ -10,10 +10,16 @@ tex_image <- function(
   print.xtable.opts = tex_opts$get('print.xtable.opts')
   ){
   
+  if('pdftools'%in%rownames(installed.packages())){
+    readfn <- magick::image_read_pdf
+  }else{
+    readfn <- magick::image_read
+  }
+
   imgOut <- 
     magick::image_background(
       magick::image_convert(
-        image =  magick::image_read(
+        image =  readfn(
           path = file.path(fileDir, paste0(stem, "Doc.pdf")),
           density = density),
         format = imgFormat, 
