@@ -13,7 +13,8 @@ texPreview(obj, tex_lines = NULL, stem = NULL,
   keep_pdf = FALSE, tex_message = FALSE,
   density = tex_opts$get("density"),
   print.xtable.opts = tex_opts$get("print.xtable.opts"),
-  opts.html = tex_opts$get("opts.html"), ...)
+  opts.html = tex_opts$get("opts.html"), bg_fill = tex_opts$get("bg_fill"),
+  ...)
 }
 \arguments{
 \item{obj}{character, TeX script}
@@ -61,6 +62,8 @@ are displayed in console. Default is FALSE}
 relevant only if xtable is used as the input, Default: tex_opts$get('print.xtable.opts')}
 
 \item{opts.html}{list, html options, Default: tex_opts$get('opts.html')}
+
+\item{bg_fill}{character, background colour of the table image, Default: tex_opts$get('bg_fill')}
 
 \item{...}{passed to \code{system}}
 }

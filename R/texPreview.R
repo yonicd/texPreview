@@ -30,6 +30,7 @@
 #' @param print.xtable.opts list, contains arguments to pass to print.table, 
 #' relevant only if xtable is used as the input, Default: tex_opts$get('print.xtable.opts')
 #' @param opts.html list, html options, Default: tex_opts$get('opts.html')
+#' @param bg_fill character, background colour of the table image, Default: tex_opts$get('bg_fill') 
 #' @param ... passed to \code{system}
 #' @details The function assumes the system has pdflatex installed and it is defined in the PATH. The function does not return anything to R.
 #' If fileDir is specified then two files are written to the directory. An image file of the name stem with the extension specified in imgFormat.
@@ -93,6 +94,7 @@ texPreview <- function (obj,
                         density = tex_opts$get('density'),
                         print.xtable.opts = tex_opts$get('print.xtable.opts'),
                         opts.html = tex_opts$get('opts.html'),
+                        bg_fill = tex_opts$get('bg_fill'),
                         ...) 
 {
 
@@ -108,7 +110,8 @@ texPreview <- function (obj,
     cleanup = cleanup,
     density = density,
     print.xtable.opts = print.xtable.opts,
-    opts.html = opts.html
+    opts.html = opts.html,
+    bg_fill = bg_fill
   )
   
   if(is.null(stem)){

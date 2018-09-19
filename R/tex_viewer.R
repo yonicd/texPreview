@@ -15,24 +15,22 @@ tex_viewer <- function(imgOut,
   
   thispath <- normalizePath(file.path(fileDir, paste0(stem,".", imgFormat)),mustWork = FALSE)
   
+  magick::image_write(imgOut, thispath)
+  
     if(imgFormat=='svg'&'svgPanZoom'%in%rownames(utils::installed.packages())){
-      
-      magick::image_write(imgOut, thispath)
-      
+
       if(returnType=='viewer'){
         
         xmlSvg <- paste0(readLines(thispath),collapse = '\n')
         
-        print(svgPanZoom::svgPanZoom(xml2::read_xml(xmlSvg)))
+        return(print(svgPanZoom::svgPanZoom(xmlSvg)))
         
       }
       
-    } else {
+    }
       
-      if(!returnType%in%c('tex','beamer','input')){
-        
-        magick::image_write(imgOut, thispath)
-        
+    if(returnType=='viewer'){
+
         htmltools::html_print(
           htmltools::tags$img(
             src = sprintf("data:image/%s;base64,%s",imgFormat,base64enc::base64encode(thispath)),
@@ -43,5 +41,4 @@ tex_viewer <- function(imgOut,
         
       }
       
-    } 
 }

@@ -9,7 +9,9 @@ output: html_document
 suppressMessages(library(texPreview))
 suppressMessages(library(xtable))
 
-tex_opts$set(list('returnType'= knitr::opts_knit$get('rmarkdown.pandoc.to')))
+tex_opts$set(
+  returnType= knitr::opts_knit$get('rmarkdown.pandoc.to')
+)
 
 ```
 

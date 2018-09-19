@@ -70,7 +70,8 @@ tex_opts = new_defaults(list(
   engine = 'pdflatex',
   returnType = 'viewer',
   density = 150,
-  resizebox=TRUE
+  resizebox=TRUE,
+  bg_fill = 'white'
 ))
 
 #' @rdname tex_opts

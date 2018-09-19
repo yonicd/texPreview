@@ -10,14 +10,16 @@ tex_image <- function(
   print.xtable.opts = tex_opts$get('print.xtable.opts')
   ){
   
-  imgOut <- magick::image_convert(
-    image =  magick::image_read(
-      path = file.path(fileDir, paste0(stem, "Doc.pdf")),
-      density = density),
-    format = imgFormat, 
-    depth = 16
-  )%>%
-    magick::image_background('white')
+  imgOut <- 
+    magick::image_background(
+      magick::image_convert(
+        image =  magick::image_read(
+          path = file.path(fileDir, paste0(stem, "Doc.pdf")),
+          density = density),
+        format = imgFormat, 
+        depth = 16),
+      color = tex_opts$get('bg_fill')
+      )
   
   if (write_flag & overwrite) {
     
