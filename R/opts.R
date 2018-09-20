@@ -71,7 +71,7 @@ tex_opts = new_defaults(list(
   returnType = 'viewer',
   density = 150,
   resizebox=TRUE,
-  max_svg = 80000
+  svg_max = 80000
 ))
 
 #' @rdname tex_opts

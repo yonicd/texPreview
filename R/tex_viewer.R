@@ -17,7 +17,7 @@ tex_viewer <- function(imgOut,
   
   magick::image_write(imgOut, thispath,flatten = TRUE)
   
-  if(file.info(thispath)['size']>tex_opts$get('max_svg')&returnType=='viewer'){
+  if(file.info(thispath)['size']>tex_opts$get('svg_max')&returnType=='viewer'){
     stop(sprintf(
       'svg file size too big (%smb) for viewer try a different device to preview',
       round(as.numeric(file.info(thispath)['size'])/1000000,1)

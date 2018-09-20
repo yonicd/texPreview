@@ -20,8 +20,6 @@ tex_image <- function(
   
   imgOut <- magick::image_convert(this_image,format = imgFormat, depth = 16)
   
-  #imgOut <- magick::image_background(converted_image,color = tex_opts$get('bg_fill'))
-  
   if (write_flag & overwrite) {
     
     magick::image_write(
