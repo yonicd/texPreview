@@ -24,10 +24,6 @@ build_lines <- function(obj,
     
     obj <- do.call("print", print.xtable.opts)
     
-  }else{
-    
-    cat(obj, file= file.path(fileDir, paste0(stem,".tex")), sep= '\n')
-    
   }
   
   if( resizebox ){
@@ -41,6 +37,8 @@ build_lines <- function(obj,
                 obj)
     
   }
+  
+  cat(obj, file= file.path(fileDir, paste0(stem,".tex")), sep= '\n')
   
   TMPL <- readLines(system.file('tmpl.tex',package = 'texPreview'))
   
