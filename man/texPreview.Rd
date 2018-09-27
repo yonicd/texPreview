@@ -6,7 +6,8 @@
 \usage{
 texPreview(obj, tex_lines = NULL, stem = NULL,
   fileDir = tex_opts$get("fileDir"), overwrite = TRUE,
-  margin = tex_opts$get("margin"), imgFormat = tex_opts$get("imgFormat"),
+  margin = tex_opts$get("margin"),
+  imgFormat = tex_opts$get("imgFormat"),
   returnType = tex_opts$get("returnType"),
   resizebox = tex_opts$get("resizebox"), usrPackages = NULL,
   engine = tex_opts$get("engine"), cleanup = tex_opts$get("cleanup"),
