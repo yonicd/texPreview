@@ -10,14 +10,15 @@ tex_image <- function(
   print.xtable.opts = tex_opts$get('print.xtable.opts')
   ){
   
-  imgOut <- magick::image_convert(
-    image =  magick::image_read(
-      path = file.path(fileDir, paste0(stem, "Doc.pdf")),
-      density = density),
-    format = imgFormat, 
-    depth = 16
-  )%>%
-    magick::image_background('white')
+  if('pdftools'%in%rownames(installed.packages())){
+    readfn <- magick::image_read_pdf
+  }else{
+    readfn <- magick::image_read
+  }
+
+  this_image      <- readfn(path = file.path(fileDir, paste0(stem, "Doc.pdf")), density = density)
+  
+  imgOut <- magick::image_convert(this_image,format = imgFormat, depth = 16)
   
   if (write_flag & overwrite) {
     

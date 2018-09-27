@@ -11,7 +11,7 @@ texPreview(obj, tex_lines = NULL, stem = NULL,
   resizebox = tex_opts$get("resizebox"), usrPackages = NULL,
   engine = tex_opts$get("engine"), cleanup = tex_opts$get("cleanup"),
   keep_pdf = FALSE, tex_message = FALSE,
-  density = tex_opts$get("density"),
+  density = tex_opts$get("density"), svg_max = tex_opts$get("svg_max"),
   print.xtable.opts = tex_opts$get("print.xtable.opts"),
   opts.html = tex_opts$get("opts.html"), ...)
 }
@@ -56,6 +56,8 @@ or deleted, Default is FALSE}
 are displayed in console. Default is FALSE}
 
 \item{density}{numeric, controls the density of the image. Default is 150: tex_opts$get('density)}
+
+\item{svg_max}{numeric, maximum svg file size allowable to preview, Default: tex_opts$get('svg_max')}
 
 \item{print.xtable.opts}{list, contains arguments to pass to print.table, 
 relevant only if xtable is used as the input, Default: tex_opts$get('print.xtable.opts')}

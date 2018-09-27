@@ -70,7 +70,8 @@ tex_opts = new_defaults(list(
   engine = 'pdflatex',
   returnType = 'viewer',
   density = 150,
-  resizebox=TRUE
+  resizebox=TRUE,
+  svg_max = 80000
 ))
 
 #' @rdname tex_opts

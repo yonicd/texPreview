@@ -27,6 +27,7 @@
 #' @param tex_message logical, controls if latex executing messages 
 #' are displayed in console. Default is FALSE
 #' @param density numeric, controls the density of the image. Default is 150: tex_opts$get('density)
+#' @param svg_max numeric, maximum svg file size allowable to preview, Default: tex_opts$get('svg_max') 
 #' @param print.xtable.opts list, contains arguments to pass to print.table, 
 #' relevant only if xtable is used as the input, Default: tex_opts$get('print.xtable.opts')
 #' @param opts.html list, html options, Default: tex_opts$get('opts.html')
@@ -91,6 +92,7 @@ texPreview <- function (obj,
                         keep_pdf = FALSE, 
                         tex_message = FALSE, 
                         density = tex_opts$get('density'),
+                        svg_max = tex_opts$get('svg_max'),
                         print.xtable.opts = tex_opts$get('print.xtable.opts'),
                         opts.html = tex_opts$get('opts.html'),
                         ...) 
@@ -108,7 +110,8 @@ texPreview <- function (obj,
     cleanup = cleanup,
     density = density,
     print.xtable.opts = print.xtable.opts,
-    opts.html = opts.html
+    opts.html = opts.html,
+    svg_max = svg_max
   )
   
   if(is.null(stem)){
