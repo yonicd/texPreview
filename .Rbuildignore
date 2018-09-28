@@ -8,3 +8,4 @@ docs
 application
 ^_pkgdown\.yml$
 ^docs$
+^revdep$
