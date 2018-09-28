@@ -83,7 +83,7 @@ testthat::context('core tex function')
       
       x <- texPreview::texPreview(obj = xtable::xtable(head(iris,10)))
       
-      expect_true(inherits(x,"magick-image"))
+      testthat::expect_true(inherits(x,"magick-image"))
       
     })
   
@@ -95,10 +95,10 @@ testthat::context('core tex function')
   
   testthat::describe('use svg device',{
   
-    x <- texPreview::texPreview(obj = xtable::xtable(head(iris,10)))
+    x <- texPreview::texPreview(obj = xtable::xtable(head(iris,10)), stem="danp-test")
   
     it('check if file created', {
-      expect_equal(length(list.files(path,pattern = 'svg$')),1)
+      testthat::expect_equal(length(list.files(path,pattern = 'svg$')),1)
     })
   
   })
@@ -124,9 +124,9 @@ testthat::context('core tex function')
     \\end{tabular}'
     
     x <- texPreview::texPreview(obj = tex)
-    
+
     it('validate benchmark', {
-      expect_equal(x,readLines(file.path(path,'tex_temp.tex')))
+      testthat::expect_equal(x,readLines(file.path(path,"tex_temp.tex")))
     })
     
   })
