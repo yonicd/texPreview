@@ -29,5 +29,4 @@ LazyData: false
 NeedsCompilation: no
 Packaged: 2017-01-27 20:00:00 UTC; Yoni
 RoxygenNote: 6.1.0
-HexURL: https://github.com/metrumresearchgroup/texPreview/blob/master/inst/hex.png?raw=true
 VignetteBuilder: knitr
