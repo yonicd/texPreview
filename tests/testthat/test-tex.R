@@ -23,6 +23,8 @@ testthat::context('core tex function')
   
   testthat::skip_on_travis()
   
+  testthat::skip_on_cran()
+  
   testthat::describe('porting to tex',{
   
       x <- texPreview::texPreview(obj = xtable::xtable(head(iris,10)))

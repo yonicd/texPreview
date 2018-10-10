@@ -42,7 +42,9 @@ build_lines <- function(obj,
   
   TMPL <- readLines(system.file('tmpl.tex',package = 'texPreview'))
   
-  ARGS <- append(margin, list(usrPackages = paste0(usrPackages,collapse = '\n'), file = file.path(fileDir,sprintf('%s.tex',stem))))
+  input_path <- normalizePath(file.path(fileDir,sprintf('%s.tex',stem)))
+  
+  ARGS <- append(margin, list(usrPackages = paste0(usrPackages,collapse = '\n'), file = input_path))
   
   whisker::whisker.render(TMPL, ARGS)
 }
