@@ -27,13 +27,7 @@
 
 buildUsepackage=function(pkg,options=NULL,uselibrary=NULL,chk.inst=FALSE){
   if( chk.inst ){
-    if ( Sys.info()[1] == "Windows" ){
-      x <- length(shell(sprintf("mpm --list-package-names | grep %s",pkg),intern=TRUE))>0
-    }else{
-      x <- grepl('Yes',system(sprintf('tlmgr list --only-installed %s | grep installed',pkg),intern=TRUE))
-    }
-    
-    if( !x ){
+    if( !check_package(pkg) ){
       warning(sprintf("package '%s' not installed",pkg))
       return(NULL)
     } 
@@ -47,3 +41,14 @@ buildUsepackage=function(pkg,options=NULL,uselibrary=NULL,chk.inst=FALSE){
   
     return( c(out,uselibrary) )
 }
+
+check_package <- function(x){
+  if ( Sys.info()[1] == "Windows" ){
+    check_mpm(x)
+  }else{
+    check_texlive(x)
+  }
+}
+
+check_texlive <- function(x) length(suppressWarnings(system(sprintf('kpsewhich %s.sty',x),intern = TRUE)))>0
+check_mpm <- function(x) length(shell(sprintf("mpm --list-package-names | grep %s",x),intern=TRUE))>0

@@ -23,10 +23,7 @@ getTexPackages=function(){
     
     x <- system('tlmgr list --only-installed',intern = TRUE)
     
-    x <- gsub('^i ','',x)
+    gsub('^i |:(.*?)$','',x)
     
-    xl <- strsplit(x,':')
-    
-    sapply(xl,'[',1)
   }
 }
