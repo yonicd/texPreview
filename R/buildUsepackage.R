@@ -1,5 +1,4 @@
 #' @title Build usepackage command for TeX document
-#' @export
 #' @description input TeX package name and optional package functions to create usepackage call
 #' @param pkg character, name of TeX package
 #' @param options character, name(s) of options to use in the package 
@@ -10,7 +9,7 @@
 #' the usepackage command. If chk.inst finds that the package is not installed on system function returns NULL.
 #' @return 
 #' character
-#' @examples
+#' @examples 
 #' buildUsepackage(pkg = 'xcolor')
 #' buildUsepackage(pkg = 'xcolor',options = 'usenames')
 #' 
@@ -24,7 +23,8 @@
 #' options=     list(NULL   ,geom.opts ,NULL),
 #' uselibrary = list(NULL   ,NULL      ,use.opts)
 #' ))
-
+#' @export
+#' 
 buildUsepackage=function(pkg,options=NULL,uselibrary=NULL,chk.inst=FALSE){
   if( chk.inst ){
     if( !check_package(pkg) ){
