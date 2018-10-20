@@ -1,6 +1,6 @@
 Tests and Coverage
 ================
-10 October, 2018 11:18:37
+20 October, 2018 08:44:12
 
 This output is created by
 [covrpage](https://github.com/yonicd/covrpage).
@@ -12,35 +12,59 @@ Coverage summary is created using the
 
 | Object                                        | Coverage (%) |
 | :-------------------------------------------- | :----------: |
-| texPreview                                    |     4.20     |
-| [R/build\_lines.R](../R/build_lines.R)        |     0.00     |
-| [R/buildUsepackage.R](../R/buildUsepackage.R) |     0.00     |
-| [R/getTexPackages.R](../R/getTexPackages.R)   |     0.00     |
-| [R/tex\_build.R](../R/tex_build.R)            |     0.00     |
-| [R/tex\_cleanup.R](../R/tex_cleanup.R)        |     0.00     |
-| [R/tex\_dir\_setup.R](../R/tex_dir_setup.R)   |     0.00     |
-| [R/tex\_image.R](../R/tex_image.R)            |     0.00     |
-| [R/tex\_return.R](../R/tex_return.R)          |     0.00     |
-| [R/tex\_viewer.R](../R/tex_viewer.R)          |     0.00     |
-| [R/texAddin.R](../R/texAddin.R)               |     0.00     |
-| [R/texPreview.R](../R/texPreview.R)           |     0.00     |
+| texPreview                                    |    56.97     |
 | [R/opts.R](../R/opts.R)                       |     5.88     |
-| [R/opts\_complete.R](../R/opts_complete.R)    |    17.78     |
+| [R/texAddin.R](../R/texAddin.R)               |    12.50     |
+| [R/opts\_complete.R](../R/opts_complete.R)    |    14.63     |
+| [R/tex\_viewer.R](../R/tex_viewer.R)          |    40.91     |
+| [R/getTexPackages.R](../R/getTexPackages.R)   |    50.00     |
+| [R/zzz.R](../R/zzz.R)                         |    60.00     |
+| [R/tex\_dir\_setup.R](../R/tex_dir_setup.R)   |    78.95     |
+| [R/tex\_return.R](../R/tex_return.R)          |    80.00     |
+| [R/buildUsepackage.R](../R/buildUsepackage.R) |    84.62     |
+| [R/tex\_image.R](../R/tex_image.R)            |    93.33     |
+| [R/build\_lines.R](../R/build_lines.R)        |    100.00    |
+| [R/tex\_build.R](../R/tex_build.R)            |    100.00    |
+| [R/tex\_cleanup.R](../R/tex_cleanup.R)        |    100.00    |
+| [R/texPreview.R](../R/texPreview.R)           |    100.00    |
 
 <br>
 
 ## Unit Tests
 
 Unit Test summary is created using the
-[testthat](https://github.com/r-lib/testthat) package.
+[testthat](https://github.com/r-lib/testthat)
+package.
 
-    ## All tests were skipped
+| file                                        | n |  time | error | failed | skipped | warning |
+| :------------------------------------------ | -: | ----: | ----: | -----: | ------: | ------: |
+| [test-tex.R](testthat/test-tex.R)           | 9 | 0.649 |     0 |      0 |       0 |       0 |
+| [test-utilites.R](testthat/test-utilites.R) | 9 | 0.280 |     0 |      0 |       0 |       0 |
 
-<details>
+<details closed>
 
-<summary> Show Detailed Test Results </summary>
+<summary> Show Detailed Test Results
+</summary>
 
-    ## All tests were skipped
+| file                                            | context                      | test                                              | status | n |  time |
+| :---------------------------------------------- | :--------------------------- | :------------------------------------------------ | :----- | -: | ----: |
+| [test-tex.R](testthat/test-tex.R#L33)           | core tex function            | porting to tex: files generated                   | PASS   | 1 | 0.002 |
+| [test-tex.R](testthat/test-tex.R#L37)           | core tex function            | porting to tex: class of output                   | PASS   | 1 | 0.001 |
+| [test-tex.R](testthat/test-tex.R#L51)           | core tex function            | porting to tex no filedir: no files generated     | PASS   | 1 | 0.002 |
+| [test-tex.R](testthat/test-tex.R#L55)           | core tex function            | porting to tex no filedir: class of output        | PASS   | 1 | 0.002 |
+| [test-tex.R](testthat/test-tex.R#L69)           | core tex function            | keep pdf as an output: files generated            | PASS   | 1 | 0.002 |
+| [test-tex.R](testthat/test-tex.R#L73)           | core tex function            | keep pdf as an output: class of output            | PASS   | 1 | 0.001 |
+| [test-tex.R](testthat/test-tex.R#L88)           | core tex function            | html output: return magick object                 | PASS   | 1 | 0.634 |
+| [test-tex.R](testthat/test-tex.R#L103)          | core tex function            | use svg device: check if file created             | PASS   | 1 | 0.003 |
+| [test-tex.R](testthat/test-tex.R#L131)          | core tex function            | tex lines directly input: validate benchmark      | PASS   | 1 | 0.002 |
+| [test-utilites.R](testthat/test-utilites.R#L8)  | utility functions of package | build usepackage call: basic call                 | PASS   | 1 | 0.002 |
+| [test-utilites.R](testthat/test-utilites.R#L12) | utility functions of package | build usepackage call: check library is installed | PASS   | 1 | 0.128 |
+| [test-utilites.R](testthat/test-utilites.R#L16) | utility functions of package | build usepackage call: add options                | PASS   | 1 | 0.001 |
+| [test-utilites.R](testthat/test-utilites.R#L20) | utility functions of package | build usepackage call: use bad library name       | PASS   | 1 | 0.132 |
+| [test-utilites.R](testthat/test-utilites.R#L39) | utility functions of package | build usepackage multiple calls: class            | PASS   | 1 | 0.001 |
+| [test-utilites.R](testthat/test-utilites.R#L43) | utility functions of package | build usepackage multiple calls: dimension        | PASS   | 1 | 0.002 |
+| [test-utilites.R](testthat/test-utilites.R#L57) | utility functions of package | find packages: check class                        | PASS   | 2 | 0.002 |
+| [test-utilites.R](testthat/test-utilites.R#L73) | utility functions of package | empty call to addin: cause addin to crash         | PASS   | 1 | 0.012 |
 
 </details>
 
@@ -60,8 +84,8 @@ Unit Test summary is created using the
 | :------- | :--------- |
 | testthat | 2.0.0.9000 |
 | covr     | 3.2.0      |
-| covrpage | 0.0.60     |
+| covrpage | 0.0.61     |
 
 </details>
 
-<!--- Final Status : skipped --->
+<!--- Final Status : pass --->

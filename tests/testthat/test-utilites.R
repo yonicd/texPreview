@@ -3,7 +3,7 @@ library(texPreview)
 testthat::context('utility functions of package')
 
 testthat::describe('build usepackage call',{
-testthat::skip_on_cran()
+#testthat::skip_on_cran()
   it('basic call', {
       testthat::expect_equal(texPreview:::buildUsepackage(pkg = 'xcolor'),"\\usepackage{xcolor}")
     })
@@ -23,7 +23,7 @@ testthat::skip_on_cran()
 })
 
 testthat::describe('build usepackage multiple calls',{
-  testthat::skip_on_cran()
+#  testthat::skip_on_cran()
 
   geom.opts <- c('paperwidth=35cm','paperheight=35cm','left=2.5cm','top=2.5cm')
   
@@ -47,7 +47,7 @@ testthat::describe('build usepackage multiple calls',{
 
 testthat::describe('find packages',{
   
-  testthat::skip_on_cran()
+  #testthat::skip_on_cran()
   
   if(length(system('tlmgr --version',intern = TRUE))>0){
     

@@ -2,7 +2,7 @@
 [![Project Status: Active - The project has reached a stable, usable state and is being actively developed.](http://www.repostatus.org/badges/0.1.0/active.svg)](http://www.repostatus.org/#active) 
 ![downloads](http://cranlogs.r-pkg.org/badges/texPreview)[![Travis-CI Build Status](https://travis-ci.org/metrumresearchgroup/texPreview.svg?branch=master)](https://travis-ci.org/metrumresearchgroup/texPreview)
 [![Coverage Status](https://img.shields.io/codecov/c/github/metrumresearchgroup/texPreview/master.svg)](https://codecov.io/github/metrumresearchgroup/texPreview?branch=master)
-[![Covrpage Summary](https://img.shields.io/badge/covrpage-Last_Build_2018_10_10-brightgreen.svg)](http://tinyurl.com/ybkr8fsu)
+[![Covrpage Summary](https://img.shields.io/badge/covrpage-Last_Build_2018_10_20-brightgreen.svg)](http://tinyurl.com/ybkr8fsu)
 
 # texPreview
 
