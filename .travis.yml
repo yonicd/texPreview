@@ -5,4 +5,4 @@ addons:
     packages:
     - libmagick++-dev
 after_success:
-- Rscript -e 'devtools::install(); tex_opts$set(returnType = "tex");texPreview::texPreview(obj = xtable::xtable(head(iris,10)));'
+- Rscript -e 'devtools::install(); library(texPreview); tex_opts$set(returnType = "tex"); texPreview::texPreview(obj = xtable::xtable(head(iris,10)));'
