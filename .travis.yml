@@ -5,4 +5,4 @@ addons:
     packages:
     - libmagick++-dev
 after_success:
-- Rscript -e 'system("tlmgr list --only-installed",intern = TRUE)'
+- Rscript -e 'devtools::install(); texPreview:::check_requirments()'

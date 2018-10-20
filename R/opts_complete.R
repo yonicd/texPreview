@@ -100,29 +100,3 @@ build_fields <- function(fields = c('set','append'),ns='ns',fn='fn'){
 find_the <- function(){
   names(which(sapply(loadedNamespaces(),function(x) any(grepl('^the$',ls(envir = asNamespace(x)))))))
 }
-
-.onLoad <- function(lib,pkg) {
-  
-  tex_pkgs <- c('xcolor','multirow','helvet','amsmath','rotating','listings','graphicx','setspace','caption')
-  
-  chk <- sapply(tex_pkgs,check_package)
-  if(!all(chk)){
-    warning(sprintf('missing tex packages needed for texPreview: %s', paste0(names(chk)[!chk],collapse = ', ')))
-  }
-   
-  rc.options(custom.completer = completeme)
-  register_completion(thispkg = populate)
-}
-
-.onAttach <- function(lib,pkg) {
-  
-  tex_pkgs <- c('xcolor','multirow','helvet','amsmath','rotating','listings','graphicx','setspace','caption')
-  
-  chk <- sapply(tex_pkgs,check_package)
-  if(!all(chk)){
-    warning(sprintf('missing tex packages needed for texPreview: %s', paste0(names(chk)[!chk],collapse = ', ')))
-  }
-  
-  rc.options(custom.completer = completeme)
-  register_completion(thispkg = populate)
-}
