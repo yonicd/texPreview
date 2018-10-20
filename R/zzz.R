@@ -5,6 +5,8 @@ check_requirments <- function(){
   if(!all(chk)){
     warning(sprintf('missing tex packages needed for texPreview: %s', paste0(names(chk)[!chk],collapse = ', ')))
   }  
+  
+  chk
 }
 
 .onLoad <- function(lib,pkg) {
