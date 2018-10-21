@@ -1,7 +1,10 @@
 language: r
 cache: packages
-os:
-- osx
+
+before_install:
+  - sudo apt-get -qq update
+  - sudo apt-get install -y texlive-base texlive-latex-base texlive-latex-extra texlive-fonts-recommended texlive-fonts-extra
+
 addons:
   apt:
     packages:
