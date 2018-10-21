@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Get list of TeX packages installed on System — getTexPackages • texPreview</title>
+<title>Build usepackage command for TeX document — build_usepackage • texPreview</title>
 
 <link rel="shortcut icon" type="image/x-icon" href="../favicon.ico">
 
@@ -32,9 +32,9 @@
 
 
 
-<meta property="og:title" content="Get list of TeX packages installed on System — getTexPackages" />
+<meta property="og:title" content="Build usepackage command for TeX document — build_usepackage" />
 
-<meta property="og:description" content="Fetch all TeX packages currently installed on system" />
+<meta property="og:description" content="input TeX package name and optional package functions to create usepackage call" />
 <meta name="twitter:card" content="summary" />
 
 
@@ -115,36 +115,72 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Get list of TeX packages installed on System</h1>
-    <small class="dont-index">Source: <a href='https://github.com/metrumresearchgroup/texPreview/blob/master/R/getTexPackages.R'><code>R/getTexPackages.R</code></a></small>
-    <div class="hidden name"><code>getTexPackages.Rd</code></div>
+    <h1>Build usepackage command for TeX document</h1>
+    <small class="dont-index">Source: <a href='https://github.com/metrumresearchgroup/texPreview/blob/master/R/build_usepackage.R'><code>R/build_usepackage.R</code></a></small>
+    <div class="hidden name"><code>build_usepackage.Rd</code></div>
     </div>
 
     <div class="ref-description">
     
-    <p>Fetch all TeX packages currently installed on system</p>
+    <p>input TeX package name and optional package functions to create usepackage call</p>
     
     </div>
 
-    <pre class="usage"><span class='fu'>getTexPackages</span>()</pre>
-        
+    <pre class="usage"><span class='fu'>build_usepackage</span>(<span class='no'>pkg</span>, <span class='kw'>options</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>uselibrary</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>chk.inst</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)</pre>
+    
+    <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
+    <table class="ref-arguments">
+    <colgroup><col class="name" /><col class="desc" /></colgroup>
+    <tr>
+      <th>pkg</th>
+      <td><p>character, name of TeX package</p></td>
+    </tr>
+    <tr>
+      <th>options</th>
+      <td><p>character, name(s) of options to use in the package</p></td>
+    </tr>
+    <tr>
+      <th>uselibrary</th>
+      <td><p>character, part of document preamble to specify a uselibrary call related to package</p></td>
+    </tr>
+    <tr>
+      <th>chk.inst</th>
+      <td><p>logical, invokes a check to see if pkg is currently installed on system (default FALSE)</p></td>
+    </tr>
+    </table>
+    
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
     <p>character</p>
     
     <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
-    <p>If OS is Windows function checks against MikTex else function checks against TexLive.</p>
+    <p>if options and uselibrary are NULL (default) then only the call for the package is returned.
+See the TeX wikibook for more information <a href='https://en.wikibooks.org/wiki/LaTeX/Document_Structure#Packages'>https://en.wikibooks.org/wiki/LaTeX/Document_Structure#Packages</a> on 
+the usepackage command. If chk.inst finds that the package is not installed on system function returns NULL.</p>
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><span class='co'># NOT RUN {</span>
-<span class='fu'>head</span>(<span class='fu'>getTexPackages</span>())
-<span class='co'># }</span></pre>
+    <pre class="examples"><div class='input'><span class='fu'>build_usepackage</span>(<span class='kw'>pkg</span> <span class='kw'>=</span> <span class='st'>'xcolor'</span>)</div><div class='output co'>#&gt; [1] "\\usepackage{xcolor}"</div><div class='input'><span class='fu'>build_usepackage</span>(<span class='kw'>pkg</span> <span class='kw'>=</span> <span class='st'>'xcolor'</span>,<span class='kw'>options</span> <span class='kw'>=</span> <span class='st'>'usenames'</span>)</div><div class='output co'>#&gt; [1] "\\usepackage[usenames]{xcolor}"</div><div class='input'>
+<span class='co'>#build many at once using mapply</span>
+
+<span class='no'>geom.opts</span><span class='kw'>=</span><span class='fu'>c</span>(<span class='st'>'paperwidth=35cm'</span>,<span class='st'>'paperheight=35cm'</span>,<span class='st'>'left=2.5cm'</span>,<span class='st'>'top=2.5cm'</span>)
+<span class='no'>use.opts</span><span class='kw'>=</span><span class='st'>"\\usetikzlibrary{mindmap,backgrounds}"</span>
+
+<span class='fu'>unlist</span>(<span class='fu'>mapply</span>(<span class='no'>build_usepackage</span>,
+<span class='kw'>pkg</span> <span class='kw'>=</span>        <span class='fu'>list</span>(<span class='st'>'times'</span>,<span class='st'>'geometry'</span>,<span class='st'>'tikz'</span>),
+<span class='kw'>options</span><span class='kw'>=</span>     <span class='fu'>list</span>(<span class='kw'>NULL</span>   ,<span class='no'>geom.opts</span> ,<span class='kw'>NULL</span>),
+<span class='kw'>uselibrary</span> <span class='kw'>=</span> <span class='fu'>list</span>(<span class='kw'>NULL</span>   ,<span class='kw'>NULL</span>      ,<span class='no'>use.opts</span>)
+))</div><div class='output co'>#&gt; [1] "\\usepackage{times}"                                                          
+#&gt; [2] "\\usepackage[paperwidth=35cm,paperheight=35cm,left=2.5cm,top=2.5cm]{geometry}"
+#&gt; [3] "\\usepackage{tikz}"                                                           
+#&gt; [4] "\\usetikzlibrary{mindmap,backgrounds}"                                        </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
     <ul class="nav nav-pills nav-stacked">
+      <li><a href="#arguments">Arguments</a></li>
       
       <li><a href="#value">Value</a></li>
 
