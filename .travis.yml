@@ -1,13 +1,13 @@
 language: r
 cache: packages
+
+before_install:
+  - sudo apt-get -qq update
+  - sudo apt-get install -y texlive-base texlive-latex-base texlive-latex-extra texlive-fonts-recommended texlive-fonts-extra
+
 addons:
   apt:
     packages:
     - libmagick++-dev
-    - texlive-base 
-    - texlive-latex-base 
-    - texlive-latex-extra 
-    - texlive-fonts-recommended 
-    - texlive-fonts-extra
 after_success:
 - Rscript -e 'devtools::install(); library(texPreview); tex_opts$set(returnType = "tex"); texPreview::texPreview(obj = xtable::xtable(head(iris,10)));'
