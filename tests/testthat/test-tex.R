@@ -21,7 +21,7 @@ testthat::context('core tex function')
   
   tex_opts$set(returnType = 'tex',fileDir = path)
   
-  #testthat::skip_on_travis()
+  testthat::skip_on_travis()
   
   #testthat::skip_on_cran()
   
