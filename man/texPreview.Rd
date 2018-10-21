@@ -65,7 +65,7 @@ relevant only if xtable is used as the input, Default: tex_opts$get('print.xtabl
 
 \item{opts.html}{list, html options, Default: tex_opts$get('opts.html')}
 
-\item{...}{passed to \code{system}}
+\item{...}{passed to \code{\link[tinytex]{latexmk}}}
 }
 \description{
 input TeX script into the function and it renders a pdf and converts it an image which is sent to Viewer.
