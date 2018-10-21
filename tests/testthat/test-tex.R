@@ -125,14 +125,12 @@ testthat::context('core tex function')
   
   testthat::describe('use svg device',{
    
-    testthat::skip_on_travis()
+      x <- texPreview::texPreview(obj = xtable::xtable(head(iris,10)), stem="danp-test")
+      
+      it('check if file created', {
+        testthat::expect_equal(length(list.files(path,pattern = 'svg$')),1)
+      })
      
-    x <- texPreview::texPreview(obj = xtable::xtable(head(iris,10)), stem="danp-test")
-    
-    it('check if file created', {
-      testthat::expect_equal(length(list.files(path,pattern = 'svg$')),1)
-    })
-    
   })
     
   cleanup(path,create = FALSE)
