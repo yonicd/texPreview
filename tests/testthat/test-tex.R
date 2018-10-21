@@ -119,18 +119,23 @@ testthat::context('core tex function')
     
   })
 
-  cleanup(path)
+  magick_version <- get('magick_config_internal',envir = asNamespace('magick'))
   
-  tex_opts$set(returnType = 'viewer',fileDir = path,imgFormat='svg')
-  
-  testthat::describe('use svg device',{
-   
+  if(package_version(magick_version()$version)>package_version('6.9.0')){
+    
+    cleanup(path)
+    
+    tex_opts$set(returnType = 'viewer',fileDir = path,imgFormat='svg')
+    
+    testthat::describe('use svg device',{
+      
       x <- texPreview::texPreview(obj = xtable::xtable(head(iris,10)), stem="danp-test")
       
       it('check if file created', {
         testthat::expect_equal(length(list.files(path,pattern = 'svg$')),1)
       })
-     
-  })
-    
+      
+    })  
+  }
+  
   cleanup(path,create = FALSE)
