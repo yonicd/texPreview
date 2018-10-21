@@ -13,7 +13,7 @@ Description: Compile and preview snippets of 'LaTeX'. Can be used directly from 
 Depends:
     R (>= 3.3.0)
 Imports:
-    rstudioapi,magick,svgPanZoom,utils,xml2, htmltools, base64enc, whisker, rematch2
+    rstudioapi,magick,svgPanZoom,utils,xml2, htmltools, base64enc, whisker, rematch2, tinytex
 Suggests:
     magrittr,
     xtable,
