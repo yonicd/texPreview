@@ -12,7 +12,7 @@ addons:
 
 r_github_packages:
 - yonicd/covrpage
-- r-lib/pkgdown
+- metrumresearchgroup/pkgdown
 
 after_success:
 - Rscript -e 'covr::codecov()'
