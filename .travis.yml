@@ -2,9 +2,11 @@ language: r
 cache: packages
 
 before_install:
-  - sudo apt-get -qq update
-  - sudo apt-get install -y texlive-base texlive-latex-base texlive-latex-extra texlive-fonts-recommended texlive-fonts-extra
-
+  - tlmgr install standalone
+#  - sudo apt-get -qq update
+#  - sudo apt-get install -y texlive-base texlive-latex-base texlive-latex-extra texlive-fonts-recommended texlive-fonts-extra
+  
+  
 addons:
   apt:
     packages:
