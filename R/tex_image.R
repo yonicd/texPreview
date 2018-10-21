@@ -16,7 +16,15 @@ tex_image <- function(
     readfn <- magick::image_read
   }
 
-  this_image <- try(readfn(path = file.path(fileDir, paste0(stem, "Doc.pdf")), density = density))
+  pdf_path <- file.path(fileDir, paste0(stem, "Doc.pdf"))
+  
+  if(!file.exists(pdf_path)){
+    log_path <- file.path(fileDir, paste0(stem, "Doc.log"))
+    print(readLines(log_path))
+    stop('pdf not rendered')
+  }
+  
+  this_image <- readfn(path = pdf_path, density = density)
     
   imgOut <- magick::image_convert(this_image,format = imgFormat, depth = 16)
   
