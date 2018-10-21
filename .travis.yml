@@ -12,6 +12,7 @@ addons:
   apt:
     packages:
     - libmagick++-dev
+    - librsvg2-dev
 
 r_github_packages:
 - yonicd/covrpage
