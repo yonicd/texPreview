@@ -18,13 +18,18 @@ tex_build <- function(tex_lines,
   
   writeLines(tex_lines, con = temp_file)
   
-  tinytex::latexmk(
+  try_tex <- try(tinytex::latexmk(
     file = temp_file,
     engine = engine,
     engine_args = sprintf('-synctex=1 -interaction=%s --halt-on-error',interaction_mode),
     clean = FALSE,
     ...
-    )
+    ))
+  
+  if(inherits(try_tex,"try-error")){
+    message('error compiling tex file, tex log file:\n')
+    cat(readLines(file.path(getwd(),sprintf("%sDoc.log",stem))));
+  }
   
   #system(sprintf("%s -synctex=1 -interaction=%s --halt-on-error %s",engine,interaction_mode,temp_file),...)
   
