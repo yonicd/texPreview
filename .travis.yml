@@ -8,8 +8,8 @@ before_install:
 
 addons:
   apt:
-  packages:
-  - libmagick++-dev
+    packages:
+    - libmagick++-dev
 
 after_success:
   - Rscript -e 'devtools::install(); texPreview::tex_opts$set(returnType="tex");texPreview::texPreview(obj = xtable::xtable(head(iris,10)));'
