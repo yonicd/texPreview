@@ -83,7 +83,7 @@
     <div class="page-header toc-ignore">
       <h1>Tests and Coverage</h1>
             
-            <h4 class="date">23 October, 2018 01:08:17</h4>
+            <h4 class="date">23 October, 2018 01:38:14</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/metrumresearchgroup/texPreview/blob/master/vignettes/tests_and_coverage.Rmd"><code>vignettes/tests_and_coverage.Rmd</code></a></small>
       <div class="hidden name"><code>tests_and_coverage.Rmd</code></div>
@@ -106,7 +106,7 @@
 <tbody>
 <tr class="odd">
 <td align="left">texPreview</td>
-<td align="center">55.02</td>
+<td align="center">56.63</td>
 </tr>
 <tr class="even">
 <td align="left"><a href="https://github.com/metrumresearchgroup/texPreview/tree/HEAD/R/opts.R">R/opts.R</a></td>
@@ -122,7 +122,7 @@
 </tr>
 <tr class="odd">
 <td align="left"><a href="https://github.com/metrumresearchgroup/texPreview/tree/HEAD/R/tex_viewer.R">R/tex_viewer.R</a></td>
-<td align="center">27.27</td>
+<td align="center">40.91</td>
 </tr>
 <tr class="even">
 <td align="left"><a href="https://github.com/metrumresearchgroup/texPreview/tree/HEAD/R/get_texpackages.R">R/get_texpackages.R</a></td>
@@ -133,15 +133,15 @@
 <td align="center">60.00</td>
 </tr>
 <tr class="even">
-<td align="left"><a href="https://github.com/metrumresearchgroup/texPreview/tree/HEAD/R/tex_return.R">R/tex_return.R</a></td>
-<td align="center">73.33</td>
-</tr>
-<tr class="odd">
 <td align="left"><a href="https://github.com/metrumresearchgroup/texPreview/tree/HEAD/R/tex_dir_setup.R">R/tex_dir_setup.R</a></td>
 <td align="center">78.95</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td align="left"><a href="https://github.com/metrumresearchgroup/texPreview/tree/HEAD/R/tex_image.R">R/tex_image.R</a></td>
+<td align="center">80.00</td>
+</tr>
+<tr class="even">
+<td align="left"><a href="https://github.com/metrumresearchgroup/texPreview/tree/HEAD/R/tex_return.R">R/tex_return.R</a></td>
 <td align="center">80.00</td>
 </tr>
 <tr class="odd">
@@ -185,8 +185,8 @@
 <tbody>
 <tr class="odd">
 <td align="left"><a href="https://github.com/metrumresearchgroup/texPreview/tree/HEAD/tests/testthat/test-tex.R">test-tex.R</a></td>
-<td align="right">8</td>
-<td align="right">0.291</td>
+<td align="right">9</td>
+<td align="right">0.305</td>
 <td align="right">0</td>
 <td align="right">0</td>
 <td align="right">0</td>
@@ -195,7 +195,7 @@
 <tr class="even">
 <td align="left"><a href="https://github.com/metrumresearchgroup/texPreview/tree/HEAD/tests/testthat/test-utilities.R">test-utilities.R</a></td>
 <td align="right">9</td>
-<td align="right">0.053</td>
+<td align="right">0.044</td>
 <td align="right">0</td>
 <td align="right">0</td>
 <td align="right">0</td>
@@ -228,7 +228,7 @@
 <td align="left">porting to tex: files generated</td>
 <td align="left">PASS</td>
 <td align="right">1</td>
-<td align="right">0.046</td>
+<td align="right">0.048</td>
 </tr>
 <tr class="even">
 <td align="left"><a href="https://github.com/metrumresearchgroup/texPreview/tree/HEAD/tests/testthat/test-tex.R#L37">test-tex.R</a></td>
@@ -236,7 +236,7 @@
 <td align="left">porting to tex: class of output</td>
 <td align="left">PASS</td>
 <td align="right">1</td>
-<td align="right">0.001</td>
+<td align="right">0.002</td>
 </tr>
 <tr class="odd">
 <td align="left"><a href="https://github.com/metrumresearchgroup/texPreview/tree/HEAD/tests/testthat/test-tex.R#L51">test-tex.R</a></td>
@@ -252,7 +252,7 @@
 <td align="left">porting to tex no filedir: class of output</td>
 <td align="left">PASS</td>
 <td align="right">1</td>
-<td align="right">0.002</td>
+<td align="right">0.001</td>
 </tr>
 <tr class="odd">
 <td align="left"><a href="https://github.com/metrumresearchgroup/texPreview/tree/HEAD/tests/testthat/test-tex.R#L69">test-tex.R</a></td>
@@ -276,7 +276,7 @@
 <td align="left">html output: return magick object</td>
 <td align="left">PASS</td>
 <td align="right">1</td>
-<td align="right">0.233</td>
+<td align="right">0.244</td>
 </tr>
 <tr class="even">
 <td align="left"><a href="https://github.com/metrumresearchgroup/texPreview/tree/HEAD/tests/testthat/test-tex.R#L117">test-tex.R</a></td>
@@ -284,41 +284,49 @@
 <td align="left">tex lines directly input: validate benchmark</td>
 <td align="left">PASS</td>
 <td align="right">1</td>
-<td align="right">0.003</td>
+<td align="right">0.002</td>
 </tr>
 <tr class="odd">
+<td align="left"><a href="https://github.com/metrumresearchgroup/texPreview/tree/HEAD/tests/testthat/test-tex.R#L135">test-tex.R</a></td>
+<td align="left">core tex function</td>
+<td align="left">use svg device: check if file created</td>
+<td align="left">PASS</td>
+<td align="right">1</td>
+<td align="right">0.002</td>
+</tr>
+<tr class="even">
 <td align="left"><a href="https://github.com/metrumresearchgroup/texPreview/tree/HEAD/tests/testthat/test-utilities.R#L8">test-utilities.R</a></td>
 <td align="left">utility functions of package</td>
 <td align="left">build usepackage call: basic call</td>
 <td align="left">PASS</td>
 <td align="right">1</td>
-<td align="right">0.005</td>
+<td align="right">0.001</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td align="left"><a href="https://github.com/metrumresearchgroup/texPreview/tree/HEAD/tests/testthat/test-utilities.R#L12">test-utilities.R</a></td>
 <td align="left">utility functions of package</td>
 <td align="left">build usepackage call: check library is installed</td>
 <td align="left">PASS</td>
 <td align="right">1</td>
-<td align="right">0.017</td>
+<td align="right">0.014</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td align="left"><a href="https://github.com/metrumresearchgroup/texPreview/tree/HEAD/tests/testthat/test-utilities.R#L16">test-utilities.R</a></td>
 <td align="left">utility functions of package</td>
 <td align="left">build usepackage call: add options</td>
 <td align="left">PASS</td>
 <td align="right">1</td>
-<td align="right">0.003</td>
+<td align="right">0.002</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td align="left"><a href="https://github.com/metrumresearchgroup/texPreview/tree/HEAD/tests/testthat/test-utilities.R#L20">test-utilities.R</a></td>
 <td align="left">utility functions of package</td>
 <td align="left">build usepackage call: use bad library name</td>
 <td align="left">PASS</td>
 <td align="right">1</td>
-<td align="right">0.018</td>
+<td align="right">0.017</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td align="left"><a href="https://github.com/metrumresearchgroup/texPreview/tree/HEAD/tests/testthat/test-utilities.R#L39">test-utilities.R</a></td>
 <td align="left">utility functions of package</td>
 <td align="left">build usepackage multiple calls: class</td>
@@ -326,7 +334,7 @@
 <td align="right">1</td>
 <td align="right">0.002</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td align="left"><a href="https://github.com/metrumresearchgroup/texPreview/tree/HEAD/tests/testthat/test-utilities.R#L43">test-utilities.R</a></td>
 <td align="left">utility functions of package</td>
 <td align="left">build usepackage multiple calls: dimension</td>
@@ -334,7 +342,7 @@
 <td align="right">1</td>
 <td align="right">0.002</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td align="left"><a href="https://github.com/metrumresearchgroup/texPreview/tree/HEAD/tests/testthat/test-utilities.R#L57">test-utilities.R</a></td>
 <td align="left">utility functions of package</td>
 <td align="left">find packages: check class</td>
@@ -342,7 +350,7 @@
 <td align="right">2</td>
 <td align="right">0.003</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td align="left"><a href="https://github.com/metrumresearchgroup/texPreview/tree/HEAD/tests/testthat/test-utilities.R#L73">test-utilities.R</a></td>
 <td align="left">utility functions of package</td>
 <td align="left">empty call to addin: cause addin to crash</td>
@@ -367,7 +375,7 @@
 <tr class="even">
 <td align="left">Platform</td>
 <td align="left">x86_64-pc-linux-gnu (64-bit)</td>
-<td><a href="https://travis-ci.org/metrumresearchgroup/texPreview/jobs/444879037" target="_blank"><span title="Built on Travis"><img src="https://github.com/yonicd/covrpage/blob/master/inst/logo/travis.png?raw=true"></span></a></td>
+<td><a href="https://travis-ci.org/metrumresearchgroup/texPreview/jobs/444885108" target="_blank"><span title="Built on Travis"><img src="https://github.com/yonicd/covrpage/blob/master/inst/logo/travis.png?raw=true"></span></a></td>
 </tr>
 <tr class="odd">
 <td align="left">Running</td>
