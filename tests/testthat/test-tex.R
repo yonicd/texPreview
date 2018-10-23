@@ -121,7 +121,7 @@ testthat::context('core tex function')
 
   magick_version <- get('magick_config_internal',envir = asNamespace('magick'))
   
-  if(package_version(magick_version()$version)>package_version('6.9.0')){
+  #if(package_version(magick_version()$version)>package_version('6.9.0')){
     
     cleanup(path)
     
@@ -136,6 +136,6 @@ testthat::context('core tex function')
       })
       
     })  
-  }
+  #}
   
   cleanup(path,create = FALSE)
