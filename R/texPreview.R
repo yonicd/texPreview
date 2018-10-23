@@ -31,7 +31,7 @@
 #' @param print.xtable.opts list, contains arguments to pass to print.table, 
 #' relevant only if xtable is used as the input, Default: tex_opts$get('print.xtable.opts')
 #' @param opts.html list, html options, Default: tex_opts$get('opts.html')
-#' @param ... passed to \code{\link[tinytex]{latexmk}}
+#' @param ... passed to \code{\link[base]{system}}
 #' @details The function assumes the system has pdflatex installed and it is defined in the PATH. The function does not return anything to R.
 #' If fileDir is specified then two files are written to the directory. An image file of the name stem with the extension specified in imgFormat.
 #' The default extension is png.The second file is the TeX script used to create the output of the name stem.tex.   If you do not wish to view the 
