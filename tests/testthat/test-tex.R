@@ -125,7 +125,7 @@ testthat::context('core tex function')
     
     cleanup(path)
     
-    tex_opts$set(returnType = 'viewer',fileDir = path,imgFormat='svg')
+    tex_opts$set(returnType = 'viewer',fileDir = path,imgFormat='svg',svg_max=Inf)
     
     testthat::describe('use svg device',{
       
