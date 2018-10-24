@@ -2,7 +2,6 @@ language: r
 cache: packages
 os:
 - linux
-- osx
 before_install:
 - sudo apt-get -qq update
 - sudo apt-get install -y texlive-base texlive-latex-base texlive-latex-extra texlive-fonts-recommended
