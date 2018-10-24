@@ -65,7 +65,7 @@ relevant only if xtable is used as the input, Default: tex_opts$get('print.xtabl
 
 \item{opts.html}{list, html options, Default: tex_opts$get('opts.html')}
 
-\item{...}{passed to \code{system}}
+\item{...}{passed to \code{\link[base]{system}}}
 }
 \description{
 input TeX script into the function and it renders a pdf and converts it an image which is sent to Viewer.
@@ -75,7 +75,7 @@ The function assumes the system has pdflatex installed and it is defined in the 
 If fileDir is specified then two files are written to the directory. An image file of the name stem with the extension specified in imgFormat.
 The default extension is png.The second file is the TeX script used to create the output of the name stem.tex.   If you do not wish to view the 
 console output, pass the corresponding arguments to \code{...}, e.g., ignore.stdout=TRUE.
-usrPackage accepts a vector of character strings built by the function \code{\link{buildUsepackage}}, of the form
+usrPackage accepts a vector of character strings built by the function \code{\link{build_usepackage}}, of the form
  \\\\usepackage[option1,option2,...]\{package_name\}, see the TeX wikibook for more information \url{https://en.wikibooks.org/wiki/LaTeX/Document_Structure#Packages}.
 }
 \examples{
@@ -112,7 +112,7 @@ tikzEx=readLines(tikz_example,warn = FALSE)
 #use texPreview preamble to build document chunks
   usetikz=paste(tikzEx[14:23],collapse="\\n")
   bodytikz=paste(tikzEx[25:90],collapse="\\n")
-  texPreview(obj = bodytikz,usrPackages = buildUsepackage(pkg = 'tikz',uselibrary = usetikz))
+  texPreview(obj = bodytikz,usrPackages = build_usepackage(pkg = 'tikz',uselibrary = usetikz))
 }
 
 }

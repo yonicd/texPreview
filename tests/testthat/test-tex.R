@@ -20,9 +20,7 @@ testthat::context('core tex function')
   dir.create(path)
   
   tex_opts$set(returnType = 'tex',fileDir = path)
-  
-  testthat::skip_on_travis()
-  
+
   testthat::skip_on_cran()
   
   testthat::describe('porting to tex',{
@@ -93,20 +91,6 @@ testthat::context('core tex function')
   
   cleanup(path)
   
-  tex_opts$set(returnType = 'viewer',fileDir = path,imgFormat='svg')
-  
-  testthat::describe('use svg device',{
-  
-    x <- texPreview::texPreview(obj = xtable::xtable(head(iris,10)), stem="danp-test")
-  
-    it('check if file created', {
-      testthat::expect_equal(length(list.files(path,pattern = 'svg$')),1)
-    })
-  
-  })
-  
-  cleanup(path)
-  
   tex_opts$set(returnType = 'tex',fileDir = path)
 
   testthat::describe('tex lines directly input',{
@@ -132,5 +116,19 @@ testthat::context('core tex function')
     })
     
   })
-  
+
+    cleanup(path)
+    
+    tex_opts$set(returnType = 'viewer',fileDir = path,imgFormat='svg',svg_max=Inf)
+    
+    testthat::describe('use svg device',{
+      
+      x <- texPreview::texPreview(obj = xtable::xtable(head(iris,10)), stem="danp-test")
+      
+      it('check if file created', {
+        testthat::expect_equal(length(list.files(path,pattern = 'svg$')),1)
+      })
+      
+    })  
+
   cleanup(path,create = FALSE)

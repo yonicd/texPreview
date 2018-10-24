@@ -5,9 +5,9 @@
 #' @return 
 #' character
 #' @examples
-#' \dontrun{head(getTexPackages())}
+#' \dontrun{head(get_texpackages())}
 
-getTexPackages=function(){
+get_texpackages=function(){
   
   if (Sys.info()[1] == "Windows"){
     
@@ -23,10 +23,7 @@ getTexPackages=function(){
     
     x <- system('tlmgr list --only-installed',intern = TRUE)
     
-    x <- gsub('^i ','',x)
+    gsub('^i |:(.*?)$','',x)
     
-    xl <- strsplit(x,':')
-    
-    sapply(xl,'[',1)
   }
 }

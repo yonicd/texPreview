@@ -1,5 +1,5 @@
 #' @importFrom rstudioapi getActiveDocumentContext
-texAddin <- function() {
+tex_addin <- function() {
   # Get the document context.
   context <- rstudioapi::getActiveDocumentContext()
   

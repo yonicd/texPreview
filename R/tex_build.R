@@ -16,7 +16,7 @@ tex_build <- function(tex_lines,
   temp_file <- file.path(getwd(),sprintf("%sDoc.tex",stem))
   
   writeLines(tex_lines, con = temp_file)
-  
+
   system(sprintf("%s -synctex=1 -interaction=%s --halt-on-error %s",engine,interaction_mode,temp_file),...)
   
 }
