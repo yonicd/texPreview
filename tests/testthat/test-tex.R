@@ -20,10 +20,8 @@ testthat::context('core tex function')
   dir.create(path)
   
   tex_opts$set(returnType = 'tex',fileDir = path)
-  
-  #testthat::skip_on_travis()
-  
-  #testthat::skip_on_cran()
+
+  testthat::skip_on_cran()
   
   testthat::describe('porting to tex',{
   
@@ -119,10 +117,6 @@ testthat::context('core tex function')
     
   })
 
-  magick_version <- get('magick_config_internal',envir = asNamespace('magick'))
-  
-  #if(package_version(magick_version()$version)>package_version('6.9.0')){
-    
     cleanup(path)
     
     tex_opts$set(returnType = 'viewer',fileDir = path,imgFormat='svg',svg_max=Inf)
@@ -136,6 +130,5 @@ testthat::context('core tex function')
       })
       
     })  
-  #}
-  
+
   cleanup(path,create = FALSE)
