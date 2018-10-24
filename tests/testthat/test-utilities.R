@@ -2,8 +2,10 @@ library(texPreview)
 
 testthat::context('utility functions of package')
 
-testthat::describe('build usepackage call',{
 #testthat::skip_on_cran()
+
+testthat::describe('build usepackage call',{
+ 
   it('basic call', {
       testthat::expect_equal(texPreview:::build_usepackage(pkg = 'xcolor'),"\\usepackage{xcolor}")
     })
@@ -23,8 +25,7 @@ testthat::describe('build usepackage call',{
 })
 
 testthat::describe('build usepackage multiple calls',{
-#  testthat::skip_on_cran()
-
+  
   geom.opts <- c('paperwidth=35cm','paperheight=35cm','left=2.5cm','top=2.5cm')
   
   use.opts <- "\\usetikzlibrary{mindmap,backgrounds}"
@@ -47,8 +48,6 @@ testthat::describe('build usepackage multiple calls',{
 
 testthat::describe('find packages',{
   
-  #testthat::skip_on_cran()
-  
   if(length(system('tlmgr --version',intern = TRUE))>0){
     
     x <- head(get_texpackages())
@@ -69,6 +68,7 @@ testthat::describe('find packages',{
 })
 
 testthat::describe('empty call to addin',{
+
     it('cause addin to crash', {
       testthat::expect_error(texPreview:::tex_addin())
     })
