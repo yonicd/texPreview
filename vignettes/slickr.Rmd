@@ -36,8 +36,7 @@ tex_opts$set(
 
 ```{r}
 tex_opts$set(
-  returnType = 'html',
-  imgFormat='svg'
+  returnType = 'html'
   )
 
 ```
@@ -75,5 +74,5 @@ texPreview(obj = tab,stem = 'table2')
 ## Carousel [slickR htmlwidget](https://github.com/metrumresearchgroup/slickr)
 
 ```{r testOut3}
-slickR::slickR(obj = list.files(outdir,full.names = TRUE,pattern = 'svg'),width = '100%')
+slickR::slickR(obj = list.files(outdir,full.names = TRUE,pattern = 'png'),width = '100%')
 ```
