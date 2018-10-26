@@ -2,5 +2,8 @@ pandoc: '2.2'
 pkgdown: 1.1.0.9000
 pkgdown_sha: 3836984197179dd712138dbc2396527e4cb3131a
 articles:
+  rmarkdown: rmarkdown.html
+  slickr: slickr.html
   tests_and_coverage: tests_and_coverage.html
+  tex_packages: tex_packages.html
 
