@@ -1,0 +1,79 @@
+---
+title: "Using texPreview to create Carousel in Rmarkdown"
+author: "Jonathan Sidi"
+date: "`r Sys.Date()`"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{texPreview Carousels}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r setup, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>",
+  fig.keep = "all"
+)
+```
+
+```{r}
+library(texPreview)
+library(slickR)
+```
+
+```{r,include=FALSE}
+outdir <- file.path(getwd(),"slickr_files/figure-html")
+
+if(!dir.exists(outdir))
+  dir.create(outdir,recursive = TRUE)
+
+tex_opts$set(
+  fileDir = outdir
+)
+
+```
+
+```{r}
+tex_opts$set(
+  returnType = 'html',
+  imgFormat='svg'
+  )
+
+```
+
+## Kable Input
+
+```{r testOut}
+
+texPreview::texPreview( obj = knitr::kable(mtcars,'latex'),stem='table1')
+
+```
+
+## TeX Input
+
+```{r testOut2}
+
+tab='
+\\begin{tabular}{llr}
+\\hline
+\\multicolumn{2}{c}{Item} \\\\
+\\cline{1-2}
+Animal    & Description & Price (\\$) \\\\
+\\hline
+Gnat      & per gram    & 13.65      \\\\
+          & each        & 0.01       \\\\
+Gnu       & stuffed     & 92.50      \\\\
+Emu       & stuffed     & 33.33      \\\\
+Armadillo & frozen      & 8.99       \\\\
+\\hline
+\\end{tabular}'
+
+texPreview(obj = tab,stem = 'table2')
+```
+
+## Carousel [slickR htmlwidget](https://github.com/metrumresearchgroup/slickr)
+
+```{r testOut3}
+slickR::slickR(obj = list.files(outdir,full.names = TRUE,pattern = 'svg'),width = '100%')
+```

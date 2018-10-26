@@ -10,13 +10,17 @@ check_requirments <- function(){
 }
 
 .onLoad <- function(lib,pkg) {
-  check_requirments()
-  rc.options(custom.completer = completeme)
-  register_completion(thispkg = populate)
+  if(interactive()){
+    check_requirments()
+    rc.options(custom.completer = completeme)
+    register_completion(thispkg = populate) 
+  }
 }
 
 .onAttach <- function(lib,pkg) {
-  check_requirments()
-  rc.options(custom.completer = completeme)
-  register_completion(thispkg = populate)
+  if(interactive()){
+    check_requirments()
+    rc.options(custom.completer = completeme)
+    register_completion(thispkg = populate) 
+  }
 }

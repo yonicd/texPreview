@@ -2,7 +2,7 @@ library(texPreview)
 
 testthat::context('utility functions of package')
 
-#testthat::skip_on_cran()
+ testthat::skip_on_cran()
 
 testthat::describe('build usepackage call',{
  

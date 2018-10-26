@@ -1,0 +1,56 @@
+---
+title: "Using texPreview in Rmarkdown HTML Documents"
+author: "Jonathan Sidi"
+date: "`r Sys.Date()`"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{texPreview with Rmarkdown}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r setup, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+```{r}
+library(texPreview)
+
+tex_opts$set(
+  returnType = knitr::opts_knit$get('rmarkdown.pandoc.to'),
+  resizebox = FALSE  
+)
+
+```
+
+## Kable Input
+
+```{r testOut}
+texPreview( obj = knitr::kable(head(iris,5),format = 'latex'))
+
+```
+
+## TeX Input
+
+```{r testOut2}
+tab='
+\\begin{tabular}{llr}
+\\hline
+\\multicolumn{2}{c}{Item} \\\\
+\\cline{1-2}
+Animal    & Description & Price (\\$) \\\\
+\\hline
+Gnat      & per gram    & 13.65      \\\\
+          & each        & 0.01       \\\\
+Gnu       & stuffed     & 92.50      \\\\
+Emu       & stuffed     & 33.33      \\\\
+Armadillo & frozen      & 8.99       \\\\
+\\hline
+\\end{tabular}'
+
+texPreview(obj = tab)
+
+```

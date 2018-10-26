@@ -1,0 +1,46 @@
+---
+title: "Building usepackage TeX commands"
+author: "Jonathan Sidi"
+date: "`r Sys.Date()`"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Adding TeX Packages to Preamble}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r setup, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+## usepackage
+
+```{r}
+texPreview::build_usepackage(pkg = 'xcolor')
+```
+
+## usepackage with options
+
+```{r}
+texPreview::build_usepackage(pkg = 'xcolor',options = 'usenames')
+```
+
+## vectorized usepackage
+
+```{r}
+geom.opts=c('paperwidth=35cm','paperheight=35cm','left=2.5cm','top=2.5cm')
+use.opts="\\usetikzlibrary{mindmap,backgrounds}"
+
+m <- mapply(
+  FUN        = texPreview::build_usepackage,
+  pkg        = list('times','geometry','tikz'),
+  options    = list(NULL   ,geom.opts ,NULL),
+  uselibrary = list(NULL   ,NULL      ,use.opts)
+)
+
+unlist(m)
+
+```
