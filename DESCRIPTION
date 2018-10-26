@@ -1,7 +1,7 @@
 Package: texPreview
 Type: Package
 Title: Compile and Preview Snippets of 'LaTeX' in 'RStudio'
-Version: 1.2.3
+Version: 1.2.4
 Date: 2018-10-24
 Authors@R: c(
               person(given = 'Jonathan',family = 'Sidi',email = 'yonis@metrumrg.com',role = c('aut','cre')),
@@ -21,7 +21,8 @@ Suggests:
     rmarkdown, 
     knitr,
     testthat,
-    covr
+    covr,
+    slickR
 License: GPL-2 | GPL-3
 URL: https://github.com/metrumresearchgroup/texPreview
 BugReports: https://github.com/metrumresearchgroup/texPreview/issues
