@@ -23,23 +23,31 @@ library(slickR)
 ```
 
 ```{r}
-tex_opts$set(returnType = 'html')
 
+objpath <- file.path(getwd(),"slickr_files/figure-html")
+
+if(!dir.exists(objpath))
+  dir.create(objpath,recursive = TRUE)
+
+tex_opts$set(
+  fileDir = objpath,
+  returnType = 'html')
 ```
 
 ## Kable Input
 
-```{r testOut}
+```{r kable}
 
 texPreview::texPreview(
-  obj = knitr::kable(mtcars,'latex')
+  obj = knitr::kable(mtcars,'latex'),
+  stem = 'kable-1'
 )
 
 ```
 
 ## TeX Input
 
-```{r testOut2}
+```{r tex}
 
 tab='
 \\begin{tabular}{llr}
@@ -57,7 +65,8 @@ Armadillo & frozen      & 8.99       \\\\
 \\end{tabular}'
 
 texPreview(
-  obj = tab
+  obj = tab,
+  stem = 'tex-1'
 )
 ```
 
@@ -66,7 +75,7 @@ texPreview(
 ```{r testOut3}
 slickR::slickR(
   obj = list.files(
-    file.path(getwd(),"slickr_files/figure-html"),
+    objpath,
     full.names = TRUE,
     pattern = 'png'),
   width = '100%'
