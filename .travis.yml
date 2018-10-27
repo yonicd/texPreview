@@ -29,7 +29,7 @@ deploy:
   keep-history: true
   local-dir: docs
   on:
-    branch: travis_test
+    branch: master
 env:
   global:
     secure: c0EzDlMgLwgeMEaLHh0h/wBfLt/ZSXTQFF1fTrFiM+2vevlmjuIExbPxvjvyxNvx2s7KkSZazXtwy/A5UstodjEl1FAp/FUNxELAHF6EPd98y3jAYrBOwR1/1213dDntbOruXc1cq+hsOTDBGaQi1Qji7BgbxONOGDJ0MwTt54YnJ+WqV2ZuUHC9y7XnCIoKEE8vQu2yO53M3h9YTjA9y11Ba6KC2el2m3K2dMoHNTdxE/3wvdxChd2BEUgvQogOh3v0G3mYP7Hwo7LHkTjwoLN6Sya6x8TCHphdnnD/u1TgaiWGefZx1R+sANKpqJukb+1uNQCO5tp/K10/XzFhBlOqjlqhaFYcNapfK+nF5/QEEpyLYFvuTvER7NcVny1v525QL80mAEJKWw4MxMRKwnxpPNxeKyYqvC44iYmY2HZjWneGC5KRfi5Y/fDMCsRiQwJGJqRQTpNv7I2kAAP+elOmeGKdT1HGFofdGl34XL2NIiBGo6jgN3qNvzUxXq5TAMRcF1Msl+nyFoomDhqhNo5IsLIcmrNamWwQMxXikuBM95fdcPTwNF6zudj7rR3uTQvUezNo29emL5LN4T/9GYd2drPok+KselDMXDlZwvQXKs1jFc6BMmxbHY1jRllF2ZI0BFi0tpGueQNIcbn6lYVBJuIRpoh7hKCP3mBAkKs=
