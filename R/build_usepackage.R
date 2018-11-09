@@ -24,7 +24,8 @@
 #' uselibrary = list(NULL   ,NULL      ,use.opts)
 #' ))
 #' @export
-#' 
+#' @rdname build_usepackage
+#' @aliases buildUsepackage
 build_usepackage=function(pkg,options=NULL,uselibrary=NULL,chk.inst=FALSE){
   if( chk.inst ){
     if( !check_package(pkg) ){
@@ -41,6 +42,7 @@ build_usepackage=function(pkg,options=NULL,uselibrary=NULL,chk.inst=FALSE){
   
     return( c(out,uselibrary) )
 }
+
 
 check_package <- function(x){
   if ( Sys.info()[1] == "Windows" ){

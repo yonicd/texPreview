@@ -45,10 +45,10 @@
 #' if(interactive()){
 #' 
 #' #use xtable to create tex output
-#'  texPreview(obj = xtable::xtable(head(iris,10)))
+#'  tex_preview(obj = xtable::xtable(head(iris,10)))
 #' 
 #' #use knitr kable to create tex output
-#'  texPreview(knitr::kable(mtcars, "latex"))
+#'  tex_preview(knitr::kable(mtcars, "latex"))
 #' 
 #' tex='\\begin{tabular}{llr}
 #' \\hline
@@ -64,20 +64,22 @@
 #' \\hline
 #' \\end{tabular}'
 #' 
-#' texPreview(obj = tex,stem = 'eq',imgFormat = 'svg')
+#' tex_preview(obj = tex,stem = 'eq',imgFormat = 'svg')
 #' tikz_example <- system.file('examples/tikz/credit-rationing.tex',package = 'texPreview')
 #' tikzEx=readLines(tikz_example,warn = FALSE)
 #' 
 #' #use tex_lines parameter to pass full document
-#'   texPreview(tex_lines = tikzEx)
+#'   tex_preview(tex_lines = tikzEx)
 #' 
 #' #use texPreview preamble to build document chunks
-#'   usetikz=paste(tikzEx[14:23],collapse="\n")
-#'   bodytikz=paste(tikzEx[25:90],collapse="\n")
-#'   texPreview(obj = bodytikz,usrPackages = build_usepackage(pkg = 'tikz',uselibrary = usetikz))
+#'   usetikz <- paste(tikzEx[14:23],collapse="\n")
+#'   bodytikz <- paste(tikzEx[25:90],collapse="\n")
+#'   tex_preview(obj = bodytikz,usrPackages = build_usepackage(pkg = 'tikz',uselibrary = usetikz))
 #' }
-#' 
-texPreview <- function (obj, 
+#'
+#' @rdname tex_preview
+#' @aliases texPreview
+tex_preview <- function (obj, 
                         tex_lines = NULL,
                         stem = NULL,
                         fileDir = tex_opts$get('fileDir'), 

@@ -29,7 +29,7 @@ tex_opts$set(
 ## Kable Input
 
 ```{r testOut}
-texPreview( obj = knitr::kable(head(iris,5),format = 'latex'))
+tex_preview( obj = knitr::kable(head(iris,5),format = 'latex'))
 
 ```
 
@@ -51,6 +51,6 @@ Armadillo & frozen      & 8.99       \\\\
 \\hline
 \\end{tabular}'
 
-texPreview(obj = tab)
+tex_preview(obj = tab)
 
 ```

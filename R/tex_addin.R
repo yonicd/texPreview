@@ -16,5 +16,5 @@ tex_addin <- function() {
     obj=gsub('\\\\\\\\','\\\\',obj)
   } 
   
-  texPreview(obj = obj)
+  tex_preview(obj = obj)
 }
