@@ -1,3 +1,9 @@
+# texPreview 1.3.0
+
+* Change names of function from camelcase to underscore and soft depreciate the camelcase
+  - Old: texPreview, buildUsepackage, getTexPackages, texAddin
+  - New: tex_preview, build_usepackage, get_texpackages, tex_addin
+
 # texPreview 1.1.5
 
 * fix viewer issue to keep new pages in internal viewer

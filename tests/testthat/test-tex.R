@@ -21,11 +21,11 @@ testthat::context('core tex function')
   
   tex_opts$set(returnType = 'tex',fileDir = path)
 
- testthat::skip_on_cran()
+ #testthat::skip_on_cran()
   
   testthat::describe('porting to tex',{
   
-      x <- texPreview::texPreview(obj = xtable::xtable(head(iris,10)))
+      x <- texPreview::tex_preview(obj = xtable::xtable(head(iris,10)))
     
       it('files generated', {
         testthat::expect_equal(length(list.files(path)),2)
@@ -43,7 +43,7 @@ testthat::context('core tex function')
   
   testthat::describe('porting to tex no filedir',{
     
-    x <- texPreview::texPreview(obj = xtable::xtable(head(iris,10)))
+    x <- texPreview::tex_preview(obj = xtable::xtable(head(iris,10)))
 
     it('no files generated', {
       testthat::expect_equal(length(list.files(path)),0)
@@ -61,7 +61,7 @@ testthat::context('core tex function')
   
   testthat::describe('keep pdf as an output',{
   
-    x <- texPreview::texPreview(obj = xtable::xtable(head(iris,10)),keep_pdf = TRUE)
+    x <- texPreview::tex_preview(obj = xtable::xtable(head(iris,10)),keep_pdf = TRUE)
   
     it('files generated', {
       testthat::expect_equal(length(list.files(path)),3)
@@ -81,7 +81,7 @@ testthat::context('core tex function')
   
     it('return magick object', {
       
-      x <- texPreview::texPreview(obj = xtable::xtable(head(iris,10)))
+      x <- texPreview::tex_preview(obj = xtable::xtable(head(iris,10)))
       
       testthat::expect_true(inherits(x,"magick-image"))
       
@@ -109,7 +109,7 @@ testthat::context('core tex function')
     \\hline
     \\end{tabular}'
     
-    x <- texPreview::texPreview(obj = tex)
+    x <- texPreview::tex_preview(obj = tex)
 
     it('validate benchmark', {
       testthat::expect_equal(x,readLines(file.path(path,"tex_temp.tex")))
@@ -123,7 +123,7 @@ testthat::context('core tex function')
     
     testthat::describe('use svg device',{
       
-      x <- texPreview::texPreview(obj = xtable::xtable(head(iris,10)), stem="danp-test")
+      x <- texPreview::tex_preview(obj = xtable::xtable(head(iris,10)), stem="danp-test")
       
       it('check if file created', {
         testthat::expect_equal(length(list.files(path,pattern = 'svg$')),1)
