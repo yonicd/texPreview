@@ -42,7 +42,7 @@ build_lines <- function(obj,
   
   TMPL <- readLines(system.file('tmpl.tex',package = 'texPreview'))
   
-  input_path <- normalizePath(file.path(fileDir,sprintf('%s.tex',stem)),winslash = '/')
+  input_path <- normalizePath(file.path(fileDir,sprintf('%s.tex',stem)),winslash = .Platform$file.sep)
   
   ARGS <- append(margin, list(usrPackages = paste0(usrPackages,collapse = '\n'), file = input_path))
   
