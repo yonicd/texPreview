@@ -23,8 +23,8 @@ Preview and save images of rendered snippets of LaTeX in RStudio viewer
   
   - Can be run in a shiny enviornment, as `shiny::renderImage` or as part of htmlwidgets like [bsplus::carousel](https://github.com/ijlyttle/bsplus),  [loryR::renderLoryR](https://github.com/timelyportfolio/loryR) and [slickR::renderSlickR](https://github.com/metrumresearchgroup/slickR).
 
-![](https://github.com/metrumresearchgroup/texPreview/blob/master/Miscellaneous/Multimedia/texPreview.gif?raw=true)
+![](https://github.com/metrumresearchgroup/texPreview/blob/misc/Multimedia/texPreview.gif?raw=true)
 
 When the output is set to 'svg' the default output to the viewer is [svgPanZoom](https://github.com/timelyportfolio/svgPanZoom), which allows for panning and zooming on the image in the viewer. If the package is not installed a static image will be loaded. 
 
-![](https://github.com/metrumresearchgroup/texPreview/blob/master/Miscellaneous/Multimedia/texPreviewPanZoom.gif?raw=true)
+![](https://github.com/metrumresearchgroup/texPreview/blob/misc/Multimedia/texPreviewPanZoom.gif?raw=true)
