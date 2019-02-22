@@ -1,4 +1,0 @@
-Name: texPreview
-Description: Preview Snippets of Tex in internal viewer.
-Binding: tex_addin
-Interactive: false

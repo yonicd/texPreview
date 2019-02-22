@@ -1,9 +1,0 @@
-pandoc: 2.2.1
-pkgdown: 1.1.0.9000
-pkgdown_sha: ~
-articles:
-  rmarkdown: rmarkdown.html
-  slickr: slickr.html
-  tests_and_coverage: tests_and_coverage.html
-  tex_packages: tex_packages.html
-
