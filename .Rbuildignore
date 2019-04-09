@@ -9,3 +9,4 @@ application
 ^_pkgdown\.yml$
 ^docs$
 ^revdep$
+^data-raw$
