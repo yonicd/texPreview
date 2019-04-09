@@ -17,7 +17,6 @@ addons:
     - libmagick++-dev
 r_github_packages:
 - yonicd/covrpage
-- metrumresearchgroup/pkgdown
 after_success:
 - Rscript -e 'covr::codecov()'
 - Rscript -e 'devtools::install(); covrpage::covrpage_ci()'
