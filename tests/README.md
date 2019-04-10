@@ -1,6 +1,9 @@
 Tests and Coverage
 ================
-06 January, 2019 08:22:06
+08 April, 2019 21:29:39
+
+  - [Coverage](#coverage)
+  - [Unit Tests](#unit-tests)
 
 This output is created by
 [covrpage](https://github.com/metrumresearchgroup/covrpage).
@@ -40,8 +43,8 @@ package.
 
 | file                                          | n |  time | error | failed | skipped | warning |
 | :-------------------------------------------- | -: | ----: | ----: | -----: | ------: | ------: |
-| [test-tex.R](testthat/test-tex.R)             | 9 | 0.653 |     0 |      0 |       0 |       0 |
-| [test-utilities.R](testthat/test-utilities.R) | 9 | 0.314 |     0 |      0 |       0 |       0 |
+| [test-tex.R](testthat/test-tex.R)             | 9 | 0.676 |     0 |      0 |       0 |       0 |
+| [test-utilities.R](testthat/test-utilities.R) | 9 | 0.346 |     0 |      0 |       0 |       0 |
 
 <details closed>
 
@@ -52,20 +55,20 @@ package.
 | :------------------------------------------------ | :--------------------------- | :------------------------------------------------ | :----- | -: | ----: |
 | [test-tex.R](testthat/test-tex.R#L31)             | core tex function            | porting to tex: files generated                   | PASS   | 1 | 0.002 |
 | [test-tex.R](testthat/test-tex.R#L35)             | core tex function            | porting to tex: class of output                   | PASS   | 1 | 0.001 |
-| [test-tex.R](testthat/test-tex.R#L49)             | core tex function            | porting to tex no filedir: no files generated     | PASS   | 1 | 0.002 |
-| [test-tex.R](testthat/test-tex.R#L53)             | core tex function            | porting to tex no filedir: class of output        | PASS   | 1 | 0.000 |
+| [test-tex.R](testthat/test-tex.R#L49)             | core tex function            | porting to tex no filedir: no files generated     | PASS   | 1 | 0.003 |
+| [test-tex.R](testthat/test-tex.R#L53)             | core tex function            | porting to tex no filedir: class of output        | PASS   | 1 | 0.001 |
 | [test-tex.R](testthat/test-tex.R#L67)             | core tex function            | keep pdf as an output: files generated            | PASS   | 1 | 0.002 |
 | [test-tex.R](testthat/test-tex.R#L71)             | core tex function            | keep pdf as an output: class of output            | PASS   | 1 | 0.001 |
-| [test-tex.R](testthat/test-tex.R#L86)             | core tex function            | html output: return magick object                 | PASS   | 1 | 0.641 |
+| [test-tex.R](testthat/test-tex.R#L86)             | core tex function            | html output: return magick object                 | PASS   | 1 | 0.662 |
 | [test-tex.R](testthat/test-tex.R#L115)            | core tex function            | tex lines directly input: validate benchmark      | PASS   | 1 | 0.002 |
 | [test-tex.R](testthat/test-tex.R#L129)            | core tex function            | use svg device: check if file created             | PASS   | 1 | 0.002 |
-| [test-utilities.R](testthat/test-utilities.R#L10) | utility functions of package | build usepackage call: basic call                 | PASS   | 1 | 0.001 |
-| [test-utilities.R](testthat/test-utilities.R#L14) | utility functions of package | build usepackage call: check library is installed | PASS   | 1 | 0.145 |
+| [test-utilities.R](testthat/test-utilities.R#L10) | utility functions of package | build usepackage call: basic call                 | PASS   | 1 | 0.002 |
+| [test-utilities.R](testthat/test-utilities.R#L14) | utility functions of package | build usepackage call: check library is installed | PASS   | 1 | 0.162 |
 | [test-utilities.R](testthat/test-utilities.R#L18) | utility functions of package | build usepackage call: add options                | PASS   | 1 | 0.002 |
-| [test-utilities.R](testthat/test-utilities.R#L22) | utility functions of package | build usepackage call: use bad library name       | PASS   | 1 | 0.151 |
+| [test-utilities.R](testthat/test-utilities.R#L22) | utility functions of package | build usepackage call: use bad library name       | PASS   | 1 | 0.163 |
 | [test-utilities.R](testthat/test-utilities.R#L40) | utility functions of package | build usepackage multiple calls: class            | PASS   | 1 | 0.001 |
-| [test-utilities.R](testthat/test-utilities.R#L44) | utility functions of package | build usepackage multiple calls: dimension        | PASS   | 1 | 0.001 |
-| [test-utilities.R](testthat/test-utilities.R#L56) | utility functions of package | find packages: check class                        | PASS   | 2 | 0.002 |
+| [test-utilities.R](testthat/test-utilities.R#L44) | utility functions of package | build usepackage multiple calls: dimension        | PASS   | 1 | 0.002 |
+| [test-utilities.R](testthat/test-utilities.R#L56) | utility functions of package | find packages: check class                        | PASS   | 2 | 0.003 |
 | [test-utilities.R](testthat/test-utilities.R#L73) | utility functions of package | empty call to addin: cause addin to crash         | PASS   | 1 | 0.011 |
 
 </details>
@@ -78,15 +81,15 @@ package.
 | :------- | :---------------------------------- |
 | Version  | R version 3.5.1 (2018-07-02)        |
 | Platform | x86\_64-apple-darwin15.6.0 (64-bit) |
-| Running  | macOS 10.14.2                       |
+| Running  | macOS 10.14.3                       |
 | Language | en\_US                              |
 | Timezone | America/New\_York                   |
 
-| Package  | Version    |
-| :------- | :--------- |
-| testthat | 2.0.0.9000 |
-| covr     | 3.2.0      |
-| covrpage | 0.0.69     |
+| Package  | Version |
+| :------- | :------ |
+| testthat | 2.0.1   |
+| covr     | 3.2.1   |
+| covrpage | 0.0.70  |
 
 </details>
 
