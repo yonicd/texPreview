@@ -7,7 +7,6 @@ before_install:
 - sudo apt-get install -y texlive-base texlive-latex-base texlive-latex-extra texlive-fonts-recommended
   texlive-fonts-extra
 - tlmgr install standalone
-- R -e 'source("https://install-github.me/r-lib/remotes")'
 addons:
   apt:
     update:
