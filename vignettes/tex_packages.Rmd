@@ -9,18 +9,7 @@ vignette: >
   %\VignetteEncoding{UTF-8}
 ---
 
-```{r setup, include = FALSE}
-knitr::opts_chunk$set(
-  collapse = TRUE,
-  comment = "#>",
-  fig.keep = "all",
-  out.width = '75%',
-  dev = c("png", "svg")
-)
-```
-
 ```{r}
-library(magrittr)
 library(texPreview)
 ```
 
@@ -55,49 +44,5 @@ m <- mapply(
 )
 
 unlist(m)
-
-```
-
-## Example
-
-```{r}
-
-tex_opts$set(
-  returnType = knitr::opts_knit$get('rmarkdown.pandoc.to'),
-  resizebox  = FALSE,
-  imgFormat  = 'svg' # return svg images
-)
-
-```
-
-```{r}
-
-  tikz_example <- system.file(
-    'examples/tikz/credit-rationing.tex',
-    package = 'texPreview'
-  )
-
-  tikzEx <- readLines(tikz_example,warn = FALSE)
-  
-```
-
-<details> <summary> <span title='Click to Open'> Tex Script </span> </summary>
-
-```{r,echo=FALSE,comment=''}
-cat(tikzEx,sep='\n')
-```
-
-</details><br>
-
-```{r}
-
-  usetikz  <- paste(tikzEx[14:23],collapse="\n")
-  bodytikz <- paste(tikzEx[25:90],collapse="\n")
-  
-  bodytikz%>%
-    tex_preview(
-      usrPackages = build_usepackage(pkg = 'tikz',uselibrary = usetikz)
-    )
-  
 
 ```
