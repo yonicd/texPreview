@@ -46,26 +46,8 @@
 <li>
   <a href="../reference/index.html">Reference</a>
 </li>
-<li class="dropdown">
-  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-    Articles
-     
-    <span class="caret"></span>
-  </a>
-  <ul class="dropdown-menu" role="menu">
 <li>
-      <a href="../articles/rmarkdown.html">Using texPreview in Rmarkdown HTML Documents</a>
-    </li>
-    <li>
-      <a href="../articles/slickr.html">Using texPreview to create Carousel in Rmarkdown</a>
-    </li>
-    <li>
-      <a href="../articles/tests_and_coverage.html">Tests and Coverage</a>
-    </li>
-    <li>
-      <a href="../articles/tex_packages.html">Building usepackage TeX commands</a>
-    </li>
-  </ul>
+  <a href="../articles/index.html">Articles</a>
 </li>
 <li>
   <a href="../news/index.html">Changelog</a>
@@ -75,6 +57,12 @@
 <li>
   <a href="https://github.com/metrumresearchgroup/texPreview">
     <span class="fa fa-github fa-lg"></span>
+     
+  </a>
+</li>
+<li>
+  <a href="http://twitter.com/MetrumRG">
+    <span class="fa fa-lg fa-twitter"></span>
      
   </a>
 </li>
@@ -109,6 +97,7 @@
 <a class="sourceLine" id="cb1-5" data-line-number="5">  <span class="dt">returnType =</span> knitr<span class="op">::</span>opts_knit<span class="op">$</span><span class="kw">get</span>(<span class="st">'rmarkdown.pandoc.to'</span>),</a>
 <a class="sourceLine" id="cb1-6" data-line-number="6">  <span class="dt">resizebox =</span> <span class="ot">FALSE</span>  </a>
 <a class="sourceLine" id="cb1-7" data-line-number="7">)</a></code></pre></div>
+<p>The following examples use <code>kable</code> to generate LaTeX table outputs and raw LaTeX to pipe into <code>tex_preview</code> to render the in the document.</p>
 <div id="kable-input" class="section level2">
 <h2 class="hasAnchor">
 <a href="#kable-input" class="anchor"></a>Kable Input</h2>

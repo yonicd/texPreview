@@ -46,26 +46,8 @@
 <li>
   <a href="../reference/index.html">Reference</a>
 </li>
-<li class="dropdown">
-  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-    Articles
-     
-    <span class="caret"></span>
-  </a>
-  <ul class="dropdown-menu" role="menu">
 <li>
-      <a href="../articles/rmarkdown.html">Using texPreview in Rmarkdown HTML Documents</a>
-    </li>
-    <li>
-      <a href="../articles/slickr.html">Using texPreview to create Carousel in Rmarkdown</a>
-    </li>
-    <li>
-      <a href="../articles/tests_and_coverage.html">Tests and Coverage</a>
-    </li>
-    <li>
-      <a href="../articles/tex_packages.html">Building usepackage TeX commands</a>
-    </li>
-  </ul>
+  <a href="../articles/index.html">Articles</a>
 </li>
 <li>
   <a href="../news/index.html">Changelog</a>
@@ -75,6 +57,12 @@
 <li>
   <a href="https://github.com/metrumresearchgroup/texPreview">
     <span class="fa fa-github fa-lg"></span>
+     
+  </a>
+</li>
+<li>
+  <a href="http://twitter.com/MetrumRG">
+    <span class="fa fa-lg fa-twitter"></span>
      
   </a>
 </li>
@@ -102,36 +90,42 @@
 
     
     
-<div id="usepackage" class="section level2">
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" data-line-number="1"><span class="kw">library</span>(texPreview)</a></code></pre></div>
+<p>texPreview comes with <code>LaTeX</code> packages built in for each render, but the user can add any <code>TeX</code> library that they have installed on the machine using <code>build_usepackage</code>. This object can then be used in the <code>usrPackages</code> parameter in <code>tex_preview</code>.</p>
+<div id="usage" class="section level2">
 <h2 class="hasAnchor">
-<a href="#usepackage" class="anchor"></a>usepackage</h2>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" data-line-number="1">texPreview<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/texPreview/topics/build_usepackage">build_usepackage</a></span>(<span class="dt">pkg =</span> <span class="st">'xcolor'</span>)</a>
-<a class="sourceLine" id="cb1-2" data-line-number="2"><span class="co">#&gt; [1] "\\usepackage{xcolor}"</span></a></code></pre></div>
+<a href="#usage" class="anchor"></a>Usage</h2>
+<div id="usepackage" class="section level3">
+<h3 class="hasAnchor">
+<a href="#usepackage" class="anchor"></a>usepackage</h3>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" data-line-number="1"><span class="kw"><a href="../reference/build_usepackage.html">build_usepackage</a></span>(<span class="dt">pkg =</span> <span class="st">'xcolor'</span>)</a></code></pre></div>
+<pre><code>## [1] "\\usepackage{xcolor}"</code></pre>
 </div>
-<div id="usepackage-with-options" class="section level2">
-<h2 class="hasAnchor">
-<a href="#usepackage-with-options" class="anchor"></a>usepackage with options</h2>
-<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" data-line-number="1">texPreview<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/texPreview/topics/build_usepackage">build_usepackage</a></span>(<span class="dt">pkg =</span> <span class="st">'xcolor'</span>,<span class="dt">options =</span> <span class="st">'usenames'</span>)</a>
-<a class="sourceLine" id="cb2-2" data-line-number="2"><span class="co">#&gt; [1] "\\usepackage[usenames]{xcolor}"</span></a></code></pre></div>
+<div id="usepackage-with-options" class="section level3">
+<h3 class="hasAnchor">
+<a href="#usepackage-with-options" class="anchor"></a>usepackage with options</h3>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb4-1" data-line-number="1"><span class="kw"><a href="../reference/build_usepackage.html">build_usepackage</a></span>(<span class="dt">pkg =</span> <span class="st">'xcolor'</span>,<span class="dt">options =</span> <span class="st">'usenames'</span>)</a></code></pre></div>
+<pre><code>## [1] "\\usepackage[usenames]{xcolor}"</code></pre>
 </div>
-<div id="vectorized-usepackage" class="section level2">
-<h2 class="hasAnchor">
-<a href="#vectorized-usepackage" class="anchor"></a>vectorized usepackage</h2>
-<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" data-line-number="1">geom.opts=<span class="kw">c</span>(<span class="st">'paperwidth=35cm'</span>,<span class="st">'paperheight=35cm'</span>,<span class="st">'left=2.5cm'</span>,<span class="st">'top=2.5cm'</span>)</a>
-<a class="sourceLine" id="cb3-2" data-line-number="2">use.opts=<span class="st">"</span><span class="ch">\\</span><span class="st">usetikzlibrary{mindmap,backgrounds}"</span></a>
-<a class="sourceLine" id="cb3-3" data-line-number="3"></a>
-<a class="sourceLine" id="cb3-4" data-line-number="4">m &lt;-<span class="st"> </span><span class="kw">mapply</span>(</a>
-<a class="sourceLine" id="cb3-5" data-line-number="5">  <span class="dt">FUN        =</span> texPreview<span class="op">::</span>build_usepackage,</a>
-<a class="sourceLine" id="cb3-6" data-line-number="6">  <span class="dt">pkg        =</span> <span class="kw">list</span>(<span class="st">'times'</span>,<span class="st">'geometry'</span>,<span class="st">'tikz'</span>),</a>
-<a class="sourceLine" id="cb3-7" data-line-number="7">  <span class="dt">options    =</span> <span class="kw">list</span>(<span class="ot">NULL</span>   ,geom.opts ,<span class="ot">NULL</span>),</a>
-<a class="sourceLine" id="cb3-8" data-line-number="8">  <span class="dt">uselibrary =</span> <span class="kw">list</span>(<span class="ot">NULL</span>   ,<span class="ot">NULL</span>      ,use.opts)</a>
-<a class="sourceLine" id="cb3-9" data-line-number="9">)</a>
-<a class="sourceLine" id="cb3-10" data-line-number="10"></a>
-<a class="sourceLine" id="cb3-11" data-line-number="11"><span class="kw">unlist</span>(m)</a>
-<a class="sourceLine" id="cb3-12" data-line-number="12"><span class="co">#&gt; [1] "\\usepackage{times}"                                                          </span></a>
-<a class="sourceLine" id="cb3-13" data-line-number="13"><span class="co">#&gt; [2] "\\usepackage[paperwidth=35cm,paperheight=35cm,left=2.5cm,top=2.5cm]{geometry}"</span></a>
-<a class="sourceLine" id="cb3-14" data-line-number="14"><span class="co">#&gt; [3] "\\usepackage{tikz}"                                                           </span></a>
-<a class="sourceLine" id="cb3-15" data-line-number="15"><span class="co">#&gt; [4] "\\usetikzlibrary{mindmap,backgrounds}"</span></a></code></pre></div>
+<div id="vectorized-usepackage" class="section level3">
+<h3 class="hasAnchor">
+<a href="#vectorized-usepackage" class="anchor"></a>vectorized usepackage</h3>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb6-1" data-line-number="1">geom.opts=<span class="kw">c</span>(<span class="st">'paperwidth=35cm'</span>,<span class="st">'paperheight=35cm'</span>,<span class="st">'left=2.5cm'</span>,<span class="st">'top=2.5cm'</span>)</a>
+<a class="sourceLine" id="cb6-2" data-line-number="2">use.opts=<span class="st">"</span><span class="ch">\\</span><span class="st">usetikzlibrary{mindmap,backgrounds}"</span></a>
+<a class="sourceLine" id="cb6-3" data-line-number="3"></a>
+<a class="sourceLine" id="cb6-4" data-line-number="4">m &lt;-<span class="st"> </span><span class="kw">mapply</span>(</a>
+<a class="sourceLine" id="cb6-5" data-line-number="5">  <span class="dt">FUN        =</span> build_usepackage,</a>
+<a class="sourceLine" id="cb6-6" data-line-number="6">  <span class="dt">pkg        =</span> <span class="kw">list</span>(<span class="st">'times'</span>,<span class="st">'geometry'</span>,<span class="st">'tikz'</span>),</a>
+<a class="sourceLine" id="cb6-7" data-line-number="7">  <span class="dt">options    =</span> <span class="kw">list</span>(<span class="ot">NULL</span>   ,geom.opts ,<span class="ot">NULL</span>),</a>
+<a class="sourceLine" id="cb6-8" data-line-number="8">  <span class="dt">uselibrary =</span> <span class="kw">list</span>(<span class="ot">NULL</span>   ,<span class="ot">NULL</span>      ,use.opts)</a>
+<a class="sourceLine" id="cb6-9" data-line-number="9">)</a>
+<a class="sourceLine" id="cb6-10" data-line-number="10"></a>
+<a class="sourceLine" id="cb6-11" data-line-number="11"><span class="kw">unlist</span>(m)</a></code></pre></div>
+<pre><code>## [1] "\\usepackage{times}"                                                          
+## [2] "\\usepackage[paperwidth=35cm,paperheight=35cm,left=2.5cm,top=2.5cm]{geometry}"
+## [3] "\\usepackage{tikz}"                                                           
+## [4] "\\usetikzlibrary{mindmap,backgrounds}"</code></pre>
+</div>
 </div>
   </div>
 
@@ -140,9 +134,7 @@
       <h2 class="hasAnchor">
 <a href="#tocnav" class="anchor"></a>Contents</h2>
       <ul class="nav nav-pills nav-stacked">
-<li><a href="#usepackage">usepackage</a></li>
-      <li><a href="#usepackage-with-options">usepackage with options</a></li>
-      <li><a href="#vectorized-usepackage">vectorized usepackage</a></li>
+<li><a href="#usage">Usage</a></li>
       </ul>
 </div>
       </div>
