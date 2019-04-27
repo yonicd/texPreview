@@ -11,7 +11,7 @@ tex_return <- function(
   path <- tex_path(fileDir,stem,dev)
   
   if(returnType=='viewer') {
-    return(NULL)
+    return(invisible(NULL))
   }
   
   if(returnType%in%c("html", "html5", "s5", "slidy","slideous", "dzslides", "revealjs","md")){

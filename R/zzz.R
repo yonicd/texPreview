@@ -1,3 +1,11 @@
+wenv <- new.env()
+
+wenv_init <- function(){
+    assign('tex'   , FALSE ,envir = wenv)
+    assign('get'   , FALSE ,envir = wenv)
+    assign('build' , FALSE ,envir = wenv)
+}
+
 check_requirments <- function(){
   
   chk <- sapply(tex_pkgs,check_package)
@@ -10,6 +18,7 @@ check_requirments <- function(){
 }
 
 .onLoad <- function(lib,pkg) {
+  wenv_init()
   if(interactive()){
     check_requirments()
     rc.options(custom.completer = completeme)
@@ -17,7 +26,9 @@ check_requirments <- function(){
   }
 }
 
+
 .onAttach <- function(lib,pkg) {
+  wenv_init()
   if(interactive()){
     check_requirments()
     rc.options(custom.completer = completeme)

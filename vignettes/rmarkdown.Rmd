@@ -18,6 +18,7 @@ knitr::opts_chunk$set(
 
 ```{r}
 library(texPreview)
+library(magrittr)
 
 tex_opts$set(
   returnType = knitr::opts_knit$get('rmarkdown.pandoc.to'),
@@ -29,7 +30,9 @@ tex_opts$set(
 ## Kable Input
 
 ```{r testOut}
-tex_preview( obj = knitr::kable(head(iris,5),format = 'latex'))
+
+knitr::kable(head(iris,5),format = 'latex')%>%
+tex_preview()
 
 ```
 
@@ -51,6 +54,7 @@ Armadillo & frozen      & 8.99       \\\\
 \\hline
 \\end{tabular}'
 
-tex_preview(obj = tab)
+tab%>%
+  tex_preview()
 
 ```
