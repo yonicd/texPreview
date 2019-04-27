@@ -1,12 +1,25 @@
 #' @export
 getTexPackages <- function(pkg,options=NULL,uselibrary=NULL,chk.inst=FALSE){
-  .Deprecated('get_texpackages','texPreview',old = 'getTexPackages')
+  
+  if(!wenv$get){
+    .Deprecated('get_texpackages','texPreview',old = 'getTexPackages')
+    message('This warning is shown once per session')
+  }
+    
+  
+  wenv$get <- TRUE
   get_texpackages()
 }
 
 #' @export
 buildUsepackage <- function(pkg,options=NULL,uselibrary=NULL,chk.inst=FALSE){
-  .Deprecated('build_usepackage','texPreview',old = 'buildUsepackage')
+  
+  if(!wenv$build){
+    .Deprecated('build_usepackage','texPreview',old = 'buildUsepackage')
+    message('This warning is shown once per session')
+    }
+  
+  wenv$build <- TRUE
   build_usepackage(pkg,options,uselibrary,chk.inst)
 }
 
@@ -32,7 +45,13 @@ texPreview <- function(
   opts.html = tex_opts$get('opts.html'),
   ...
 ){
-  .Deprecated('tex_preview','texPreview',old = 'texPreview')
+  
+  if(!wenv$tex){
+    .Deprecated('tex_preview','texPreview',old = 'texPreview')
+    message('This warning is shown once per session')
+  }
+  
+  wenv$tex <- TRUE
   tex_preview(obj, 
               tex_lines,
               stem,
