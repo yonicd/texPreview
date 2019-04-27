@@ -39,6 +39,8 @@ tex_opts$set(
   )
 ```
 
+The first two chunks create outputs to place in the carousel in the last chunk.
+
 ## Kable Input
 
 ```{r kable}
@@ -73,7 +75,7 @@ tab%>%
 
 ## Carousel
 
-The images created above are placed in an [slickR](https://github.com/metrumresearchgroup/slickr) carousel.
+The images created above are placed in a [slickR](https://github.com/metrumresearchgroup/slickr) carousel.
 
 ```{r testOut3}
 

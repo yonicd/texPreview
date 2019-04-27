@@ -12,35 +12,92 @@ vignette: >
 ```{r setup, include = FALSE}
 knitr::opts_chunk$set(
   collapse = TRUE,
-  comment = "#>"
+  comment = "#>",
+  fig.keep = "all",
+  out.width = '75%',
+  dev = c("png", "svg")
 )
 ```
 
-## usepackage
-
 ```{r}
-texPreview::build_usepackage(pkg = 'xcolor')
+library(magrittr)
+library(texPreview)
 ```
 
-## usepackage with options
+texPreview comes with `LaTeX` packages built in for each render, but the user can add any `TeX` library that they have installed on the machine using `build_usepackage`. This object can then be used in the `usrPackages`
+parameter in `tex_preview`.
+
+## Usage
+
+### usepackage
 
 ```{r}
-texPreview::build_usepackage(pkg = 'xcolor',options = 'usenames')
+build_usepackage(pkg = 'xcolor')
 ```
 
-## vectorized usepackage
+### usepackage with options
+
+```{r}
+build_usepackage(pkg = 'xcolor',options = 'usenames')
+```
+
+### vectorized usepackage
 
 ```{r}
 geom.opts=c('paperwidth=35cm','paperheight=35cm','left=2.5cm','top=2.5cm')
 use.opts="\\usetikzlibrary{mindmap,backgrounds}"
 
 m <- mapply(
-  FUN        = texPreview::build_usepackage,
+  FUN        = build_usepackage,
   pkg        = list('times','geometry','tikz'),
   options    = list(NULL   ,geom.opts ,NULL),
   uselibrary = list(NULL   ,NULL      ,use.opts)
 )
 
 unlist(m)
+
+```
+
+## Example
+
+```{r}
+
+tex_opts$set(
+  returnType = knitr::opts_knit$get('rmarkdown.pandoc.to'),
+  resizebox  = FALSE,
+  imgFormat  = 'svg' # return svg images
+)
+
+```
+
+```{r}
+
+  tikz_example <- system.file(
+    'examples/tikz/credit-rationing.tex',
+    package = 'texPreview'
+  )
+
+  tikzEx <- readLines(tikz_example,warn = FALSE)
+  
+```
+
+<details> <summary> <span title='Click to Open'> Tex Script </span> </summary>
+
+```{r,echo=FALSE,comment=''}
+cat(tikzEx,sep='\n')
+```
+
+</details><br>
+
+```{r}
+
+  usetikz  <- paste(tikzEx[14:23],collapse="\n")
+  bodytikz <- paste(tikzEx[25:90],collapse="\n")
+  
+  bodytikz%>%
+    tex_preview(
+      usrPackages = build_usepackage(pkg = 'tikz',uselibrary = usetikz)
+    )
+  
 
 ```

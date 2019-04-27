@@ -59,6 +59,7 @@ new_defaults = function(value = list()) {
 #'   you call \code{tex_opts_current$set()}; you can only query the options via
 #'   \code{tex_opts_current$get()}.
 #' @export
+#' @concept opts
 #' @examples tex_opts$get('margin')
 tex_opts = new_defaults(list(
   fileDir = NULL,

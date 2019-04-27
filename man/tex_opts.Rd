@@ -40,4 +40,5 @@ in the help manual.
 \examples{
 tex_opts$get('margin')
 }
+\concept{opts}
 \keyword{datasets}

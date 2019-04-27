@@ -27,6 +27,8 @@ tex_opts$set(
 
 ```
 
+The following examples use `kable` to generate LaTeX table outputs and raw LaTeX to pipe into `tex_preview` to render the in the document.
+
 ## Kable Input
 
 ```{r testOut}

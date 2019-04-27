@@ -76,7 +76,7 @@
 #'   bodytikz <- paste(tikzEx[25:90],collapse="\n")
 #'   tex_preview(obj = bodytikz,usrPackages = build_usepackage(pkg = 'tikz',uselibrary = usetikz))
 #' }
-#'
+#' @concept tex
 #' @rdname tex_preview
 #' @aliases texPreview
 tex_preview <- function (obj, 

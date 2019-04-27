@@ -1,0 +1,40 @@
+title: texPreview
+
+development:
+  mode: auto
+
+navbar:
+  structure:
+    left:  [home, reference, articleindex, news]
+    right: [github, twitter]
+  components:
+    articles: ~
+    articleindex:
+      text: Articles
+      href: articles/index.html
+    twitter:
+      icon: fa-lg fa-twitter
+      href: http://twitter.com/MetrumRG
+
+reference:
+  - title: "Rendering"
+    contents:
+      - has_concept("tex")
+  - title: "Options"
+    contents:
+      - has_concept("opts")
+  - title: "Utilities"
+    contents:
+      - has_concept("utils")
+
+articles:
+  - title: "Usage"
+    contents:
+      - rmarkdown
+      - slickr
+  - title: "Utilities"
+    contents:
+      - tex_packages
+  - title: "Unit Tests"
+    contents: 
+      - tests_and_coverage      
