@@ -115,5 +115,5 @@ tikzEx=readLines(tikz_example,warn = FALSE)
   bodytikz <- paste(tikzEx[25:90],collapse="\\n")
   tex_preview(obj = bodytikz,usrPackages = build_usepackage(pkg = 'tikz',uselibrary = usetikz))
 }
-
 }
+\concept{tex}

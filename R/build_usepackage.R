@@ -24,6 +24,7 @@
 #' uselibrary = list(NULL   ,NULL      ,use.opts)
 #' ))
 #' @export
+#' @concept utils
 #' @rdname build_usepackage
 #' @aliases buildUsepackage
 build_usepackage=function(pkg,options=NULL,uselibrary=NULL,chk.inst=FALSE){

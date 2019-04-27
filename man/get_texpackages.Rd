@@ -19,3 +19,4 @@ If OS is Windows function checks against MikTex else function checks against Tex
 \examples{
 \dontrun{head(get_texpackages())}
 }
+\concept{utils}

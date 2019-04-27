@@ -6,6 +6,7 @@
 #' character
 #' @examples
 #' \dontrun{head(get_texpackages())}
+#' @concept utils
 #' @rdname get_texpackages
 #' @aliases getTexPackages
 get_texpackages <- function(){

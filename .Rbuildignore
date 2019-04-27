@@ -10,3 +10,4 @@ application
 ^docs$
 ^revdep$
 ^data-raw$
+^pkgdown$
