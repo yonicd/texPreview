@@ -14,11 +14,13 @@ knitr::opts_chunk$set(
   collapse = TRUE,
   comment = "#>",
   fig.keep = "all",
+  out.width = '75%',
   dev = c("png", "svg")
 )
 ```
 
 ```{r}
+library(magrittr)
 library(texPreview)
 library(slickR)
 ```
@@ -31,9 +33,9 @@ if(!dir.exists(objpath))
   dir.create(objpath,recursive = TRUE)
 
 tex_opts$set(
-  fileDir = objpath,
-  returnType = 'html',
-  imgFormat = 'svg'
+  fileDir    = objpath, # path to save output
+  returnType = 'html', # return images ready for html 
+  imgFormat  = 'svg' # return svg images
   )
 ```
 
@@ -41,10 +43,8 @@ tex_opts$set(
 
 ```{r kable}
 
-texPreview::texPreview(
-  obj = knitr::kable(mtcars,'latex'),
-  stem = 'kable-1'
-)
+knitr::kable(mtcars,'latex')%>%
+  texPreview::tex_preview(stem = 'kable-1')
 
 ```
 
@@ -67,20 +67,17 @@ Armadillo & frozen      & 8.99       \\\\
 \\hline
 \\end{tabular}'
 
-texPreview(
-  obj = tab,
-  stem = 'tex-1'
-)
+tab%>%
+  texPreview::tex_preview(stem = 'tex-1')
 ```
 
-## Carousel [slickR htmlwidget](https://github.com/metrumresearchgroup/slickr)
+## Carousel
+
+The images created above are placed in an [slickR](https://github.com/metrumresearchgroup/slickr) carousel.
 
 ```{r testOut3}
-slickR::slickR(
-  obj = list.files(
-    objpath,
-    full.names = TRUE,
-    pattern = 'svg'),
-  width = '100%'
-)
+
+list.files(objpath,full.names = TRUE,pattern = 'svg')%>%
+  slickR::slickR()
+
 ```
