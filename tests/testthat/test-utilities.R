@@ -48,6 +48,8 @@ testthat::describe('build usepackage multiple calls',{
 
 testthat::describe('find packages',{
   
+  skip_on_windows()
+  
   if(length(system('tlmgr --version',intern = TRUE))>0){
     
     x <- head(get_texpackages())
