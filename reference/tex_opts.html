@@ -13,8 +13,9 @@
 <!-- jquery -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
 <!-- Bootstrap -->
+<link href="https://maxcdn.bootstrapcdn.com/bootswatch/3.3.7/flatly/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous">
 
-<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
 
 <!-- Font Awesome icons -->
@@ -32,14 +33,15 @@
 
 
 
-<meta property="og:title" content="Default and current tex options — tex_opts" />
 
+<meta property="og:title" content="Default and current tex options — tex_opts" />
 <meta property="og:description" content="Options for functions in the texPreview package. When running R code, the object tex_opts
 (default options) is not modified by chunk headers (local chunk options are
 merged with default options), whereas tex_opts_current (current options)
 changes with different chunk headers and it always reflects the options for
 the current chunk." />
 <meta name="twitter:card" content="summary" />
+
 
 
 
@@ -57,7 +59,7 @@ the current chunk." />
   <body>
     <div class="container template-reference-topic">
       <header>
-      <div class="navbar navbar-default navbar-fixed-top" role="navigation">
+      <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
   <div class="container">
     <div class="navbar-header">
       <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false">
@@ -90,17 +92,10 @@ the current chunk." />
   <a href="../news/index.html">Changelog</a>
 </li>
       </ul>
-      
       <ul class="nav navbar-nav navbar-right">
         <li>
   <a href="https://github.com/metrumresearchgroup/texPreview">
     <span class="fa fa-github fa-lg"></span>
-     
-  </a>
-</li>
-<li>
-  <a href="http://twitter.com/MetrumRG">
-    <span class="fa fa-lg fa-twitter"></span>
      
   </a>
 </li>
@@ -122,23 +117,21 @@ the current chunk." />
     </div>
 
     <div class="ref-description">
-    
     <p>Options for functions in the texPreview package. When running R code, the object <code>tex_opts</code>
 (default options) is not modified by chunk headers (local chunk options are
 merged with default options), whereas <code>tex_opts_current</code> (current options)
 changes with different chunk headers and it always reflects the options for
 the current chunk.</p>
-    
     </div>
 
     <pre class="usage"><span class='no'>tex_opts</span>
 
 <span class='no'>tex_opts_current</span></pre>
-        
+
+
     <h2 class="hasAnchor" id="format"><a class="anchor" href="#format"></a>Format</h2>
 
     <p>An object of class <code>list</code> of length 5.</p>
-    
     <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
     <p>Normally we set up the global options once in the first code chunk in a
@@ -150,13 +143,11 @@ options in a separate chunk.</p>
 <code>tex_opts$get()</code>:</p>
 <p>These options correspond to fields in the direct call to <code><a href='tex_preview.html'>texPreview</a></code>, which are listed in explained</p>
 <p>in the help manual.</p>
-    
     <h2 class="hasAnchor" id="note"><a class="anchor" href="#note"></a>Note</h2>
 
     <p><code>tex_opts_current</code> is read-only in the sense that it does nothing if
   you call <code>tex_opts_current$set()</code>; you can only query the options via
   <code>tex_opts_current$get()</code>.</p>
-    
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='no'>tex_opts</span>$<span class='fu'>get</span>(<span class='st'>'margin'</span>)</div><div class='output co'>#&gt; $left
@@ -175,13 +166,9 @@ options in a separate chunk.</p>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
     <ul class="nav nav-pills nav-stacked">
-      
       <li><a href="#format">Format</a></li>
-
       <li><a href="#details">Details</a></li>
-
       <li><a href="#note">Note</a></li>
-      
       <li><a href="#examples">Examples</a></li>
     </ul>
 
