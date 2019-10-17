@@ -15,7 +15,7 @@ tex_preview(obj, tex_lines = NULL, stem = NULL,
   keep_pdf = FALSE, tex_message = FALSE,
   density = tex_opts$get("density"), svg_max = tex_opts$get("svg_max"),
   print.xtable.opts = tex_opts$get("print.xtable.opts"),
-  opts.html = tex_opts$get("opts.html"), ...)
+  opts.html = tex_opts$get("opts.html"), markers = interactive(), ...)
 }
 \arguments{
 \item{obj}{character, TeX script}
@@ -66,7 +66,10 @@ relevant only if xtable is used as the input, Default: tex_opts$get('print.xtabl
 
 \item{opts.html}{list, html options, Default: tex_opts$get('opts.html')}
 
-\item{...}{passed to \code{\link[base]{system}}}
+\item{markers}{logical, if TRUE then RStudio markers will be invoked to create links for
+the log file on rendering errors, Default: interactive()}
+
+\item{...}{passed to \code{\link[base]{system2}}}
 }
 \description{
 input TeX script into the function and it renders a pdf and converts it an image which is sent to Viewer.

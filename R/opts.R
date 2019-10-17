@@ -67,7 +67,7 @@ tex_opts = new_defaults(list(
   imgFormat = "png",
   print.xtable.opts = list(),
   opts.html = list(width="100%",height="100%"),
-  cleanup = c('aux','log','Doc'),
+  cleanup = c('aux','log','txt','Doc'),
   engine = 'pdflatex',
   returnType = 'viewer',
   density = 150,

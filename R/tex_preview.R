@@ -31,7 +31,9 @@
 #' @param print.xtable.opts list, contains arguments to pass to print.table, 
 #' relevant only if xtable is used as the input, Default: tex_opts$get('print.xtable.opts')
 #' @param opts.html list, html options, Default: tex_opts$get('opts.html')
-#' @param ... passed to \code{\link[base]{system}}
+#' @param markers logical, if TRUE then RStudio markers will be invoked to create links for
+#' the log file on rendering errors, Default: interactive()
+#' @param ... passed to \code{\link[base]{system2}}
 #' @details The function assumes the system has pdflatex installed and it is defined in the PATH. The function does not return anything to R.
 #' If fileDir is specified then two files are written to the directory. An image file of the name stem with the extension specified in imgFormat.
 #' The default extension is png.The second file is the TeX script used to create the output of the name stem.tex.   If you do not wish to view the 
@@ -80,23 +82,24 @@
 #' @rdname tex_preview
 #' @aliases texPreview
 tex_preview <- function (obj, 
-                        tex_lines = NULL,
-                        stem = NULL,
-                        fileDir = tex_opts$get('fileDir'), 
-                        overwrite = TRUE, 
-                        margin = tex_opts$get('margin'),
-                        imgFormat = tex_opts$get('imgFormat'), 
-                        returnType = tex_opts$get('returnType'),
-                        resizebox = tex_opts$get('resizebox'),
-                        usrPackages = NULL,
-                        engine = tex_opts$get('engine'),
-                        cleanup = tex_opts$get('cleanup'),
-                        keep_pdf = FALSE, 
-                        tex_message = FALSE, 
-                        density = tex_opts$get('density'),
-                        svg_max = tex_opts$get('svg_max'),
+                        tex_lines         = NULL,
+                        stem              = NULL,
+                        fileDir           = tex_opts$get('fileDir'), 
+                        overwrite         = TRUE, 
+                        margin            = tex_opts$get('margin'),
+                        imgFormat         = tex_opts$get('imgFormat'), 
+                        returnType        = tex_opts$get('returnType'),
+                        resizebox         = tex_opts$get('resizebox'),
+                        usrPackages       = NULL,
+                        engine            = tex_opts$get('engine'),
+                        cleanup           = tex_opts$get('cleanup'),
+                        keep_pdf          = FALSE, 
+                        tex_message       = FALSE, 
+                        density           = tex_opts$get('density'),
+                        svg_max           = tex_opts$get('svg_max'),
                         print.xtable.opts = tex_opts$get('print.xtable.opts'),
-                        opts.html = tex_opts$get('opts.html'),
+                        opts.html         = tex_opts$get('opts.html'),
+                        markers           = interactive(),
                         ...) 
 {
 
@@ -124,7 +127,7 @@ tex_preview <- function (obj,
   
   on.exit({
     
-    tex_cleanup(cleanup,stem,keep_pdf)
+    tex_cleanup(cleanup,stem,keep_pdf,keep_log)
     tex_opts$set(session_opts)
     
   },add = TRUE)
@@ -139,8 +142,23 @@ tex_preview <- function (obj,
   
   tab_lines <- readLines(file.path(tex_opts$get('fileDir'),sprintf('%s.tex',stem)))
   
-  tex_build(tex_lines,stem,tex_message,...)
+  class(tab_lines) <- sprintf('texpreview_%s',tex_opts$get('returnType'))
+  
+  tex_log <- tex_build(tex_lines,stem,tex_message,...)
 
+  keep_log <- attr(tex_log,'error')
+  
+  if(keep_log){
+    
+    if(markers){
+      
+      make_marker(stem,tex_log)
+      
+    }
+    
+    stop(parse_log(tex_log))
+  }
+  
   imgOut <- tex_image(obj,stem, write_flag, overwrite)
 
   tex_viewer(imgOut, stem)

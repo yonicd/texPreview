@@ -32,7 +32,7 @@ testthat::context('core tex function')
       })
       
       it('class of output', {
-        testthat::expect_is(x,'character')
+        testthat::expect_is(x,'texpreview_tex')
       })  
 
   })
@@ -50,7 +50,7 @@ testthat::context('core tex function')
     })
     
     it('class of output', {
-      testthat::expect_is(x,'character')
+      testthat::expect_is(x,'texpreview_tex')
     })
   
   })
@@ -68,7 +68,7 @@ testthat::context('core tex function')
     })
     
     it('class of output', {
-      testthat::expect_is(x,'character')
+      testthat::expect_is(x,'texpreview_tex')
     })
   
   })
@@ -112,7 +112,12 @@ testthat::context('core tex function')
     x <- texPreview::tex_preview(obj = tex)
 
     it('validate benchmark', {
-      testthat::expect_equal(x,readLines(file.path(path,"tex_temp.tex")))
+      
+      bench <- readLines(file.path(path,"tex_temp.tex"))
+      
+      class(bench) <- 'texpreview_tex'
+      
+      testthat::expect_equal(x,bench)
     })
     
   })
