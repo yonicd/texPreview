@@ -96,7 +96,6 @@
 #' }
 #' @concept tex
 #' @rdname tex_preview
-#' @aliases texPreview
 #' @export 
 tex_preview <- function (obj, 
                          tex_lines         = NULL,

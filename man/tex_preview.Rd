@@ -2,7 +2,6 @@
 % Please edit documentation in R/tex_preview.R
 \name{tex_preview}
 \alias{tex_preview}
-\alias{texPreview}
 \title{Render and Preview snippets of TeX in R Viewer}
 \usage{
 tex_preview(obj, tex_lines = NULL, stem = "tex_temp",

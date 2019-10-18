@@ -2,7 +2,6 @@
 % Please edit documentation in R/get_texpackages.R
 \name{get_texpackages}
 \alias{get_texpackages}
-\alias{getTexPackages}
 \title{Get list of TeX packages installed on System}
 \usage{
 get_texpackages()
