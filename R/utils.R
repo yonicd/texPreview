@@ -9,7 +9,7 @@ NULL
 
 parse_log <- function(obj, lines = FALSE){
   
-  idx <- grep('[!]',obj)
+  idx <- range(grep('[!]',obj))
   err_lines <- idx[1]:idx[2]
   err <- obj[err_lines]
   idy <- grep("Here is how much of TeX's memory you used",err)

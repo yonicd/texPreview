@@ -66,9 +66,11 @@ as.kable.knitr_kable <- function(x){
 #' @importFrom fs is_file
 as.kable.default <- function(x){
   
-  if(fs::is_file(x))
-    x <- readLines(x,warn = FALSE)
-  
+  if(length(x)==1){
+    if(fs::is_file(x))
+      x <- readLines(x,warn = FALSE)    
+  }
+
   structure(paste0(x,collapse = '\n'),class = 'knitr_kable',format = 'latex')
   
 }
