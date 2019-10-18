@@ -4,39 +4,18 @@ build_lines <- function(obj,
                         usrPackages,
                         fileDir = tex_opts$get('fileDir'),
                         resizebox = tex_opts$get('resizebox'),
-                        margin = tex_opts$get('margin'),
-                        print.xtable.opts = tex_opts$get('print.xtable.opts')
+                        margin = tex_opts$get('margin')
                         ){
   
-  if ("xtable" %in% class(obj)) {
-    
-    print.xtable.opts$x <- obj
-    
-    print.xtable.opts$comment <- FALSE
-    
-    if (!"file" %in% names(print.xtable.opts)) {
+  if( resizebox ){
       
-      print.xtable.opts$file <- file.path(fileDir, paste0(stem,".tex"))
+    obj <- tex_resize(obj)
       
-    }
-    
-    tex_opts$set(print.xtable.opts = print.xtable.opts)
-    
-    obj <- do.call("print", print.xtable.opts)
-    
   }
   
-  if( resizebox ){
-    
-    obj <- gsub('\\\\begin\\{tabular\\}',
-                '\\\\resizebox\\{\\\\textwidth\\}\\{!\\}\\{\\\\begin\\{tabular\\}',
-                obj)
-    
-    obj <- gsub('\\\\end\\{tabular\\}',
-                '\\\\end\\{tabular\\}\\}',
-                obj)
-    
-  }
+  obj <- clean_packages(obj)
+
+  usrPackages <- union(usrPackages,texPreview::build_usepackage(attr(obj,'packages')))
   
   cat(obj, file= file.path(fileDir, paste0(stem,".tex")), sep= '\n')
   

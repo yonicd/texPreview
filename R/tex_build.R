@@ -26,9 +26,7 @@ tex_build <- function(tex_lines,
 
   system2(engine, args = tex_args, stdout = temp_stdout, stderr = temp_stderr,...)
   
-  temp_log <- list.files(fileDir,pattern = 'log$',full.names = TRUE)
-  
-  log_lines <- readLines(temp_log)
+  log_lines <- readLines(file.path(fileDir,sprintf('%sDoc.log',stem)))
   
   attr(log_lines,'error') <- grepl('error',log_lines[length(log_lines)])
 

@@ -70,6 +70,7 @@ tex_opts = new_defaults(list(
   cleanup = c('aux','log','txt','Doc'),
   engine = 'pdflatex',
   returnType = 'viewer',
+  usrPackages = NULL,
   density = 150,
   resizebox=TRUE,
   svg_max = 80000
