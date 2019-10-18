@@ -55,7 +55,7 @@ make_marker <- function(stem,txt,fileDir = tex_opts$get('fileDir')){
 
 tex_pkgs <- function(file = system.file('tmpl.tex',package = 'texPreview'), lines = NULL){
   
-  if(is.null(lines))
+  if(!is.null(file))
     lines <- readLines(file)
   
   x <- grep('\\usepackage',lines,value = TRUE)
@@ -71,6 +71,9 @@ tex_pkgs <- function(file = system.file('tmpl.tex',package = 'texPreview'), line
 
 tex_resize <- function(obj){
   
+  if(grepl('\\\\resizebox\\{',obj))
+    return(obj)
+  
   obj <- gsub(
     '\\\\begin\\{tabular\\}',
     '\\\\resizebox\\{\\\\textwidth\\}\\{!\\}\\{
@@ -85,46 +88,12 @@ tex_resize <- function(obj){
   
 }
 
-tex_sanitize <- function(x, token = '$'){
-  
-  for(i in token){
-    x <- gsub(sprintf('\\%s',i),i,x,fixed = TRUE)  
-  }
-  
-  x
-}
-
 clean_packages <- function(x){
   
   x <- strsplit(x,'\n')[[1]]
   
   ret <- paste0(x[!grepl('\\usepackage',x,fixed = TRUE)],collapse = '\n')
   
-  structure(ret,packages = tex_pkgs(lines = x))
+  structure(ret,packages = tex_pkgs(lines = x,file = NULL))
   
-}
-
-clean_table_env <- function(x){
-  
-  x <- gsub('\\\\begin\\{table\\}|\\\\end\\{table\\}','',x)
-  gsub('\\\\caption\\{(.*?)\\}','',x)
-  
-}
-
-fill_options <- function(x,y = tex_opts$get()){
-  
-  fill_not_all_names <- intersect(names(y),names(x))
-  
-  for(i in fill_not_all_names){
-    if(inherits(y[[i]],'list')){
-      
-      fill_options(x[[i]],y[[i]])
-      
-    }else{
-      y[[i]] <- x[[i]]
-    }
-    
-  }
-  
-  return(y)
 }

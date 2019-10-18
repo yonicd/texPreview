@@ -18,7 +18,7 @@ tex_opts$set(
 ## Table 1
 
 ```{r testOut}
-texPreview( obj = xtable::xtable(head(iris,20)))
+tex_preview( obj = xtable::xtable(head(iris,20)))
 
 ```
 
@@ -40,6 +40,6 @@ Armadillo & frozen      & 8.99       \\\\
 \\hline
 \\end{tabular}'
 
-texPreview(obj = tab)
+tex_preview(obj = tab)
 
 ```
