@@ -1,0 +1,69 @@
+---
+title: "Using texPreview to Convert TeX lines to Kable Objects"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Using texPreview to Convert TeX lines to Kable Objects}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+```{r setup}
+library(texPreview)
+
+tex_opts$set(
+  returnType = knitr::opts_knit$get('rmarkdown.pandoc.to'),
+  resizebox = FALSE
+)
+
+```
+
+## read the lines in the tex file
+
+```{r}
+
+tex_file <- system.file('examples/toy/toy.tex',package = 'texPreview')
+
+```
+
+```{r}
+
+readLines(tex_file)
+
+```
+
+## convert lines into knitr_kable 
+
+```{r,fig.dim=c(2,2)}
+
+kbl <- tex_file%>%
+  texPreview::as.kable()
+
+```
+
+## preview the table
+
+```{r}
+
+kbl%>%
+  texPreview::tex_preview()
+
+```
+
+## use kableExtra to manipulate the table and preview
+
+```{r}
+
+kbl%>%  
+  kableExtra::collapse_rows(columns = 1:2, 
+                            latex_hline = "major", 
+                            valign = "middle")%>%
+  texPreview::tex_preview()
+
+```

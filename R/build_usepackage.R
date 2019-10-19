@@ -26,7 +26,6 @@
 #' @export
 #' @concept utils
 #' @rdname build_usepackage
-#' @aliases buildUsepackage
 build_usepackage=function(pkg,options=NULL,uselibrary=NULL,chk.inst=FALSE){
   if( chk.inst ){
     if( !check_package(pkg) ){

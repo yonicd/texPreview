@@ -51,7 +51,7 @@ new_defaults = function(value = list()) {
 #' Below is a list of default chunk options, retrieved via
 #' \code{tex_opts$get()}:
 #'
-#' These options correspond to fields in the direct call to \code{\link{texPreview}}, which are listed in explained
+#' These options correspond to fields in the direct call to \code{\link{tex_preview}}, which are listed in explained
 #' 
 #' in the help manual.
 #'
@@ -67,9 +67,10 @@ tex_opts = new_defaults(list(
   imgFormat = "png",
   print.xtable.opts = list(),
   opts.html = list(width="100%",height="100%"),
-  cleanup = c('aux','log','Doc'),
+  cleanup = c('aux','log','txt','Doc'),
   engine = 'pdflatex',
   returnType = 'viewer',
+  usrPackages = NULL,
   density = 150,
   resizebox=TRUE,
   svg_max = 80000

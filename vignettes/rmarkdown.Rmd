@@ -18,7 +18,6 @@ knitr::opts_chunk$set(
 
 ```{r}
 library(texPreview)
-library(magrittr)
 
 tex_opts$set(
   returnType = knitr::opts_knit$get('rmarkdown.pandoc.to'),

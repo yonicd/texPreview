@@ -9,7 +9,7 @@ tex_return <- function(
   ){
   
   path <- tex_path(fileDir,stem,dev)
-  
+
   if(returnType=='viewer') {
     return(invisible(NULL))
   }
@@ -23,6 +23,7 @@ tex_return <- function(
   if(returnType=='input'){
     cat(obj, file = path, sep= '\n')
     obj <- sprintf('\\input{%s}',path)
+    class(obj) <- sprintf('texpreview_%s',tex_opts$get('returnType'))
     return(obj)
   }
   

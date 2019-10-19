@@ -28,14 +28,14 @@ options in a separate chunk.
 Below is a list of default chunk options, retrieved via
 \code{tex_opts$get()}:
 
-These options correspond to fields in the direct call to \code{\link{texPreview}}, which are listed in explained
+These options correspond to fields in the direct call to \code{\link{tex_preview}}, which are listed in explained
 
 in the help manual.
 }
 \note{
 \code{tex_opts_current} is read-only in the sense that it does nothing if
-  you call \code{tex_opts_current$set()}; you can only query the options via
-  \code{tex_opts_current$get()}.
+you call \code{tex_opts_current$set()}; you can only query the options via
+\code{tex_opts_current$get()}.
 }
 \examples{
 tex_opts$get('margin')

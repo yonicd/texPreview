@@ -13,10 +13,23 @@ tex_build <- function(tex_lines,
   
   interaction_mode <- ifelse(tex_message, "nonstopmode", "batchmode")
   
-  temp_file <- file.path(getwd(),sprintf("%sDoc.tex",stem))
+  temp_tex    <- file.path(fileDir,sprintf("%sDoc.tex",stem))
+  temp_stdout <- file.path(fileDir,sprintf('%s_stdout.txt',stem))
+  temp_stderr <- file.path(fileDir,sprintf('%s_stderr.txt',stem))
   
-  writeLines(tex_lines, con = temp_file)
+  tex_args <- c('-synctex=1',
+                sprintf('-interaction=%s',interaction_mode),
+                '--halt-on-error',
+                temp_tex)
+  
+  writeLines(tex_lines, con = temp_tex)
 
-  system(sprintf("%s -synctex=1 -interaction=%s --halt-on-error %s",engine,interaction_mode,temp_file),...)
+  system2(engine, args = tex_args, stdout = temp_stdout, stderr = temp_stderr,...)
+  
+  log_lines <- readLines(file.path(fileDir,sprintf('%sDoc.log',stem)))
+  
+  attr(log_lines,'error') <- grepl('error',log_lines[length(log_lines)])
+
+  log_lines
   
 }

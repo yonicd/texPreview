@@ -7,8 +7,9 @@ wenv_init <- function(){
 }
 
 check_requirments <- function(){
+
   
-  chk <- sapply(tex_pkgs,check_package)
+  chk <- sapply(tex_pkgs(),check_package)
   
   if(!all(chk)){
     warning(sprintf('missing tex packages needed for texPreview: %s', paste0(names(chk)[!chk],collapse = ', ')))
