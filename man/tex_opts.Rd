@@ -34,8 +34,8 @@ in the help manual.
 }
 \note{
 \code{tex_opts_current} is read-only in the sense that it does nothing if
-  you call \code{tex_opts_current$set()}; you can only query the options via
-  \code{tex_opts_current$get()}.
+you call \code{tex_opts_current$set()}; you can only query the options via
+\code{tex_opts_current$get()}.
 }
 \examples{
 tex_opts$get('margin')

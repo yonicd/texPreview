@@ -1,8 +1,8 @@
 ---
-title: "Working with Other Object Classes"
+title: "Using texPreview with other Packages"
 output: rmarkdown::html_vignette
 vignette: >
-  %\VignetteIndexEntry{Working with Other Object Classes}
+  %\VignetteIndexEntry{Using texPreview with other Packages}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---
@@ -95,15 +95,5 @@ list(model.1, model.2)%>%
                  caption.above = TRUE,
                  caption  = 'Linear mixed-effects models')%>%
   texPreview::tex_preview()
-
-```
-
-## Model Equations
-
-```{r}
-
-lm(weight ~ group)%>%
-  equatiomatic::extract_eq(use_coefs = TRUE)%>%
-  tex_preview()
 
 ```

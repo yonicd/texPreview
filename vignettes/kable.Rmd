@@ -1,8 +1,8 @@
 ---
-title: "Working with Kable Objects"
+title: "Using texPreview to Convert TeX lines to Kable Objects"
 output: rmarkdown::html_vignette
 vignette: >
-  %\VignetteIndexEntry{Working with Kable Objects}
+  %\VignetteIndexEntry{Using texPreview to Convert TeX lines to Kable Objects}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---

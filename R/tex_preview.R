@@ -39,20 +39,49 @@
 #' @param opts.html list, html options, Default: tex_opts$get('opts.html')
 #' @param markers logical, if TRUE then RStudio markers will be invoked to 
 #' create links for the log file on rendering errors, Default: interactive()
-#' @param ... passed to \code{\link[base]{system2}}
-#' @details The function assumes the system has pdflatex installed and it is 
-#' defined in the PATH. The function does not return anything to R.
-#' If fileDir is specified then two files are written to the directory. 
-#' An image file of the name stem with the extension specified in imgFormat.
-#' The default extension is png.The second file is the TeX script used to create
-#'  the output of the name stem.tex.
-#' usrPackage accepts a vector of character strings built by the function
-#'  \code{\link{build_usepackage}}, of the form
-#'  \\\\usepackage[option1,option2,...]\{package_name\}, see the TeX wikibook 
-#'  for more information 
-#'  \url{https://en.wikibooks.org/wiki/LaTeX/Document_Structure#Packages}.
+#' @param ... passed to [system2][base::system2]
+#' @details 
+#' 
+#' \foldstart{System Requirements}
+#' 
+#' The function assumes the system has pdflatex installed and it is  defined in the PATH. 
+#' 
+#' \foldend{}
+#' 
+#' \foldstart{TeX Packages}
+#' 
+#'   To add packages to the tex file use [build_usepackage][texPreview::build_usepackage]
+#'   
+#' \foldend{}   
+#'   
+#' \foldstart{Images}
+#'   
+#'  - An image file of the name stem with the extension specified in `imgFormat`. 
+#'  - The default extension is png.
+#'     
+#' \foldend{}
+#' 
+#' \foldstart{Side effects}
+#' 
+#'  - The function writes two files to disk in the `fileDir`
+#'    - Image file
+#'    - TeX script
+#'  - The rendering files are removed up from the `fileDir`. This can
+#'  be controlled using the `cleanup` argument or `tex_opts$get('cleanup')`
+#'  
+#' \foldend{}
+#'   
 #' @return 
-#' NULL
+#' 
+#' The output of the function is dependent on the value of returnType:
+#' 
+#'  - viewer: NULL, a magick image is printed in the internal viewer
+#'  - tex, beamer: character, TeX lines
+#'  - input: character, path to the file containing the tex wrapped in an input call
+#'  - html, html5, s5, slidy, slideous, dzslides, revealjs, md: 
+#'    - magick image 
+#'    - Printed as an HTML document in the internal viewer
+#' 
 #' @examples
 #' data('iris')
 #' if(interactive()){

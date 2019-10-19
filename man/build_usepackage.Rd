@@ -24,7 +24,7 @@ input TeX package name and optional package functions to create usepackage call
 }
 \details{
 if options and uselibrary are NULL (default) then only the call for the package is returned.
-See the TeX wikibook for more information \url{https://en.wikibooks.org/wiki/LaTeX/Document_Structure#Packages} on 
+See the TeX wikibook for more information \url{https://en.wikibooks.org/wiki/LaTeX/Document_Structure#Packages} on
 the usepackage command. If chk.inst finds that the package is not installed on system function returns NULL.
 }
 \examples{
