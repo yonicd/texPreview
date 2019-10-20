@@ -91,12 +91,17 @@
 #' 
 #' The output of the function is dependent on the value of returnType:
 #' 
-#'  - viewer: NULL, a magick image is printed in the internal viewer
-#'  - tex, beamer: character, TeX lines
-#'  - input: character, path to the file containing the tex wrapped in an input call
-#'  - html, html5, s5, slidy, slideous, dzslides, revealjs, md: 
-#'    - magick image 
+#'  - viewer: NULL
+#'    - magick image is printed in the internal viewer
+#'  - tex: 
+#'    - character, TeX lines
+#'    - printed 'asis' in RMarkdown
+#'  - input: character
+#'    - path to the file containing the tex wrapped in an input call
+#'    - printed 'asis' in RMarkdown
+#'  - html: magick image
 #'    - Printed as an HTML document in the internal viewer
+#'    - Printed as an image in RMarkdown
 #' 
 #' @examples
 #' data('iris')

@@ -11,14 +11,14 @@ tex_return <- function(obj,
 
   switch(returnType,
          
-         'viewer' = {NULL},
+         'viewer' = {invisible(NULL)},
          
          'html'   = {
            magick::image_scale(
             magick::image_read(tex_path(fileDir,stem,img_format)),
             paste(opts.html,collapse = 'x')
            )
-           },
+         },
          
          'input'  = {
            cat(obj, file = path, sep= '\n')

@@ -79,13 +79,24 @@ create links for the log file on rendering errors, Default: interactive()}
 \value{
 The output of the function is dependent on the value of returnType:
 \itemize{
-\item viewer: NULL, a magick image is printed in the internal viewer
-\item tex, beamer: character, TeX lines
-\item input: character, path to the file containing the tex wrapped in an input call
-\item html, html5, s5, slidy, slideous, dzslides, revealjs, md:
+\item viewer: NULL
 \itemize{
-\item magick image
+\item magick image is printed in the internal viewer
+}
+\item tex:
+\itemize{
+\item character, TeX lines
+\item printed 'asis' in RMarkdown
+}
+\item input: character
+\itemize{
+\item path to the file containing the tex wrapped in an input call
+\item printed 'asis' in RMarkdown
+}
+\item html: magick image
+\itemize{
 \item Printed as an HTML document in the internal viewer
+\item Printed as an image in RMarkdown
 }
 }
 }
