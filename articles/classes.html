@@ -84,9 +84,9 @@
     
 <div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" data-line-number="1"><span class="kw">library</span>(texPreview)</a>
 <a class="sourceLine" id="cb1-2" data-line-number="2"></a>
-<a class="sourceLine" id="cb1-3" data-line-number="3">tex_opts<span class="op">$</span><span class="kw">set</span>(</a>
-<a class="sourceLine" id="cb1-4" data-line-number="4">  <span class="dt">returnType =</span> knitr<span class="op">::</span>opts_knit<span class="op">$</span><span class="kw">get</span>(<span class="st">'rmarkdown.pandoc.to'</span>),</a>
-<a class="sourceLine" id="cb1-5" data-line-number="5">  <span class="dt">resizebox =</span> <span class="ot">FALSE</span></a>
+<a class="sourceLine" id="cb1-3" data-line-number="3">tex_opts<span class="op">$</span><span class="kw">set</span>( </a>
+<a class="sourceLine" id="cb1-4" data-line-number="4">  <span class="dt">returnType =</span> <span class="st">'html'</span>,</a>
+<a class="sourceLine" id="cb1-5" data-line-number="5">  <span class="dt">opts.html   =</span> <span class="kw">list</span>(<span class="dt">width =</span> <span class="st">'75%'</span>, <span class="dt">height =</span> <span class="st">'75%'</span>)</a>
 <a class="sourceLine" id="cb1-6" data-line-number="6">)</a></code></pre></div>
 <div id="knitr" class="section level2">
 <h2 class="hasAnchor">
@@ -100,7 +100,7 @@
 <a class="sourceLine" id="cb2-4" data-line-number="4">iris_rev<span class="op">%&gt;%</span></a>
 <a class="sourceLine" id="cb2-5" data-line-number="5"><span class="st">  </span>knitr<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/knitr/topics/kable">kable</a></span>(<span class="dt">format =</span> <span class="st">"latex"</span>,<span class="dt">row.names =</span> <span class="ot">FALSE</span>)<span class="op">%&gt;%</span></a>
 <a class="sourceLine" id="cb2-6" data-line-number="6"><span class="st">  </span><span class="kw"><a href="../reference/tex_preview.html">tex_preview</a></span>()</a></code></pre></div>
-<p><img src="classes_files/figure-html/unnamed-chunk-2-1.png" width="359"></p>
+<p><img src="classes_files/figure-html/unnamed-chunk-2-1.png" width="284"></p>
 </div>
 <div id="kableextra" class="section level3">
 <h3 class="hasAnchor">
@@ -112,7 +112,7 @@
 <a class="sourceLine" id="cb3-5" data-line-number="5">                            <span class="dt">stripe_index =</span> <span class="kw">c</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">5</span>,<span class="dv">11</span><span class="op">:</span><span class="dv">15</span>))<span class="op">%&gt;%</span></a>
 <a class="sourceLine" id="cb3-6" data-line-number="6"><span class="st">  </span>kableExtra<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/kableExtra/topics/collapse_rows">collapse_rows</a></span>(<span class="dt">columns =</span> <span class="kw">c</span>(<span class="dv">1</span>))<span class="op">%&gt;%</span></a>
 <a class="sourceLine" id="cb3-7" data-line-number="7"><span class="st">  </span><span class="kw"><a href="../reference/tex_preview.html">tex_preview</a></span>()</a></code></pre></div>
-<p><img src="classes_files/figure-html/unnamed-chunk-3-1.png" width="356"></p>
+<p><img src="classes_files/figure-html/unnamed-chunk-3-1.png" width="284"></p>
 </div>
 </div>
 <div id="xtable" class="section level2">
@@ -122,7 +122,7 @@
 <a class="sourceLine" id="cb4-2" data-line-number="2">iris_rev<span class="op">%&gt;%</span></a>
 <a class="sourceLine" id="cb4-3" data-line-number="3"><span class="st">  </span>xtable<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/xtable/topics/xtable">xtable</a></span>()<span class="op">%&gt;%</span></a>
 <a class="sourceLine" id="cb4-4" data-line-number="4"><span class="st">  </span><span class="kw"><a href="../reference/tex_preview.html">tex_preview</a></span>(<span class="dt">print.xtable.opts =</span> <span class="kw">list</span>(<span class="dt">include.rownames =</span> <span class="ot">FALSE</span>))</a></code></pre></div>
-<p><img src="classes_files/figure-html/unnamed-chunk-4-1.png" width="354"></p>
+<p><img src="classes_files/figure-html/unnamed-chunk-4-1.png" width="284"></p>
 </div>
 <div id="texreg" class="section level2">
 <h2 class="hasAnchor">
@@ -140,7 +140,7 @@
 <a class="sourceLine" id="cb5-8" data-line-number="8"><span class="st">  </span>texreg<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/texreg/topics/texreg">texreg</a></span>(<span class="dt">caption.above =</span> <span class="ot">TRUE</span>,</a>
 <a class="sourceLine" id="cb5-9" data-line-number="9">                 <span class="dt">caption  =</span> <span class="st">'Ordinary least squares model'</span>)<span class="op">%&gt;%</span></a>
 <a class="sourceLine" id="cb5-10" data-line-number="10"><span class="st">  </span>texPreview<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/texPreview/topics/tex_preview">tex_preview</a></span>()</a></code></pre></div>
-<p><img src="classes_files/figure-html/unnamed-chunk-5-1.png" width="379"></p>
+<p><img src="classes_files/figure-html/unnamed-chunk-5-1.png" width="284"></p>
 </div>
 <div id="linear-mixed-effects-models" class="section level3">
 <h3 class="hasAnchor">
@@ -157,7 +157,7 @@
 <a class="sourceLine" id="cb6-10" data-line-number="10">                 <span class="dt">caption.above =</span> <span class="ot">TRUE</span>,</a>
 <a class="sourceLine" id="cb6-11" data-line-number="11">                 <span class="dt">caption  =</span> <span class="st">'Linear mixed-effects models'</span>)<span class="op">%&gt;%</span></a>
 <a class="sourceLine" id="cb6-12" data-line-number="12"><span class="st">  </span>texPreview<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/texPreview/topics/tex_preview">tex_preview</a></span>()</a></code></pre></div>
-<p><img src="classes_files/figure-html/unnamed-chunk-6-1.png" width="379"></p>
+<p><img src="classes_files/figure-html/unnamed-chunk-6-1.png" width="284"></p>
 </div>
 </div>
   </div>

@@ -150,17 +150,57 @@ you call <code>tex_opts_current$set()</code>; you can only query the options via
 <code>tex_opts_current$get()</code>.</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='no'>tex_opts</span>$<span class='fu'>get</span>(<span class='st'>'margin'</span>)</div><div class='output co'>#&gt; $left
+    <pre class="examples"><div class='input'><span class='no'>tex_opts</span>$<span class='fu'>get</span>()</div><div class='output co'>#&gt; $fileDir
+#&gt; NULL
+#&gt; 
+#&gt; $margin
+#&gt; $margin$left
 #&gt; [1] 10
 #&gt; 
-#&gt; $top
+#&gt; $margin$top
 #&gt; [1] 5
 #&gt; 
-#&gt; $right
+#&gt; $margin$right
 #&gt; [1] 10
 #&gt; 
-#&gt; $bottom
+#&gt; $margin$bottom
 #&gt; [1] 5
+#&gt; 
+#&gt; 
+#&gt; $imgFormat
+#&gt; [1] "png"
+#&gt; 
+#&gt; $print.xtable.opts
+#&gt; list()
+#&gt; 
+#&gt; $opts.html
+#&gt; $opts.html$width
+#&gt; [1] "100%"
+#&gt; 
+#&gt; $opts.html$height
+#&gt; [1] "100%"
+#&gt; 
+#&gt; 
+#&gt; $cleanup
+#&gt; [1] "aux" "log" "txt" "Doc"
+#&gt; 
+#&gt; $engine
+#&gt; [1] "pdflatex"
+#&gt; 
+#&gt; $returnType
+#&gt; [1] "viewer"
+#&gt; 
+#&gt; $usrPackages
+#&gt; NULL
+#&gt; 
+#&gt; $density
+#&gt; [1] 150
+#&gt; 
+#&gt; $resizebox
+#&gt; [1] TRUE
+#&gt; 
+#&gt; $svg_max
+#&gt; [1] 80000
 #&gt; </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">

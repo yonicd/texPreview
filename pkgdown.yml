@@ -8,4 +8,5 @@ articles:
   slickr: slickr.html
   tests_and_coverage: tests_and_coverage.html
   tex_packages: tex_packages.html
+  tikz: tikz.html
 

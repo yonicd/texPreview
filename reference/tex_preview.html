@@ -237,23 +237,45 @@ create links for the log file on rendering errors, Default: interactive()</p></t
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
     <p>The output of the function is dependent on the value of returnType:</p><ul>
-<li><p>viewer: NULL, a magick image is printed in the internal viewer</p></li>
-<li><p>tex, beamer: character, TeX lines</p></li>
-<li><p>input: character, path to the file containing the tex wrapped in an input call</p></li>
-<li><p>html, html5, s5, slidy, slideous, dzslides, revealjs, md:</p><ul>
-<li><p>magick image</p></li>
+<li><p>viewer: NULL</p><ul>
+<li><p>magick image is printed in the internal viewer</p></li>
+</ul></li>
+<li><p>tex:</p><ul>
+<li><p>character, TeX lines</p></li>
+<li><p>printed 'asis' in RMarkdown</p></li>
+</ul></li>
+<li><p>input: character</p><ul>
+<li><p>path to the file containing the tex wrapped in an input call</p></li>
+<li><p>printed 'asis' in RMarkdown</p></li>
+</ul></li>
+<li><p>html: magick image</p><ul>
 <li><p>Printed as an HTML document in the internal viewer</p></li>
+<li><p>Printed as an image in RMarkdown</p></li>
 </ul></li>
 </ul>
 
     <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
+    <p><code>tex_preview</code> is an <code>S3 method</code> that can be used to preview TeX output from different
+object classes.</p>
+<p>Built-in support includes:</p><ul>
+<li><p>character (tex lines)</p></li>
+<li><p>knitr_kable (kable/kableExtra)</p></li>
+<li><p>xtable</p></li>
+<li><p>texreg</p></li>
+<li><p>equatiomatic</p></li>
+</ul>
     <p><br><details><summary> <span title='Click to Expand'> System Requirements </span> </summary></p>
 <p>The function assumes the system has pdflatex installed and it is  defined in the PATH.</p>
 <p></details></p>
 <p><br><details><summary> <span title='Click to Expand'> TeX Packages </span> </summary></p>
-<p>To add packages to the tex file use <a href='build_usepackage.html'>build_usepackage</a></p>
-<p></details></p>
+<p>To add packages to the tex file on render there are two options</p><ul>
+<li><p>Use <a href='build_usepackage.html'>build_usepackage</a> and use the input
+argument <code>usrPackages</code>.</p></li>
+<li><p>Append to the input object <code>\usepackage{...}</code> calls, they will be parsed
+and added the to rendering.</p></li>
+</ul>
+    <p></details></p>
 <p><br><details><summary> <span title='Click to Expand'> Images </span> </summary></p><ul>
 <li><p>An image file of the name stem with the extension specified in <code>imgFormat</code>.</p></li>
 <li><p>The default extension is png.</p></li>

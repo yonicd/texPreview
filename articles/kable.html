@@ -84,9 +84,9 @@
     
 <div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" data-line-number="1"><span class="kw">library</span>(texPreview)</a>
 <a class="sourceLine" id="cb1-2" data-line-number="2"></a>
-<a class="sourceLine" id="cb1-3" data-line-number="3">tex_opts<span class="op">$</span><span class="kw">set</span>(</a>
-<a class="sourceLine" id="cb1-4" data-line-number="4">  <span class="dt">returnType =</span> knitr<span class="op">::</span>opts_knit<span class="op">$</span><span class="kw">get</span>(<span class="st">'rmarkdown.pandoc.to'</span>),</a>
-<a class="sourceLine" id="cb1-5" data-line-number="5">  <span class="dt">resizebox =</span> <span class="ot">FALSE</span></a>
+<a class="sourceLine" id="cb1-3" data-line-number="3">tex_opts<span class="op">$</span><span class="kw">set</span>( </a>
+<a class="sourceLine" id="cb1-4" data-line-number="4">  <span class="dt">returnType =</span> <span class="st">'html'</span>,</a>
+<a class="sourceLine" id="cb1-5" data-line-number="5">  <span class="dt">opts.html   =</span> <span class="kw">list</span>(<span class="dt">width =</span> <span class="st">'50%'</span>, <span class="dt">height =</span> <span class="st">'50%'</span>)</a>
 <a class="sourceLine" id="cb1-6" data-line-number="6">)</a></code></pre></div>
 <div id="read-the-lines-in-the-tex-file" class="section level2">
 <h2 class="hasAnchor">
@@ -113,7 +113,7 @@
 <a href="#convert-lines-into-knitr_kable" class="anchor"></a>convert lines into knitr_kable</h2>
 <div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb4-1" data-line-number="1"></a>
 <a class="sourceLine" id="cb4-2" data-line-number="2">kbl &lt;-<span class="st"> </span>tex_file<span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb4-3" data-line-number="3"><span class="st">  </span>texPreview<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/texPreview/topics/as.kable">as.kable</a></span>()</a></code></pre></div>
+<a class="sourceLine" id="cb4-3" data-line-number="3"><span class="st">  </span>texPreview<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/texPreview/topics/as_kable">as.kable</a></span>()</a></code></pre></div>
 </div>
 <div id="preview-the-table" class="section level2">
 <h2 class="hasAnchor">
@@ -121,7 +121,7 @@
 <div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb5-1" data-line-number="1"></a>
 <a class="sourceLine" id="cb5-2" data-line-number="2">kbl<span class="op">%&gt;%</span></a>
 <a class="sourceLine" id="cb5-3" data-line-number="3"><span class="st">  </span>texPreview<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/texPreview/topics/tex_preview">tex_preview</a></span>()</a></code></pre></div>
-<p><img src="kable_files/figure-html/unnamed-chunk-5-1.png" width="126"></p>
+<p><img src="kable_files/figure-html/unnamed-chunk-5-1.png" width="190"></p>
 </div>
 <div id="use-kableextra-to-manipulate-the-table-and-preview" class="section level2">
 <h2 class="hasAnchor">
@@ -132,7 +132,7 @@
 <a class="sourceLine" id="cb6-4" data-line-number="4">                            <span class="dt">latex_hline =</span> <span class="st">"major"</span>, </a>
 <a class="sourceLine" id="cb6-5" data-line-number="5">                            <span class="dt">valign =</span> <span class="st">"middle"</span>)<span class="op">%&gt;%</span></a>
 <a class="sourceLine" id="cb6-6" data-line-number="6"><span class="st">  </span>texPreview<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/texPreview/topics/tex_preview">tex_preview</a></span>()</a></code></pre></div>
-<p><img src="kable_files/figure-html/unnamed-chunk-6-1.png" width="126"></p>
+<p><img src="kable_files/figure-html/unnamed-chunk-6-1.png" width="190"></p>
 </div>
   </div>
 
