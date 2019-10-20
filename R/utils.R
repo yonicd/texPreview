@@ -97,3 +97,9 @@ clean_packages <- function(x){
   structure(ret,packages = tex_pkgs(lines = x,file = NULL))
   
 }
+
+tex_path <- function(fileDir,stem,dev = 'tex'){
+  
+  file.path(fileDir, sprintf("%s.%s",stem,dev))
+  
+}

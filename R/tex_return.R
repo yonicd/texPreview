@@ -1,42 +1,36 @@
-tex_return <- function(
-  obj,
-  stem = "tex_temp",
-  dev = 'tex',
-  img_format = tex_opts$get('imgFormat'),
-  returnType = tex_opts$get('returnType'),
-  fileDir = tex_opts$get('fileDir'),
-  opts.html = tex_opts$get('opts.html')
-  ){
+#' @importFrom magick image_scale image_read
+tex_return <- function(obj,
+                       stem = "tex_temp",
+                       dev = 'tex',
+                       img_format = tex_opts$get('imgFormat'),
+                       returnType = tex_opts$get('returnType'),
+                       fileDir = tex_opts$get('fileDir'),
+                       opts.html = tex_opts$get('opts.html')){
   
   path <- tex_path(fileDir,stem,dev)
 
-  if(returnType=='viewer') {
-    return(invisible(NULL))
-  }
-  
-  if(returnType%in%c("html", "html5", "s5", "slidy","slideous", "dzslides", "revealjs","md")){
-    return(
-      magick::image_read(tex_path(fileDir,stem,img_format))
-    )
-  } 
-  
-  if(returnType=='input'){
-    cat(obj, file = path, sep= '\n')
-    obj <- sprintf('\\input{%s}',path)
-    class(obj) <- sprintf('texpreview_%s',tex_opts$get('returnType'))
-    return(obj)
-  }
-  
-  if(returnType%in%c('tex','beamer')){
-    cat(obj, file = path, sep= '\n')
-    return(obj)
-  }
+  switch(returnType,
+         
+         'viewer' = {NULL},
+         
+         'html'   = {
+           magick::image_scale(
+            magick::image_read(tex_path(fileDir,stem,img_format)),
+            paste(opts.html,collapse = 'x')
+           )
+           },
+         
+         'input'  = {
+           cat(obj, file = path, sep= '\n')
+           ret <- sprintf('\\input{%s}',path)
+           structure(ret, class = sprintf('texpreview_%s',returnType))
+         },
+         
+         'tex'  = {
+           cat(obj, file = path, sep= '\n')
+           structure(obj, class = sprintf('texpreview_%s',returnType))
+         }
+         
+         )
 
-  
-}
-
-tex_path <- function(fileDir,stem,dev = 'tex'){
-  
-  file.path(fileDir, sprintf("%s.%s",stem,dev))
-  
 }

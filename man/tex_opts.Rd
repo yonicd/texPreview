@@ -38,7 +38,7 @@ you call \code{tex_opts_current$set()}; you can only query the options via
 \code{tex_opts_current$get()}.
 }
 \examples{
-tex_opts$get('margin')
+tex_opts$get()
 }
 \concept{opts}
 \keyword{datasets}

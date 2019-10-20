@@ -2,7 +2,7 @@ tex_cleanup <- function(
   cleanup,
   stem,
   keep_pdf,
-  keep_log,
+  keep_log = FALSE,
   fileDir = tex_opts$get('fileDir')){
   
   if( !is.null(cleanup) ){

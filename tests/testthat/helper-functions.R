@@ -4,3 +4,15 @@ skip_on_windows <- function () {
   }
   skip("Non Unix")
 }
+
+cleanup <- function(path, create = TRUE){
+  
+  unlink(path,recursive = TRUE,force = TRUE)
+  
+  tex_opts$restore()
+  
+  if(create)
+    
+    dir.create(path)
+  
+}

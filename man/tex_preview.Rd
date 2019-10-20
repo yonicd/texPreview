@@ -94,6 +94,18 @@ input TeX script into the function and it renders a pdf and
 converts it an image which is sent to Viewer.
 }
 \details{
+\code{tex_preview} is an \code{S3 method} that can be used to preview TeX output from different
+object classes.
+
+Built-in support includes:
+\itemize{
+\item character (tex lines)
+\item knitr_kable (kable/kableExtra)
+\item xtable
+\item texreg
+\item equatiomatic
+}
+
 \foldstart{System Requirements}
 
 The function assumes the system has pdflatex installed and it is  defined in the PATH.
@@ -102,7 +114,13 @@ The function assumes the system has pdflatex installed and it is  defined in the
 
 \foldstart{TeX Packages}
 
-To add packages to the tex file use \link[texPreview:build_usepackage]{build_usepackage}
+To add packages to the tex file on render there are two options
+\itemize{
+\item Use \link[texPreview:build_usepackage]{build_usepackage} and use the input
+argument \code{usrPackages}.
+\item Append to the input object \code{\\usepackage{...}} calls, they will be parsed
+and added the to rendering.
+}
 
 \foldend{}
 

@@ -1,20 +1,8 @@
 testthat::context('utilities')
 
-cleanup <- function(path, create = TRUE){
-  
-  unlink(path,recursive = TRUE,force = TRUE)
-  
-  tex_opts$restore()
-  
-  if(create)
-    
-    dir.create(path)
-  
-}
-
 path <- file.path(tempdir(),'tex')
 
-dir.create(path)
+cleanup(path)
 
 tex_opts$set(returnType = 'tex',fileDir = path)
 
@@ -37,4 +25,4 @@ testthat::describe('print methods',{
   
 })
 
-cleanup(path)
+cleanup(path,create = FALSE)

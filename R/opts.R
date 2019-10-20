@@ -60,7 +60,7 @@ new_defaults = function(value = list()) {
 #'   \code{tex_opts_current$get()}.
 #' @export
 #' @concept opts
-#' @examples tex_opts$get('margin')
+#' @examples tex_opts$get()
 tex_opts = new_defaults(list(
   fileDir = NULL,
   margin = list(left = 10, top=5, right=10, bottom=5),

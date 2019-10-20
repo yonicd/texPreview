@@ -42,6 +42,17 @@
 #' @param ... passed to [system2][base::system2]
 #' @details 
 #' 
+#'  `tex_preview` is an `S3 method` that can be used to preview TeX output from different
+#'  object classes. 
+#'  
+#'  Built-in support includes:
+#'  
+#'   - character (tex lines)
+#'   - knitr_kable (kable/kableExtra)
+#'   - xtable
+#'   - texreg
+#'   - equatiomatic
+#' 
 #' \foldstart{System Requirements}
 #' 
 #' The function assumes the system has pdflatex installed and it is  defined in the PATH. 
@@ -50,7 +61,12 @@
 #' 
 #' \foldstart{TeX Packages}
 #' 
-#'   To add packages to the tex file use [build_usepackage][texPreview::build_usepackage]
+#' To add packages to the tex file on render there are two options
+#'   
+#'  - Use [build_usepackage][texPreview::build_usepackage] and use the input
+#'    argument `usrPackages`.
+#'  - Append to the input object `\\usepackage{...}` calls, they will be parsed
+#'    and added the to rendering.
 #'   
 #' \foldend{}   
 #'   
@@ -189,7 +205,7 @@ tex_preview.default <- function(obj,
   )
   
   on.exit({
-
+    if(!exists('keep_log')) keep_log <- FALSE
     tex_cleanup(cleanup,stem,keep_pdf,keep_log)
     tex_opts$set(session_opts)
     
