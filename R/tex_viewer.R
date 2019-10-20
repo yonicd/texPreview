@@ -11,7 +11,7 @@ tex_viewer <- function(imgOut,
                        imgFormat = tex_opts$get('imgFormat')){
   
   if(returnType=='shiny')
-    return()
+    return(invisible(NULL))
   
   thispath <- normalizePath(file.path(fileDir, paste0(stem,".", imgFormat)),mustWork = FALSE)
   

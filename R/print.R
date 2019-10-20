@@ -8,6 +8,12 @@ knit_print.texpreview_tex <- function(x,...){
 }
 
 #' @export
+print.texpreview_viewer <- function(x,...){
+  x <- as.null(x)
+  invisible(x)
+}
+
+#' @export
 print.texpreview_tex <- function(x,...){
   x <- paste0(x,collapse = '\n')
   class(x) <- 'character'

@@ -42,6 +42,17 @@
 #' @param ... passed to [system2][base::system2]
 #' @details 
 #' 
+#'  `tex_preview` is an `S3 method` that can be used to preview TeX output from different
+#'  object classes. 
+#'  
+#'  Built-in support includes:
+#'  
+#'   - character (tex lines)
+#'   - knitr_kable (kable/kableExtra)
+#'   - xtable
+#'   - texreg
+#'   - equatiomatic
+#' 
 #' \foldstart{System Requirements}
 #' 
 #' The function assumes the system has pdflatex installed and it is  defined in the PATH. 
@@ -50,7 +61,12 @@
 #' 
 #' \foldstart{TeX Packages}
 #' 
-#'   To add packages to the tex file use [build_usepackage][texPreview::build_usepackage]
+#' To add packages to the tex file on render there are two options
+#'   
+#'  - Use [build_usepackage][texPreview::build_usepackage] and use the input
+#'    argument `usrPackages`.
+#'  - Append to the input object `\\usepackage{...}` calls, they will be parsed
+#'    and added the to rendering.
 #'   
 #' \foldend{}   
 #'   
@@ -75,12 +91,17 @@
 #' 
 #' The output of the function is dependent on the value of returnType:
 #' 
-#'  - viewer: NULL, a magick image is printed in the internal viewer
-#'  - tex, beamer: character, TeX lines
-#'  - input: character, path to the file containing the tex wrapped in an input call
-#'  - html, html5, s5, slidy, slideous, dzslides, revealjs, md: 
-#'    - magick image 
+#'  - viewer: NULL
+#'    - magick image is printed in the internal viewer
+#'  - tex: 
+#'    - character, TeX lines
+#'    - printed 'asis' in RMarkdown
+#'  - input: character
+#'    - path to the file containing the tex wrapped in an input call
+#'    - printed 'asis' in RMarkdown
+#'  - html: magick image
 #'    - Printed as an HTML document in the internal viewer
+#'    - Printed as an image in RMarkdown
 #' 
 #' @examples
 #' data('iris')
@@ -189,7 +210,7 @@ tex_preview.default <- function(obj,
   )
   
   on.exit({
-
+    if(!exists('keep_log')) keep_log <- FALSE
     tex_cleanup(cleanup,stem,keep_pdf,keep_log)
     tex_opts$set(session_opts)
     

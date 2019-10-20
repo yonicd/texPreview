@@ -36,6 +36,7 @@ articles:
   - rmarkdown
   - kable
   - classes
+  - tikz
   - slickr
 - title: Utilities
   contents: tex_packages

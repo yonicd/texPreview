@@ -52,6 +52,8 @@
 #' 
 #' ktex_path
 #' 
+#' @concept utils
+#' @rdname as_kable
 #' @export
 as.kable <- function(x){
   UseMethod('as.kable')

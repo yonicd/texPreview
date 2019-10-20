@@ -3,25 +3,11 @@ library(texPreview)
 
 testthat::context('core tex function')
 
-  cleanup <- function(path, create = TRUE){
+path <- file.path(tempdir(),'tex')
 
-    unlink(path,recursive = TRUE,force = TRUE)
-    
-    tex_opts$restore()
-    
-    if(create)
-      
-      dir.create(path)
-    
-  }
-  
-  path <- file.path(tempdir(),'tex')
-  
-  dir.create(path)
-  
-  tex_opts$set(returnType = 'tex',fileDir = path)
+cleanup(path)
 
- #testthat::skip_on_cran()
+tex_opts$set(returnType = 'tex',fileDir = path)
   
   testthat::describe('porting to tex',{
   

@@ -79,13 +79,24 @@ create links for the log file on rendering errors, Default: interactive()}
 \value{
 The output of the function is dependent on the value of returnType:
 \itemize{
-\item viewer: NULL, a magick image is printed in the internal viewer
-\item tex, beamer: character, TeX lines
-\item input: character, path to the file containing the tex wrapped in an input call
-\item html, html5, s5, slidy, slideous, dzslides, revealjs, md:
+\item viewer: NULL
 \itemize{
-\item magick image
+\item magick image is printed in the internal viewer
+}
+\item tex:
+\itemize{
+\item character, TeX lines
+\item printed 'asis' in RMarkdown
+}
+\item input: character
+\itemize{
+\item path to the file containing the tex wrapped in an input call
+\item printed 'asis' in RMarkdown
+}
+\item html: magick image
+\itemize{
 \item Printed as an HTML document in the internal viewer
+\item Printed as an image in RMarkdown
 }
 }
 }
@@ -94,6 +105,18 @@ input TeX script into the function and it renders a pdf and
 converts it an image which is sent to Viewer.
 }
 \details{
+\code{tex_preview} is an \code{S3 method} that can be used to preview TeX output from different
+object classes.
+
+Built-in support includes:
+\itemize{
+\item character (tex lines)
+\item knitr_kable (kable/kableExtra)
+\item xtable
+\item texreg
+\item equatiomatic
+}
+
 \foldstart{System Requirements}
 
 The function assumes the system has pdflatex installed and it is  defined in the PATH.
@@ -102,7 +125,13 @@ The function assumes the system has pdflatex installed and it is  defined in the
 
 \foldstart{TeX Packages}
 
-To add packages to the tex file use \link[texPreview:build_usepackage]{build_usepackage}
+To add packages to the tex file on render there are two options
+\itemize{
+\item Use \link[texPreview:build_usepackage]{build_usepackage} and use the input
+argument \code{usrPackages}.
+\item Append to the input object \code{\\usepackage{...}} calls, they will be parsed
+and added the to rendering.
+}
 
 \foldend{}
 

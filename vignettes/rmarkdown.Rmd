@@ -19,9 +19,9 @@ knitr::opts_chunk$set(
 ```{r}
 library(texPreview)
 
-tex_opts$set(
-  returnType = knitr::opts_knit$get('rmarkdown.pandoc.to'),
-  resizebox = FALSE  
+tex_opts$set( 
+  returnType = 'html',
+  opts.html   = list(width = '75%', height = '75%')
 )
 
 ```
