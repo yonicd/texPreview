@@ -78,19 +78,33 @@
 <div class="page-header"><h1 class="hasAnchor">
 <a href="#texpreview" class="anchor"></a>texPreview</h1></div>
 <p>Preview and save images of rendered snippets of LaTeX in RStudio viewer</p>
+<div id="functionality" class="section level2">
+<h2 class="hasAnchor">
+<a href="#functionality" class="anchor"></a>Functionality</h2>
 <ul>
-<li><p>Must have pdflatex in PATH (Windows users can install by running the following in R: <code>install.packages("installr"); installr::install.MikTeX()</code>)</p></li>
-<li>Supports Tabular, equations and other LaTex functionalities.</li>
-<li>Load TeX packages</li>
-<li><p>Input Preamble</p></li>
-<li><p>Supports xtable inputs</p></li>
-<li><p>Defined as Rstudio Addin so user can highlight text in the editor and invoke preview automatically.</p></li>
-<li><p>Can be run in a rmarkdown enviornment pdf/html/book/beamer/ioslides/slidy/revealjs …</p></li>
-<li><p>Can be run in a shiny enviornment, as <code><a href="http://www.rdocumentation.org/packages/shiny/topics/renderImage">shiny::renderImage</a></code> or as part of htmlwidgets like <a href="https://github.com/ijlyttle/bsplus">bsplus::carousel</a>, <a href="https://github.com/timelyportfolio/loryR">loryR::renderLoryR</a> and <a href="https://github.com/metrumresearchgroup/slickR">slickR::renderSlickR</a>.</p></li>
+<li><p><strong>Supports</strong>: character, knitr, kableExtra, xtable, texreg, equatiomatic classes</p></li>
+<li><p><strong>Extendable</strong>: <code>S3</code> methods can be written for the main call, <code><a href="reference/tex_preview.html">texPreview::tex_preview</a></code>, to use with new classes for rendering and printing.</p></li>
+<li><p><strong>Rstudio Addin</strong>: Users can highlight text in the editor and invoke preview automatically.</p></li>
+<li><p><strong>RMarkdown</strong> document compatible with all document outputs</p></li>
+<li><p><strong>Shiny</strong> compatible via <code><a href="http://www.rdocumentation.org/packages/shiny/topics/renderImage">shiny::renderImage</a></code> or as part of htmlwidgets like <code><a href="http://www.rdocumentation.org/packages/slickR/topics/slickR">slickR::slickR</a></code>.</p></li>
+<li><p><strong>Pan and Zoom functionality</strong>: When the output is set to ‘svg’ the default output to the viewer is <code><a href="http://www.rdocumentation.org/packages/svgPanZoom/topics/svgPanZoom">svgPanZoom::svgPanZoom</a></code>, which allows for panning and zooming on the image in the viewer. If the package is not installed a static image will be loaded.</p></li>
+<li><p><strong>System Requirements</strong>: Must have pdflatex in PATH, Windows users can install by running <a href="http://talgalili.github.io/installr/reference/install.MikTeX.html">installr::install.MikTeX</a></p></li>
 </ul>
+</div>
+<div id="examples" class="section level2">
+<h2 class="hasAnchor">
+<a href="#examples" class="anchor"></a>Examples</h2>
+<div id="basic" class="section level3">
+<h3 class="hasAnchor">
+<a href="#basic" class="anchor"></a>Basic</h3>
 <p><img src="https://github.com/metrumresearchgroup/texPreview/blob/misc/Multimedia/texPreview.gif?raw=true"></p>
-<p>When the output is set to ‘svg’ the default output to the viewer is <a href="https://github.com/timelyportfolio/svgPanZoom">svgPanZoom</a>, which allows for panning and zooming on the image in the viewer. If the package is not installed a static image will be loaded.</p>
+</div>
+<div id="panzoom" class="section level3">
+<h3 class="hasAnchor">
+<a href="#panzoom" class="anchor"></a>Pan/Zoom</h3>
 <p><img src="https://github.com/metrumresearchgroup/texPreview/blob/misc/Multimedia/texPreviewPanZoom.gif?raw=true"></p>
+</div>
+</div>
 </div>
 
   </div>
