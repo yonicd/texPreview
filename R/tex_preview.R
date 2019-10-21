@@ -7,10 +7,14 @@
 #' complete LaTeX file directly. It should be a vector of character with each 
 #' element as a line of raw TeX code. 
 #' @param stem character, name to use in output files, Default: "tex_temp"
+#' @param overwrite logical, controls if overwriting of output 
+#' stem* files given their existences, Default: TRUE
+#' @param keep_pdf logical, controls if the rendered pdf file should be kept
+#'  or deleted, Default: FALSE
+#' @param tex_message logical, controls if latex executing messages 
+#' are displayed in console. Default: FALSE
 #' @param fileDir character, output destination. If NULL a temp.dir() 
 #' will be used and no output will be saved, Default: tex_opts$get('fileDir')
-#' @param overwrite logical, controls if overwriting of output 
-#' stem* files given their existences
 #' @param margin table margin for pdflatex call, Default: tex_opts$get('margin')
 #' @param imgFormat character, defines the type of image the PDF is 
 #' converted to Default: tex_opts$get('imgFormat')
@@ -25,10 +29,6 @@
 #'  ('pdflatex','xelatex','lualatex'), Default: tex_opts$get('engine')
 #' @param cleanup character, vector of file extensions to clean up after 
 #' building pdf, Default: tex_opts$get('cleanup')
-#' @param keep_pdf logical, controls if the rendered pdf file should be kept
-#'  or deleted, Default is FALSE
-#' @param tex_message logical, controls if latex executing messages 
-#' are displayed in console. Default is FALSE
 #' @param density numeric, controls the density of the image. 
 #' Default is 150: tex_opts$get('density)
 #' @param svg_max numeric, maximum svg file size allowable to preview, 
@@ -150,17 +150,17 @@
 tex_preview <- function (obj, 
                          tex_lines         = NULL,
                          stem              = "tex_temp",
-                         fileDir           = tex_opts$get('fileDir'), 
-                         overwrite         = TRUE, 
+                         overwrite         = TRUE,
+                         keep_pdf          = FALSE,
+                         tex_message       = FALSE,
+                         fileDir           = tex_opts$get('fileDir'),
                          margin            = tex_opts$get('margin'),
-                         imgFormat         = tex_opts$get('imgFormat'), 
+                         imgFormat         = tex_opts$get('imgFormat'),
                          returnType        = tex_opts$get('returnType'),
                          resizebox         = tex_opts$get('resizebox'),
-                         usrPackages       = NULL,
+                         usrPackages       = tex_opts$get('usrPackages'),
                          engine            = tex_opts$get('engine'),
                          cleanup           = tex_opts$get('cleanup'),
-                         keep_pdf          = FALSE, 
-                         tex_message       = FALSE, 
                          density           = tex_opts$get('density'),
                          svg_max           = tex_opts$get('svg_max'),
                          print.xtable.opts = tex_opts$get('print.xtable.opts'),
@@ -176,17 +176,17 @@ tex_preview <- function (obj,
 tex_preview.default <- function(obj, 
                                 tex_lines         = NULL,
                                 stem              = "tex_temp",
-                                fileDir           = tex_opts$get('fileDir'), 
-                                overwrite         = TRUE, 
+                                overwrite         = TRUE,
+                                keep_pdf          = FALSE,
+                                tex_message       = FALSE,
+                                fileDir           = tex_opts$get('fileDir'),
                                 margin            = tex_opts$get('margin'),
-                                imgFormat         = tex_opts$get('imgFormat'), 
+                                imgFormat         = tex_opts$get('imgFormat'),
                                 returnType        = tex_opts$get('returnType'),
                                 resizebox         = tex_opts$get('resizebox'),
-                                usrPackages       = NULL,
+                                usrPackages       = tex_opts$get('usrPackages'),
                                 engine            = tex_opts$get('engine'),
                                 cleanup           = tex_opts$get('cleanup'),
-                                keep_pdf          = FALSE, 
-                                tex_message       = FALSE, 
                                 density           = tex_opts$get('density'),
                                 svg_max           = tex_opts$get('svg_max'),
                                 print.xtable.opts = tex_opts$get('print.xtable.opts'),
@@ -259,27 +259,28 @@ tex_preview.default <- function(obj,
 tex_preview.character <- function(obj, 
                                   tex_lines         = NULL,
                                   stem              = "tex_temp",
-                                  fileDir           = tex_opts$get('fileDir'), 
-                                  overwrite         = TRUE, 
+                                  overwrite         = TRUE,
+                                  keep_pdf          = FALSE,
+                                  tex_message       = FALSE,
+                                  fileDir           = tex_opts$get('fileDir'),
                                   margin            = tex_opts$get('margin'),
-                                  imgFormat         = tex_opts$get('imgFormat'), 
+                                  imgFormat         = tex_opts$get('imgFormat'),
                                   returnType        = tex_opts$get('returnType'),
                                   resizebox         = tex_opts$get('resizebox'),
-                                  usrPackages       = NULL,
+                                  usrPackages       = tex_opts$get('usrPackages'),
                                   engine            = tex_opts$get('engine'),
                                   cleanup           = tex_opts$get('cleanup'),
-                                  keep_pdf          = FALSE, 
-                                  tex_message       = FALSE, 
                                   density           = tex_opts$get('density'),
                                   svg_max           = tex_opts$get('svg_max'),
                                   print.xtable.opts = tex_opts$get('print.xtable.opts'),
                                   opts.html         = tex_opts$get('opts.html'),
                                   markers           = interactive(),...){
   
-  tex_preview.default(obj,tex_lines,stem,fileDir,overwrite,margin,
-              imgFormat,returnType,resizebox,usrPackages,
-              engine,cleanup,keep_pdf,tex_message,density,
-              svg_max,print.xtable.opts,opts.html,markers,...)
+  tex_preview.default(obj,tex_lines,stem,overwrite,keep_pdf,
+                      tex_message = tex_message,fileDir,margin,
+                      imgFormat,returnType,resizebox,usrPackages,
+                      engine,cleanup,density,svg_max,
+                      print.xtable.opts,opts.html,markers,...)
   
 }
 
@@ -287,17 +288,17 @@ tex_preview.character <- function(obj,
 tex_preview.knitr_kable <- function(obj, 
                                     tex_lines         = NULL,
                                     stem              = "tex_temp",
-                                    fileDir           = tex_opts$get('fileDir'), 
-                                    overwrite         = TRUE, 
+                                    overwrite         = TRUE,
+                                    keep_pdf          = FALSE,
+                                    tex_message       = FALSE,
+                                    fileDir           = tex_opts$get('fileDir'),
                                     margin            = tex_opts$get('margin'),
-                                    imgFormat         = tex_opts$get('imgFormat'), 
+                                    imgFormat         = tex_opts$get('imgFormat'),
                                     returnType        = tex_opts$get('returnType'),
                                     resizebox         = tex_opts$get('resizebox'),
-                                    usrPackages       = NULL,
+                                    usrPackages       = tex_opts$get('usrPackages'),
                                     engine            = tex_opts$get('engine'),
                                     cleanup           = tex_opts$get('cleanup'),
-                                    keep_pdf          = FALSE, 
-                                    tex_message       = FALSE, 
                                     density           = tex_opts$get('density'),
                                     svg_max           = tex_opts$get('svg_max'),
                                     print.xtable.opts = tex_opts$get('print.xtable.opts'),
@@ -310,10 +311,11 @@ tex_preview.knitr_kable <- function(obj,
   
   obj <- as.character(obj)
   
-  tex_preview(obj,tex_lines,stem,fileDir,overwrite,margin,
-              imgFormat,returnType,resizebox,usrPackages,
-              engine,cleanup,keep_pdf,tex_message,density,
-              svg_max,print.xtable.opts,opts.html,markers,...)
+  tex_preview.default(obj,tex_lines,stem,overwrite,keep_pdf,
+                      tex_message = tex_message,fileDir,margin,
+                      imgFormat,returnType,resizebox,usrPackages,
+                      engine,cleanup,density,svg_max,
+                      print.xtable.opts,opts.html,markers,...)
   
 }
 
@@ -321,17 +323,17 @@ tex_preview.knitr_kable <- function(obj,
 tex_preview.xtable <- function(obj, 
                                tex_lines         = NULL,
                                stem              = "tex_temp",
-                               fileDir           = tex_opts$get('fileDir'), 
-                               overwrite         = TRUE, 
+                               overwrite         = TRUE,
+                               keep_pdf          = FALSE,
+                               tex_message       = FALSE,
+                               fileDir           = tex_opts$get('fileDir'),
                                margin            = tex_opts$get('margin'),
-                               imgFormat         = tex_opts$get('imgFormat'), 
+                               imgFormat         = tex_opts$get('imgFormat'),
                                returnType        = tex_opts$get('returnType'),
                                resizebox         = tex_opts$get('resizebox'),
-                               usrPackages       = NULL,
+                               usrPackages       = tex_opts$get('usrPackages'),
                                engine            = tex_opts$get('engine'),
                                cleanup           = tex_opts$get('cleanup'),
-                               keep_pdf          = FALSE, 
-                               tex_message       = FALSE, 
                                density           = tex_opts$get('density'),
                                svg_max           = tex_opts$get('svg_max'),
                                print.xtable.opts = tex_opts$get('print.xtable.opts'),
@@ -352,10 +354,11 @@ tex_preview.xtable <- function(obj,
   
   obj <- do.call("print", print.xtable.opts)
   
-  tex_preview(obj,tex_lines,stem,fileDir,overwrite,margin,
-              imgFormat,returnType,resizebox,usrPackages,
-              engine,cleanup,keep_pdf,tex_message,density,
-              svg_max,print.xtable.opts,opts.html,markers,...)
+  tex_preview.default(obj,tex_lines,stem,overwrite,keep_pdf,
+                      tex_message = tex_message,fileDir,margin,
+                      imgFormat,returnType,resizebox,usrPackages,
+                      engine,cleanup,density,svg_max,
+                      print.xtable.opts,opts.html,markers,...)
 
 }
 
@@ -363,17 +366,17 @@ tex_preview.xtable <- function(obj,
 tex_preview.equation <- function(obj, 
                                  tex_lines         = NULL,
                                  stem              = "tex_temp",
-                                 fileDir           = tex_opts$get('fileDir'), 
-                                 overwrite         = TRUE, 
+                                 overwrite         = TRUE,
+                                 keep_pdf          = FALSE,
+                                 tex_message       = FALSE,
+                                 fileDir           = tex_opts$get('fileDir'),
                                  margin            = tex_opts$get('margin'),
-                                 imgFormat         = tex_opts$get('imgFormat'), 
+                                 imgFormat         = tex_opts$get('imgFormat'),
                                  returnType        = tex_opts$get('returnType'),
                                  resizebox         = tex_opts$get('resizebox'),
-                                 usrPackages       = NULL,
+                                 usrPackages       = tex_opts$get('usrPackages'),
                                  engine            = tex_opts$get('engine'),
                                  cleanup           = tex_opts$get('cleanup'),
-                                 keep_pdf          = FALSE, 
-                                 tex_message       = FALSE, 
                                  density           = tex_opts$get('density'),
                                  svg_max           = tex_opts$get('svg_max'),
                                  print.xtable.opts = tex_opts$get('print.xtable.opts'),
@@ -383,9 +386,10 @@ tex_preview.equation <- function(obj,
   
   obj <- sprintf('$$\n%s\n$$',as.character(obj))
   
-  tex_preview(obj,tex_lines,stem,fileDir,overwrite,margin,
-              imgFormat,returnType,resizebox,usrPackages,
-              engine,cleanup,keep_pdf,tex_message,density,
-              svg_max,print.xtable.opts,opts.html,markers,...)
+  tex_preview.default(obj,tex_lines,stem,overwrite,keep_pdf,
+                      tex_message = tex_message,fileDir,margin,
+                      imgFormat,returnType,resizebox,usrPackages,
+                      engine,cleanup,density,svg_max,
+                      print.xtable.opts,opts.html,markers,...)
   
 }

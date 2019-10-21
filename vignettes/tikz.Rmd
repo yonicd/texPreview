@@ -1,0 +1,61 @@
+---
+title: "Using texPreview with tikz"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Using texPreview with tikz}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>",
+  eval = !nzchar(Sys.getenv("NOT_CRAN"))
+)
+```
+
+texPreview can be used for any TeX input beyond tabular environments, such as `tikz`. In the following examples we input a `tikzpicture` and an entire TeX file that contains a `tikz` environment.
+
+```{r setup}
+library(texPreview)
+```
+
+```{r}
+# add tikz support to tex_opts
+use_lib <- "\\usetikzlibrary{arrows,shapes,snakes,automata,backgrounds,arrows.meta,positioning}"
+tex_opts$set(
+  returnType  = 'html',
+  usrPackages = build_usepackage(pkg = 'tikz',uselibrary = use_lib)
+)
+```
+
+```{r}
+tikz_examples <- list.files(system.file('examples/tikz',package = 'texPreview'),
+                          pattern = 'tex$',full.names = TRUE)
+tikz_code <- lapply(tikz_examples,
+                    function(x) paste0(readLines(x),collapse = '\n'))
+names(tikz_code) <- basename(tikz_examples)
+```
+
+## tikzpicture
+
+```{r}
+tex_preview(obj = tikz_code$pk_model.tex)
+```
+
+```{r,echo=FALSE}
+details::details(tikz_code$pd_model.tex,summary = 'Click to view TeX',lang = 'tex')
+```
+
+## File
+
+For a full TeX document use the `tex_lines` argument instead of the `obj`. This input bypasses the internal document template that is used for texPreview and renders the contents of the file directly. 
+
+```{r}
+tex_preview(tex_lines = tikz_code$credit_rationing.tex)
+```
+
+```{r,echo=FALSE}
+details::details(tikz_code$credit_rationing.tex,summary = 'Click to view TeX',lang = 'tex')
+```

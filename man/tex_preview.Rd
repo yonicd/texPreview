@@ -5,13 +5,13 @@
 \title{Render and Preview snippets of TeX in R Viewer}
 \usage{
 tex_preview(obj, tex_lines = NULL, stem = "tex_temp",
-  fileDir = tex_opts$get("fileDir"), overwrite = TRUE,
-  margin = tex_opts$get("margin"),
+  overwrite = TRUE, keep_pdf = FALSE, tex_message = FALSE,
+  fileDir = tex_opts$get("fileDir"), margin = tex_opts$get("margin"),
   imgFormat = tex_opts$get("imgFormat"),
   returnType = tex_opts$get("returnType"),
-  resizebox = tex_opts$get("resizebox"), usrPackages = NULL,
+  resizebox = tex_opts$get("resizebox"),
+  usrPackages = tex_opts$get("usrPackages"),
   engine = tex_opts$get("engine"), cleanup = tex_opts$get("cleanup"),
-  keep_pdf = FALSE, tex_message = FALSE,
   density = tex_opts$get("density"), svg_max = tex_opts$get("svg_max"),
   print.xtable.opts = tex_opts$get("print.xtable.opts"),
   opts.html = tex_opts$get("opts.html"), markers = interactive(), ...)
@@ -26,11 +26,17 @@ element as a line of raw TeX code.}
 
 \item{stem}{character, name to use in output files, Default: "tex_temp"}
 
+\item{overwrite}{logical, controls if overwriting of output
+stem* files given their existences, Default: TRUE}
+
+\item{keep_pdf}{logical, controls if the rendered pdf file should be kept
+or deleted, Default: FALSE}
+
+\item{tex_message}{logical, controls if latex executing messages
+are displayed in console. Default: FALSE}
+
 \item{fileDir}{character, output destination. If NULL a temp.dir()
 will be used and no output will be saved, Default: tex_opts$get('fileDir')}
-
-\item{overwrite}{logical, controls if overwriting of output
-stem* files given their existences}
 
 \item{margin}{table margin for pdflatex call, Default: tex_opts$get('margin')}
 
@@ -52,12 +58,6 @@ see details for string format}
 
 \item{cleanup}{character, vector of file extensions to clean up after
 building pdf, Default: tex_opts$get('cleanup')}
-
-\item{keep_pdf}{logical, controls if the rendered pdf file should be kept
-or deleted, Default is FALSE}
-
-\item{tex_message}{logical, controls if latex executing messages
-are displayed in console. Default is FALSE}
 
 \item{density}{numeric, controls the density of the image.
 Default is 150: tex_opts$get('density)}
