@@ -202,6 +202,7 @@ tex_preview.default <- function(obj,
     returnType = returnType,
     resizebox = resizebox,
     engine = engine,
+    usrPackages = usrPackages,
     cleanup = cleanup,
     density = density,
     print.xtable.opts = print.xtable.opts,
@@ -210,7 +211,7 @@ tex_preview.default <- function(obj,
   )
   
   on.exit({
-    if(!exists('keep_log')) keep_log <- FALSE
+    if(!exists('keep_log')) keep_log <- TRUE
     tex_cleanup(cleanup,stem,keep_pdf,keep_log)
     tex_opts$set(session_opts)
     

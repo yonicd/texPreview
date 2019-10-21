@@ -10,8 +10,7 @@ vignette: >
 ```{r, include = FALSE}
 knitr::opts_chunk$set(
   collapse = TRUE,
-  comment = "#>",
-  eval = !nzchar(Sys.getenv("NOT_CRAN"))
+  comment = "#>"
 )
 ```
 
@@ -24,7 +23,14 @@ library(texPreview)
 ```{r}
 # add tikz support to tex_opts
 use_lib <- "\\usetikzlibrary{arrows,shapes,snakes,automata,backgrounds,arrows.meta,positioning}"
+
+objpath <- file.path(getwd(),"tikz_files/figure-html")
+
+if(!dir.exists(objpath))
+  dir.create(objpath,recursive = TRUE)
+
 tex_opts$set(
+  fileDir    = objpath, # path to save output
   returnType  = 'html',
   usrPackages = build_usepackage(pkg = 'tikz',uselibrary = use_lib)
 )
@@ -41,7 +47,7 @@ names(tikz_code) <- basename(tikz_examples)
 ## tikzpicture
 
 ```{r}
-tex_preview(obj = tikz_code$pk_model.tex)
+tex_preview(obj = tikz_code$pk_model.tex,stem = 'tikz-1')
 ```
 
 ```{r,echo=FALSE}
@@ -53,7 +59,7 @@ details::details(tikz_code$pd_model.tex,summary = 'Click to view TeX',lang = 'te
 For a full TeX document use the `tex_lines` argument instead of the `obj`. This input bypasses the internal document template that is used for texPreview and renders the contents of the file directly. 
 
 ```{r}
-tex_preview(tex_lines = tikz_code$credit_rationing.tex)
+tex_preview(tex_lines = tikz_code$credit_rationing.tex,stem = 'tikz-2')
 ```
 
 ```{r,echo=FALSE}

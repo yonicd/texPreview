@@ -17,11 +17,11 @@ build_lines <- function(obj,
 
   usrPackages <- union(usrPackages,texPreview::build_usepackage(attr(obj,'packages')))
   
-  cat(obj, file= file.path(fileDir, paste0(stem,".tex")), sep= '\n')
+  cat(obj, file= tex_path(fileDir,stem), sep= '\n')
   
   TMPL <- readLines(system.file('tmpl.tex',package = 'texPreview'))
   
-  input_path <- normalizePath(file.path(fileDir,sprintf('%s.tex',stem)),winslash = .Platform$file.sep)
+  input_path <- normalizePath(tex_path(fileDir,stem),winslash = .Platform$file.sep)
   
   ARGS <- append(margin, list(usrPackages = paste0(usrPackages,collapse = '\n'), file = input_path))
   

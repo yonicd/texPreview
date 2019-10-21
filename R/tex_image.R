@@ -6,8 +6,7 @@ tex_image <- function(
   overwrite,
   fileDir = tex_opts$get('fileDir'),
   density = tex_opts$get('density'),
-  imgFormat = tex_opts$get('imgFormat'),
-  print.xtable.opts = tex_opts$get('print.xtable.opts')
+  imgFormat = tex_opts$get('imgFormat')
   ){
   
   if('pdftools'%in%rownames(installed.packages())){
@@ -16,10 +15,10 @@ tex_image <- function(
     readfn <- magick::image_read
   }
 
-  pdf_path <- file.path(fileDir, paste0(stem, "Doc.pdf"))
+  pdf_path <- tex_path(fileDir,paste0(stem,'Doc'),dev = 'pdf')
   
   if(!file.exists(pdf_path)){
-    log_path <- file.path(fileDir, paste0(stem, "Doc.log"))
+    log_path <- tex_path(fileDir,paste0(stem,'Doc'),dev = 'log')
     print(readLines(log_path))
     stop('pdf not rendered')
   }
@@ -30,20 +29,7 @@ tex_image <- function(
   
   if (write_flag & overwrite) {
     
-    magick::image_write(
-      imgOut, 
-      file.path(fileDir, paste0(stem,".", imgFormat))
-    )
-    
-    if (!"file" %in% names(print.xtable.opts)){ 
-      
-      print.xtable.opts$file <- file.path(fileDir, paste0(stem,".tex"))
-      
-    }
-    
-    if ("xtable" %in% class(obj)){
-      do.call("print", print.xtable.opts)
-    }
+    magick::image_write(imgOut, tex_path(fileDir,stem,dev = imgFormat))
     
   }
   
