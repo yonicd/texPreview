@@ -295,11 +295,7 @@ be controlled using the <code>cleanup</code> argument or <code>tex_opts$get('cle
     <pre class="examples"><div class='input'><span class='fu'>data</span>(<span class='st'>'iris'</span>)
 <span class='kw'>if</span>(<span class='fu'>interactive</span>()){
 
-<span class='co'>#use xtable to create tex output</span>
- <span class='fu'>tex_preview</span>(<span class='kw'>obj</span> <span class='kw'>=</span> <span class='kw pkg'>xtable</span><span class='kw ns'>::</span><span class='fu'><a href='http://www.rdocumentation.org/packages/xtable/topics/xtable'>xtable</a></span>(<span class='fu'>head</span>(<span class='no'>iris</span>,<span class='fl'>10</span>)))
-
-<span class='co'>#use knitr kable to create tex output</span>
- <span class='fu'>tex_preview</span>(<span class='kw pkg'>knitr</span><span class='kw ns'>::</span><span class='fu'><a href='http://www.rdocumentation.org/packages/knitr/topics/kable'>kable</a></span>(<span class='no'>mtcars</span>, <span class='st'>"latex"</span>))
+<span class='co'># Raw TeX</span>
 
 <span class='no'>tex</span> <span class='kw'>&lt;-</span> <span class='st'>'\\begin{tabular}{llr}
 \\hline
@@ -315,22 +311,26 @@ Armadillo &amp; frozen      &amp; 8.99       \\\\
 \\hline
 \\end{tabular}'</span>
 
+<span class='co'># knitr kable</span>
+
+ <span class='no'>mtcars</span><span class='kw'>%&gt;%</span>
+   <span class='fu'>head</span>()<span class='kw'>%&gt;%</span>
+   <span class='kw pkg'>knitr</span><span class='kw ns'>::</span><span class='fu'><a href='http://www.rdocumentation.org/packages/knitr/topics/kable'>kable</a></span>(<span class='st'>"latex"</span>)<span class='kw'>%&gt;%</span>
+   <span class='fu'>tex_preview</span>()
+
+<span class='co'># with svg output pan/zoom is enabled in the internal viewer</span>
+
 <span class='fu'>tex_preview</span>(<span class='kw'>obj</span> <span class='kw'>=</span> <span class='no'>tex</span>,<span class='kw'>stem</span> <span class='kw'>=</span> <span class='st'>'eq'</span>,<span class='kw'>imgFormat</span> <span class='kw'>=</span> <span class='st'>'svg'</span>)
 
 <span class='co'># use tex_lines parameter to pass full document</span>
 
-<span class='no'>tikz_example</span> <span class='kw'>&lt;-</span> <span class='fu'>system.file</span>(<span class='st'>'examples/tikz/credit-rationing.tex'</span>,
-<span class='kw'>package</span> <span class='kw'>=</span> <span class='st'>'texPreview'</span>)
+<span class='no'>tikz_path</span> <span class='kw'>&lt;-</span> <span class='fu'>system.file</span>(
+                  <span class='st'>'examples/tikz/credit_rationing.tex'</span>,
+                  <span class='kw'>package</span> <span class='kw'>=</span> <span class='st'>'texPreview'</span>
+                  )
 
-<span class='no'>tikzEx</span>       <span class='kw'>&lt;-</span> <span class='fu'>readLines</span>(<span class='no'>tikz_example</span>,<span class='kw'>warn</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)
-<span class='fu'>tex_preview</span>(<span class='kw'>tex_lines</span> <span class='kw'>=</span> <span class='no'>tikzEx</span>)
+<span class='fu'>tex_preview</span>(<span class='kw'>tex_lines</span> <span class='kw'>=</span> <span class='fu'>readLines</span>(<span class='no'>tikz_path</span>))
 
-<span class='co'>#use texPreview preamble to build document chunks</span>
-
-  <span class='no'>usetikz</span> <span class='kw'>&lt;-</span> <span class='fu'>paste</span>(<span class='no'>tikzEx</span>[<span class='fl'>14</span>:<span class='fl'>23</span>],<span class='kw'>collapse</span><span class='kw'>=</span><span class='st'>"\n"</span>)
-  <span class='no'>bodytikz</span> <span class='kw'>&lt;-</span> <span class='fu'>paste</span>(<span class='no'>tikzEx</span>[<span class='fl'>25</span>:<span class='fl'>90</span>],<span class='kw'>collapse</span><span class='kw'>=</span><span class='st'>"\n"</span>)
-  <span class='fu'>tex_preview</span>(<span class='kw'>obj</span> <span class='kw'>=</span> <span class='no'>bodytikz</span>,
-  <span class='kw'>usrPackages</span> <span class='kw'>=</span> <span class='fu'><a href='build_usepackage.html'>build_usepackage</a></span>(<span class='kw'>pkg</span> <span class='kw'>=</span> <span class='st'>'tikz'</span>,<span class='kw'>uselibrary</span> <span class='kw'>=</span> <span class='no'>usetikz</span>))
 }</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
