@@ -107,11 +107,7 @@
 #' data('iris')
 #' if(interactive()){
 #' 
-#' #use xtable to create tex output
-#'  tex_preview(obj = xtable::xtable(head(iris,10)))
-#' 
-#' #use knitr kable to create tex output
-#'  tex_preview(knitr::kable(mtcars, "latex"))
+#' # Raw TeX
 #' 
 #' tex <- '\\begin{tabular}{llr}
 #' \\hline
@@ -127,22 +123,26 @@
 #' \\hline
 #' \\end{tabular}'
 #' 
+#' # knitr kable
+#' 
+#'  mtcars%>%
+#'    head()%>%
+#'    knitr::kable("latex")%>%
+#'    tex_preview()
+#' 
+#' # with svg output pan/zoom is enabled in the internal viewer
+#' 
 #' tex_preview(obj = tex,stem = 'eq',imgFormat = 'svg')
 #' 
 #' # use tex_lines parameter to pass full document
 #' 
-#' tikz_example <- system.file('examples/tikz/credit-rationing.tex',
-#' package = 'texPreview')
+#' tikz_path <- system.file(
+#'                   'examples/tikz/credit_rationing.tex',
+#'                   package = 'texPreview'
+#'                   )
 #' 
-#' tikzEx       <- readLines(tikz_example,warn = FALSE)
-#' tex_preview(tex_lines = tikzEx)
+#' tex_preview(tex_lines = readLines(tikz_path))
 #' 
-#' #use texPreview preamble to build document chunks
-#' 
-#'   usetikz <- paste(tikzEx[14:23],collapse="\n")
-#'   bodytikz <- paste(tikzEx[25:90],collapse="\n")
-#'   tex_preview(obj = bodytikz,
-#'   usrPackages = build_usepackage(pkg = 'tikz',uselibrary = usetikz))
 #' }
 #' @concept tex
 #' @rdname tex_preview
