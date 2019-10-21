@@ -278,7 +278,7 @@ tex_preview.character <- function(obj,
                                   markers           = interactive(),...){
   
   tex_preview.default(obj,tex_lines,stem,overwrite,keep_pdf,
-                      tex_message = tex_message,fileDir,margin,
+                      tex_message,fileDir,margin,
                       imgFormat,returnType,resizebox,usrPackages,
                       engine,cleanup,density,svg_max,
                       print.xtable.opts,opts.html,markers,...)
@@ -313,7 +313,7 @@ tex_preview.knitr_kable <- function(obj,
   obj <- as.character(obj)
   
   tex_preview.default(obj,tex_lines,stem,overwrite,keep_pdf,
-                      tex_message = tex_message,fileDir,margin,
+                      tex_message,fileDir,margin,
                       imgFormat,returnType,resizebox,usrPackages,
                       engine,cleanup,density,svg_max,
                       print.xtable.opts,opts.html,markers,...)
@@ -356,7 +356,7 @@ tex_preview.xtable <- function(obj,
   obj <- do.call("print", print.xtable.opts)
   
   tex_preview.default(obj,tex_lines,stem,overwrite,keep_pdf,
-                      tex_message = tex_message,fileDir,margin,
+                      tex_message,fileDir,margin,
                       imgFormat,returnType,resizebox,usrPackages,
                       engine,cleanup,density,svg_max,
                       print.xtable.opts,opts.html,markers,...)
@@ -388,7 +388,7 @@ tex_preview.equation <- function(obj,
   obj <- sprintf('$$\n%s\n$$',as.character(obj))
   
   tex_preview.default(obj,tex_lines,stem,overwrite,keep_pdf,
-                      tex_message = tex_message,fileDir,margin,
+                      tex_message,fileDir,margin,
                       imgFormat,returnType,resizebox,usrPackages,
                       engine,cleanup,density,svg_max,
                       print.xtable.opts,opts.html,markers,...)

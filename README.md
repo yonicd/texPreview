@@ -9,22 +9,28 @@
 
 Preview and save images of rendered snippets of LaTeX in RStudio viewer
 
-  - Must have pdflatex in PATH (Windows users can install by running the following in R: `install.packages("installr"); installr::install.MikTeX()`)
+## Functionality
+
+  - __Supports__: character, knitr, kableExtra, xtable, texreg, equatiomatic classes
   
-  - Supports Tabular, equations and other LaTex functionalities.
-  - Load TeX packages 
-  - Input Preamble
+  - __Extendable__: `S3` methods can be written for the main call, `texPreview::tex_preview`, to use with new classes for rendering and printing.
   
-  - Supports xtable inputs
+  - __Rstudio Addin__: Users can highlight text in the editor and invoke preview automatically.
   
-  - Defined as Rstudio Addin so user can highlight text in the editor and invoke preview automatically.
+  - __RMarkdown__ document compatible with all document outputs
   
-  - Can be run in a rmarkdown enviornment pdf/html/book/beamer/ioslides/slidy/revealjs ...
-  
-  - Can be run in a shiny enviornment, as `shiny::renderImage` or as part of htmlwidgets like [bsplus::carousel](https://github.com/ijlyttle/bsplus),  [loryR::renderLoryR](https://github.com/timelyportfolio/loryR) and [slickR::renderSlickR](https://github.com/metrumresearchgroup/slickR).
+  - __Shiny__ compatible via `shiny::renderImage` or as part of htmlwidgets like `slickR::slickR`.
+
+  - __Pan and Zoom functionality__: When the output is set to 'svg' the default output to the viewer is `svgPanZoom::svgPanZoom`, which allows for panning and zooming on the image in the viewer. If the package is not installed a static image will be loaded. 
+
+  - __System Requirements__: Must have pdflatex in PATH, Windows users can install by running [installr::install.MikTeX](http://talgalili.github.io/installr/reference/install.MikTeX.html)
+
+## Examples
+
+### Basic
 
 ![](https://github.com/metrumresearchgroup/texPreview/blob/misc/Multimedia/texPreview.gif?raw=true)
 
-When the output is set to 'svg' the default output to the viewer is [svgPanZoom](https://github.com/timelyportfolio/svgPanZoom), which allows for panning and zooming on the image in the viewer. If the package is not installed a static image will be loaded. 
+### Pan/Zoom
 
 ![](https://github.com/metrumresearchgroup/texPreview/blob/misc/Multimedia/texPreviewPanZoom.gif?raw=true)
