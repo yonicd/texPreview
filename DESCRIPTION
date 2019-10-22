@@ -1,36 +1,59 @@
-Package: texPreview
 Type: Package
+Package: texPreview
 Title: Compile and Preview Snippets of 'LaTeX' in 'RStudio'
 Version: 1.3.3
 Date: 2019-04-08
-Authors@R: c(
-              person(given = 'Jonathan',family = 'Sidi',email = 'yonis@metrumrg.com',role = c('aut','cre')),
-              person(given = 'Daniel',family = 'Polhamus',email = 'danp@metrumrg.com',role = c('aut'))
-              )
+Authors@R: 
+    c(person(given = "Jonathan",
+             family = "Sidi",
+             role = c("aut", "cre"),
+             email = "yonis@metrumrg.com"),
+      person(given = "Daniel",
+             family = "Polhamus",
+             role = "aut",
+             email = "danp@metrumrg.com"))
 Maintainer: Jonathan Sidi <yonis@metrumrg.com>
-Description: Compile and preview snippets of 'LaTeX'. Can be used directly from the R console, from 'RStudio', 
-    in Shiny apps and R Markdown documents. Must have 'pdflatex' or 'xelatex' or 'lualatex' in 'PATH'.
+Description: Compile and preview snippets of 'LaTeX'. Can be
+    used directly from the R console, from 'RStudio', in Shiny apps and R
+    Markdown documents. Must have 'pdflatex' or 'xelatex' or 'lualatex' in
+    'PATH'.
+License: GPL-2 | GPL-3
+URL: https://github.com/metrumresearchgroup/texPreview
+BugReports: 
+    https://github.com/metrumresearchgroup/texPreview/issues
 Depends:
     R (>= 3.3.0)
 Imports:
-    rstudioapi,magick,svgPanZoom,utils,xml2, htmltools, 
-    base64enc, whisker, rematch2, knitr, magrittr, fs, details
+    base64enc,
+    details,
+    fs,
+    htmltools,
+    knitr,
+    lifecycle,
+    magick,
+    magrittr,
+    rematch2,
+    rstudioapi,
+    svgPanZoom,
+    utils,
+    whisker,
+    xml2
 Suggests:
-    kableExtra,
-    xtable,
-    texreg,
-    nlme,
-    shiny,
-    rmarkdown, 
-    testthat,
     covr,
-    slickR
-License: GPL-2 | GPL-3
-URL: https://github.com/metrumresearchgroup/texPreview
-BugReports: https://github.com/metrumresearchgroup/texPreview/issues
+    kableExtra,
+    nlme,
+    rmarkdown,
+    shiny,
+    slickR,
+    testthat,
+    texreg,
+    xtable
+VignetteBuilder: 
+    knitr
+RdMacros: 
+    details,
+    lifecycle
 LazyData: false
 NeedsCompilation: no
-RoxygenNote: 6.1.1
 Roxygen: list(markdown = TRUE)
-VignetteBuilder: knitr
-RdMacros: details
+RoxygenNote: 6.1.1
