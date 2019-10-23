@@ -1,3 +1,10 @@
+# texPreview 1.4.0
+* Convert tex_preview into S3 method
+* Add print method for classes
+* Add as.kable to convert tex lines into knitr_kable
+* Update documentation for tex_preview
+* Update and add vignettes
+
 # texPreview 1.3.2
 * Fix rotation LaTeX library used for rotation in the internal template.
 
