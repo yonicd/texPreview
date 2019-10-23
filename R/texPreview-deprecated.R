@@ -5,7 +5,7 @@
 #' @rdname getTexPackages
 #' @export
 getTexPackages <- function(){
-  lifecycle::deprecate_warn('1.3.2',
+  lifecycle::deprecate_warn('1.3.0',
                             what = 'texPreview::getTexPackages()',
                             with = 'texPreview::get_texpackages()')
   get_texpackages()
@@ -18,7 +18,7 @@ getTexPackages <- function(){
 #' @rdname BuildUsepackage
 #' @export
 buildUsepackage <- function(pkg,options=NULL,uselibrary=NULL,chk.inst=FALSE){
-  lifecycle::deprecate_warn('1.3.2',
+  lifecycle::deprecate_warn('1.3.0',
                             what = 'texPreview::buildUsepackage()',
                             with = 'texPreview::build_usepackage()')
   
@@ -54,7 +54,7 @@ texPreview <- function(
   ...
 ){
   
-  lifecycle::deprecate_warn('1.3.2',
+  lifecycle::deprecate_warn('1.3.0',
                             what = 'texPreview::texPreview()',
                             with = 'texPreview::tex_preview()')
   
