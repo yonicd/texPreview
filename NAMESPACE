@@ -3,6 +3,7 @@
 S3method(as.kable,default)
 S3method(as.kable,knitr_kable)
 S3method(as.kable,texpreview_input)
+S3method(knit_print,texpreview_input)
 S3method(knit_print,texpreview_tex)
 S3method(print,texpreview_input)
 S3method(print,texpreview_tex)

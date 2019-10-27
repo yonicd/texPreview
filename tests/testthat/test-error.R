@@ -1,6 +1,6 @@
 testthat::context('Rendering errors')
 
-path <- file.path(tempdir(),'tex')
+path <- file.path(tempdir(),'tex_err')
 
 cleanup(path)
 
