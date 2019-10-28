@@ -1,3 +1,7 @@
+# texPreview 1.4.1
+* Fix non-tempdir() rendering
+* Add texpreview_input print method for knitr_kable
+
 # texPreview 1.4.0
 * Convert tex_preview into S3 method
 * Add print method for classes
