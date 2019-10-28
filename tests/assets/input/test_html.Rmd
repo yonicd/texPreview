@@ -1,0 +1,24 @@
+---
+title: "Untitled"
+output: html_document
+params:
+  path: 'rmd'
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r}
+library(texPreview)
+tex_opts$set(fileDir = params$path)
+```
+
+## tex
+
+```{r}
+mtcars%>%
+  utils::head(5)%>%
+  knitr::kable(format = 'latex',caption = 'my table',label = 'tbl1')%>%
+  tex_preview(returnType = 'html',stem = 'test_html')
+```

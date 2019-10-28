@@ -1,0 +1,33 @@
+---
+title: "Untitled"
+output: pdf_document
+params:
+  path: 'rmd'
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r}
+library(texPreview)
+tex_opts$set(fileDir = params$path)
+```
+
+## tex
+
+```{r}
+mtcars%>%
+  utils::head(5)%>%
+  knitr::kable(format = 'latex',label = 'tbl1')%>%
+  tex_preview(returnType = 'tex',stem = 'test_tex')
+```
+
+## input
+
+```{r}
+mtcars%>%
+  utils::head(10)%>%
+  knitr::kable(format = 'latex',label = 'tbl2')%>%
+  tex_preview(returnType = 'input',stem = 'test_input')
+```
