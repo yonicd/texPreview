@@ -19,7 +19,7 @@ tex_opts$set(fileDir = params$path)
 ```{r}
 mtcars%>%
   utils::head(5)%>%
-  knitr::kable(format = 'latex',caption = 'my table',label = 'tbl1')%>%
+  knitr::kable(format = 'latex',label = 'tbl1')%>%
   tex_preview(returnType = 'tex',stem = 'test_tex')
 ```
 
@@ -28,6 +28,6 @@ mtcars%>%
 ```{r}
 mtcars%>%
   utils::head(10)%>%
-  knitr::kable(format = 'latex',caption = 'my table',label = 'tbl2')%>%
+  knitr::kable(format = 'latex',label = 'tbl2')%>%
   tex_preview(returnType = 'input',stem = 'test_input')
 ```
