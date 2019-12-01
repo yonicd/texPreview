@@ -13,11 +13,12 @@ addons:
     update:
     - true
     sources:
-    - sourceline: ppa:opencpu/imagemagick
+    - sourceline: ppa:cran/imagemagick
+    - sourceline: ppa:cran/poppler
     packages:
     - libmagick++-dev
 r_github_packages:
-- yonicd/covrpage
+- metrumresearchgroup/covrpage
 - metrumresearchgroup/pkgdown
 after_success:
 - Rscript -e 'covr::codecov()'
