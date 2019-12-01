@@ -1,6 +1,6 @@
 language: r
 cache: packages
-dist: trusty
+dist: bionic
 os:
 - linux
 before_install:
