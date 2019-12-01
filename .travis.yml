@@ -1,6 +1,6 @@
 language: r
 cache: packages
-dist: xenial
+dist: trusty
 os:
 - linux
 before_install:
