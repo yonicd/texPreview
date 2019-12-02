@@ -1,6 +1,6 @@
 language: r
 cache: packages
-dist: xenial
+dist: bin=onic
 os:
 - linux
 before_install:
