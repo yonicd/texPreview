@@ -1,6 +1,6 @@
 language: r
 cache: packages
-dist: trusty
+dist: xenial
 os:
 - linux
 before_install:
@@ -24,6 +24,7 @@ addons:
       - r-cran-rgdal
       - libfftw3-dev
       - cargo
+      - ghostscript
       - gsfonts
 r_github_packages:
 - metrumresearchgroup/covrpage
