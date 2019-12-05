@@ -10,7 +10,7 @@ cleanup(path)
 tex_opts$set(returnType = 'tex',fileDir = path)
   
   testthat::describe('porting to tex',{
-  
+    
       x <- texPreview::tex_preview(obj = xtable::xtable(head(iris,10)))
     
       it('files generated', {

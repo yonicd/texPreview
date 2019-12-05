@@ -1,7 +1,6 @@
 #' @importFrom base64enc base64encode
 #' @importFrom htmltools html_print tags
 #' @importFrom xml2 read_xml
-#' @importFrom utils installed.packages
 #' @importFrom svgPanZoom svgPanZoom
 #' @importFrom magick image_write
 tex_viewer <- function(imgOut,
@@ -24,8 +23,8 @@ tex_viewer <- function(imgOut,
       )
     )
   }
-    
-    if(imgFormat=='svg'&'svgPanZoom'%in%rownames(utils::installed.packages())){
+  
+    if( imgFormat=='svg' & is_inst('svgPanZoom') ){
 
       if(returnType=='viewer'){
         
