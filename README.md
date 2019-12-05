@@ -23,7 +23,9 @@ Preview and save images of rendered snippets of LaTeX in RStudio viewer
 
   - __Pan and Zoom functionality__: When the output is set to 'svg' the default output to the viewer is `svgPanZoom::svgPanZoom`, which allows for panning and zooming on the image in the viewer. If the package is not installed a static image will be loaded. 
 
-  - __System Requirements__: Must have pdflatex in PATH, Windows users can install by running [installr::install.MikTeX](http://talgalili.github.io/installr/reference/install.MikTeX.html)
+  - __System Requirements__: 
+    - Must have pdflatex in PATH, Windows users can install by running [installr::install.MikTeX](http://talgalili.github.io/installr/reference/install.MikTeX.html)
+    - TeX libraries that are used: `standalone`, `xcolor`, `booktabs`, `multirow`, `array`, `helvet`, `amsmath`, `rotating`, `listings`, `graphicx`, `setspace`, `caption`
 
 ## Examples
 

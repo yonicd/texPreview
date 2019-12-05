@@ -1,3 +1,6 @@
+# texPreview 1.4.2
+* Add details and pdflatex to Suggests in DESCRIPTION file
+
 # texPreview 1.4.1
 * Fix non-tempdir() rendering
 * Add texpreview_input print method for knitr_kable
