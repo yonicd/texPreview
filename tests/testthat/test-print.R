@@ -11,7 +11,7 @@ tex <- '\\begin{tabular}{lll}
 \\end{tabular}'
 
 testthat::describe('print methods',{
-  
+
   tex_output <- tex_preview(tex,returnType = 'tex')
   input_output <- tex_preview(tex,returnType = 'input')
   

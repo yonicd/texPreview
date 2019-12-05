@@ -103,3 +103,7 @@ tex_path <- function(fileDir,stem,dev = 'tex'){
   file.path(fileDir, sprintf("%s.%s",stem,dev))
   
 }
+
+is_inst <- function(pkg) {
+  length(find.package(pkg,quiet = TRUE))>0
+}

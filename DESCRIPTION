@@ -47,7 +47,8 @@ Suggests:
     testthat,
     texreg,
     xtable,
-    details
+    details,
+    pdftools
 VignetteBuilder: 
     knitr
 RdMacros: 

@@ -9,7 +9,7 @@ tex_image <- function(
   imgFormat = tex_opts$get('imgFormat')
   ){
   
-  if('pdftools'%in%rownames(installed.packages())){
+  if(is_inst('pdftools')){
     readfn <- magick::image_read_pdf
   }else{
     readfn <- magick::image_read
