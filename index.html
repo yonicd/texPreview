@@ -91,7 +91,15 @@
 <li><p><strong>RMarkdown</strong> document compatible with all document outputs</p></li>
 <li><p><strong>Shiny</strong> compatible via <code><a href="https://rdrr.io/pkg/shiny/man/renderImage.html">shiny::renderImage</a></code> or as part of htmlwidgets like <code><a href="https://rdrr.io/pkg/slickR/man/slickR.html">slickR::slickR</a></code>.</p></li>
 <li><p><strong>Pan and Zoom functionality</strong>: When the output is set to ‘svg’ the default output to the viewer is <code><a href="https://rdrr.io/pkg/svgPanZoom/man/svgPanZoom.html">svgPanZoom::svgPanZoom</a></code>, which allows for panning and zooming on the image in the viewer. If the package is not installed a static image will be loaded.</p></li>
-<li><p><strong>System Requirements</strong>: Must have pdflatex in PATH, Windows users can install by running <a href="http://talgalili.github.io/installr/reference/install.MikTeX.html">installr::install.MikTeX</a></p></li>
+<li>
+<strong>System Requirements</strong>:
+<ul>
+<li>Must have pdflatex in PATH, Windows users can install by running <a href="http://talgalili.github.io/installr/reference/install.MikTeX.html">installr::install.MikTeX</a>
+</li>
+<li>TeX libraries that are used: <code>standalone</code>, <code>xcolor</code>, <code>booktabs</code>, <code>multirow</code>, <code>array</code>, <code>helvet</code>, <code>amsmath</code>, <code>rotating</code>, <code>listings</code>, <code>graphicx</code>, <code>setspace</code>, <code>caption</code>
+</li>
+</ul>
+</li>
 </ul>
 </div>
 <div id="examples" class="section level2">
