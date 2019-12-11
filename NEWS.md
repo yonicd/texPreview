@@ -1,3 +1,6 @@
+# texPreview 1.4.3
+* Add conditional expectation for testing with pandocs on CRAN
+
 # texPreview 1.4.2
 * Add details and pdflatex to Suggests in DESCRIPTION file
 
