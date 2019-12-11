@@ -7,7 +7,9 @@
 
 # texPreview
 
-Preview and save images of rendered snippets of LaTeX in RStudio viewer
+Efficiently iterate, refine and share snippets of LaTeX in R with ease.
+
+`texPreview` compiles LaTeX directly into images from the R console to view in the RStudio viewer pane, Shiny apps and RMarkdown documents.
 
 ## Functionality
 
