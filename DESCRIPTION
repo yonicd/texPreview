@@ -1,8 +1,8 @@
 Type: Package
 Package: texPreview
 Title: Compile and Preview Snippets of 'LaTeX' in 'RStudio'
-Version: 1.4.2
-Date: 2019-12-01
+Version: 1.4.3
+Date: 2019-12-10
 Authors@R: 
     c(person(given = "Jonathan",
              family = "Sidi",
