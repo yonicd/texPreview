@@ -34,7 +34,7 @@ if(!dir.exists(objpath))
 tex_opts$set(
   fileDir    = objpath, # path to save output
   returnType = 'html', # return images ready for html 
-  imgFormat  = 'svg' # return svg images
+  imgFormat  = 'png' # return png images
   )
 ```
 
@@ -79,7 +79,7 @@ The images created above are placed in a [slickR](https://github.com/metrumresea
 ```{r testOut3}
 
   slickR::slickR(
-    list.files(objpath,full.names = TRUE,pattern = 'svg'),
+    list.files(objpath,full.names = TRUE,pattern = 'png'),
     height = 200,
     width = '95%')
 

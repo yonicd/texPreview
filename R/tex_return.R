@@ -13,6 +13,10 @@ tex_return <- function(obj,
          
          'viewer' = {invisible(NULL)},
          
+         'engine' = {
+           tex_path(fileDir,stem,img_format)
+         },
+         
          'html'   = {
            magick::image_scale(
             magick::image_read(tex_path(fileDir,stem,img_format)),

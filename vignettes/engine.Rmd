@@ -1,0 +1,79 @@
+---
+title: "knitr engine"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{knitr engine}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+```{r setup}
+library(texPreview)
+dir.create('images',showWarnings = FALSE)
+```
+
+```{texpreview}
+'\\begin{tabular}{llr}
+\\hline
+\\multicolumn{2}{c}{Item} \\\\
+\\cline{1-2}
+Animal    & Description & Price (\\$) \\\\
+\\hline
+Gnat      & per gram    & 13.65      \\\\
+          & each        & 0.01       \\\\
+Gnu       & stuffed     & 92.50      \\\\
+Emu       & stuffed     & 33.33      \\\\
+Armadillo & frozen      & 8.99       \\\\
+\\hline
+\\end{tabular}'
+```
+
+
+## Default
+
+```{texpreview}
+knitr::kable(head(iris),format = 'latex',booktabs = TRUE)
+```
+
+## No Echo
+
+````markdown
+`r ''````{texpreview, echo = FALSE}
+knitr::kable(head(iris),format = 'latex',booktabs = TRUE)
+```
+````
+
+```{texpreview, echo = FALSE}
+knitr::kable(head(iris),format = 'latex',booktabs = TRUE)
+```
+
+## Output Path
+
+````markdown
+`r ''````{texpreview, echo = FALSE, texpreview.path = 'images',texpreview.stem = 'example'}
+knitr::kable(head(iris),format = 'latex',booktabs = TRUE)
+```
+````
+
+```{texpreview, echo = FALSE, texpreview.path = 'images',texpreview.stem = 'example'}
+knitr::kable(head(iris),format = 'latex',booktabs = TRUE)
+```
+
+```{r}
+list.files('images')
+```
+
+```{texpreview,texpreview.return = 'input',echo = FALSE}
+knitr::kable(head(iris),format = 'latex',booktabs = TRUE)
+```
+
+```{texpreview,texpreview.return = 'tex',echo = FALSE}
+knitr::kable(head(iris),format = 'latex',booktabs = TRUE)
+```
