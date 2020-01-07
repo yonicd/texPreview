@@ -23,6 +23,7 @@ Depends:
     R (>= 3.3.0)
 Imports:
     base64enc,
+    details,
     fs,
     htmltools,
     knitr,
@@ -45,7 +46,6 @@ Suggests:
     testthat,
     texreg,
     xtable,
-    details,
     pdftools
 VignetteBuilder: 
     knitr

@@ -21,6 +21,12 @@ dir.create('images',showWarnings = FALSE)
 
 ## Default
 
+````markdown
+`r ''````{texpreview, echo = FALSE}
+knitr::kable(head(iris),format = 'latex',booktabs = TRUE)
+```
+````
+
 ```{texpreview}
 knitr::kable(head(iris),format = 'latex',booktabs = TRUE)
 ```
