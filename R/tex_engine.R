@@ -12,9 +12,13 @@ eng_texpreview <- function (options) {
   options$texpreview.path <- options$texpreview.path %n% tex_opts$get('fileDir')
   options$texpreview.stem <- options$texpreview.stem %n% "tex_temp"
   
-  input_code <- options$code
+  if(length(options$code)>1){
+    input_obj <- paste0(options$code,collapse = '\n')  
+  }else{
+    input_obj <- eval(parse(text = options$code))
+  }
   
-  output_code <- tex_preview(eval(parse(text = input_code)),
+  output_code <- tex_preview(input_obj,
                      returnType = options$texpreview.return,
                      fileDir = options$texpreview.path,
                      stem = options$texpreview.stem)
@@ -53,14 +57,14 @@ eng_texpreview <- function (options) {
         width='100%'
       ))
     
-    knitr::engine_output(options = options, code = input_code, out = '')
+    knitr::engine_output(options = options, code = options$code, out = '')
     
   }
   
   }else{
   
   options$results <- 'asis'
-  knitr::engine_output(options = options, code = input_code, out = as.character(output_code))
+  knitr::engine_output(options = options, code = options$code, out = as.character(output_code))
     
   }
   
