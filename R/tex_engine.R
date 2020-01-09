@@ -3,11 +3,14 @@
 }
 
 #' @importFrom utils getFromNamespace
+#' @importFrom htmltools html_print tags
+#' @importFrom knitr engine_output
 eng_texpreview <- function (options) {
-  
+
   type <- options$type %n% "texpreview"
   options$type <- 'r'
-
+  options$results <- 'asis'
+  
   options$texpreview.return <- options$texpreview.return %n% 'engine'
   options$texpreview.path <- options$texpreview.path %n% tex_opts$get('fileDir')
   options$texpreview.stem <- options$texpreview.stem %n% "tex_temp"
@@ -37,33 +40,26 @@ eng_texpreview <- function (options) {
       dir.create(dirname(tmp), showWarnings = FALSE, recursive = TRUE)
       file.copy(output_code,tmp,overwrite = TRUE)
     })
-    
+
     code <- wrap_path(tmp)
-      
-    if(options$echo){
-      echo_code <- sprintf('```r\n%s\n```',paste0(options$code,collapse = '\n'))
-      options$code <- paste0(c(echo_code,code),collapse = '\n')
-    }else{
-      options$code <- paste0(code,collapse = '\n')  
-      options$echo <- TRUE
-    }
+
+    output_code <- paste0(code,collapse = '\n')
     
-    utils::getFromNamespace('eng_asis','knitr')(options)
+    knitr::engine_output(options = options, code = options$code, out = output_code)
     
   }else{
-
-    htmltools::html_print(htmltools::tags$img(
-        src = sprintf("data:image/%s;base64,%s",'png',base64enc::base64encode(output_code)),
-        width='100%'
-      ))
     
-    knitr::engine_output(options = options, code = options$code, out = '')
+    htmltools::html_print(htmltools::tags$img(
+      src = sprintf("data:image/%s;base64,%s",'png',base64enc::base64encode(output_code)),
+      width='100%'
+    ))
+
+    knitr::engine_output(options,code = options$code,out = '')
     
   }
   
   }else{
   
-  options$results <- 'asis'
   knitr::engine_output(options = options, code = options$code, out = as.character(output_code))
     
   }
@@ -71,7 +67,9 @@ eng_texpreview <- function (options) {
 }
 
 #' @importFrom stats setNames
+#' @importFrom knitr knit_engines
 register_eng_texpreview = function(envs, engine) {
+  
   knitr::knit_engines$set(stats::setNames(lapply(envs, function(env) {
     function(options) {
       options$type = env
