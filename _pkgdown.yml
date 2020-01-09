@@ -33,6 +33,7 @@ reference:
 articles:
 - title: Usage
   contents:
+  - engine
   - rmarkdown
   - kable
   - classes
