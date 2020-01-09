@@ -1,3 +1,7 @@
+# texPreview 1.4.4
+* Add knitr engine for package
+* Move details from Suggests to Imports
+
 # texPreview 1.4.3
 * Add conditional expectation for testing with pandocs on CRAN
 
