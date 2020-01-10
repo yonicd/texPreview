@@ -15,6 +15,19 @@ eng_texpreview <- function (options) {
   options$texpreview.path <- options$texpreview.path %n% tex_opts$get('fileDir')
   options$texpreview.stem <- options$texpreview.stem %n% "tex_temp"
   
+  
+  #reset return type to 'engine' to return safely
+  if(options$texpreview.return%in%c('html','viewer')){
+    
+    message(sprintf("Use texpreview.return='engine' instead of '%s'",
+                    options$texpreview.return))
+    
+    options$texpreview.return <- 'engine'
+  }
+   
+  if(!options$texpreview.return%in%c('engine','input','tex'))
+    stop(sprintf('Invalid value for options$texpreview.return choose one of the following: %s',paste0(sprintf("'%s'",c('engine','input','tex')),collapse = ', ')))
+  
   if(length(options$code)>1){
     input_obj <- paste0(options$code,collapse = '\n')  
   }else{
@@ -26,7 +39,7 @@ eng_texpreview <- function (options) {
                      fileDir = options$texpreview.path,
                      stem = options$texpreview.stem)
 
-  if(options$texpreview.return=='engine'){
+  if(options$texpreview.return%in%c('engine','viewer','html')){
   
   wrap_path <- utils::getFromNamespace('wrap.knit_image_paths','knitr')
   plot_counter <- utils::getFromNamespace("plot_counter", "knitr")
