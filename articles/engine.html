@@ -184,6 +184,10 @@
 <a class="sourceLine" id="cb5-13" data-line-number="13">\hline</a>
 <a class="sourceLine" id="cb5-14" data-line-number="14">\end{tabular}</a>
 <a class="sourceLine" id="cb5-15" data-line-number="15">```</a></code></pre></div>
+</div>
+<div id="output-2" class="section level3">
+<h3 class="hasAnchor">
+<a href="#output-2" class="anchor"></a>Output</h3>
 <pre class="texpreview"><code>\begin{tabular}{llr}
 \hline
 \multicolumn{2}{c}{Item} \\
@@ -210,9 +214,9 @@ Armadillo &amp; frozen      &amp; 8.99       \\
 <a class="sourceLine" id="cb7-2" data-line-number="2">knitr::kable(head(iris),format = 'latex',booktabs = TRUE)</a>
 <a class="sourceLine" id="cb7-3" data-line-number="3">```</a></code></pre></div>
 </div>
-<div id="output-2" class="section level3">
+<div id="output-3" class="section level3">
 <h3 class="hasAnchor">
-<a href="#output-2" class="anchor"></a>Output</h3>
+<a href="#output-3" class="anchor"></a>Output</h3>
 <p><img src="engine_files/figure-html/unnamed-chunk-5-7.png" width="758"></p>
 <div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb8-1" data-line-number="1"><span class="kw"><a href="https://rdrr.io/r/base/list.files.html">list.files</a></span>(<span class="st">'images'</span>)</a>
 <a class="sourceLine" id="cb8-2" data-line-number="2"><span class="co">#&gt; [1] "example.png" "example.tex"</span></a></code></pre></div>
@@ -221,13 +225,13 @@ Armadillo &amp; frozen      &amp; 8.99       \\
 <div id="pdf-documents" class="section level2">
 <h2 class="hasAnchor">
 <a href="#pdf-documents" class="anchor"></a>PDF Documents</h2>
-<p>Setting texpreview.return = ‘input’ will have the chunk return an LateX ‘input’ call with the results ‘asis’ so the user can redner the lines as part of a Rmarkdown pdf document.</p>
+<p>Setting texpreview.return = ‘input’ will have the chunk return an LateX ‘input’ call with the results ‘asis’ so the user can render the lines as part of a Rmarkdown pdf document.</p>
 <div class="sourceCode" id="cb9"><pre class="sourceCode markdown"><code class="sourceCode markdown"><a class="sourceLine" id="cb9-1" data-line-number="1">```{texpreview,texpreview.return = 'input', texpreview.path = 'images',texpreview.stem = 'example'}</a>
 <a class="sourceLine" id="cb9-2" data-line-number="2">knitr::kable(head(iris),format = 'latex',booktabs = TRUE)</a>
 <a class="sourceLine" id="cb9-3" data-line-number="3">```</a>
 <a class="sourceLine" id="cb9-4" data-line-number="4">\input{images/example.tex}</a></code></pre></div>
 
-<p>Setting texpreview.return = ‘tex’ will have the chunk return the tex lines output with the results ‘asis’ so the user can redner the lines as part of a Rmarkdown pdf document.</p>
+<p>Setting texpreview.return = ‘tex’ will have the chunk return the tex lines output with the results ‘asis’ so the user can render the lines as part of a Rmarkdown pdf document.</p>
 <div class="sourceCode" id="cb10"><pre class="sourceCode markdown"><code class="sourceCode markdown"><a class="sourceLine" id="cb10-1" data-line-number="1">```{texpreview,texpreview.return = 'tex'}</a>
 <a class="sourceLine" id="cb10-2" data-line-number="2">knitr::kable(head(iris),format = 'latex',booktabs = TRUE)</a>
 <a class="sourceLine" id="cb10-3" data-line-number="3">```</a>
