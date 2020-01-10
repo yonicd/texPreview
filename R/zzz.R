@@ -25,6 +25,7 @@ check_requirments <- function(){
     rc.options(custom.completer = completeme)
     register_completion(thispkg = populate) 
   }
+  register_eng_texpreview('texpreview', eng_texpreview)
 }
 
 

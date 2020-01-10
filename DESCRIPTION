@@ -1,8 +1,8 @@
 Type: Package
 Package: texPreview
 Title: Compile and Preview Snippets of 'LaTeX'
-Version: 1.4.3
-Date: 2019-12-10
+Version: 1.4.4
+Date: 2020-01-09
 Authors@R: 
     c(person(given = "Jonathan",
              family = "Sidi",
@@ -23,6 +23,7 @@ Depends:
     R (>= 3.3.0)
 Imports:
     base64enc,
+    details,
     fs,
     htmltools,
     knitr,
@@ -45,7 +46,6 @@ Suggests:
     testthat,
     texreg,
     xtable,
-    details,
     pdftools
 VignetteBuilder: 
     knitr
