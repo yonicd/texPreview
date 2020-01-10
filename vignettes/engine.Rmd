@@ -101,6 +101,8 @@ Armadillo & frozen      & 8.99       \\
 ```
 ````
 
+### Output
+
 ```{texpreview}
 \begin{tabular}{llr}
 \hline
@@ -139,7 +141,7 @@ list.files('images')
 
 ## PDF Documents
 
-Setting texpreview.return = 'input' will have the chunk return an LateX 'input' call with the results 'asis' so the user can redner the lines as part of a Rmarkdown pdf document.
+Setting texpreview.return = 'input' will have the chunk return an LateX 'input' call with the results 'asis' so the user can render the lines as part of a Rmarkdown pdf document.
 
 ````markdown
 `r ''````{texpreview,texpreview.return = 'input', texpreview.path = 'images',texpreview.stem = 'example'}
@@ -152,7 +154,7 @@ knitr::kable(head(iris),format = 'latex',booktabs = TRUE)
 knitr::kable(head(iris),format = 'latex',booktabs = TRUE)
 ```
 
-Setting texpreview.return = 'tex' will have the chunk return the tex lines output with the results 'asis' so the user can redner the lines as part of a Rmarkdown pdf document.
+Setting texpreview.return = 'tex' will have the chunk return the tex lines output with the results 'asis' so the user can render the lines as part of a Rmarkdown pdf document.
 
 ````markdown
 `r ''````{texpreview,texpreview.return = 'tex'}
