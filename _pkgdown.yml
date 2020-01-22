@@ -29,6 +29,8 @@ reference:
   contents: has_concept("opts")
 - title: Utilities
   contents: has_concept("utils")
+- title: System Requirements
+  contents: has_concept("reqs")
 articles:
 - title: Usage
   contents:

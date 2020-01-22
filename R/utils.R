@@ -53,22 +53,6 @@ make_marker <- function(stem,txt,fileDir = tex_opts$get('fileDir')){
                       autoSelect = "none")
 }
 
-tex_pkgs <- function(file = system.file('tmpl.tex',package = 'texPreview'), lines = NULL){
-  
-  if(!is.null(file))
-    lines <- readLines(file)
-  
-  x <- grep('\\usepackage',lines,value = TRUE)
-  
-  x <- gsub('\\[(.*?)\\]','',x)
-  
-  ret <- gsub('[{}]','',unlist(regmatches(x, gregexpr('\\{(.*?)\\}', x))))
-
-  ret
-  
-}
-
-
 tex_resize <- function(obj){
   
   if(grepl('\\\\resizebox\\{',obj))
@@ -94,7 +78,7 @@ clean_packages <- function(x){
   
   ret <- paste0(x[!grepl('\\usepackage',x,fixed = TRUE)],collapse = '\n')
   
-  structure(ret,packages = tex_pkgs(lines = x,file = NULL))
+  structure(ret,packages = tex_requirments(lines = x,file = NULL))
   
 }
 

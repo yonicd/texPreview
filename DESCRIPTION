@@ -13,8 +13,9 @@ Authors@R:
              role = "aut",
              email = "danp@metrumrg.com"))
 Maintainer: Jonathan Sidi <yonis@metrumrg.com>
-Description: Compile snippets of 'LaTeX' directly into images from the R console 
-  to view in the 'RStudio' viewer pane, Shiny apps and 'RMarkdown' documents.
+Description: Compile snippets of 'LaTeX' directly into images
+    from the R console to view in the 'RStudio' viewer pane, Shiny apps
+    and 'RMarkdown' documents.
 License: GPL-2 | GPL-3
 URL: https://github.com/metrumresearchgroup/texPreview
 BugReports: 
@@ -40,13 +41,13 @@ Suggests:
     covr,
     kableExtra,
     nlme,
+    pdftools,
     rmarkdown,
     shiny,
     slickR,
     testthat,
     texreg,
-    xtable,
-    pdftools
+    xtable
 VignetteBuilder: 
     knitr
 RdMacros: 
