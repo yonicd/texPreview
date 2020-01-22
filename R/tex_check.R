@@ -3,15 +3,15 @@
 #' @param file character, Path to TeX file, Default: system.file("tmpl.tex", package = "texPreview")
 #' @param lines character, character vector containing TeX script, Default: NULL
 #' @return character
-#' @details If file is NULL then function will use the the value in lines. The default path used in file
-#' is the internal template that the package uses.
+#' @details If file is NULL then function will use the the value in lines. 
+#' The default path used in file is the internal template that the package uses.
 #' @examples 
-#' tex_requirments()
-#' @rdname tex_requirments
+#' tex_requirements()
+#' @rdname tex_requirements
 #' @concept reqs
 #' @export 
 
-tex_requirments <- function(file = system.file('tmpl.tex',package = 'texPreview'), lines = NULL){
+tex_requirements <- function(file = system.file('tmpl.tex',package = 'texPreview'), lines = NULL){
   
   if(!is.null(file))
     lines <- readLines(file)
@@ -31,15 +31,15 @@ tex_requirments <- function(file = system.file('tmpl.tex',package = 'texPreview'
 #' internal tex file template.
 #' @return logical
 #' @examples 
-#' check_requirments()
-#' @rdname check_requirments
+#' check_requirements()
+#' @rdname check_requirements
 #' @concept reqs
 #' @export 
 
-check_requirments <- function(){
+check_requirements <- function(){
   
   
-  chk <- sapply(tex_requirments(),check_package)
+  chk <- sapply(tex_requirements(),check_package)
   
   if(!all(chk)){
     warning(sprintf('missing tex packages needed for texPreview: %s', paste0(names(chk)[!chk],collapse = ', ')))

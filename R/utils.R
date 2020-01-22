@@ -78,7 +78,7 @@ clean_packages <- function(x){
   
   ret <- paste0(x[!grepl('\\usepackage',x,fixed = TRUE)],collapse = '\n')
   
-  structure(ret,packages = tex_requirments(lines = x,file = NULL))
+  structure(ret,packages = tex_requirements(lines = x,file = NULL))
   
 }
 
