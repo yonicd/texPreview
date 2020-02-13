@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Function reference • texPreview</title>
+<title>Query TeX file for Required Packages — tex_requirements • texPreview</title>
 
 
 <!-- jquery -->
@@ -35,7 +35,9 @@
 
 
 
-<meta property="og:title" content="Function reference" />
+<meta property="og:title" content="Query TeX file for Required Packages — tex_requirements" />
+<meta property="og:description" content="Parse TeX file for usepackage calls and return a vector of the packages." />
+<meta name="twitter:card" content="summary" />
 
 
 
@@ -54,7 +56,7 @@
   </head>
 
   <body>
-    <div class="container template-reference-index">
+    <div class="container template-reference-topic">
       <header>
       <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
   <div class="container">
@@ -113,105 +115,56 @@
       </header>
 
 <div class="row">
-  <div class="contents col-md-9">
+  <div class="col-md-9 contents">
     <div class="page-header">
-      <h1>Reference</h1>
+    <h1>Query TeX file for Required Packages</h1>
+    <small class="dont-index">Source: <a href='https://github.com/metrumresearchgroup/texPreview/blob/master/R/tex_check.R'><code>R/tex_check.R</code></a></small>
+    <div class="hidden name"><code>tex_requirements.Rd</code></div>
     </div>
 
-    <table class="ref-index">
+    <div class="ref-description">
+    <p>Parse TeX file for usepackage calls and return a vector of the packages.</p>
+    </div>
 
-    <colgroup>
-      
-      <col class="alias" />
-      <col class="title" />
-    </colgroup>
+    <pre class="usage"><span class='fu'>tex_requirements</span>(
+  <span class='kw'>file</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/system.file.html'>system.file</a></span>(<span class='st'>"tmpl.tex"</span>, <span class='kw'>package</span> <span class='kw'>=</span> <span class='st'>"texPreview"</span>),
+  <span class='kw'>lines</span> <span class='kw'>=</span> <span class='kw'>NULL</span>
+)</pre>
 
-    <tbody>
-      <tr>
-        <th colspan="2">
-          <h2 id="section-rendering" class="hasAnchor"><a href="#section-rendering" class="anchor"></a>Rendering</h2>
-          <p class="section-desc"></p>
-        </th>
-      </tr>
-      <tr>
-        
-        <td>
-          <p><code><a href="tex_preview.html">tex_preview()</a></code> </p>
-        </td>
-        <td><p>Render and Preview snippets of TeX in R Viewer</p></td>
-      </tr>
-    </tbody><tbody>
-      <tr>
-        <th colspan="2">
-          <h2 id="section-options" class="hasAnchor"><a href="#section-options" class="anchor"></a>Options</h2>
-          <p class="section-desc"></p>
-        </th>
-      </tr>
-      <tr>
-        
-        <td>
-          <p><code><a href="tex_opts.html">tex_opts</a></code> <code><a href="tex_opts.html">tex_opts_current</a></code> </p>
-        </td>
-        <td><p>Default and current tex options</p></td>
-      </tr>
-    </tbody><tbody>
-      <tr>
-        <th colspan="2">
-          <h2 id="section-utilities" class="hasAnchor"><a href="#section-utilities" class="anchor"></a>Utilities</h2>
-          <p class="section-desc"></p>
-        </th>
-      </tr>
-      <tr>
-        
-        <td>
-          <p><code><a href="as_kable.html">as.kable()</a></code> </p>
-        </td>
-        <td><p>Try to coerce an object into a knitr_kable object</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="build_usepackage.html">build_usepackage()</a></code> </p>
-        </td>
-        <td><p>Build usepackage command for TeX document</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="get_texpackages.html">get_texpackages()</a></code> </p>
-        </td>
-        <td><p>Get list of TeX packages installed on System</p></td>
-      </tr>
-    </tbody><tbody>
-      <tr>
-        <th colspan="2">
-          <h2 id="section-system-requirements" class="hasAnchor"><a href="#section-system-requirements" class="anchor"></a>System Requirements</h2>
-          <p class="section-desc"></p>
-        </th>
-      </tr>
-      <tr>
-        
-        <td>
-          <p><code><a href="check_requirements.html">check_requirements()</a></code> </p>
-        </td>
-        <td><p>Check TeX Requirements for Package</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="tex_requirements.html">tex_requirements()</a></code> </p>
-        </td>
-        <td><p>Query TeX file for Required Packages</p></td>
-      </tr>
-    </tbody>
+    <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
+    <table class="ref-arguments">
+    <colgroup><col class="name" /><col class="desc" /></colgroup>
+    <tr>
+      <th>file</th>
+      <td><p>character, Path to TeX file, Default: system.file("tmpl.tex", package = "texPreview")</p></td>
+    </tr>
+    <tr>
+      <th>lines</th>
+      <td><p>character, character vector containing TeX script, Default: NULL</p></td>
+    </tr>
     </table>
-  </div>
 
+    <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
+
+    <p>character</p>
+    <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
+
+    <p>If file is NULL then function will use the the value in lines.
+The default path used in file is the internal template that the package uses.</p>
+
+    <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
+    <pre class="examples"><div class='input'><span class='fu'>tex_requirements</span>()</div><div class='output co'>#&gt;  [1] "xcolor"   "booktabs" "multirow" "array"    "helvet"   "amsmath" 
+#&gt;  [7] "rotating" "listings" "graphicx" "setspace" "caption" </div></pre>
+  </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
     <ul class="nav nav-pills nav-stacked">
-      <li><a href="#section-rendering">Rendering</a></li>
-      <li><a href="#section-options">Options</a></li>
-      <li><a href="#section-utilities">Utilities</a></li>
-      <li><a href="#section-system-requirements">System Requirements</a></li>
+      <li><a href="#arguments">Arguments</a></li>
+      <li><a href="#value">Value</a></li>
+      <li><a href="#details">Details</a></li>
+      <li><a href="#examples">Examples</a></li>
     </ul>
+
   </div>
 </div>
 
