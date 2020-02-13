@@ -4,17 +4,28 @@
 \alias{texPreview}
 \title{Render and Preview snippets of TeX in R Viewer \lifecycle{deprecated}}
 \usage{
-texPreview(obj, tex_lines = NULL, stem = "tex_temp",
-  overwrite = TRUE, keep_pdf = FALSE, tex_message = FALSE,
-  fileDir = tex_opts$get("fileDir"), margin = tex_opts$get("margin"),
+texPreview(
+  obj,
+  tex_lines = NULL,
+  stem = "tex_temp",
+  overwrite = TRUE,
+  keep_pdf = FALSE,
+  tex_message = FALSE,
+  fileDir = tex_opts$get("fileDir"),
+  margin = tex_opts$get("margin"),
   imgFormat = tex_opts$get("imgFormat"),
   returnType = tex_opts$get("returnType"),
   resizebox = tex_opts$get("resizebox"),
   usrPackages = tex_opts$get("usrPackages"),
-  engine = tex_opts$get("engine"), cleanup = tex_opts$get("cleanup"),
-  density = tex_opts$get("density"), svg_max = tex_opts$get("svg_max"),
+  engine = tex_opts$get("engine"),
+  cleanup = tex_opts$get("cleanup"),
+  density = tex_opts$get("density"),
+  svg_max = tex_opts$get("svg_max"),
   print.xtable.opts = tex_opts$get("print.xtable.opts"),
-  opts.html = tex_opts$get("opts.html"), markers = interactive(), ...)
+  opts.html = tex_opts$get("opts.html"),
+  markers = interactive(),
+  ...
+)
 }
 \arguments{
 \item{obj}{object to convert to TeX script}

@@ -4,8 +4,10 @@
 \alias{tex_requirements}
 \title{Query TeX file for Required Packages}
 \usage{
-tex_requirements(file = system.file("tmpl.tex", package = "texPreview"),
-  lines = NULL)
+tex_requirements(
+  file = system.file("tmpl.tex", package = "texPreview"),
+  lines = NULL
+)
 }
 \arguments{
 \item{file}{character, Path to TeX file, Default: system.file("tmpl.tex", package = "texPreview")}

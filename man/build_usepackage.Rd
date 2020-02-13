@@ -4,8 +4,7 @@
 \alias{build_usepackage}
 \title{Build usepackage command for TeX document}
 \usage{
-build_usepackage(pkg, options = NULL, uselibrary = NULL,
-  chk.inst = FALSE)
+build_usepackage(pkg, options = NULL, uselibrary = NULL, chk.inst = FALSE)
 }
 \arguments{
 \item{pkg}{character, name of TeX package}
