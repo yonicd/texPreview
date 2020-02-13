@@ -4,17 +4,28 @@
 \alias{tex_preview}
 \title{Render and Preview snippets of TeX in R Viewer}
 \usage{
-tex_preview(obj, tex_lines = NULL, stem = "tex_temp",
-  overwrite = TRUE, keep_pdf = FALSE, tex_message = FALSE,
-  fileDir = tex_opts$get("fileDir"), margin = tex_opts$get("margin"),
+tex_preview(
+  obj,
+  tex_lines = NULL,
+  stem = "tex_temp",
+  overwrite = TRUE,
+  keep_pdf = FALSE,
+  tex_message = FALSE,
+  fileDir = tex_opts$get("fileDir"),
+  margin = tex_opts$get("margin"),
   imgFormat = tex_opts$get("imgFormat"),
   returnType = tex_opts$get("returnType"),
   resizebox = tex_opts$get("resizebox"),
   usrPackages = tex_opts$get("usrPackages"),
-  engine = tex_opts$get("engine"), cleanup = tex_opts$get("cleanup"),
-  density = tex_opts$get("density"), svg_max = tex_opts$get("svg_max"),
+  engine = tex_opts$get("engine"),
+  cleanup = tex_opts$get("cleanup"),
+  density = tex_opts$get("density"),
+  svg_max = tex_opts$get("svg_max"),
   print.xtable.opts = tex_opts$get("print.xtable.opts"),
-  opts.html = tex_opts$get("opts.html"), markers = interactive(), ...)
+  opts.html = tex_opts$get("opts.html"),
+  markers = interactive(),
+  ...
+)
 }
 \arguments{
 \item{obj}{object to convert to TeX script}
@@ -105,7 +116,7 @@ input TeX script into the function and it renders a pdf and
 converts it an image which is sent to Viewer.
 }
 \details{
-\code{tex_preview} is an \code{S3 method} that can be used to preview TeX output from different
+\code{tex_preview} is an \verb{S3 method} that can be used to preview TeX output from different
 object classes.
 
 Built-in support includes:
@@ -129,7 +140,7 @@ To add packages to the tex file on render there are two options
 \itemize{
 \item Use \link[texPreview:build_usepackage]{build_usepackage} and use the input
 argument \code{usrPackages}.
-\item Append to the input object \code{\\usepackage{...}} calls, they will be parsed
+\item Append to the input object \verb{\\\\usepackage\{...\}} calls, they will be parsed
 and added the to rendering.
 }
 

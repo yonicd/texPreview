@@ -1,6 +1,5 @@
 #' @title Get list of TeX packages installed on System \lifecycle{deprecated}
 #' @description This function has been deprecated, use [get_texpackages][texPreview::get_texpackages] instead.
-#' @inheritParams get_texpackages
 #' @importFrom lifecycle deprecate_warn
 #' @rdname getTexPackages
 #' @export
