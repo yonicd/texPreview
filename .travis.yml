@@ -29,6 +29,8 @@ addons:
 r_github_packages:
 - metrumresearchgroup/covrpage
 - metrumresearchgroup/pkgdown
+r_packages:
+- devtools
 after_success:
 - Rscript -e 'covr::codecov()'
 - Rscript -e 'devtools::install(); covrpage::covrpage_ci()'
