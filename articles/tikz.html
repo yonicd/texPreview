@@ -102,7 +102,7 @@
 <a class="sourceLine" id="cb2-9" data-line-number="9">tex_opts<span class="op">$</span><span class="kw">set</span>(</a>
 <a class="sourceLine" id="cb2-10" data-line-number="10">  <span class="dt">fileDir    =</span> objpath, <span class="co"># path to save output</span></a>
 <a class="sourceLine" id="cb2-11" data-line-number="11">  <span class="dt">returnType  =</span> <span class="st">'html'</span>,</a>
-<a class="sourceLine" id="cb2-12" data-line-number="12">  <span class="dt">usrPackages =</span> <span class="kw"><a href="https://rdrr.io/pkg/texPreview/man/build_usepackage.html">build_usepackage</a></span>(<span class="dt">pkg =</span> <span class="st">'tikz'</span>,<span class="dt">uselibrary =</span> use_lib)</a>
+<a class="sourceLine" id="cb2-12" data-line-number="12">  <span class="dt">usrPackages =</span> <span class="kw"><a href="../reference/build_usepackage.html">build_usepackage</a></span>(<span class="dt">pkg =</span> <span class="st">'tikz'</span>,<span class="dt">uselibrary =</span> use_lib)</a>
 <a class="sourceLine" id="cb2-13" data-line-number="13">)</a></code></pre></div>
 <div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" data-line-number="1">tikz_examples &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/base/list.files.html">list.files</a></span>(<span class="kw"><a href="https://rdrr.io/r/base/system.file.html">system.file</a></span>(<span class="st">'examples/tikz'</span>,<span class="dt">package =</span> <span class="st">'texPreview'</span>),</a>
 <a class="sourceLine" id="cb3-2" data-line-number="2">                          <span class="dt">pattern =</span> <span class="st">'tex$'</span>,<span class="dt">full.names =</span> <span class="ot">TRUE</span>)</a>
@@ -112,7 +112,7 @@
 <div id="tikzpicture" class="section level2">
 <h2 class="hasAnchor">
 <a href="#tikzpicture" class="anchor"></a>tikzpicture</h2>
-<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb4-1" data-line-number="1"><span class="kw"><a href="https://rdrr.io/pkg/texPreview/man/tex_preview.html">tex_preview</a></span>(<span class="dt">obj =</span> tikz_code<span class="op">$</span>pk_model.tex,<span class="dt">stem =</span> <span class="st">'tikz-1'</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb4-1" data-line-number="1"><span class="kw"><a href="../reference/tex_preview.html">tex_preview</a></span>(<span class="dt">obj =</span> tikz_code<span class="op">$</span>pk_model.tex,<span class="dt">stem =</span> <span class="st">'tikz-1'</span>)</a></code></pre></div>
 <p><img src="tikz_files/figure-html/unnamed-chunk-4-1.png" width="206"></p>
 <details closed><p><summary><span title="Click to Expand"> Click to view TeX </span> </summary></p>
 <div class="sourceCode" id="cb5"><pre class="sourceCode tex"><code class="sourceCode latex"><a class="sourceLine" id="cb5-1" data-line-number="1"></a>
@@ -163,7 +163,7 @@
 <h2 class="hasAnchor">
 <a href="#file" class="anchor"></a>File</h2>
 <p>For a full TeX document use the <code>tex_lines</code> argument instead of the <code>obj</code>. This input bypasses the internal document template that is used for texPreview and renders the contents of the file directly.</p>
-<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb6-1" data-line-number="1"><span class="kw"><a href="https://rdrr.io/pkg/texPreview/man/tex_preview.html">tex_preview</a></span>(<span class="dt">tex_lines =</span> tikz_code<span class="op">$</span>credit_rationing.tex,<span class="dt">stem =</span> <span class="st">'tikz-2'</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb6-1" data-line-number="1"><span class="kw"><a href="../reference/tex_preview.html">tex_preview</a></span>(<span class="dt">tex_lines =</span> tikz_code<span class="op">$</span>credit_rationing.tex,<span class="dt">stem =</span> <span class="st">'tikz-2'</span>)</a></code></pre></div>
 <p><img src="tikz_files/figure-html/unnamed-chunk-6-1.png" width="377"></p>
 <details closed><p><summary><span title="Click to Expand"> Click to view TeX </span> </summary></p>
 <div class="sourceCode" id="cb7"><pre class="sourceCode tex"><code class="sourceCode latex"><a class="sourceLine" id="cb7-1" data-line-number="1"></a>
