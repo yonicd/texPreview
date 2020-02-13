@@ -50,7 +50,7 @@ dir.create('images',showWarnings = FALSE)
 ### Chunk Call
 
 ````markdown
-`r ''````{texpreview, echo = FALSE}
+```{texpreview, echo = FALSE}`r ''`
 knitr::kable(head(iris),format = 'latex',booktabs = TRUE)
 ```
 ````
@@ -68,7 +68,7 @@ The texpreview engine respects regular 'r' engine chunk options such as 'echo':
 ### Chunk Call
 
 ````markdown
-`r ''````{texpreview, echo = FALSE}
+```{texpreview, echo = FALSE}`r ''`
 knitr::kable(head(iris),format = 'latex',booktabs = TRUE)
 ```
 ````
@@ -84,7 +84,7 @@ knitr::kable(head(iris),format = 'latex',booktabs = TRUE)
 ### Chunk Call
 
 ````markdown
-`r ''````{texpreview}
+```{texpreview}`r ''`
 \begin{tabular}{llr}
 \hline
 \multicolumn{2}{c}{Item} \\
@@ -124,7 +124,7 @@ Armadillo & frozen      & 8.99       \\
 ### Chunk Call
 
 ````markdown
-`r ''````{texpreview, echo = FALSE, texpreview.path = 'images',texpreview.stem = 'example'}
+```{texpreview, echo = FALSE, texpreview.path = 'images',texpreview.stem = 'example'}`r ''`
 knitr::kable(head(iris),format = 'latex',booktabs = TRUE)
 ```
 ````
@@ -144,7 +144,7 @@ list.files('images')
 Setting texpreview.return = 'input' will have the chunk return an LateX 'input' call with the results 'asis' so the user can render the lines as part of a Rmarkdown pdf document.
 
 ````markdown
-`r ''````{texpreview,texpreview.return = 'input', texpreview.path = 'images',texpreview.stem = 'example'}
+```{texpreview,texpreview.return = 'input', texpreview.path = 'images',texpreview.stem = 'example'}`r ''`
 knitr::kable(head(iris),format = 'latex',booktabs = TRUE)
 ```
 \input{images/example.tex}
@@ -157,7 +157,7 @@ knitr::kable(head(iris),format = 'latex',booktabs = TRUE)
 Setting texpreview.return = 'tex' will have the chunk return the tex lines output with the results 'asis' so the user can render the lines as part of a Rmarkdown pdf document.
 
 ````markdown
-`r ''````{texpreview,texpreview.return = 'tex'}
+```{texpreview,texpreview.return = 'tex'}`r ''`
 knitr::kable(head(iris),format = 'latex',booktabs = TRUE)
 ```
 
