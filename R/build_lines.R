@@ -23,8 +23,8 @@ build_lines <- function(obj,
   
   input_path <- normalizePath(tex_path(fileDir,stem),winslash = .Platform$file.sep)
   
-  input_path <- sprintf('{%s}',input_path)
-  
+  input_path <- sprintf('{"%s"}',input_path)
+
   ARGS <- append(margin, list(usrPackages = paste0(usrPackages,collapse = '\n'), file = input_path))
   
   whisker::whisker.render(TMPL, ARGS)
