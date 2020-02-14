@@ -12,10 +12,11 @@ jobs:
       fail-fast: false
       matrix:
         config:
-        - { os: ubuntu-16.04, r: '3.6', cran: "https://demo.rstudiopm.com/all/__linux__/xenial/latest", args: "--no-manual" }
+        - { os: ubuntu-16.04, r: '3.5', cran: "https://demo.rstudiopm.com/all/__linux__/xenial/latest", args: "--no-manual" }
     env:
       R_REMOTES_NO_ERRORS_FROM_WARNINGS: true
       CRAN: ${{ matrix.config.cran }}
+      SLACK_API_TOKEN: ${{ secrets.SLACK_API_TOKEN }}
 
     steps:
       - uses: actions/checkout@master
@@ -45,7 +46,6 @@ jobs:
           sudo apt-get -qq update
           sudo apt-get install -y texlive-base texlive-latex-base texlive-latex-extra texlive-fonts-recommended texlive-fonts-extra
           tlmgr install standalone
-
       - name: Install system dependencies
         if: runner.os == 'Linux'
         env:
@@ -54,7 +54,6 @@ jobs:
           Rscript -e "install.packages('remotes')" -e "remotes::install_github('r-hub/sysreqs')"
           sysreqs=$(Rscript -e "cat(sysreqs::sysreq_commands('DESCRIPTION'))")
           sudo -s eval "$sysreqs"
-
       - name: Install dependencies
         run: Rscript -e "install.packages('remotes')" -e "remotes::install_deps(dependencies = TRUE)" -e "remotes::install_cran('rcmdcheck')"
 

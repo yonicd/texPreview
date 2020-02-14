@@ -33,9 +33,9 @@ Arguments that were used in the `texPreview::tex_preview` function are now set i
 |fileDir|texpreview.path|tex_opts$get('fileDir')|
 |stem|texpreview.stem|'tex_temp'|
 
-The user still has the option to use `texPreview::tex_opts` to control chunk outputs as they are passed into the call internally. The chunk options will overide any settings that are in `texPreview::tex_opts`.
+The user still has the option to use `texPreview::tex_opts` to control chunk outputs as they are passed into the call internally. The chunk options will override any settings that are in `texPreview::tex_opts`.
 
-Rendering the chunk interactively will have different side effects depending on the `texpreview.return` setting. These settings have the same side effects as the returnType settings with one addition 'engine' which mimics returnType='viewer'. It should be the prefered settings when working with RMarkdown documents that return HTML outputs.
+Rendering the chunk interactively will have different side effects depending on the `texpreview.return` setting. These settings have the same side effects as the returnType settings with one addition 'engine' which mimics returnType='viewer'. It should be the preferred settings when working with RMarkdown documents that return HTML outputs.
 
 The following are examples of some uses of the `texpreview` engine.
 
