@@ -1,6 +1,5 @@
 on:
-  push:
-    branches: master
+  push
 
 name: R-linux
 
@@ -63,4 +62,3 @@ jobs:
 
       - name: Check
         run: Rscript -e "rcmdcheck::rcmdcheck(args = '${{ matrix.config.args }}', error_on = 'warning', check_dir = 'check')"
-
