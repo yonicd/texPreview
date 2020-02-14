@@ -122,4 +122,21 @@ tex_opts$set(returnType = 'tex',fileDir = path)
       
     })  
 
+    cleanup(path,create = FALSE)
+    
+    path <- file.path(tempdir(),'my tex')
+
+    cleanup(path)
+    tex_opts$set(returnType = 'tex',fileDir = path)
+    
+    testthat::describe('space in file path',{
+      
+      x <- texPreview::tex_preview(obj = xtable::xtable(head(iris,10)))
+      
+      it('check if file created', {
+        testthat::expect_equal(length(list.files(path,pattern = '\\.tex$')),1)
+      })
+      
+    })  
+    
   cleanup(path,create = FALSE)
