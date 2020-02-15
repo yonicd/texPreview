@@ -20,6 +20,9 @@ jobs:
     steps:
     
       - uses: actions/checkout@master
+      - uses: r-lib/actions/setup-r@master
+        with:
+          r-version: ${{ matrix.config.r }}
       - name: install tinytex
         run: |
           install.packages('tinytex')
