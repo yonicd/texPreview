@@ -34,13 +34,12 @@ jobs:
           path: ${{ env.R_LIBS_USER }}
           key: ${{ runner.os }}-r-${{ matrix.config.r }}-${{ hashFiles('DESCRIPTION') }}
 
-      - name:
+      - name: Install magick
         run: brew install imagemagick
         
       - name: Install texlibs
         run: |
-          sudo apt-get -qq update
-          sudo apt-get install -y texlive-base texlive-latex-base texlive-latex-extra texlive-fonts-recommended texlive-fonts-extra
+          tlmgr install texlive-base texlive-latex-base texlive-latex-extra texlive-fonts-recommended texlive-fonts-extra
           tlmgr install standalone
 
       - name: Install dependencies
