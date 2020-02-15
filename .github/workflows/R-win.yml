@@ -20,8 +20,6 @@ jobs:
     steps:
       - uses: actions/checkout@v1
       
-      - uses: r-lib/actions/setup-tinytex@master
-      
       - uses: r-lib/actions/setup-r@master
         with:
           r-version: ${{ matrix.config.r }}      
@@ -52,7 +50,10 @@ jobs:
         shell: Rscript {0}
 
       - name: Install texlibs
-        run: tinytex::tlmgr_install(c('standalone', 'xcolor', 'booktabs', 'multirow', 'amsmath', 'listings', 'setspace', 'caption', 'graphics', 'tools', 'psnfss', 'varwidth', 'colortbl', 'epstopdf-pkg', 'pgf'))
+        run: |
+          tinytex::tlmgr_install()
+          tinytex::tlmgr_update()
+          tinytex::tlmgr_install(c('standalone', 'xcolor', 'booktabs', 'multirow', 'amsmath', 'listings', 'setspace', 'caption', 'graphics', 'tools', 'psnfss', 'varwidth', 'colortbl', 'epstopdf-pkg', 'pgf'))
         shell: Rscript {0}
 
       - name: Check
