@@ -20,6 +20,8 @@ jobs:
     steps:
       - uses: actions/checkout@v1
       
+      - uses: r-lib/actions/setup-tinytex@master
+      
       - uses: r-lib/actions/setup-r@master
         with:
           r-version: ${{ matrix.config.r }}      
@@ -28,15 +30,9 @@ jobs:
 
       - name: Query dependencies
         run: |
-          install.packages('remotes')
+          install.packages('remotes','tinytex')
           saveRDS(remotes::dev_package_deps(dependencies = TRUE), "depends.Rds", version = 2)
         shell: Rscript {0}
-        
-      - name: Install MikTex
-        run: |
-          install.packages('installr')
-          installr::install.MikTeX()
-        shell: Rscript {0}        
         
       - name: Cache R packages
         if: runner.os != 'Windows'
@@ -45,10 +41,7 @@ jobs:
           path: ${{ env.R_LIBS_USER }}
           key: ${{ runner.os }}-r-${{ matrix.config.r }}-${{ hashFiles('depends.Rds') }}
           restore-keys: ${{ runner.os }}-r-${{ matrix.config.r }}-
-      
-      - name: Install texlibs
-        run: mpm --admin --install standalone xcolor booktabs multirow amsmath listings setspace caption graphics tools psnfss varwidth colortbl epstopdf-pkg pgf
-      
+    
       - name: Install dependencies
         run: |
           library(remotes)
@@ -57,7 +50,11 @@ jobs:
           update(deps)
           remotes::install_cran("rcmdcheck")
         shell: Rscript {0}
-                  
+
+      - name: Install texlibs
+        run: tinytex::tlmgr_install(c('standalone', 'xcolor', 'booktabs', 'multirow', 'amsmath', 'listings', 'setspace', 'caption', 'graphics', 'tools', 'psnfss', 'varwidth', 'colortbl', 'epstopdf-pkg', 'pgf'))
+        shell: Rscript {0}
+
       - name: Check
         run: rcmdcheck::rcmdcheck(args = "--no-manual", error_on = "warning", check_dir = "check")
         shell: Rscript {0}
