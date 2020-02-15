@@ -26,8 +26,9 @@ jobs:
       - name: install tinytex
         run: |
           install.packages('tinytex')
-          tinytex::install_tinytex(force = TRUE)
-          tinytex::tlmgr_update()
+          tinytex::install_tinytex(extra_packages = c('standalone', 'xcolor', 'booktabs', 'multirow', 'amsmath', 'listings', 'setspace', 'caption', 'graphics', 'tools', 'psnfss', 'varwidth', 'colortbl', 'epstopdf-pkg', 'pgf'))
+          tinytex::tinytex_root()
+          #tinytex::tlmgr_update()
         shell: Rscript {0}
       
       - run: tlmgr --version
@@ -70,7 +71,7 @@ jobs:
       #   run: |
       #     tinytex::install_tinytex(force = TRUE)
       #     tinytex::tlmgr_update()
-      #     tinytex::tlmgr_install(c('standalone', 'xcolor', 'booktabs', 'multirow', 'amsmath', 'listings', 'setspace', 'caption', 'graphics', 'tools', 'psnfss', 'varwidth', 'colortbl', 'epstopdf-pkg', 'pgf'))
+      #     tinytex::tlmgr_install()
       #   shell: Rscript {0}
       # 
       # - name: Check
