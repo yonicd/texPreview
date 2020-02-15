@@ -74,12 +74,12 @@ jobs:
           update(deps)
           remotes::install_cran("rcmdcheck")
         shell: Rscript {0}
-
-     - name: Check
+                  
+      - name: Check
         run: rcmdcheck::rcmdcheck(args = "--no-manual", error_on = "warning", check_dir = "check")
         shell: Rscript {0}
-       
-     - name: Upload check results
+
+      - name: Upload check results
         if: failure()
         uses: actions/upload-artifact@master
         with:
