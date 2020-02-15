@@ -20,6 +20,8 @@ jobs:
     steps:
       - uses: actions/checkout@v1
       
+      - uses: r-lib/actions/setup-tinytex@master
+      
       - uses: r-lib/actions/setup-r@master
         with:
           r-version: ${{ matrix.config.r }}      
