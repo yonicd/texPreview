@@ -31,7 +31,13 @@ jobs:
           install.packages('remotes')
           saveRDS(remotes::dev_package_deps(dependencies = TRUE), "depends.Rds", version = 2)
         shell: Rscript {0}
-      
+        
+      - name: Install MikTex
+        run: |
+          install.packages('installr')
+          installr::install.MikTeX()
+        shell: Rscript {0}        
+        
       - name: Cache R packages
         if: runner.os != 'Windows'
         uses: actions/cache@v1
