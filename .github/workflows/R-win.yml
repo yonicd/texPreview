@@ -51,7 +51,7 @@ jobs:
 
       - name: Install texlibs
         run: |
-          tinytex::install_tinytex()
+          tinytex::install_tinytex(force = TRUE)
           tinytex::tlmgr_update()
           tinytex::tlmgr_install(c('standalone', 'xcolor', 'booktabs', 'multirow', 'amsmath', 'listings', 'setspace', 'caption', 'graphics', 'tools', 'psnfss', 'varwidth', 'colortbl', 'epstopdf-pkg', 'pgf'))
         shell: Rscript {0}
