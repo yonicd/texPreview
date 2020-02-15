@@ -28,6 +28,7 @@ jobs:
           install.packages('tinytex')
           tinytex::install_tinytex(extra_packages = c('standalone', 'xcolor', 'booktabs', 'multirow', 'amsmath', 'listings', 'setspace', 'caption', 'graphics', 'tools', 'psnfss', 'varwidth', 'colortbl', 'epstopdf-pkg', 'pgf'))
           tinytex::tinytex_root()
+          tinytex::use_tinytex(tinytex::tinytex_root())
           #tinytex::tlmgr_update()
         shell: Rscript {0}
       
