@@ -7,7 +7,8 @@ jobs:
   check:
     runs-on: ${{ matrix.config.os }}
     name: ${{ matrix.config.os }} (${{ matrix.config.r }})
-
+    if: "!contains(github.event.head_commit.message, 'skip linux')"
+    
     strategy:
       fail-fast: false
       matrix:
@@ -16,7 +17,6 @@ jobs:
     env:
       R_REMOTES_NO_ERRORS_FROM_WARNINGS: true
       CRAN: ${{ matrix.config.cran }}
-      SLACK_API_TOKEN: ${{ secrets.SLACK_API_TOKEN }}
 
     steps:
       - uses: actions/checkout@master
