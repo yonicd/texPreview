@@ -20,7 +20,13 @@ jobs:
     steps:
     
       - uses: actions/checkout@master
-      - uses: r-lib/actions/setup-tinytex@v1
+      - name: install tinytex
+        run: |
+          install.packages('tinytex')
+          tinytex::install_tinytex(force = TRUE)
+          tinytex::tlmgr_update()
+        shell: Rscript {0}
+      
       - run: tlmgr --version
       - run: pdflatex --version
     
