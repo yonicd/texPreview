@@ -7,8 +7,6 @@ jobs:
   check:
     runs-on: ${{ matrix.config.os }}
     name: ${{ matrix.config.os }} (${{ matrix.config.r }})
-    #if: "!contains(github.event.head_commit.message, 'skip linux')"
-    #if: false
     
     strategy:
       fail-fast: false
@@ -34,8 +32,7 @@ jobs:
         uses: actions/cache@v1
         with:
           path: ${{ env.R_LIBS_USER }}
-          key: 123
-          #key: ${{ runner.os }}-r-${{ matrix.config.r }}-${{ hashFiles('DESCRIPTION') }}
+          key: ${{ runner.os }}-r-${{ matrix.config.r }}
 
       - name: Install magick libs
         run: |
