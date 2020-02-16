@@ -133,7 +133,8 @@
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>x</th>
-      <td><p>object</p></td>
+      <td><p>object, can be tex character, object return by returnType = "input",
+or a path to a tex file.</p></td>
     </tr>
     </table>
 
@@ -179,40 +180,11 @@ Armadillo &amp; frozen      &amp; 8.99       \\\\
 #&gt; Armadillo &amp; frozen      &amp; 8.99       \\
 #&gt; \hline
 #&gt; \end{tabular}</div><div class='input'>
-<span class='co'># using an input call</span>
-
-<span class='no'>x</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='tex_preview.html'>tex_preview</a></span>(<span class='no'>tex</span>,<span class='kw'>returnType</span> <span class='kw'>=</span> <span class='st'>'input'</span>)
-
-<span class='no'>x</span></div><div class='output co'>#&gt; \input{/tmp/Rtmp3zSoUf/tex_temp.tex}</div><div class='input'>
-<span class='no'>ktex_input</span> <span class='kw'>&lt;-</span> <span class='fu'>as.kable</span>(<span class='no'>x</span>)
-
-<span class='fu'><a href='https://rdrr.io/r/base/class.html'>class</a></span>(<span class='no'>ktex_input</span>)</div><div class='output co'>#&gt; [1] "knitr_kable"</div><div class='input'>
-<span class='fu'><a href='https://rdrr.io/r/base/attributes.html'>attributes</a></span>(<span class='no'>ktex_input</span>)</div><div class='output co'>#&gt; $class
-#&gt; [1] "knitr_kable"
-#&gt; 
-#&gt; $format
-#&gt; [1] "latex"
-#&gt; </div><div class='input'>
-<span class='no'>ktex_input</span></div><div class='output co'>#&gt; \resizebox{\textwidth}{!}{
-#&gt; \begin{tabular}{llr}
-#&gt; \hline
-#&gt; \multicolumn{2}{c}{Item} \\
-#&gt; \cline{1-2}
-#&gt; Animal    &amp; Description &amp; Price (\$) \\
-#&gt; \hline
-#&gt; Gnat      &amp; per gram    &amp; 13.65      \\
-#&gt; &amp; each        &amp; 0.01       \\
-#&gt; Gnu       &amp; stuffed     &amp; 92.50      \\
-#&gt; Emu       &amp; stuffed     &amp; 33.33      \\
-#&gt; Armadillo &amp; frozen      &amp; 8.99       \\
-#&gt; \hline
-#&gt; \end{tabular}
-#&gt; }</div><div class='input'>
 <span class='co'># file path</span>
 
-<span class='no'>x</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='tex_preview.html'>tex_preview</a></span>(<span class='no'>tex</span>,<span class='kw'>returnType</span> <span class='kw'>=</span> <span class='st'>'input'</span>)
+<span class='no'>toy</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/system.file.html'>system.file</a></span>(<span class='st'>'examples/toy/toy.tex'</span>,<span class='kw'>package</span> <span class='kw'>=</span> <span class='st'>'texPreview'</span>)
 
-<span class='no'>ktex_path</span> <span class='kw'>&lt;-</span> <span class='fu'>as.kable</span>(<span class='fu'><a href='https://rdrr.io/r/base/file.path.html'>file.path</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/tempfile.html'>tempdir</a></span>(),<span class='st'>'tex_temp.tex'</span>))
+<span class='no'>ktex_path</span> <span class='kw'>&lt;-</span> <span class='fu'>as.kable</span>(<span class='no'>toy</span>)
 
 <span class='fu'><a href='https://rdrr.io/r/base/class.html'>class</a></span>(<span class='no'>ktex_path</span>)</div><div class='output co'>#&gt; [1] "knitr_kable"</div><div class='input'>
 <span class='fu'><a href='https://rdrr.io/r/base/attributes.html'>attributes</a></span>(<span class='no'>ktex_path</span>)</div><div class='output co'>#&gt; $class
@@ -221,21 +193,59 @@ Armadillo &amp; frozen      &amp; 8.99       \\\\
 #&gt; $format
 #&gt; [1] "latex"
 #&gt; </div><div class='input'>
-<span class='no'>ktex_path</span></div><div class='output co'>#&gt; \resizebox{\textwidth}{!}{
-#&gt; \begin{tabular}{llr}
-#&gt; \hline
-#&gt; \multicolumn{2}{c}{Item} \\
-#&gt; \cline{1-2}
-#&gt; Animal    &amp; Description &amp; Price (\$) \\
-#&gt; \hline
-#&gt; Gnat      &amp; per gram    &amp; 13.65      \\
-#&gt; &amp; each        &amp; 0.01       \\
-#&gt; Gnu       &amp; stuffed     &amp; 92.50      \\
-#&gt; Emu       &amp; stuffed     &amp; 33.33      \\
-#&gt; Armadillo &amp; frozen      &amp; 8.99       \\
-#&gt; \hline
-#&gt; \end{tabular}
-#&gt; }</div><div class='input'>
+<span class='no'>ktex_path</span></div><div class='output co'>#&gt; \begin{tabular}{cccc}
+#&gt; \toprule
+#&gt; C1 &amp; C2 &amp; C3 &amp; C4\\
+#&gt; \midrule
+#&gt; a &amp; c &amp; 1 &amp; 1\\
+#&gt; a &amp; c &amp; 2 &amp; 1\\
+#&gt; a &amp; c &amp; 3 &amp; 1\\
+#&gt; a &amp; c &amp; 4 &amp; 0\\
+#&gt; a &amp; c &amp; 5 &amp; 0\\
+#&gt; \addlinespace
+#&gt; a &amp; c &amp; 6 &amp; 1\\
+#&gt; a &amp; c &amp; 7 &amp; 1\\
+#&gt; a &amp; d &amp; 8 &amp; 0\\
+#&gt; a &amp; d &amp; 9 &amp; 0\\
+#&gt; a &amp; d &amp; 10 &amp; 0\\
+#&gt; \addlinespace
+#&gt; b &amp; c &amp; 11 &amp; 0\\
+#&gt; b &amp; c &amp; 12 &amp; 0\\
+#&gt; b &amp; d &amp; 13 &amp; 1\\
+#&gt; b &amp; d &amp; 14 &amp; 1\\
+#&gt; b &amp; d &amp; 15 &amp; 0\\
+#&gt; \bottomrule
+#&gt; \end{tabular}</div><div class='input'>
+<span class='co'># texpreview_input class</span>
+  <span class='co'># this is the same output class as one would get with</span>
+  <span class='co'># tex_preview(tex,returnType = 'input')</span>
+
+<span class='no'>toy_input</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/structure.html'>structure</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/sprintf.html'>sprintf</a></span>(<span class='st'>'\\input{%s}'</span>,<span class='no'>toy</span>),<span class='kw'>class</span> <span class='kw'>=</span> <span class='st'>'texpreview_input'</span>)
+
+<span class='no'>toy_input</span></div><div class='output co'>#&gt; \input{/tmp/RtmpTsjla4/temp_libpath585548e0f9ac/texPreview/examples/toy/toy.tex}</div><div class='input'>
+<span class='fu'>as.kable</span>(<span class='no'>toy_input</span>)</div><div class='output co'>#&gt; \begin{tabular}{cccc}
+#&gt; \toprule
+#&gt; C1 &amp; C2 &amp; C3 &amp; C4\\
+#&gt; \midrule
+#&gt; a &amp; c &amp; 1 &amp; 1\\
+#&gt; a &amp; c &amp; 2 &amp; 1\\
+#&gt; a &amp; c &amp; 3 &amp; 1\\
+#&gt; a &amp; c &amp; 4 &amp; 0\\
+#&gt; a &amp; c &amp; 5 &amp; 0\\
+#&gt; \addlinespace
+#&gt; a &amp; c &amp; 6 &amp; 1\\
+#&gt; a &amp; c &amp; 7 &amp; 1\\
+#&gt; a &amp; d &amp; 8 &amp; 0\\
+#&gt; a &amp; d &amp; 9 &amp; 0\\
+#&gt; a &amp; d &amp; 10 &amp; 0\\
+#&gt; \addlinespace
+#&gt; b &amp; c &amp; 11 &amp; 0\\
+#&gt; b &amp; c &amp; 12 &amp; 0\\
+#&gt; b &amp; d &amp; 13 &amp; 1\\
+#&gt; b &amp; d &amp; 14 &amp; 1\\
+#&gt; b &amp; d &amp; 15 &amp; 0\\
+#&gt; \bottomrule
+#&gt; \end{tabular}</div><div class='input'>
 </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
