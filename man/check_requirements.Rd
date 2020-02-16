@@ -14,6 +14,6 @@ Checks if the required TeX libraries are installed on the system to render the
 internal tex file template.
 }
 \examples{
-check_requirements()
+#check_requirements()
 }
 \concept{reqs}

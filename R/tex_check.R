@@ -31,7 +31,7 @@ tex_requirements <- function(file = system.file('tmpl.tex',package = 'texPreview
 #' internal tex file template.
 #' @return logical
 #' @examples 
-#' check_requirements()
+#' #check_requirements()
 #' @rdname check_requirements
 #' @concept reqs
 #' @export 

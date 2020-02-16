@@ -5,7 +5,8 @@
 #' @return 
 #' character
 #' @examples
-#' \dontrun{head(get_texpackages())}
+#' #head(get_texpackages())
+#' }
 #' @concept utils
 #' @rdname get_texpackages
 get_texpackages <- function(){

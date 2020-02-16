@@ -1,6 +1,7 @@
 #' @title Try to coerce an object into a knitr_kable object
 #' @description coerce objects into a knitr_kable class object with a latex format
-#' @param x object
+#' @param x object, can be tex character, object return by returnType = "input", 
+#' or a path to a tex file.
 #' @return an object of class knitr_kable
 #' @examples 
 #' 
@@ -26,31 +27,27 @@
 #' 
 #' ktex
 #' 
-#' # using an input call
-#' 
-#' x <- tex_preview(tex,returnType = 'input')
-#' 
-#' x
-#' 
-#' ktex_input <- as.kable(x)
-#' 
-#' class(ktex_input)
-#' 
-#' attributes(ktex_input)
-#' 
-#' ktex_input
-#' 
 #' # file path
 #' 
-#' x <- tex_preview(tex,returnType = 'input')
+#' toy <- system.file('examples/toy/toy.tex',package = 'texPreview')
 #' 
-#' ktex_path <- as.kable(file.path(tempdir(),'tex_temp.tex'))
+#' ktex_path <- as.kable(toy)
 #' 
 #' class(ktex_path)
 #' 
 #' attributes(ktex_path)
 #' 
 #' ktex_path
+#' 
+#' # texpreview_input class
+#'   # this is the same output class as one would get with
+#'   # tex_preview(tex,returnType = 'input')
+#' 
+#' toy_input <- structure(sprintf('\\input{%s}',toy),class = 'texpreview_input')
+#' 
+#' toy_input
+#' 
+#' as.kable(toy_input)
 #' 
 #' @concept utils
 #' @rdname as_kable
