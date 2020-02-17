@@ -50,11 +50,22 @@ check_requirements <- function(){
 
 
 check_package <- function(x){
-  if ( Sys.info()[1] == "Windows" ){
-    check_mpm(x)
+  
+  if(nzchar(Sys.which("tlmgr"))){
+    
+    check_texlive(x)  
+    
   }else{
-    check_texlive(x)
+    
+    if(!nzchar(Sys.which("mpm"))){
+      check_mpm(x)
+    }else{
+      stop('neither tlmgr or mpm are installed and in %PATH%')
+    }
+      
+    
   }
+  
 }
 
 check_texlive <- function(x) length(suppressWarnings(system(sprintf('kpsewhich %s.sty',x),intern = TRUE)))>0

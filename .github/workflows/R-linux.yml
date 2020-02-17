@@ -33,20 +33,21 @@ jobs:
         uses: actions/cache@v1
         with:
           path: ${{ env.R_LIBS_USER }}
-          # key: ${{ runner.os }}-r-${{ matrix.config.r }}-${{ hashFiles('DESCRIPTION') }}
-          key: 1
+          key: ${{ runner.os }}-r-${{ matrix.config.r }}-${{ hashFiles('DESCRIPTION') }}
 
       - name: Install magick libs
         run: |
           sudo add-apt-repository ppa:cran/imagemagick
           sudo apt-get -qq update
-          sudo -E apt-get -yq --no-install-suggests --no-install-recommends install libmagick++-dev librsvg2-dev libwebp-dev libpoppler-cpp-dev libtesseract-dev libleptonica-dev tesseract-ocr-eng libfftw3-dev cargo ghostscript gsfonts
-            
+          sysreqs = $("export DEBIAN_FRONTEND=noninteractive; apt-get -y update && apt-get install -y libmagic-dev libmagick++-dev imagemagick libcurl4-openssl-dev libssl-dev ffmpeg libav-tools git-core pandoc pandoc-citeproc librsvg2-dev libwebp-dev libpoppler-cpp-dev libgdal-dev gdal-bin libproj-dev libtesseract-dev libleptonica-dev tesseract-ocr-eng cargo libxml2-dev")
+          sudo -s eval "$sysreqs"
+          
       - name: Install texlibs
         run: |
           sudo apt-get -qq update
           sudo apt-get install -y texlive-base texlive-latex-base texlive-latex-extra texlive-fonts-recommended texlive-fonts-extra
           tlmgr install standalone
+          
       - name: Install system dependencies
         if: runner.os == 'Linux'
         env:
