@@ -31,22 +31,7 @@ jobs:
 
       - name: CONFIG
         run: |
-          PKG_CONFIG_NAME="Magick++"
-          PKG_DEB_NAME="libmagick++-dev"
-          PKG_LIBS="-lMagick++-6.Q16"
-          PKGCONFIG_CFLAGS=$(pkg-config --cflags --silence-errors ${PKG_CONFIG_NAME})
-          PKGCONFIG_LIBS=$(pkg-config --libs ${PKG_CONFIG_NAME})
-          
-          if [ "$INCLUDE_DIR" ] || [ "$LIB_DIR" ]; then
-            echo "Found INCLUDE_DIR and/or LIB_DIR!"
-            PKG_CFLAGS="-I$INCLUDE_DIR $PKG_CFLAGS"
-            PKG_LIBS="-L$LIB_DIR $PKG_LIBS"
-          elif [ "$PKGCONFIG_CFLAGS" ] || [ "$PKGCONFIG_LIBS" ]; then
-            echo "Found pkg-config cflags and libs!"
-            PKG_CFLAGS=${PKGCONFIG_CFLAGS}
-            PKG_LIBS=${PKGCONFIG_LIBS}
-          fi
-          
+        
           CXX=$(${R_HOME}/bin/R CMD config CXX)
           CXXFLAGS=$(${R_HOME}/bin/R CMD config CXXFLAGS)
           CPPFLAGS=$(${R_HOME}/bin/R CMD config CPPFLAGS)
@@ -54,10 +39,6 @@ jobs:
           echo "Using PKG_CFLAGS=$PKG_CFLAGS"
           echo "Using PKG_LIBS=$PKG_LIBS"
           
-          echo "#include $PKG_TEST_HEADER" | ${CXX} -E ${CPPFLAGS} ${PKG_CFLAGS} ${CXXFLAGS} -xc++ - >/dev/null 2>configure.log
-
-          sed -e "s|@cflags@|$PKG_CFLAGS|" -e "s|@libs@|$PKG_LIBS|" src/Makevars.in > src/Makevars
-
       - name: Install magick libs
         run: |
           sudo add-apt-repository ppa:cran/imagemagick
