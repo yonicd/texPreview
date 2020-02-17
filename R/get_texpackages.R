@@ -12,10 +12,10 @@ get_texpackages <- function(){
   
   if (Sys.info()[1] == "Windows"){
     
-    if(length(system('mpm --version',intern = TRUE))==0)
-      stop('mpm not installed')
+    # if(length(system('mpm --version',intern = TRUE))==0)
+    #   stop('mpm not installed')
     
-    system('mpm --list-package-names',intern = TRUE)
+    mpm <- try(system('mpm --list-package-names',intern = TRUE),silent = TRUE)
     
   }else{
     
