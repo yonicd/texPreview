@@ -38,7 +38,7 @@ jobs:
 
       - name: PATH
         run: |
-          ECHO $PATH
+          echo $PATH
 
       # - name: Install magick libs
       #   run: |
