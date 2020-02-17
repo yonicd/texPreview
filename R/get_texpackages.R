@@ -6,7 +6,6 @@
 #' character
 #' @examples
 #' #head(get_texpackages())
-#' }
 #' @concept utils
 #' @rdname get_texpackages
 get_texpackages <- function(){
