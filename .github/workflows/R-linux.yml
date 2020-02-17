@@ -42,7 +42,7 @@ jobs:
           sudo apt-get -qq update
           sudo -E apt-get -yq --no-install-suggests --no-install-recommends install libmagick++-dev librsvg2-dev libwebp-dev libpoppler-cpp-dev libtesseract-dev libleptonica-dev tesseract-ocr-eng libfftw3-dev cargo ghostscript gsfonts
           which convert
-          Rscript -e "Sys.setenv("PATH" = paste(Sys.getenv('PATH'),system('which convert',intern = TRUE),sep = ':')"
+          Rscript -e "Sys.setenv('PATH' = paste(Sys.getenv('PATH'),system('which convert',intern = TRUE),sep = ':')"
    
       # - name: Install texlibs
       #   run: |
