@@ -37,7 +37,7 @@ jobs:
           if (!file.exists(M)) file.create(M)
           magick_settings <- c(
             'PKG_CPPFLAGS = Magick++-config --cppflags',
-            'PKG_CXXFLAGS = Magick++-config --cxxflags'
+            'PKG_CXXFLAGS = Magick++-config --cxxflags',
             'PKG_LIBS = Magick++-config --ldflags --libs'
           )
           cat(magick_settings,file = M, sep = "\n", append = TRUE) 
