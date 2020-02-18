@@ -10,21 +10,20 @@
 #' @rdname get_texpackages
 get_texpackages <- function(){
   
-  if (Sys.info()[1] == "Windows"){
-    
-    if(length(system('mpm --version',intern = TRUE))==0)
-      stop('mpm not installed')
-    
-    system('mpm --list-package-names',intern = TRUE)
-    
-  }else{
-    
-    if(length(system('tlmgr --version',intern = TRUE))==0)
-      stop('tex live not installed')
+  if(nzchar(Sys.which("tlmgr"))){
     
     x <- system('tlmgr list --only-installed',intern = TRUE)
     
     gsub('^i |:(.*?)$','',x)
     
+  }else{
+    
+    if(!nzchar(Sys.which("mpm"))){
+      system('mpm --list-package-names',intern = TRUE)
+    }else{
+      stop('neither tlmgr or mpm are installed and in %PATH%')
+    }
+    
   }
+  
 }

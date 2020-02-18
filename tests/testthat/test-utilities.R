@@ -7,19 +7,19 @@ testthat::context('utility functions of package')
 testthat::describe('build usepackage call',{
  
   it('basic call', {
-      testthat::expect_equal(texPreview:::build_usepackage(pkg = 'xcolor'),"\\usepackage{xcolor}")
+      testthat::expect_equal(texPreview::build_usepackage(pkg = 'xcolor'),"\\usepackage{xcolor}")
     })
   
   it('check library is installed', {
-      testthat::expect_equal(texPreview:::build_usepackage(pkg = 'xcolor',chk.inst = TRUE),"\\usepackage{xcolor}")
+      testthat::expect_equal(texPreview::build_usepackage(pkg = 'xcolor',chk.inst = TRUE),"\\usepackage{xcolor}")
     })
   
   it('add options', {
-      testthat::expect_equal(texPreview:::build_usepackage(pkg = 'xcolor',options = 'usenames'),"\\usepackage[usenames]{xcolor}")
+      testthat::expect_equal(texPreview::build_usepackage(pkg = 'xcolor',options = 'usenames'),"\\usepackage[usenames]{xcolor}")
     })
    
   it('use bad library name', {
-      testthat::expect_warning(texPreview:::build_usepackage(pkg = 'nopack',chk.inst = TRUE))
+      testthat::expect_warning(texPreview::build_usepackage(pkg = 'nopack',chk.inst = TRUE))
     })
   
 })
