@@ -37,6 +37,7 @@ jobs:
           sudo apt-get -qq update
           sudo apt-get install -y texlive-base texlive-latex-base texlive-latex-extra texlive-fonts-recommended texlive-fonts-extra
           tlmgr install standalone
+          tlmgr install varwidth
 
       - name: Install system dependencies
         if: runner.os == 'Linux'
