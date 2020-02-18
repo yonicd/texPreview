@@ -1,5 +1,4 @@
-on:
-  push
+on: [push, pull_request]
 
 name: R-linux
 
@@ -7,8 +6,7 @@ jobs:
   check:
     runs-on: ${{ matrix.config.os }}
     name: ${{ matrix.config.os }} (${{ matrix.config.r }})
-    #if: "!contains(github.event.head_commit.message, 'skip linux')"
-    if: false
+    if: "!contains(github.event.head_commit.message, 'skip linux')"
     
     strategy:
       fail-fast: false
@@ -25,12 +23,19 @@ jobs:
       - uses: r-lib/actions/setup-r@master
         with:
           r-version: ${{ matrix.config.r }}
-        
+
+      - uses: r-lib/actions/setup-tinytex@master
+
       - name: Install magick libs
         run: |
-          sudo add-apt-repository ppa:cran/imagemagick
           sudo apt-get -qq update
           sudo apt-get -y install libmagick++-dev
+
+      - name: Install texlibs
+        run: |
+          sudo apt-get -qq update
+          sudo apt-get install -y texlive-base texlive-latex-base texlive-latex-extra texlive-fonts-recommended texlive-fonts-extra
+          tlmgr install standalone xcolor booktabs multirow amsmath listings setspace caption graphics tools psnfss varwidth colortbl epstopdf-pkg pgf
 
       - name: Install system dependencies
         if: runner.os == 'Linux'
@@ -41,10 +46,36 @@ jobs:
           sysreqs=$(Rscript -e "cat(sysreqs::sysreq_commands('DESCRIPTION'))")
           sudo -s eval "$sysreqs"
 
-      - name: install magick
+
+      - name: Query dependencies
         run: |
-          install.packages('magick')
-          library(magick)
-          tiger <- image_read_svg('http://jeroen.github.io/images/tiger.svg', width = 350)
-          tiger
+          saveRDS(remotes::dev_package_deps(dependencies = TRUE), "depends.Rds", version = 2)
         shell: Rscript {0}
+
+      - name: Cache R packages
+        if: runner.os != 'Windows'
+        uses: actions/cache@v1
+        with:
+          path: ${{ env.R_LIBS_USER }}
+          key: ${{ runner.os }}-r-${{ matrix.config.r }}-${{ hashFiles('depends.Rds') }}
+          restore-keys: ${{ runner.os }}-r-${{ matrix.config.r }}-
+
+      - name: Install dependencies
+        run: |
+          library(remotes)
+          deps <- readRDS("depends.Rds")
+          deps[["installed"]] <- vapply(deps[["package"]], remotes:::local_sha, character(1))
+          update(deps)
+          remotes::install_cran("rcmdcheck")
+        shell: Rscript {0}
+
+      - name: Check
+        run: rcmdcheck::rcmdcheck(args = "--no-manual", error_on = "warning", check_dir = "check")
+        shell: Rscript {0}
+
+      - name: Upload check results
+        if: failure()
+        uses: actions/upload-artifact@master
+        with:
+          name: ${{ runner.os }}-r${{ matrix.config.r }}-results
+          path: check

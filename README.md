@@ -3,11 +3,12 @@
 [![](https://cranlogs.r-pkg.org/badges/texPreview)](https://cran.r-project.org/package=texPreview)
 [![Coverage Status](https://img.shields.io/codecov/c/github/metrumresearchgroup/texPreview/master.svg)](https://codecov.io/github/metrumresearchgroup/texPreview?branch=master)
 [![Covrpage Summary](https://img.shields.io/badge/covrpage-Last_Build_2020_02_14-brightgreen.svg)](http://tinyurl.com/ybkr8fsu)
-[![Travis-CI Build Status](https://travis-ci.org/metrumresearchgroup/texPreview.svg?branch=master)](https://travis-ci.org/metrumresearchgroup/texPreview)
 [![R-win build
 status](https://github.com/metrumresearchgroup/texPreview/workflows/R-win/badge.svg)](https://github.com/metrumresearchgroup/texPreview)
 [![R-mac build
 status](https://github.com/metrumresearchgroup/texPreview/workflows/R-mac/badge.svg)](https://github.com/metrumresearchgroup/texPreview)
+[![R-linux build
+status](https://github.com/metrumresearchgroup/texPreview/workflows/R-linux/badge.svg)](https://github.com/metrumresearchgroup/texPreview)
 
 # texPreview
 
