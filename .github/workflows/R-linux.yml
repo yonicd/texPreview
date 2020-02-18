@@ -33,10 +33,7 @@ jobs:
         run: |
           sudo add-apt-repository ppa:cran/imagemagick
           sudo apt-get -qq update
-          sudo -E apt-get -yq --no-install-suggests --no-install-recommends install libmagick++-dev librsvg2-dev libwebp-dev libpoppler-cpp-dev libtesseract-dev libleptonica-dev tesseract-ocr-eng libfftw3-dev cargo ghostscript gsfonts
-          locate imagemagick
-          export PATH; PATH="$HOME/ImageMagick/bin:$PATH"
-          export LD_LIBRARY_PATH="$HOME/ImageMagick-6.9.7-4/lib"
+          sudo -E apt-get -yq --no-install-suggests --no-install-recommends install libmagick++-dev
 
       - name: Install system dependencies
         if: runner.os == 'Linux'
