@@ -26,11 +26,11 @@ jobs:
         with:
           r-version: ${{ matrix.config.r }}
         
-      - name: Install magick libs
-        run: |
-          sudo add-apt-repository ppa:cran/imagemagick
-          sudo apt-get -qq update
-          sudo apt-get -y install libmagick++-dev
+      # - name: Install magick libs
+      #   run: |
+      #     sudo add-apt-repository ppa:cran/imagemagick
+      #     sudo apt-get -qq update
+      #     sudo apt-get -y install libmagick++-dev
 
       - name: Install system dependencies
         if: runner.os == 'Linux'
@@ -43,7 +43,7 @@ jobs:
 
       - name: install magick
         run: |
-          install.packages('magick')
+          install.packages('magick',type='source')
           library(magick)
           tiger <- image_read_svg('http://jeroen.github.io/images/tiger.svg', width = 350)
           tiger
