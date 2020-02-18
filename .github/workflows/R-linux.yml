@@ -28,7 +28,7 @@ jobs:
       - uses: r-lib/actions/setup-r@master
         with:
           r-version: ${{ matrix.config.r }}
-          
+
       - name: setup config
         run: |
           dotR <- file.path(Sys.getenv("HOME"), ".R")
@@ -49,31 +49,4 @@ jobs:
           sudo add-apt-repository ppa:cran/imagemagick
           sudo apt-get -qq update
           sudo -E apt-get -yq --no-install-suggests --no-install-recommends install libmagick++-dev librsvg2-dev libwebp-dev libpoppler-cpp-dev libtesseract-dev libleptonica-dev tesseract-ocr-eng libfftw3-dev cargo ghostscript gsfonts
-          Rscript -e "Sys.setenv('PATH' = paste(Sys.getenv('PATH'),system('locate imagemagick',intern = TRUE),sep = ':'))"
-
-      - name: Install texlibs
-        run: |
-          sudo apt-get -qq update
-          sudo apt-get install -y texlive-base texlive-latex-base texlive-latex-extra texlive-fonts-recommended texlive-fonts-extra
-          tlmgr install standalone
-
-      - name: Install system dependencies
-        if: runner.os == 'Linux'
-        env:
-          RHUB_PLATFORM: linux-x86_64-ubuntu-gcc
-        run: |
-          Rscript -e "install.packages('remotes')" -e "remotes::install_github('r-hub/sysreqs')"
-          sysreqs=$(Rscript -e "cat(sysreqs::sysreq_commands('DESCRIPTION'))")
-          sudo -s eval "$sysreqs"
-      - name: Install dependencies
-        run: Rscript -e "install.packages('remotes')" -e "remotes::install_deps(dependencies = TRUE)" -e "remotes::install_cran('rcmdcheck')"
-
-      # - name: Cache R packages
-      #   uses: actions/cache@v1
-      #   with:
-      #     path: ${{ env.R_LIBS_USER }}
-      #     # key: ${{ runner.os }}-r-${{ matrix.config.r }}-${{ hashFiles('DESCRIPTION') }}
-      #     key: 999
-
-      - name: Check
-        run: Rscript -e "rcmdcheck::rcmdcheck(args = '${{ matrix.config.args }}', error_on = 'warning', check_dir = 'check')"
+          convert --version
