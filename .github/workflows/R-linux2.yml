@@ -41,7 +41,7 @@ jobs:
           
       - name: install magick
         run: |
-          install.packages('magick')
+          install.packages(c('magick','rsvg'))
         shell: Rscript {0}
 
       - name: load magick
