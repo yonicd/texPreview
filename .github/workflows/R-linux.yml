@@ -21,10 +21,6 @@ jobs:
     steps:
       - uses: actions/checkout@master
 
-      - uses: r-lib/actions/setup-tinytex@master
-
-      - uses: r-lib/actions/setup-pandoc@master
-
       - uses: r-lib/actions/setup-r@master
         with:
           r-version: ${{ matrix.config.r }}
@@ -33,7 +29,7 @@ jobs:
         run: |
           sudo add-apt-repository ppa:cran/imagemagick
           sudo apt-get -qq update
-          sudo -E apt-get -yq --no-install-suggests --no-install-recommends install libmagick++-dev
+          sudo apt-get -y install libmagick++-dev
 
       - name: Install system dependencies
         if: runner.os == 'Linux'
