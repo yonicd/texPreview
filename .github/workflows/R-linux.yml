@@ -25,6 +25,17 @@ jobs:
         with:
           r-version: ${{ matrix.config.r }}
 
+      - name: Install magick libs
+        run: |
+          sudo apt-get -qq update
+          sudo apt-get -y install libmagick++-dev
+
+      - name: Install texlibs
+        run: |
+          sudo apt-get -qq update
+          sudo apt-get install -y texlive-base texlive-latex-base texlive-latex-extra texlive-fonts-recommended texlive-fonts-extra
+          tlmgr install standalone
+
       - name: Install system dependencies
         if: runner.os == 'Linux'
         env:
@@ -34,19 +45,6 @@ jobs:
           sysreqs=$(Rscript -e "cat(sysreqs::sysreq_commands('DESCRIPTION'))")
           sudo -s eval "$sysreqs"
 
-      - name: install tinytex
-        run: |
-          install.packages('tinytex')
-          tinytex::install_tinytex()
-          tinytex::tlmgr_install(c('standalone', 'xcolor', 'booktabs', 'multirow', 'amsmath', 'listings', 'setspace', 'caption', 'graphics', 'tools', 'psnfss', 'varwidth', 'colortbl', 'epstopdf-pkg', 'pgf'))
-          cat("::add-path::", tinytex::tinytex_root(), "\\bin\\win32", sep = "")
-        shell: Rscript {0}
-
-      - name: install magick
-        run: |
-          install.packages('rsvg')
-          install.packages('magick',type='source')
-        shell: Rscript {0}
 
       - name: Query dependencies
         run: |
