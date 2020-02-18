@@ -42,7 +42,12 @@ jobs:
 
       - name: install magick
         run: |
+          install.packages('rsvg')
           install.packages('magick',type='source')
+        shell: Rscript {0}
+
+      - name: load magick
+        run: |
           library(magick)
           tiger <- image_read_svg('http://jeroen.github.io/images/tiger.svg', width = 350)
           tiger
