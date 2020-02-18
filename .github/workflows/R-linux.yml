@@ -1,5 +1,4 @@
-on:
-  push
+on: [push, pull_request]
 
 name: R-linux
 
