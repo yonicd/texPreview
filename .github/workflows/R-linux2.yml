@@ -1,0 +1,52 @@
+on:
+  push
+
+name: R-linux
+
+jobs:
+  check:
+    runs-on: ${{ matrix.config.os }}
+    name: linux2
+    if: "!contains(github.event.head_commit.message, 'skip linux2')"
+    
+    strategy:
+      fail-fast: false
+      matrix:
+        config:
+        - { os: ubuntu-16.04, r: '3.6', cran: "https://demo.rstudiopm.com/all/__linux__/xenial/latest", args: "--no-manual" }
+    env:
+      R_REMOTES_NO_ERRORS_FROM_WARNINGS: true
+      CRAN: ${{ matrix.config.cran }}
+
+    steps:
+      - uses: actions/checkout@master
+
+      - uses: r-lib/actions/setup-r@master
+        with:
+          r-version: ${{ matrix.config.r }}
+        
+      - name: Install magick libs
+        run: |
+          sudo apt-get -qq update
+          sudo apt-get -y install libmagick++-dev
+          
+      - name: Install system dependencies
+        if: runner.os == 'Linux'
+        env:
+          RHUB_PLATFORM: linux-x86_64-ubuntu-gcc
+        run: |
+          Rscript -e "install.packages('remotes')" -e "remotes::install_github('r-hub/sysreqs')"
+          sysreqs=$(Rscript -e "cat(sysreqs::sysreq_commands('DESCRIPTION'))")
+          sudo -s eval "$sysreqs"
+          
+      - name: install magick
+        run: |
+          install.packages('magick')
+        shell: Rscript {0}
+
+      - name: load magick
+        run: |
+          library(magick)
+          tiger <- image_read_svg('http://jeroen.github.io/images/tiger.svg', width = 350)
+          tiger
+        shell: Rscript {0}
