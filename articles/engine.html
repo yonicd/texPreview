@@ -31,7 +31,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">texPreview</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.4.4</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.4.5</span>
       </span>
     </div>
 
@@ -124,20 +124,20 @@
 </tr>
 </tbody>
 </table>
-<p>The user still has the option to use <code><a href="../reference/tex_opts.html">texPreview::tex_opts</a></code> to control chunk outputs as they are passed into the call internally. The chunk options will overide any settings that are in <code><a href="../reference/tex_opts.html">texPreview::tex_opts</a></code>.</p>
-<p>Rendering the chunk interactively will have different side effects depending on the <code>texpreview.return</code> setting. These settings have the same side effects as the returnType settings with one addition ‘engine’ which mimics returnType=‘viewer’. It should be the prefered settings when working with RMarkdown documents that return HTML outputs.</p>
+<p>The user still has the option to use <code><a href="../reference/tex_opts.html">texPreview::tex_opts</a></code> to control chunk outputs as they are passed into the call internally. The chunk options will override any settings that are in <code><a href="../reference/tex_opts.html">texPreview::tex_opts</a></code>.</p>
+<p>Rendering the chunk interactively will have different side effects depending on the <code>texpreview.return</code> setting. These settings have the same side effects as the returnType settings with one addition ‘engine’ which mimics returnType=‘viewer’. It should be the preferred settings when working with RMarkdown documents that return HTML outputs.</p>
 <p>The following are examples of some uses of the <code>texpreview</code> engine.</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" data-line-number="1"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span>(texPreview)</a>
-<a class="sourceLine" id="cb1-2" data-line-number="2"><span class="kw"><a href="https://rdrr.io/r/base/files2.html">dir.create</a></span>(<span class="st">'images'</span>,<span class="dt">showWarnings =</span> <span class="ot">FALSE</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1"></a><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span>(texPreview)</span>
+<span id="cb1-2"><a href="#cb1-2"></a><span class="kw"><a href="https://rdrr.io/r/base/files2.html">dir.create</a></span>(<span class="st">'images'</span>,<span class="dt">showWarnings =</span> <span class="ot">FALSE</span>)</span></code></pre></div>
 <div id="default" class="section level2">
 <h2 class="hasAnchor">
 <a href="#default" class="anchor"></a>Default</h2>
 <div id="chunk-call" class="section level3">
 <h3 class="hasAnchor">
 <a href="#chunk-call" class="anchor"></a>Chunk Call</h3>
-<div class="sourceCode" id="cb2"><pre class="sourceCode markdown"><code class="sourceCode markdown"><a class="sourceLine" id="cb2-1" data-line-number="1">```{texpreview, echo = FALSE}</a>
-<a class="sourceLine" id="cb2-2" data-line-number="2">knitr::kable(head(iris),format = 'latex',booktabs = TRUE)</a>
-<a class="sourceLine" id="cb2-3" data-line-number="3">```</a></code></pre></div>
+<div class="sourceCode" id="cb2"><pre class="sourceCode markdown"><code class="sourceCode markdown"><span id="cb2-1"><a href="#cb2-1"></a><span class="bn">```{texpreview, echo = FALSE}</span></span>
+<span id="cb2-2"><a href="#cb2-2"></a><span class="bn">knitr::kable(head(iris),format = 'latex',booktabs = TRUE)</span></span>
+<span id="cb2-3"><a href="#cb2-3"></a><span class="bn">```</span></span></code></pre></div>
 </div>
 <div id="output" class="section level3">
 <h3 class="hasAnchor">
@@ -153,9 +153,9 @@
 <div id="chunk-call-1" class="section level3">
 <h3 class="hasAnchor">
 <a href="#chunk-call-1" class="anchor"></a>Chunk Call</h3>
-<div class="sourceCode" id="cb4"><pre class="sourceCode markdown"><code class="sourceCode markdown"><a class="sourceLine" id="cb4-1" data-line-number="1">```{texpreview, echo = FALSE}</a>
-<a class="sourceLine" id="cb4-2" data-line-number="2">knitr::kable(head(iris),format = 'latex',booktabs = TRUE)</a>
-<a class="sourceLine" id="cb4-3" data-line-number="3">```</a></code></pre></div>
+<div class="sourceCode" id="cb4"><pre class="sourceCode markdown"><code class="sourceCode markdown"><span id="cb4-1"><a href="#cb4-1"></a><span class="bn">```{texpreview, echo = FALSE}</span></span>
+<span id="cb4-2"><a href="#cb4-2"></a><span class="bn">knitr::kable(head(iris),format = 'latex',booktabs = TRUE)</span></span>
+<span id="cb4-3"><a href="#cb4-3"></a><span class="bn">```</span></span></code></pre></div>
 </div>
 <div id="output-1" class="section level3">
 <h3 class="hasAnchor">
@@ -169,21 +169,21 @@
 <div id="chunk-call-2" class="section level3">
 <h3 class="hasAnchor">
 <a href="#chunk-call-2" class="anchor"></a>Chunk Call</h3>
-<div class="sourceCode" id="cb5"><pre class="sourceCode markdown"><code class="sourceCode markdown"><a class="sourceLine" id="cb5-1" data-line-number="1">```{texpreview}</a>
-<a class="sourceLine" id="cb5-2" data-line-number="2">\begin{tabular}{llr}</a>
-<a class="sourceLine" id="cb5-3" data-line-number="3">\hline</a>
-<a class="sourceLine" id="cb5-4" data-line-number="4">\multicolumn{2}{c}{Item} \\</a>
-<a class="sourceLine" id="cb5-5" data-line-number="5">\cline{1-2}</a>
-<a class="sourceLine" id="cb5-6" data-line-number="6">Animal    &amp; Description &amp; Price (\$) \\</a>
-<a class="sourceLine" id="cb5-7" data-line-number="7">\hline</a>
-<a class="sourceLine" id="cb5-8" data-line-number="8">Gnat      &amp; per gram    &amp; 13.65      \\</a>
-<a class="sourceLine" id="cb5-9" data-line-number="9"><span class="bn">          &amp; each        &amp; 0.01       \\</span></a>
-<a class="sourceLine" id="cb5-10" data-line-number="10">Gnu       &amp; stuffed     &amp; 92.50      \\</a>
-<a class="sourceLine" id="cb5-11" data-line-number="11">Emu       &amp; stuffed     &amp; 33.33      \\</a>
-<a class="sourceLine" id="cb5-12" data-line-number="12">Armadillo &amp; frozen      &amp; 8.99       \\</a>
-<a class="sourceLine" id="cb5-13" data-line-number="13">\hline</a>
-<a class="sourceLine" id="cb5-14" data-line-number="14">\end{tabular}</a>
-<a class="sourceLine" id="cb5-15" data-line-number="15">```</a></code></pre></div>
+<div class="sourceCode" id="cb5"><pre class="sourceCode markdown"><code class="sourceCode markdown"><span id="cb5-1"><a href="#cb5-1"></a><span class="bn">```{texpreview}</span></span>
+<span id="cb5-2"><a href="#cb5-2"></a><span class="bn">\begin{tabular}{llr}</span></span>
+<span id="cb5-3"><a href="#cb5-3"></a><span class="bn">\hline</span></span>
+<span id="cb5-4"><a href="#cb5-4"></a><span class="bn">\multicolumn{2}{c}{Item} \\</span></span>
+<span id="cb5-5"><a href="#cb5-5"></a><span class="bn">\cline{1-2}</span></span>
+<span id="cb5-6"><a href="#cb5-6"></a><span class="bn">Animal    &amp; Description &amp; Price (\$) \\</span></span>
+<span id="cb5-7"><a href="#cb5-7"></a><span class="bn">\hline</span></span>
+<span id="cb5-8"><a href="#cb5-8"></a><span class="bn">Gnat      &amp; per gram    &amp; 13.65      \\</span></span>
+<span id="cb5-9"><a href="#cb5-9"></a><span class="bn">          &amp; each        &amp; 0.01       \\</span></span>
+<span id="cb5-10"><a href="#cb5-10"></a><span class="bn">Gnu       &amp; stuffed     &amp; 92.50      \\</span></span>
+<span id="cb5-11"><a href="#cb5-11"></a><span class="bn">Emu       &amp; stuffed     &amp; 33.33      \\</span></span>
+<span id="cb5-12"><a href="#cb5-12"></a><span class="bn">Armadillo &amp; frozen      &amp; 8.99       \\</span></span>
+<span id="cb5-13"><a href="#cb5-13"></a><span class="bn">\hline</span></span>
+<span id="cb5-14"><a href="#cb5-14"></a><span class="bn">\end{tabular}</span></span>
+<span id="cb5-15"><a href="#cb5-15"></a><span class="bn">```</span></span></code></pre></div>
 </div>
 <div id="output-2" class="section level3">
 <h3 class="hasAnchor">
@@ -210,47 +210,47 @@ Armadillo &amp; frozen      &amp; 8.99       \\
 <div id="chunk-call-3" class="section level3">
 <h3 class="hasAnchor">
 <a href="#chunk-call-3" class="anchor"></a>Chunk Call</h3>
-<div class="sourceCode" id="cb7"><pre class="sourceCode markdown"><code class="sourceCode markdown"><a class="sourceLine" id="cb7-1" data-line-number="1">```{texpreview, echo = FALSE, texpreview.path = 'images',texpreview.stem = 'example'}</a>
-<a class="sourceLine" id="cb7-2" data-line-number="2">knitr::kable(head(iris),format = 'latex',booktabs = TRUE)</a>
-<a class="sourceLine" id="cb7-3" data-line-number="3">```</a></code></pre></div>
+<div class="sourceCode" id="cb7"><pre class="sourceCode markdown"><code class="sourceCode markdown"><span id="cb7-1"><a href="#cb7-1"></a><span class="bn">```{texpreview, echo = FALSE, texpreview.path = 'images',texpreview.stem = 'example'}</span></span>
+<span id="cb7-2"><a href="#cb7-2"></a><span class="bn">knitr::kable(head(iris),format = 'latex',booktabs = TRUE)</span></span>
+<span id="cb7-3"><a href="#cb7-3"></a><span class="bn">```</span></span></code></pre></div>
 </div>
 <div id="output-3" class="section level3">
 <h3 class="hasAnchor">
 <a href="#output-3" class="anchor"></a>Output</h3>
 <p><img src="engine_files/figure-html/unnamed-chunk-5-7.png" width="758"></p>
-<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb8-1" data-line-number="1"><span class="kw"><a href="https://rdrr.io/r/base/list.files.html">list.files</a></span>(<span class="st">'images'</span>)</a>
-<a class="sourceLine" id="cb8-2" data-line-number="2"><span class="co">#&gt; [1] "example.png" "example.tex"</span></a></code></pre></div>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1"></a><span class="kw"><a href="https://rdrr.io/r/base/list.files.html">list.files</a></span>(<span class="st">'images'</span>)</span>
+<span id="cb8-2"><a href="#cb8-2"></a><span class="co">#&gt; [1] "example.png" "example.tex"</span></span></code></pre></div>
 </div>
 </div>
 <div id="pdf-documents" class="section level2">
 <h2 class="hasAnchor">
 <a href="#pdf-documents" class="anchor"></a>PDF Documents</h2>
 <p>Setting texpreview.return = ‘input’ will have the chunk return an LateX ‘input’ call with the results ‘asis’ so the user can render the lines as part of a Rmarkdown pdf document.</p>
-<div class="sourceCode" id="cb9"><pre class="sourceCode markdown"><code class="sourceCode markdown"><a class="sourceLine" id="cb9-1" data-line-number="1">```{texpreview,texpreview.return = 'input', texpreview.path = 'images',texpreview.stem = 'example'}</a>
-<a class="sourceLine" id="cb9-2" data-line-number="2">knitr::kable(head(iris),format = 'latex',booktabs = TRUE)</a>
-<a class="sourceLine" id="cb9-3" data-line-number="3">```</a>
-<a class="sourceLine" id="cb9-4" data-line-number="4">\input{images/example.tex}</a></code></pre></div>
+<div class="sourceCode" id="cb9"><pre class="sourceCode markdown"><code class="sourceCode markdown"><span id="cb9-1"><a href="#cb9-1"></a><span class="bn">```{texpreview,texpreview.return = 'input', texpreview.path = 'images',texpreview.stem = 'example'}</span></span>
+<span id="cb9-2"><a href="#cb9-2"></a><span class="bn">knitr::kable(head(iris),format = 'latex',booktabs = TRUE)</span></span>
+<span id="cb9-3"><a href="#cb9-3"></a><span class="bn">```</span></span>
+<span id="cb9-4"><a href="#cb9-4"></a>\input{images/example.tex}</span></code></pre></div>
 
 <p>Setting texpreview.return = ‘tex’ will have the chunk return the tex lines output with the results ‘asis’ so the user can render the lines as part of a Rmarkdown pdf document.</p>
-<div class="sourceCode" id="cb10"><pre class="sourceCode markdown"><code class="sourceCode markdown"><a class="sourceLine" id="cb10-1" data-line-number="1">```{texpreview,texpreview.return = 'tex'}</a>
-<a class="sourceLine" id="cb10-2" data-line-number="2">knitr::kable(head(iris),format = 'latex',booktabs = TRUE)</a>
-<a class="sourceLine" id="cb10-3" data-line-number="3">```</a>
-<a class="sourceLine" id="cb10-4" data-line-number="4"></a>
-<a class="sourceLine" id="cb10-5" data-line-number="5">\resizebox{\textwidth}{!}{</a>
-<a class="sourceLine" id="cb10-6" data-line-number="6">\begin{tabular}{rrrrl}</a>
-<a class="sourceLine" id="cb10-7" data-line-number="7">\toprule</a>
-<a class="sourceLine" id="cb10-8" data-line-number="8">Sepal.Length &amp; Sepal.Width &amp; Petal.Length &amp; Petal.Width &amp; Species\\</a>
-<a class="sourceLine" id="cb10-9" data-line-number="9">\midrule</a>
-<a class="sourceLine" id="cb10-10" data-line-number="10">5.1 &amp; 3.5 &amp; 1.4 &amp; 0.2 &amp; setosa\\</a>
-<a class="sourceLine" id="cb10-11" data-line-number="11">4.9 &amp; 3.0 &amp; 1.4 &amp; 0.2 &amp; setosa\\</a>
-<a class="sourceLine" id="cb10-12" data-line-number="12">4.7 &amp; 3.2 &amp; 1.3 &amp; 0.2 &amp; setosa\\</a>
-<a class="sourceLine" id="cb10-13" data-line-number="13">4.6 &amp; 3.1 &amp; 1.5 &amp; 0.2 &amp; setosa\\</a>
-<a class="sourceLine" id="cb10-14" data-line-number="14">5.0 &amp; 3.6 &amp; 1.4 &amp; 0.2 &amp; setosa\\</a>
-<a class="sourceLine" id="cb10-15" data-line-number="15">\addlinespace</a>
-<a class="sourceLine" id="cb10-16" data-line-number="16">5.4 &amp; 3.9 &amp; 1.7 &amp; 0.4 &amp; setosa\\</a>
-<a class="sourceLine" id="cb10-17" data-line-number="17">\bottomrule</a>
-<a class="sourceLine" id="cb10-18" data-line-number="18">\end{tabular}</a>
-<a class="sourceLine" id="cb10-19" data-line-number="19">}</a></code></pre></div>
+<div class="sourceCode" id="cb10"><pre class="sourceCode markdown"><code class="sourceCode markdown"><span id="cb10-1"><a href="#cb10-1"></a><span class="bn">```{texpreview,texpreview.return = 'tex'}</span></span>
+<span id="cb10-2"><a href="#cb10-2"></a><span class="bn">knitr::kable(head(iris),format = 'latex',booktabs = TRUE)</span></span>
+<span id="cb10-3"><a href="#cb10-3"></a><span class="bn">```</span></span>
+<span id="cb10-4"><a href="#cb10-4"></a></span>
+<span id="cb10-5"><a href="#cb10-5"></a>\resizebox{\textwidth}{!}{</span>
+<span id="cb10-6"><a href="#cb10-6"></a>\begin{tabular}{rrrrl}</span>
+<span id="cb10-7"><a href="#cb10-7"></a>\toprule</span>
+<span id="cb10-8"><a href="#cb10-8"></a>Sepal.Length &amp; Sepal.Width &amp; Petal.Length &amp; Petal.Width &amp; Species\\</span>
+<span id="cb10-9"><a href="#cb10-9"></a>\midrule</span>
+<span id="cb10-10"><a href="#cb10-10"></a>5.1 &amp; 3.5 &amp; 1.4 &amp; 0.2 &amp; setosa\\</span>
+<span id="cb10-11"><a href="#cb10-11"></a>4.9 &amp; 3.0 &amp; 1.4 &amp; 0.2 &amp; setosa\\</span>
+<span id="cb10-12"><a href="#cb10-12"></a>4.7 &amp; 3.2 &amp; 1.3 &amp; 0.2 &amp; setosa\\</span>
+<span id="cb10-13"><a href="#cb10-13"></a>4.6 &amp; 3.1 &amp; 1.5 &amp; 0.2 &amp; setosa\\</span>
+<span id="cb10-14"><a href="#cb10-14"></a>5.0 &amp; 3.6 &amp; 1.4 &amp; 0.2 &amp; setosa\\</span>
+<span id="cb10-15"><a href="#cb10-15"></a>\addlinespace</span>
+<span id="cb10-16"><a href="#cb10-16"></a>5.4 &amp; 3.9 &amp; 1.7 &amp; 0.4 &amp; setosa\\</span>
+<span id="cb10-17"><a href="#cb10-17"></a>\bottomrule</span>
+<span id="cb10-18"><a href="#cb10-18"></a>\end{tabular}</span>
+<span id="cb10-19"><a href="#cb10-19"></a>}</span></code></pre></div>
 
 </div>
   </div>

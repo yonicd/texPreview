@@ -31,7 +31,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">texPreview</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.4.4</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.4.5</span>
       </span>
     </div>
 
@@ -82,7 +82,7 @@
       <h1>Using texPreview in Rmarkdown HTML Documents</h1>
                         <h4 class="author">Jonathan Sidi</h4>
             
-            <h4 class="date">2020-02-17</h4>
+            <h4 class="date">2020-02-18</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/metrumresearchgroup/texPreview/blob/master/vignettes/rmarkdown.Rmd"><code>vignettes/rmarkdown.Rmd</code></a></small>
       <div class="hidden name"><code>rmarkdown.Rmd</code></div>
@@ -91,41 +91,41 @@
 
     
     
-<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" data-line-number="1"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span>(texPreview)</a>
-<a class="sourceLine" id="cb1-2" data-line-number="2"></a>
-<a class="sourceLine" id="cb1-3" data-line-number="3">tex_opts<span class="op">$</span><span class="kw">set</span>( </a>
-<a class="sourceLine" id="cb1-4" data-line-number="4">  <span class="dt">returnType =</span> <span class="st">'html'</span>,</a>
-<a class="sourceLine" id="cb1-5" data-line-number="5">  <span class="dt">opts.html   =</span> <span class="kw"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="dt">width =</span> <span class="st">'75%'</span>, <span class="dt">height =</span> <span class="st">'75%'</span>)</a>
-<a class="sourceLine" id="cb1-6" data-line-number="6">)</a></code></pre></div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1"></a><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span>(texPreview)</span>
+<span id="cb1-2"><a href="#cb1-2"></a></span>
+<span id="cb1-3"><a href="#cb1-3"></a>tex_opts<span class="op">$</span><span class="kw">set</span>( </span>
+<span id="cb1-4"><a href="#cb1-4"></a>  <span class="dt">returnType =</span> <span class="st">'html'</span>,</span>
+<span id="cb1-5"><a href="#cb1-5"></a>  <span class="dt">opts.html   =</span> <span class="kw"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="dt">width =</span> <span class="st">'75%'</span>, <span class="dt">height =</span> <span class="st">'75%'</span>)</span>
+<span id="cb1-6"><a href="#cb1-6"></a>)</span></code></pre></div>
 <p>The following examples use <code>kable</code> to generate LaTeX table outputs and raw LaTeX to pipe into <code>tex_preview</code> to render the in the document.</p>
 <div id="kable-input" class="section level2">
 <h2 class="hasAnchor">
 <a href="#kable-input" class="anchor"></a>Kable Input</h2>
-<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" data-line-number="1"></a>
-<a class="sourceLine" id="cb2-2" data-line-number="2">knitr<span class="op">::</span><span class="kw"><a href="https://rdrr.io/pkg/knitr/man/kable.html">kable</a></span>(<span class="kw"><a href="https://rdrr.io/r/utils/head.html">head</a></span>(iris,<span class="dv">5</span>),<span class="dt">format =</span> <span class="st">'latex'</span>)<span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb2-3" data-line-number="3"><span class="kw"><a href="../reference/tex_preview.html">tex_preview</a></span>()</a></code></pre></div>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1"></a></span>
+<span id="cb2-2"><a href="#cb2-2"></a>knitr<span class="op">::</span><span class="kw"><a href="https://rdrr.io/pkg/knitr/man/kable.html">kable</a></span>(<span class="kw"><a href="https://rdrr.io/r/utils/head.html">head</a></span>(iris,<span class="dv">5</span>),<span class="dt">format =</span> <span class="st">'latex'</span>)<span class="op">%&gt;%</span></span>
+<span id="cb2-3"><a href="#cb2-3"></a><span class="kw"><a href="../reference/tex_preview.html">tex_preview</a></span>()</span></code></pre></div>
 <p><img src="rmarkdown_files/figure-html/testOut-1.png" width="284"></p>
 </div>
 <div id="tex-input" class="section level2">
 <h2 class="hasAnchor">
 <a href="#tex-input" class="anchor"></a>TeX Input</h2>
-<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" data-line-number="1">tab=<span class="st">'</span></a>
-<a class="sourceLine" id="cb3-2" data-line-number="2"><span class="ch">\\</span><span class="st">begin{tabular}{llr}</span></a>
-<a class="sourceLine" id="cb3-3" data-line-number="3"><span class="ch">\\</span><span class="st">hline</span></a>
-<a class="sourceLine" id="cb3-4" data-line-number="4"><span class="ch">\\</span><span class="st">multicolumn{2}{c}{Item} </span><span class="ch">\\\\</span></a>
-<a class="sourceLine" id="cb3-5" data-line-number="5"><span class="ch">\\</span><span class="st">cline{1-2}</span></a>
-<a class="sourceLine" id="cb3-6" data-line-number="6"><span class="st">Animal    &amp; Description &amp; Price (</span><span class="ch">\\</span><span class="st">$) </span><span class="ch">\\\\</span></a>
-<a class="sourceLine" id="cb3-7" data-line-number="7"><span class="ch">\\</span><span class="st">hline</span></a>
-<a class="sourceLine" id="cb3-8" data-line-number="8"><span class="st">Gnat      &amp; per gram    &amp; 13.65      </span><span class="ch">\\\\</span></a>
-<a class="sourceLine" id="cb3-9" data-line-number="9"><span class="st">          &amp; each        &amp; 0.01       </span><span class="ch">\\\\</span></a>
-<a class="sourceLine" id="cb3-10" data-line-number="10"><span class="st">Gnu       &amp; stuffed     &amp; 92.50      </span><span class="ch">\\\\</span></a>
-<a class="sourceLine" id="cb3-11" data-line-number="11"><span class="st">Emu       &amp; stuffed     &amp; 33.33      </span><span class="ch">\\\\</span></a>
-<a class="sourceLine" id="cb3-12" data-line-number="12"><span class="st">Armadillo &amp; frozen      &amp; 8.99       </span><span class="ch">\\\\</span></a>
-<a class="sourceLine" id="cb3-13" data-line-number="13"><span class="ch">\\</span><span class="st">hline</span></a>
-<a class="sourceLine" id="cb3-14" data-line-number="14"><span class="ch">\\</span><span class="st">end{tabular}'</span></a>
-<a class="sourceLine" id="cb3-15" data-line-number="15"></a>
-<a class="sourceLine" id="cb3-16" data-line-number="16">tab<span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb3-17" data-line-number="17"><span class="st">  </span><span class="kw"><a href="../reference/tex_preview.html">tex_preview</a></span>()</a></code></pre></div>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1"></a>tab=<span class="st">'</span></span>
+<span id="cb3-2"><a href="#cb3-2"></a><span class="ch">\\</span><span class="st">begin{tabular}{llr}</span></span>
+<span id="cb3-3"><a href="#cb3-3"></a><span class="ch">\\</span><span class="st">hline</span></span>
+<span id="cb3-4"><a href="#cb3-4"></a><span class="ch">\\</span><span class="st">multicolumn{2}{c}{Item} </span><span class="ch">\\\\</span></span>
+<span id="cb3-5"><a href="#cb3-5"></a><span class="ch">\\</span><span class="st">cline{1-2}</span></span>
+<span id="cb3-6"><a href="#cb3-6"></a><span class="st">Animal    &amp; Description &amp; Price (</span><span class="ch">\\</span><span class="st">$) </span><span class="ch">\\\\</span></span>
+<span id="cb3-7"><a href="#cb3-7"></a><span class="ch">\\</span><span class="st">hline</span></span>
+<span id="cb3-8"><a href="#cb3-8"></a><span class="st">Gnat      &amp; per gram    &amp; 13.65      </span><span class="ch">\\\\</span></span>
+<span id="cb3-9"><a href="#cb3-9"></a><span class="st">          &amp; each        &amp; 0.01       </span><span class="ch">\\\\</span></span>
+<span id="cb3-10"><a href="#cb3-10"></a><span class="st">Gnu       &amp; stuffed     &amp; 92.50      </span><span class="ch">\\\\</span></span>
+<span id="cb3-11"><a href="#cb3-11"></a><span class="st">Emu       &amp; stuffed     &amp; 33.33      </span><span class="ch">\\\\</span></span>
+<span id="cb3-12"><a href="#cb3-12"></a><span class="st">Armadillo &amp; frozen      &amp; 8.99       </span><span class="ch">\\\\</span></span>
+<span id="cb3-13"><a href="#cb3-13"></a><span class="ch">\\</span><span class="st">hline</span></span>
+<span id="cb3-14"><a href="#cb3-14"></a><span class="ch">\\</span><span class="st">end{tabular}'</span></span>
+<span id="cb3-15"><a href="#cb3-15"></a></span>
+<span id="cb3-16"><a href="#cb3-16"></a>tab<span class="op">%&gt;%</span></span>
+<span id="cb3-17"><a href="#cb3-17"></a><span class="st">  </span><span class="kw"><a href="../reference/tex_preview.html">tex_preview</a></span>()</span></code></pre></div>
 <p><img src="rmarkdown_files/figure-html/testOut2-1.png" width="284"></p>
 </div>
   </div>
