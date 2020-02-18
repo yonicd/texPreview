@@ -20,7 +20,7 @@ testthat::describe('html',{
 
 testthat::describe('pdf',{
 
-  safe_render(input = '../assets/input/test_pdf.Rmd',output_dir = path, render_params = list(path = path), quiet = TRUE)
+  safe_render(input = '../assets/input/test_pdf.Rmd',output_dir = path, render_params = list(path = path), cran = TRUE, quiet = TRUE)
   
   it('output device', {
     testthat::expect_true(file.exists(file.path(path,'test_pdf.pdf')))
