@@ -25,6 +25,8 @@ jobs:
         with:
           r-version: ${{ matrix.config.r }}
 
+      - uses: r-lib/actions/setup-tinytex@master
+
       - name: Install magick libs
         run: |
           sudo apt-get -qq update
