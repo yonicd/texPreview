@@ -24,12 +24,6 @@ jobs:
       - uses: r-lib/actions/setup-r@master
         with:
           r-version: ${{ matrix.config.r }}
-        
-      # - name: Install magick libs
-      #   run: |
-      #     sudo add-apt-repository ppa:cran/imagemagick
-      #     sudo apt-get -qq update
-      #     sudo apt-get -y install libmagick++-dev
 
       - name: Install system dependencies
         if: runner.os == 'Linux'
@@ -40,15 +34,40 @@ jobs:
           sysreqs=$(Rscript -e "cat(sysreqs::sysreq_commands('DESCRIPTION'))")
           sudo -s eval "$sysreqs"
 
+      - name: install tinytex
+        run: |
+          install.packages('tinytex')
+          tinytex::install_tinytex()
+          tinytex::tlmgr_install(c('standalone', 'xcolor', 'booktabs', 'multirow', 'amsmath', 'listings', 'setspace', 'caption', 'graphics', 'tools', 'psnfss', 'varwidth', 'colortbl', 'epstopdf-pkg', 'pgf'))
+          cat("::add-path::", tinytex::tinytex_root(), "\\bin\\win32", sep = "")
+        shell: Rscript {0}
+
       - name: install magick
         run: |
           install.packages('rsvg')
           install.packages('magick',type='source')
         shell: Rscript {0}
 
-      - name: load magick
+      - name: Query dependencies
         run: |
-          library(magick)
-          tiger <- image_read_svg('http://jeroen.github.io/images/tiger.svg', width = 350)
-          tiger
+          saveRDS(remotes::dev_package_deps(dependencies = TRUE), "depends.Rds", version = 2)
         shell: Rscript {0}
+
+      - name: Cache R packages
+        if: runner.os != 'Windows'
+        uses: actions/cache@v1
+        with:
+          path: ${{ env.R_LIBS_USER }}
+          key: ${{ runner.os }}-r-${{ matrix.config.r }}-${{ hashFiles('depends.Rds') }}
+          restore-keys: ${{ runner.os }}-r-${{ matrix.config.r }}-
+
+      - name: Check
+        run: rcmdcheck::rcmdcheck(args = "--no-manual", error_on = "warning", check_dir = "check")
+        shell: Rscript {0}
+
+      - name: Upload check results
+        if: failure()
+        uses: actions/upload-artifact@master
+        with:
+          name: ${{ runner.os }}-r${{ matrix.config.r }}-results
+          path: check
