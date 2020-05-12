@@ -57,7 +57,7 @@ check_package <- function(x){
     
   }else{
     
-    if(!nzchar(Sys.which("mpm"))){
+    if(nzchar(Sys.which("mpm"))){
       check_mpm(x)
     }else{
       stop('neither tlmgr or mpm are installed and in %PATH%')
