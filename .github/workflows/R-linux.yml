@@ -30,7 +30,7 @@ jobs:
         run: |
           sudo apt-get -qq update
           sudo apt-get -y install libmagick++-dev
-          ldconfig /usr/local/lib
+          sudo ldconfig /usr/local/lib
 
       - name: Install texlibs
         run: |
