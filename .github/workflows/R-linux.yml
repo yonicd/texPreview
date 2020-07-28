@@ -18,7 +18,7 @@ jobs:
       CRAN: ${{ matrix.config.cran }}
 
     steps:
-      - uses: actions/checkout@master
+      - uses: actions/checkout@main
 
       - uses: r-lib/actions/setup-r@master
         with:

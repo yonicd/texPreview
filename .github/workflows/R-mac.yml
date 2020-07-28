@@ -19,7 +19,7 @@ jobs:
       CRAN: ${{ matrix.config.cran }}
       
     steps:
-      - uses: actions/checkout@master
+      - uses: actions/checkout@main
       
       - uses: r-lib/actions/setup-tinytex@master
 
@@ -57,7 +57,7 @@ jobs:
       - name: covrpage
         if: github.ref == 'refs/heads/master'
         run: |
-          Rscript -e 'remotes::install_github("metrumresearchgroup/covrpage@actions")' \
+          Rscript -e 'remotes::install_github("yonicd/covrpage@actions")' \
                   -e 'covrpage::covrpage_ci()'
           git commit tests/README.md -m 'Update tests/README.Rmd' || echo "No changes to commit"
           git push https://${{github.actor}}:${{secrets.GITHUB_TOKEN}}@github.com/${{github.repository}}.git HEAD:${{ github.ref }} || echo "No changes to commit"
@@ -65,5 +65,5 @@ jobs:
       - name: Deploy package
         if: github.ref == 'refs/heads/master'
         run: |
-          Rscript -e 'remotes::install_github("metrumresearchgroup/pkgdown")' \
+          Rscript -e 'remotes::install_github("yonicd/pkgdown")' \
                   -e "pkgdown:::deploy_local(new_process = FALSE, remote_url = 'https://x-access-token:${{secrets.GITHUB_PAT}}@github.com/${{github.repository}}.git')"          
