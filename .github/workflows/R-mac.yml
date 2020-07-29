@@ -17,6 +17,7 @@ jobs:
     env:
       R_REMOTES_NO_ERRORS_FROM_WARNINGS: true
       CRAN: ${{ matrix.config.cran }}
+      GITHUB_PAT: ${{ secrets.GITHUB_PAT }}
       
     steps:
       - uses: actions/checkout@main
@@ -60,7 +61,7 @@ jobs:
           Rscript -e 'remotes::install_github("yonicd/covrpage@actions")' \
                   -e 'covrpage::covrpage_ci()'
           git commit tests/README.md -m 'Update tests/README.Rmd' || echo "No changes to commit"
-          git push https://${{github.actor}}:${{secrets.GITHUB_TOKEN}}@github.com/${{github.repository}}.git HEAD:${{ github.ref }} || echo "No changes to commit"
+          git push https://${{github.actor}}:${{secrets.GITHUB_PAT}}@github.com/${{github.repository}}.git HEAD:${{ github.ref }} || echo "No changes to commit"
 
       - name: Deploy package
         if: github.ref == 'refs/heads/master'
