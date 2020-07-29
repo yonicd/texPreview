@@ -1,6 +1,6 @@
 pandoc: 2.7.3
-pkgdown: 1.4.1.9000
-pkgdown_sha: 08d56fc764f959e14840670e58df9f05177ef487
+pkgdown: 1.5.1
+pkgdown_sha: ~
 articles:
   classes: classes.html
   engine: engine.html
@@ -10,4 +10,5 @@ articles:
   tests_and_coverage: tests_and_coverage.html
   tex_packages: tex_packages.html
   tikz: tikz.html
+last_built: 2020-07-29T01:52Z
 
