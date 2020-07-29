@@ -70,5 +70,5 @@ jobs:
         run: |
           git config --local user.email "actions@github.com"
           git config --local user.name "GitHub Actions"
-          Rscript -e 'install_packages("pkgdown")' \
+          Rscript -e 'install.packages("pkgdown")' \
                   -e 'pkgdown::deploy_to_branch(new_process = FALSE)'
