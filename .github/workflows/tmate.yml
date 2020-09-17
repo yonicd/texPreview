@@ -2,6 +2,7 @@ name: CI
 on: [push]
 jobs:
   check:
+    runs-on: macOS-latest
     if: "!contains(github.event.head_commit.message, 'gha ssh')"
   build:
     runs-on: macOS-latest
