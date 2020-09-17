@@ -88,5 +88,5 @@ create links for the log file on rendering errors, Default: interactive()}
 \item{...}{passed to \link[base:system2]{system2}}
 }
 \description{
-This function has been deprecated, use \link[texPreview:tex_preview]{tex_preview} instead.
+This function has been deprecated, use \link[=tex_preview]{tex_preview} instead.
 }

@@ -1,5 +1,5 @@
 ---
-title: "Tests and Coverage"
+title: "covrpage: Tests and Coverage"
 date: "`r format(Sys.time(), '%d %B, %Y %H:%M:%S')`"
 output: rmarkdown::html_vignette
 vignette: >

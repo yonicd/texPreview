@@ -2,7 +2,7 @@
 title: "Using texPreview Built-in Knitr Engine"
 output: rmarkdown::html_vignette
 vignette: >
-  %\VignetteIndexEntry{knitr engine}
+  %\VignetteIndexEntry{Using texPreview Built-in Knitr Engine}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---

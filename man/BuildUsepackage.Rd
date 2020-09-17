@@ -16,5 +16,5 @@ buildUsepackage(pkg, options = NULL, uselibrary = NULL, chk.inst = FALSE)
 \item{chk.inst}{logical, invokes a check to see if pkg is currently installed on system (default FALSE)}
 }
 \description{
-This function has been deprecated, use \link[texPreview:build_usepackage]{build_usepackage} instead.
+This function has been deprecated, use \link[=build_usepackage]{build_usepackage} instead.
 }

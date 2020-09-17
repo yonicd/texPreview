@@ -7,5 +7,5 @@
 getTexPackages()
 }
 \description{
-This function has been deprecated, use \link[texPreview:get_texpackages]{get_texpackages} instead.
+This function has been deprecated, use \link[=get_texpackages]{get_texpackages} instead.
 }

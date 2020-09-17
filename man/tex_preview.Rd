@@ -138,7 +138,7 @@ The function assumes the system has pdflatex installed and it is  defined in the
 
 To add packages to the tex file on render there are two options
 \itemize{
-\item Use \link[texPreview:build_usepackage]{build_usepackage} and use the input
+\item Use \link[=build_usepackage]{build_usepackage} and use the input
 argument \code{usrPackages}.
 \item Append to the input object \verb{\\\\usepackage\{...\}} calls, they will be parsed
 and added the to rendering.

@@ -113,9 +113,8 @@ tex_opts$set(returnType = 'tex',fileDir = path)
     tex_opts$set(returnType = 'viewer',fileDir = path,imgFormat='svg',svg_max=Inf)
     
     testthat::describe('use svg device',{
-      
+      testthat::skip_on_cran()
       x <- texPreview::tex_preview(obj = xtable::xtable(head(iris,10)), stem="danp-test")
-      
       it('check if file created', {
         testthat::expect_equal(length(list.files(path,pattern = 'svg$')),1)
       })
@@ -127,7 +126,7 @@ tex_opts$set(returnType = 'tex',fileDir = path)
     path <- file.path(tempdir(),'my tex')
 
     cleanup(path)
-    tex_opts$set(returnType = 'tex',fileDir = path)
+    tex_opts$set(returnType = 'tex',fileDir = path,imgFormat = 'png')
     
     testthat::describe('space in file path',{
       
@@ -139,4 +138,4 @@ tex_opts$set(returnType = 'tex',fileDir = path)
       
     })  
     
-  cleanup(path,create = FALSE)
+    cleanup(path,create = FALSE)

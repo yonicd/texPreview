@@ -5,7 +5,11 @@
 \alias{tex_opts}
 \alias{tex_opts_current}
 \title{Default and current tex options}
-\format{An object of class \code{list} of length 5.}
+\format{
+An object of class \code{list} of length 5.
+
+An object of class \code{list} of length 5.
+}
 \usage{
 tex_opts
 

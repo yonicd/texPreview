@@ -15,4 +15,7 @@ Fetch all TeX packages currently installed on system
 \details{
 If OS is Windows function checks against MikTex else function checks against TexLive.
 }
+\examples{
+#head(get_texpackages())
+}
 \concept{utils}

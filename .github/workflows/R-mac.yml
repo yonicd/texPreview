@@ -30,6 +30,10 @@ jobs:
         with:
           r-version: ${{ matrix.config.r }}
 
+      - name: Install XQuartz on macOS
+        if: runner.os == 'macOS'
+        run: brew cask install xquartz
+        
       - name: Cache R packages
         uses: actions/cache@v1
         with:

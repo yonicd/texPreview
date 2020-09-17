@@ -91,3 +91,7 @@ tex_path <- function(fileDir,stem,dev = 'tex'){
 is_inst <- function(pkg) {
   length(find.package(pkg,quiet = TRUE))>0
 }
+
+
+#' @importFrom details use_details
+NULL

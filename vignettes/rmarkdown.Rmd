@@ -4,7 +4,7 @@ author: "Jonathan Sidi"
 date: "`r Sys.Date()`"
 output: rmarkdown::html_vignette
 vignette: >
-  %\VignetteIndexEntry{texPreview with Rmarkdown}
+  %\VignetteIndexEntry{Using texPreview in Rmarkdown HTML Documents}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---
