@@ -129,7 +129,7 @@
     <p>coerce objects into a knitr_kable class object with a latex format</p>
     </div>
 
-    <pre class="usage"><span class='fu'>as.kable</span>(<span class='no'>x</span>)</pre>
+    <pre class="usage"><span class='fu'>as.kable</span>(<span class='kw'>x</span>)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -147,7 +147,7 @@ or a path to a tex file.</p></td>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'>
-<span class='no'>tex</span> <span class='kw'>&lt;-</span> <span class='st'>'\\begin{tabular}{llr}
+<span class='kw'>tex</span> <span class='op'>&lt;-</span> <span class='st'>'\\begin{tabular}{llr}
 \\hline
 \\multicolumn{2}{c}{Item} \\\\
 \\cline{1-2}
@@ -161,16 +161,19 @@ Armadillo &amp; frozen      &amp; 8.99       \\\\
 \\hline
 \\end{tabular}'</span>
 
-<span class='no'>ktex</span> <span class='kw'>&lt;-</span> <span class='fu'>as.kable</span>(<span class='no'>tex</span>)
+<span class='kw'>ktex</span> <span class='op'>&lt;-</span> <span class='fu'>as.kable</span>(<span class='kw'>tex</span>)
 
-<span class='fu'><a href='https://rdrr.io/r/base/class.html'>class</a></span>(<span class='no'>ktex</span>)</div><div class='output co'>#&gt; [1] "knitr_kable"</div><div class='input'>
-<span class='fu'><a href='https://rdrr.io/r/base/attributes.html'>attributes</a></span>(<span class='no'>ktex</span>)</div><div class='output co'>#&gt; $class
+<span class='fu'><a href='https://rdrr.io/r/base/class.html'>class</a></span>(<span class='kw'>ktex</span>)
+</div><div class='output co'>#&gt; [1] "knitr_kable"</div><div class='input'>
+<span class='fu'><a href='https://rdrr.io/r/base/attributes.html'>attributes</a></span>(<span class='kw'>ktex</span>)
+</div><div class='output co'>#&gt; $class
 #&gt; [1] "knitr_kable"
 #&gt; 
 #&gt; $format
 #&gt; [1] "latex"
 #&gt; </div><div class='input'>
-<span class='no'>ktex</span></div><div class='output co'>#&gt; \begin{tabular}{llr}
+<span class='kw'>ktex</span>
+</div><div class='output co'>#&gt; \begin{tabular}{llr}
 #&gt; \hline
 #&gt; \multicolumn{2}{c}{Item} \\
 #&gt; \cline{1-2}
@@ -185,18 +188,21 @@ Armadillo &amp; frozen      &amp; 8.99       \\\\
 #&gt; \end{tabular}</div><div class='input'>
 <span class='co'># file path</span>
 
-<span class='no'>toy</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/system.file.html'>system.file</a></span>(<span class='st'>'examples/toy/toy.tex'</span>,<span class='kw'>package</span> <span class='kw'>=</span> <span class='st'>'texPreview'</span>)
+<span class='kw'>toy</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/system.file.html'>system.file</a></span>(<span class='st'>'examples/toy/toy.tex'</span>,package = <span class='st'>'texPreview'</span>)
 
-<span class='no'>ktex_path</span> <span class='kw'>&lt;-</span> <span class='fu'>as.kable</span>(<span class='no'>toy</span>)
+<span class='kw'>ktex_path</span> <span class='op'>&lt;-</span> <span class='fu'>as.kable</span>(<span class='kw'>toy</span>)
 
-<span class='fu'><a href='https://rdrr.io/r/base/class.html'>class</a></span>(<span class='no'>ktex_path</span>)</div><div class='output co'>#&gt; [1] "knitr_kable"</div><div class='input'>
-<span class='fu'><a href='https://rdrr.io/r/base/attributes.html'>attributes</a></span>(<span class='no'>ktex_path</span>)</div><div class='output co'>#&gt; $class
+<span class='fu'><a href='https://rdrr.io/r/base/class.html'>class</a></span>(<span class='kw'>ktex_path</span>)
+</div><div class='output co'>#&gt; [1] "knitr_kable"</div><div class='input'>
+<span class='fu'><a href='https://rdrr.io/r/base/attributes.html'>attributes</a></span>(<span class='kw'>ktex_path</span>)
+</div><div class='output co'>#&gt; $class
 #&gt; [1] "knitr_kable"
 #&gt; 
 #&gt; $format
 #&gt; [1] "latex"
 #&gt; </div><div class='input'>
-<span class='no'>ktex_path</span></div><div class='output co'>#&gt; \begin{tabular}{cccc}
+<span class='kw'>ktex_path</span>
+</div><div class='output co'>#&gt; \begin{tabular}{cccc}
 #&gt; \toprule
 #&gt; C1 &amp; C2 &amp; C3 &amp; C4\\
 #&gt; \midrule
@@ -223,10 +229,12 @@ Armadillo &amp; frozen      &amp; 8.99       \\\\
   <span class='co'># this is the same output class as one would get with</span>
   <span class='co'># tex_preview(tex,returnType = 'input')</span>
 
-<span class='no'>toy_input</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/structure.html'>structure</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/sprintf.html'>sprintf</a></span>(<span class='st'>'\\input{%s}'</span>,<span class='no'>toy</span>),<span class='kw'>class</span> <span class='kw'>=</span> <span class='st'>'texpreview_input'</span>)
+<span class='kw'>toy_input</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/structure.html'>structure</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/sprintf.html'>sprintf</a></span>(<span class='st'>'\\input{%s}'</span>,<span class='kw'>toy</span>),class = <span class='st'>'texpreview_input'</span>)
 
-<span class='no'>toy_input</span></div><div class='output co'>#&gt; \input{/Users/runner/work/_temp/Library/texPreview/examples/toy/toy.tex}</div><div class='input'>
-<span class='fu'>as.kable</span>(<span class='no'>toy_input</span>)</div><div class='output co'>#&gt; \begin{tabular}{cccc}
+<span class='kw'>toy_input</span>
+</div><div class='output co'>#&gt; \input{/Users/runner/work/_temp/Library/texPreview/examples/toy/toy.tex}</div><div class='input'>
+<span class='fu'>as.kable</span>(<span class='kw'>toy_input</span>)
+</div><div class='output co'>#&gt; \begin{tabular}{cccc}
 #&gt; \toprule
 #&gt; C1 &amp; C2 &amp; C3 &amp; C4\\
 #&gt; \midrule
@@ -265,7 +273,7 @@ Armadillo &amp; frozen      &amp; 8.99       \\\\
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
 </div>
 
       </footer>

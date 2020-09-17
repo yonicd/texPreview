@@ -90,29 +90,37 @@
     
     
 <p>texPreview can be used for any TeX input beyond tabular environments, such as <code>tikz</code>. In the following examples we input a <code>tikzpicture</code> and an entire TeX file that contains a <code>tikz</code> environment.</p>
-<div class="sourceCode" id="cb1"><html><body><pre class="r"><span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="no">texPreview</span>)</pre></body></html></div>
-<div class="sourceCode" id="cb2"><html><body><pre class="r"><span class="co"># add tikz support to tex_opts</span>
-<span class="no">use_lib</span> <span class="kw">&lt;-</span> <span class="st">"\\usetikzlibrary{arrows,shapes,snakes,automata,backgrounds,arrows.meta,positioning}"</span>
+<div class="sourceCode" id="cb1"><pre class="downlit">
+<span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="kw"><a href="https://github.com/yonicd/texPreview">texPreview</a></span>)
+</pre></div>
+<div class="sourceCode" id="cb2"><pre class="downlit">
+<span class="co"># add tikz support to tex_opts</span>
+<span class="kw">use_lib</span> <span class="op">&lt;-</span> <span class="st">"\\usetikzlibrary{arrows,shapes,snakes,automata,backgrounds,arrows.meta,positioning}"</span>
 
-<span class="no">objpath</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/file.path.html">file.path</a></span>(<span class="fu"><a href="https://rdrr.io/r/base/getwd.html">getwd</a></span>(),<span class="st">"tikz_files/figure-html"</span>)
+<span class="kw">objpath</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/file.path.html">file.path</a></span>(<span class="fu"><a href="https://rdrr.io/r/base/getwd.html">getwd</a></span>(),<span class="st">"tikz_files/figure-html"</span>)
 
-<span class="kw">if</span>(!<span class="fu"><a href="https://rdrr.io/r/base/files2.html">dir.exists</a></span>(<span class="no">objpath</span>))
-  <span class="fu"><a href="https://rdrr.io/r/base/files2.html">dir.create</a></span>(<span class="no">objpath</span>,<span class="kw">recursive</span> <span class="kw">=</span> <span class="fl">TRUE</span>)
+<span class="co">if</span>(<span class="op">!</span><span class="fu"><a href="https://rdrr.io/r/base/files2.html">dir.exists</a></span>(<span class="kw">objpath</span>))
+  <span class="fu"><a href="https://rdrr.io/r/base/files2.html">dir.create</a></span>(<span class="kw">objpath</span>,recursive = <span class="fl">TRUE</span>)
 
-<span class="no">tex_opts</span>$<span class="fu">set</span>(
-  <span class="kw">fileDir</span>    <span class="kw">=</span> <span class="no">objpath</span>, <span class="co"># path to save output</span>
-  <span class="kw">returnType</span>  <span class="kw">=</span> <span class="st">'html'</span>,
-  <span class="kw">usrPackages</span> <span class="kw">=</span> <span class="fu"><a href="../reference/build_usepackage.html">build_usepackage</a></span>(<span class="kw">pkg</span> <span class="kw">=</span> <span class="st">'tikz'</span>,<span class="kw">uselibrary</span> <span class="kw">=</span> <span class="no">use_lib</span>)
-)</pre></body></html></div>
-<div class="sourceCode" id="cb3"><html><body><pre class="r"><span class="no">tikz_examples</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/list.files.html">list.files</a></span>(<span class="fu"><a href="https://rdrr.io/r/base/system.file.html">system.file</a></span>(<span class="st">'examples/tikz'</span>,<span class="kw">package</span> <span class="kw">=</span> <span class="st">'texPreview'</span>),
-                          <span class="kw">pattern</span> <span class="kw">=</span> <span class="st">'tex$'</span>,<span class="kw">full.names</span> <span class="kw">=</span> <span class="fl">TRUE</span>)
-<span class="no">tikz_code</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/lapply.html">lapply</a></span>(<span class="no">tikz_examples</span>,
-                    <span class="kw">function</span>(<span class="no">x</span>) <span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste0</a></span>(<span class="fu"><a href="https://rdrr.io/r/base/readLines.html">readLines</a></span>(<span class="no">x</span>),<span class="kw">collapse</span> <span class="kw">=</span> <span class="st">'\n'</span>))
-<span class="fu"><a href="https://rdrr.io/r/base/names.html">names</a></span>(<span class="no">tikz_code</span>) <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/basename.html">basename</a></span>(<span class="no">tikz_examples</span>)</pre></body></html></div>
+<span class="kw">tex_opts</span><span class="op">$</span><span class="fu">set</span>(
+  fileDir    = <span class="kw">objpath</span>, <span class="co"># path to save output</span>
+  returnType  = <span class="st">'html'</span>,
+  usrPackages = <span class="fu"><a href="../reference/build_usepackage.html">build_usepackage</a></span>(pkg = <span class="st">'tikz'</span>,uselibrary = <span class="kw">use_lib</span>)
+)
+</pre></div>
+<div class="sourceCode" id="cb3"><pre class="downlit">
+<span class="kw">tikz_examples</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/list.files.html">list.files</a></span>(<span class="fu"><a href="https://rdrr.io/r/base/system.file.html">system.file</a></span>(<span class="st">'examples/tikz'</span>,package = <span class="st">'texPreview'</span>),
+                          pattern = <span class="st">'tex$'</span>,full.names = <span class="fl">TRUE</span>)
+<span class="kw">tikz_code</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/lapply.html">lapply</a></span>(<span class="kw">tikz_examples</span>,
+                    <span class="fu">function</span>(<span class="kw">x</span>) <span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste0</a></span>(<span class="fu"><a href="https://rdrr.io/r/base/readLines.html">readLines</a></span>(<span class="kw">x</span>),collapse = <span class="st">'\n'</span>))
+<span class="fu"><a href="https://rdrr.io/r/base/names.html">names</a></span>(<span class="kw">tikz_code</span>) <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/basename.html">basename</a></span>(<span class="kw">tikz_examples</span>)
+</pre></div>
 <div id="tikzpicture" class="section level2">
 <h2 class="hasAnchor">
 <a href="#tikzpicture" class="anchor"></a>tikzpicture</h2>
-<div class="sourceCode" id="cb4"><html><body><pre class="r"><span class="fu"><a href="../reference/tex_preview.html">tex_preview</a></span>(<span class="kw">obj</span> <span class="kw">=</span> <span class="no">tikz_code</span>$<span class="no">pk_model.tex</span>,<span class="kw">stem</span> <span class="kw">=</span> <span class="st">'tikz-1'</span>)</pre></body></html></div>
+<div class="sourceCode" id="cb4"><pre class="downlit">
+<span class="fu"><a href="../reference/tex_preview.html">tex_preview</a></span>(obj = <span class="kw">tikz_code</span><span class="op">$</span><span class="kw">pk_model.tex</span>,stem = <span class="st">'tikz-1'</span>)
+</pre></div>
 <p><img src="tikz_files/figure-html/unnamed-chunk-4-1.png" width="206"></p>
 <details closed><p><summary><span title="Click to Expand"> Click to view TeX </span> </summary></p>
 <div class="sourceCode" id="cb5"><pre class="sourceCode tex"><code class="sourceCode latex"><span id="cb5-1"><a href="#cb5-1"></a></span>
@@ -163,7 +171,9 @@
 <h2 class="hasAnchor">
 <a href="#file" class="anchor"></a>File</h2>
 <p>For a full TeX document use the <code>tex_lines</code> argument instead of the <code>obj</code>. This input bypasses the internal document template that is used for texPreview and renders the contents of the file directly.</p>
-<div class="sourceCode" id="cb6"><html><body><pre class="r"><span class="fu"><a href="../reference/tex_preview.html">tex_preview</a></span>(<span class="kw">tex_lines</span> <span class="kw">=</span> <span class="no">tikz_code</span>$<span class="no">credit_rationing.tex</span>,<span class="kw">stem</span> <span class="kw">=</span> <span class="st">'tikz-2'</span>)</pre></body></html></div>
+<div class="sourceCode" id="cb6"><pre class="downlit">
+<span class="fu"><a href="../reference/tex_preview.html">tex_preview</a></span>(tex_lines = <span class="kw">tikz_code</span><span class="op">$</span><span class="kw">credit_rationing.tex</span>,stem = <span class="st">'tikz-2'</span>)
+</pre></div>
 <p><img src="tikz_files/figure-html/unnamed-chunk-6-1.png" width="377"></p>
 <details closed><p><summary><span title="Click to Expand"> Click to view TeX </span> </summary></p>
 <div class="sourceCode" id="cb7"><pre class="sourceCode tex"><code class="sourceCode latex"><span id="cb7-1"><a href="#cb7-1"></a></span>
@@ -277,7 +287,7 @@
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
 </div>
 
       </footer>

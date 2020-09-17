@@ -127,8 +127,10 @@
 <p>The user still has the option to use <code><a href="../reference/tex_opts.html">texPreview::tex_opts</a></code> to control chunk outputs as they are passed into the call internally. The chunk options will override any settings that are in <code><a href="../reference/tex_opts.html">texPreview::tex_opts</a></code>.</p>
 <p>Rendering the chunk interactively will have different side effects depending on the <code>texpreview.return</code> setting. These settings have the same side effects as the returnType settings with one addition ‘engine’ which mimics returnType=‘viewer’. It should be the preferred settings when working with RMarkdown documents that return HTML outputs.</p>
 <p>The following are examples of some uses of the <code>texpreview</code> engine.</p>
-<div class="sourceCode" id="cb1"><html><body><pre class="r"><span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="no">texPreview</span>)
-<span class="fu"><a href="https://rdrr.io/r/base/files2.html">dir.create</a></span>(<span class="st">'images'</span>,<span class="kw">showWarnings</span> <span class="kw">=</span> <span class="fl">FALSE</span>)</pre></body></html></div>
+<div class="sourceCode" id="cb1"><pre class="downlit">
+<span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="kw"><a href="https://github.com/yonicd/texPreview">texPreview</a></span>)
+<span class="fu"><a href="https://rdrr.io/r/base/files2.html">dir.create</a></span>(<span class="st">'images'</span>,showWarnings = <span class="fl">FALSE</span>)
+</pre></div>
 <div id="default" class="section level2">
 <h2 class="hasAnchor">
 <a href="#default" class="anchor"></a>Default</h2>
@@ -218,8 +220,10 @@ Armadillo &amp; frozen      &amp; 8.99       \\
 <h3 class="hasAnchor">
 <a href="#output-3" class="anchor"></a>Output</h3>
 <p><img src="engine_files/figure-html/unnamed-chunk-5-7.png" width="758"></p>
-<div class="sourceCode" id="cb8"><html><body><pre class="r"><span class="fu"><a href="https://rdrr.io/r/base/list.files.html">list.files</a></span>(<span class="st">'images'</span>)
-<span class="co">#&gt; [1] "example.png" "example.tex"</span></pre></body></html></div>
+<div class="sourceCode" id="cb8"><pre class="downlit">
+<span class="fu"><a href="https://rdrr.io/r/base/list.files.html">list.files</a></span>(<span class="st">'images'</span>)
+<span class="co">#&gt; [1] "example.png" "example.tex"</span>
+</pre></div>
 </div>
 </div>
 <div id="pdf-documents" class="section level2">
@@ -270,7 +274,7 @@ Armadillo &amp; frozen      &amp; 8.99       \\
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
 </div>
 
       </footer>

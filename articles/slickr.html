@@ -82,7 +82,7 @@
       <h1 data-toc-skip>Using texPreview to create Carousels in Rmarkdown</h1>
                         <h4 class="author">Jonathan Sidi</h4>
             
-            <h4 class="date">2020-08-05</h4>
+            <h4 class="date">2020-09-17</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/yonicd/texPreview/blob/master/vignettes/slickr.Rmd"><code>vignettes/slickr.Rmd</code></a></small>
       <div class="hidden name"><code>slickr.Rmd</code></div>
@@ -91,32 +91,39 @@
 
     
     
-<div class="sourceCode" id="cb1"><html><body><pre class="r"><span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="no">texPreview</span>)
-<span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="no">slickR</span>)</pre></body></html></div>
-<div class="sourceCode" id="cb2"><html><body><pre class="r">
-<span class="no">objpath</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/file.path.html">file.path</a></span>(<span class="fu"><a href="https://rdrr.io/r/base/getwd.html">getwd</a></span>(),<span class="st">"slickr_files/figure-html"</span>)
+<div class="sourceCode" id="cb1"><pre class="downlit">
+<span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="kw"><a href="https://github.com/yonicd/texPreview">texPreview</a></span>)
+<span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="kw"><a href="https://github.com/metrumresearchgroup/slickR">slickR</a></span>)
+</pre></div>
+<div class="sourceCode" id="cb2"><pre class="downlit">
 
-<span class="kw">if</span>(!<span class="fu"><a href="https://rdrr.io/r/base/files2.html">dir.exists</a></span>(<span class="no">objpath</span>))
-  <span class="fu"><a href="https://rdrr.io/r/base/files2.html">dir.create</a></span>(<span class="no">objpath</span>,<span class="kw">recursive</span> <span class="kw">=</span> <span class="fl">TRUE</span>)
+<span class="kw">objpath</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/file.path.html">file.path</a></span>(<span class="fu"><a href="https://rdrr.io/r/base/getwd.html">getwd</a></span>(),<span class="st">"slickr_files/figure-html"</span>)
 
-<span class="no">tex_opts</span>$<span class="fu">set</span>(
-  <span class="kw">fileDir</span>    <span class="kw">=</span> <span class="no">objpath</span>, <span class="co"># path to save output</span>
-  <span class="kw">returnType</span> <span class="kw">=</span> <span class="st">'html'</span>, <span class="co"># return images ready for html </span>
-  <span class="kw">imgFormat</span>  <span class="kw">=</span> <span class="st">'png'</span> <span class="co"># return png images</span>
-  )</pre></body></html></div>
+<span class="co">if</span>(<span class="op">!</span><span class="fu"><a href="https://rdrr.io/r/base/files2.html">dir.exists</a></span>(<span class="kw">objpath</span>))
+  <span class="fu"><a href="https://rdrr.io/r/base/files2.html">dir.create</a></span>(<span class="kw">objpath</span>,recursive = <span class="fl">TRUE</span>)
+
+<span class="kw">tex_opts</span><span class="op">$</span><span class="fu">set</span>(
+  fileDir    = <span class="kw">objpath</span>, <span class="co"># path to save output</span>
+  returnType = <span class="st">'html'</span>, <span class="co"># return images ready for html </span>
+  imgFormat  = <span class="st">'png'</span> <span class="co"># return png images</span>
+  )
+</pre></div>
 <p>The first two chunks create outputs to place in the carousel in the last chunk.</p>
 <div id="kable-input" class="section level2">
 <h2 class="hasAnchor">
 <a href="#kable-input" class="anchor"></a>Kable Input</h2>
-<div class="sourceCode" id="cb3"><html><body><pre class="r">
-<span class="kw pkg">knitr</span><span class="kw ns">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html">kable</a></span>(<span class="no">mtcars</span>,<span class="st">'latex'</span>)<span class="kw">%&gt;%</span>
-  <span class="kw pkg">texPreview</span><span class="kw ns">::</span><span class="fu"><a href="../reference/tex_preview.html">tex_preview</a></span>(<span class="kw">stem</span> <span class="kw">=</span> <span class="st">'kable-1'</span>)</pre></body></html></div>
+<div class="sourceCode" id="cb3"><pre class="downlit">
+
+<span class="kw">knitr</span>::<span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html">kable</a></span>(<span class="kw">mtcars</span>,<span class="st">'latex'</span>)<span class="op">%&gt;%</span>
+  <span class="kw">texPreview</span>::<span class="fu"><a href="../reference/tex_preview.html">tex_preview</a></span>(stem = <span class="st">'kable-1'</span>)
+</pre></div>
 </div>
 <div id="tex-input" class="section level2">
 <h2 class="hasAnchor">
 <a href="#tex-input" class="anchor"></a>TeX Input</h2>
-<div class="sourceCode" id="cb4"><html><body><pre class="r">
-<span class="no">tab</span><span class="kw">=</span><span class="st">'
+<div class="sourceCode" id="cb4"><pre class="downlit">
+
+<span class="kw">tab</span><span class="op">=</span><span class="st">'
 \\begin{tabular}{llr}
 \\hline
 \\multicolumn{2}{c}{Item} \\\\
@@ -131,18 +138,21 @@ Armadillo &amp; frozen      &amp; 8.99       \\\\
 \\hline
 \\end{tabular}'</span>
 
-<span class="no">tab</span><span class="kw">%&gt;%</span>
-  <span class="kw pkg">texPreview</span><span class="kw ns">::</span><span class="fu"><a href="../reference/tex_preview.html">tex_preview</a></span>(<span class="kw">stem</span> <span class="kw">=</span> <span class="st">'tex-1'</span>)</pre></body></html></div>
+<span class="kw">tab</span><span class="op">%&gt;%</span>
+  <span class="kw">texPreview</span>::<span class="fu"><a href="../reference/tex_preview.html">tex_preview</a></span>(stem = <span class="st">'tex-1'</span>)
+</pre></div>
 </div>
 <div id="carousel" class="section level2">
 <h2 class="hasAnchor">
 <a href="#carousel" class="anchor"></a>Carousel</h2>
 <p>The images created above are placed in a <a href="https://github.com/metrumresearchgroup/slickr">slickR</a> carousel.</p>
-<div class="sourceCode" id="cb5"><html><body><pre class="r">
-  <span class="kw pkg">slickR</span><span class="kw ns">::</span><span class="fu"><a href="https://rdrr.io/pkg/slickR/man/slickR.html">slickR</a></span>(
-    <span class="fu"><a href="https://rdrr.io/r/base/list.files.html">list.files</a></span>(<span class="no">objpath</span>,<span class="kw">full.names</span> <span class="kw">=</span> <span class="fl">TRUE</span>,<span class="kw">pattern</span> <span class="kw">=</span> <span class="st">'png'</span>),
-    <span class="kw">height</span> <span class="kw">=</span> <span class="fl">200</span>,
-    <span class="kw">width</span> <span class="kw">=</span> <span class="st">'95%'</span>)</pre></body></html></div>
+<div class="sourceCode" id="cb5"><pre class="downlit">
+
+  <span class="kw">slickR</span>::<span class="fu"><a href="https://rdrr.io/pkg/slickR/man/slickR.html">slickR</a></span>(
+    <span class="fu"><a href="https://rdrr.io/r/base/list.files.html">list.files</a></span>(<span class="kw">objpath</span>,full.names = <span class="fl">TRUE</span>,pattern = <span class="st">'png'</span>),
+    height = <span class="fl">200</span>,
+    width = <span class="st">'95%'</span>)
+</pre></div>
 </div>
   </div>
 
@@ -161,7 +171,7 @@ Armadillo &amp; frozen      &amp; 8.99       \\\\
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
 </div>
 
       </footer>

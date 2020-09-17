@@ -89,46 +89,54 @@
 
     
     
-<div class="sourceCode" id="cb1"><html><body><pre class="r"><span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="no">texPreview</span>)
+<div class="sourceCode" id="cb1"><pre class="downlit">
+<span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="kw"><a href="https://github.com/yonicd/texPreview">texPreview</a></span>)
 
-<span class="no">tex_opts</span>$<span class="fu">set</span>(
-  <span class="kw">returnType</span> <span class="kw">=</span> <span class="st">'html'</span>,
-  <span class="kw">opts.html</span>   <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="kw">width</span> <span class="kw">=</span> <span class="st">'75%'</span>, <span class="kw">height</span> <span class="kw">=</span> <span class="st">'75%'</span>)
-)</pre></body></html></div>
+<span class="kw">tex_opts</span><span class="op">$</span><span class="fu">set</span>( 
+  returnType = <span class="st">'html'</span>,
+  opts.html   = <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span>(width = <span class="st">'75%'</span>, height = <span class="st">'75%'</span>)
+)
+</pre></div>
 <div id="knitr" class="section level2">
 <h2 class="hasAnchor">
 <a href="#knitr" class="anchor"></a>knitr</h2>
 <div id="kable" class="section level3">
 <h3 class="hasAnchor">
 <a href="#kable" class="anchor"></a>kable</h3>
-<div class="sourceCode" id="cb2"><html><body><pre class="r">
-<span class="no">iris_rev</span> <span class="kw">&lt;-</span> <span class="no">iris</span>[<span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="fl">1</span>:<span class="fl">5</span>,<span class="fl">51</span>:<span class="fl">55</span>,<span class="fl">101</span>:<span class="fl">105</span>),<span class="fu"><a href="https://rdrr.io/r/base/rev.html">rev</a></span>(<span class="fu"><a href="https://rdrr.io/r/base/names.html">names</a></span>(<span class="no">iris</span>))]
+<div class="sourceCode" id="cb2"><pre class="downlit">
 
-<span class="no">iris_rev</span><span class="kw">%&gt;%</span>
-  <span class="kw pkg">knitr</span><span class="kw ns">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html">kable</a></span>(<span class="kw">format</span> <span class="kw">=</span> <span class="st">"latex"</span>,<span class="kw">row.names</span> <span class="kw">=</span> <span class="fl">FALSE</span>)<span class="kw">%&gt;%</span>
-  <span class="fu"><a href="../reference/tex_preview.html">tex_preview</a></span>()</pre></body></html></div>
+<span class="kw">iris_rev</span> <span class="op">&lt;-</span> <span class="kw">iris</span>[<span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="fl">1</span><span class="op">:</span><span class="fl">5</span>,<span class="fl">51</span><span class="op">:</span><span class="fl">55</span>,<span class="fl">101</span><span class="op">:</span><span class="fl">105</span>),<span class="fu"><a href="https://rdrr.io/r/base/rev.html">rev</a></span>(<span class="fu"><a href="https://rdrr.io/r/base/names.html">names</a></span>(<span class="kw">iris</span>))]
+
+<span class="kw">iris_rev</span><span class="op">%&gt;%</span>
+  <span class="kw">knitr</span>::<span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html">kable</a></span>(format = <span class="st">"latex"</span>,row.names = <span class="fl">FALSE</span>)<span class="op">%&gt;%</span>
+  <span class="fu"><a href="../reference/tex_preview.html">tex_preview</a></span>()
+</pre></div>
 <p><img src="classes_files/figure-html/unnamed-chunk-2-1.png" width="284"></p>
 </div>
 <div id="kableextra" class="section level3">
 <h3 class="hasAnchor">
 <a href="#kableextra" class="anchor"></a>kableExtra</h3>
-<div class="sourceCode" id="cb3"><html><body><pre class="r">
-<span class="no">iris_rev</span> <span class="kw">%&gt;%</span>
-  <span class="kw pkg">knitr</span><span class="kw ns">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html">kable</a></span>(<span class="kw">format</span> <span class="kw">=</span> <span class="st">"latex"</span>,<span class="kw">row.names</span> <span class="kw">=</span> <span class="fl">FALSE</span>)<span class="kw">%&gt;%</span>
-  <span class="kw pkg">kableExtra</span><span class="kw ns">::</span><span class="fu"><a href="https://rdrr.io/pkg/kableExtra/man/kable_styling.html">kable_styling</a></span>(<span class="kw">latex_options</span> <span class="kw">=</span> <span class="st">'striped'</span>,
-                            <span class="kw">stripe_index</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="fl">1</span>:<span class="fl">5</span>,<span class="fl">11</span>:<span class="fl">15</span>))<span class="kw">%&gt;%</span>
-  <span class="kw pkg">kableExtra</span><span class="kw ns">::</span><span class="fu"><a href="https://rdrr.io/pkg/kableExtra/man/collapse_rows.html">collapse_rows</a></span>(<span class="kw">columns</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="fl">1</span>))<span class="kw">%&gt;%</span>
-  <span class="fu"><a href="../reference/tex_preview.html">tex_preview</a></span>()</pre></body></html></div>
+<div class="sourceCode" id="cb3"><pre class="downlit">
+
+<span class="kw">iris_rev</span> <span class="op">%&gt;%</span>
+  <span class="kw">knitr</span>::<span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html">kable</a></span>(format = <span class="st">"latex"</span>,row.names = <span class="fl">FALSE</span>)<span class="op">%&gt;%</span>
+  <span class="kw">kableExtra</span>::<span class="fu"><a href="https://rdrr.io/pkg/kableExtra/man/kable_styling.html">kable_styling</a></span>(latex_options = <span class="st">'striped'</span>,
+                            stripe_index = <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="fl">1</span><span class="op">:</span><span class="fl">5</span>,<span class="fl">11</span><span class="op">:</span><span class="fl">15</span>))<span class="op">%&gt;%</span>
+  <span class="kw">kableExtra</span>::<span class="fu"><a href="https://rdrr.io/pkg/kableExtra/man/collapse_rows.html">collapse_rows</a></span>(columns = <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="fl">1</span>))<span class="op">%&gt;%</span>
+  <span class="fu"><a href="../reference/tex_preview.html">tex_preview</a></span>()
+</pre></div>
 <p><img src="classes_files/figure-html/unnamed-chunk-3-1.png" width="284"></p>
 </div>
 </div>
 <div id="xtable" class="section level2">
 <h2 class="hasAnchor">
 <a href="#xtable" class="anchor"></a>xtable</h2>
-<div class="sourceCode" id="cb4"><html><body><pre class="r">
-<span class="no">iris_rev</span><span class="kw">%&gt;%</span>
-  <span class="kw pkg">xtable</span><span class="kw ns">::</span><span class="fu"><a href="https://rdrr.io/pkg/xtable/man/xtable.html">xtable</a></span>()<span class="kw">%&gt;%</span>
-  <span class="fu"><a href="../reference/tex_preview.html">tex_preview</a></span>(<span class="kw">print.xtable.opts</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="kw">include.rownames</span> <span class="kw">=</span> <span class="fl">FALSE</span>))</pre></body></html></div>
+<div class="sourceCode" id="cb4"><pre class="downlit">
+
+<span class="kw">iris_rev</span><span class="op">%&gt;%</span>
+  <span class="kw">xtable</span>::<span class="fu"><a href="https://rdrr.io/pkg/xtable/man/xtable.html">xtable</a></span>()<span class="op">%&gt;%</span>
+  <span class="fu"><a href="../reference/tex_preview.html">tex_preview</a></span>(print.xtable.opts = <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span>(include.rownames = <span class="fl">FALSE</span>))
+</pre></div>
 <p><img src="classes_files/figure-html/unnamed-chunk-4-1.png" width="284"></p>
 </div>
 <div id="texreg" class="section level2">
@@ -137,33 +145,37 @@
 <div id="ordinary-least-squares-model-example-from-the-lm-help-file" class="section level3">
 <h3 class="hasAnchor">
 <a href="#ordinary-least-squares-model-example-from-the-lm-help-file" class="anchor"></a>Ordinary least squares model (example from the ‘lm’ help file)</h3>
-<div class="sourceCode" id="cb5"><html><body><pre class="r">
-<span class="no">ctl</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="fl">4.17</span>,<span class="fl">5.58</span>,<span class="fl">5.18</span>,<span class="fl">6.11</span>,<span class="fl">4.50</span>,<span class="fl">4.61</span>,<span class="fl">5.17</span>,<span class="fl">4.53</span>,<span class="fl">5.33</span>,<span class="fl">5.14</span>)
-<span class="no">trt</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="fl">4.81</span>,<span class="fl">4.17</span>,<span class="fl">4.41</span>,<span class="fl">3.59</span>,<span class="fl">5.87</span>,<span class="fl">3.83</span>,<span class="fl">6.03</span>,<span class="fl">4.89</span>,<span class="fl">4.32</span>,<span class="fl">4.69</span>)
-<span class="no">group</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/gl.html">gl</a></span>(<span class="fl">2</span>,<span class="fl">10</span>,<span class="fl">20</span>, <span class="kw">labels</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"Ctl"</span>,<span class="st">"Trt"</span>))
-<span class="no">weight</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="no">ctl</span>, <span class="no">trt</span>)
+<div class="sourceCode" id="cb5"><pre class="downlit">
 
-<span class="fu"><a href="https://rdrr.io/r/stats/lm.html">lm</a></span>(<span class="no">weight</span> ~ <span class="no">group</span>)<span class="kw">%&gt;%</span>
-  <span class="kw pkg">texreg</span><span class="kw ns">::</span><span class="fu"><a href="https://rdrr.io/pkg/texreg/man/texreg.html">texreg</a></span>(<span class="kw">caption.above</span> <span class="kw">=</span> <span class="fl">TRUE</span>,
-                 <span class="kw">caption</span>  <span class="kw">=</span> <span class="st">'Ordinary least squares model'</span>)<span class="kw">%&gt;%</span>
-  <span class="kw pkg">texPreview</span><span class="kw ns">::</span><span class="fu"><a href="../reference/tex_preview.html">tex_preview</a></span>()</pre></body></html></div>
+<span class="kw">ctl</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="fl">4.17</span>,<span class="fl">5.58</span>,<span class="fl">5.18</span>,<span class="fl">6.11</span>,<span class="fl">4.50</span>,<span class="fl">4.61</span>,<span class="fl">5.17</span>,<span class="fl">4.53</span>,<span class="fl">5.33</span>,<span class="fl">5.14</span>)
+<span class="kw">trt</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="fl">4.81</span>,<span class="fl">4.17</span>,<span class="fl">4.41</span>,<span class="fl">3.59</span>,<span class="fl">5.87</span>,<span class="fl">3.83</span>,<span class="fl">6.03</span>,<span class="fl">4.89</span>,<span class="fl">4.32</span>,<span class="fl">4.69</span>)
+<span class="kw">group</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/gl.html">gl</a></span>(<span class="fl">2</span>,<span class="fl">10</span>,<span class="fl">20</span>, labels = <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"Ctl"</span>,<span class="st">"Trt"</span>))
+<span class="kw">weight</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="kw">ctl</span>, <span class="kw">trt</span>)
+
+<span class="fu"><a href="https://rdrr.io/r/stats/lm.html">lm</a></span>(<span class="kw">weight</span> <span class="op">~</span> <span class="kw">group</span>)<span class="op">%&gt;%</span>
+  <span class="kw">texreg</span>::<span class="fu"><a href="https://rdrr.io/pkg/texreg/man/texreg.html">texreg</a></span>(caption.above = <span class="fl">TRUE</span>,
+                 caption  = <span class="st">'Ordinary least squares model'</span>)<span class="op">%&gt;%</span>
+  <span class="kw">texPreview</span>::<span class="fu"><a href="../reference/tex_preview.html">tex_preview</a></span>()
+</pre></div>
 <p><img src="classes_files/figure-html/unnamed-chunk-5-1.png" width="284"></p>
 </div>
 <div id="linear-mixed-effects-models" class="section level3">
 <h3 class="hasAnchor">
 <a href="#linear-mixed-effects-models" class="anchor"></a>Linear mixed-effects models</h3>
-<div class="sourceCode" id="cb6"><html><body><pre class="r">
-<span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="no">nlme</span>)
+<div class="sourceCode" id="cb6"><pre class="downlit">
 
-<span class="no">model.1</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/nlme/man/lme.html">lme</a></span>(<span class="no">distance</span> ~ <span class="no">age</span>, <span class="kw">data</span> <span class="kw">=</span> <span class="no">Orthodont</span>, <span class="kw">random</span> <span class="kw">=</span> ~ <span class="fl">1</span>)
-<span class="no">model.2</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/nlme/man/lme.html">lme</a></span>(<span class="no">distance</span> ~ <span class="no">age</span> + <span class="no">Sex</span>, <span class="kw">data</span> <span class="kw">=</span> <span class="no">Orthodont</span>, <span class="kw">random</span> <span class="kw">=</span> ~ <span class="fl">1</span>)
+<span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="kw"><a href="https://svn.r-project.org/R-packages/trunk/nlme">nlme</a></span>)
 
-<span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="no">model.1</span>, <span class="no">model.2</span>)<span class="kw">%&gt;%</span>
-  <span class="kw pkg">texreg</span><span class="kw ns">::</span><span class="fu"><a href="https://rdrr.io/pkg/texreg/man/texreg.html">texreg</a></span>(<span class="kw">booktabs</span> <span class="kw">=</span> <span class="fl">TRUE</span>,
-                 <span class="kw">dcolumn</span> <span class="kw">=</span> <span class="fl">TRUE</span>,
-                 <span class="kw">caption.above</span> <span class="kw">=</span> <span class="fl">TRUE</span>,
-                 <span class="kw">caption</span>  <span class="kw">=</span> <span class="st">'Linear mixed-effects models'</span>)<span class="kw">%&gt;%</span>
-  <span class="kw pkg">texPreview</span><span class="kw ns">::</span><span class="fu"><a href="../reference/tex_preview.html">tex_preview</a></span>()</pre></body></html></div>
+<span class="kw">model.1</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/nlme/man/lme.html">lme</a></span>(<span class="kw">distance</span> <span class="op">~</span> <span class="kw">age</span>, data = <span class="kw">Orthodont</span>, random = <span class="op">~</span> <span class="fl">1</span>)
+<span class="kw">model.2</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/nlme/man/lme.html">lme</a></span>(<span class="kw">distance</span> <span class="op">~</span> <span class="kw">age</span> <span class="op">+</span> <span class="kw">Sex</span>, data = <span class="kw">Orthodont</span>, random = <span class="op">~</span> <span class="fl">1</span>)
+
+<span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="kw">model.1</span>, <span class="kw">model.2</span>)<span class="op">%&gt;%</span>
+  <span class="kw">texreg</span>::<span class="fu"><a href="https://rdrr.io/pkg/texreg/man/texreg.html">texreg</a></span>(booktabs = <span class="fl">TRUE</span>, 
+                 dcolumn = <span class="fl">TRUE</span>,
+                 caption.above = <span class="fl">TRUE</span>,
+                 caption  = <span class="st">'Linear mixed-effects models'</span>)<span class="op">%&gt;%</span>
+  <span class="kw">texPreview</span>::<span class="fu"><a href="../reference/tex_preview.html">tex_preview</a></span>()
+</pre></div>
 <p><img src="classes_files/figure-html/unnamed-chunk-6-1.png" width="284"></p>
 </div>
 </div>
@@ -184,7 +196,7 @@
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
 </div>
 
       </footer>

@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Render and Preview snippets of TeX in R Viewer <img src='figures/lifecycle-deprecated.svg' alt='Deprecated lifecycle' /> — texPreview • texPreview</title>
+<title>Render and Preview snippets of TeX in R Viewer  — texPreview • texPreview</title>
 
 
 <!-- jquery -->
@@ -39,7 +39,7 @@
 
 
 
-<meta property="og:title" content="Render and Preview snippets of TeX in R Viewer <img src='figures/lifecycle-deprecated.svg' alt='Deprecated lifecycle' /> — texPreview" />
+<meta property="og:title" content="Render and Preview snippets of TeX in R Viewer  — texPreview" />
 <meta property="og:description" content="This function has been deprecated, use tex_preview instead." />
 
 
@@ -130,26 +130,26 @@
     </div>
 
     <pre class="usage"><span class='fu'>texPreview</span>(
-  <span class='no'>obj</span>,
-  <span class='kw'>tex_lines</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>stem</span> <span class='kw'>=</span> <span class='st'>"tex_temp"</span>,
-  <span class='kw'>overwrite</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
-  <span class='kw'>keep_pdf</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
-  <span class='kw'>tex_message</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
-  <span class='kw'>fileDir</span> <span class='kw'>=</span> <span class='no'>tex_opts</span>$<span class='fu'><a href='https://rdrr.io/r/base/get.html'>get</a></span>(<span class='st'>"fileDir"</span>),
-  <span class='kw'>margin</span> <span class='kw'>=</span> <span class='no'>tex_opts</span>$<span class='fu'><a href='https://rdrr.io/r/base/get.html'>get</a></span>(<span class='st'>"margin"</span>),
-  <span class='kw'>imgFormat</span> <span class='kw'>=</span> <span class='no'>tex_opts</span>$<span class='fu'><a href='https://rdrr.io/r/base/get.html'>get</a></span>(<span class='st'>"imgFormat"</span>),
-  <span class='kw'>returnType</span> <span class='kw'>=</span> <span class='no'>tex_opts</span>$<span class='fu'><a href='https://rdrr.io/r/base/get.html'>get</a></span>(<span class='st'>"returnType"</span>),
-  <span class='kw'>resizebox</span> <span class='kw'>=</span> <span class='no'>tex_opts</span>$<span class='fu'><a href='https://rdrr.io/r/base/get.html'>get</a></span>(<span class='st'>"resizebox"</span>),
-  <span class='kw'>usrPackages</span> <span class='kw'>=</span> <span class='no'>tex_opts</span>$<span class='fu'><a href='https://rdrr.io/r/base/get.html'>get</a></span>(<span class='st'>"usrPackages"</span>),
-  <span class='kw'>engine</span> <span class='kw'>=</span> <span class='no'>tex_opts</span>$<span class='fu'><a href='https://rdrr.io/r/base/get.html'>get</a></span>(<span class='st'>"engine"</span>),
-  <span class='kw'>cleanup</span> <span class='kw'>=</span> <span class='no'>tex_opts</span>$<span class='fu'><a href='https://rdrr.io/r/base/get.html'>get</a></span>(<span class='st'>"cleanup"</span>),
-  <span class='kw'>density</span> <span class='kw'>=</span> <span class='no'>tex_opts</span>$<span class='fu'><a href='https://rdrr.io/r/base/get.html'>get</a></span>(<span class='st'>"density"</span>),
-  <span class='kw'>svg_max</span> <span class='kw'>=</span> <span class='no'>tex_opts</span>$<span class='fu'><a href='https://rdrr.io/r/base/get.html'>get</a></span>(<span class='st'>"svg_max"</span>),
-  <span class='kw'>print.xtable.opts</span> <span class='kw'>=</span> <span class='no'>tex_opts</span>$<span class='fu'><a href='https://rdrr.io/r/base/get.html'>get</a></span>(<span class='st'>"print.xtable.opts"</span>),
-  <span class='kw'>opts.html</span> <span class='kw'>=</span> <span class='no'>tex_opts</span>$<span class='fu'><a href='https://rdrr.io/r/base/get.html'>get</a></span>(<span class='st'>"opts.html"</span>),
-  <span class='kw'>markers</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/interactive.html'>interactive</a></span>(),
-  <span class='no'>...</span>
+  <span class='kw'>obj</span>,
+  tex_lines = <span class='kw'>NULL</span>,
+  stem = <span class='st'>"tex_temp"</span>,
+  overwrite = <span class='fl'>TRUE</span>,
+  keep_pdf = <span class='fl'>FALSE</span>,
+  tex_message = <span class='fl'>FALSE</span>,
+  fileDir = <span class='kw'>tex_opts</span><span class='op'>$</span><span class='fu'><a href='https://rdrr.io/r/base/get.html'>get</a></span>(<span class='st'>"fileDir"</span>),
+  margin = <span class='kw'>tex_opts</span><span class='op'>$</span><span class='fu'><a href='https://rdrr.io/r/base/get.html'>get</a></span>(<span class='st'>"margin"</span>),
+  imgFormat = <span class='kw'>tex_opts</span><span class='op'>$</span><span class='fu'><a href='https://rdrr.io/r/base/get.html'>get</a></span>(<span class='st'>"imgFormat"</span>),
+  returnType = <span class='kw'>tex_opts</span><span class='op'>$</span><span class='fu'><a href='https://rdrr.io/r/base/get.html'>get</a></span>(<span class='st'>"returnType"</span>),
+  resizebox = <span class='kw'>tex_opts</span><span class='op'>$</span><span class='fu'><a href='https://rdrr.io/r/base/get.html'>get</a></span>(<span class='st'>"resizebox"</span>),
+  usrPackages = <span class='kw'>tex_opts</span><span class='op'>$</span><span class='fu'><a href='https://rdrr.io/r/base/get.html'>get</a></span>(<span class='st'>"usrPackages"</span>),
+  engine = <span class='kw'>tex_opts</span><span class='op'>$</span><span class='fu'><a href='https://rdrr.io/r/base/get.html'>get</a></span>(<span class='st'>"engine"</span>),
+  cleanup = <span class='kw'>tex_opts</span><span class='op'>$</span><span class='fu'><a href='https://rdrr.io/r/base/get.html'>get</a></span>(<span class='st'>"cleanup"</span>),
+  density = <span class='kw'>tex_opts</span><span class='op'>$</span><span class='fu'><a href='https://rdrr.io/r/base/get.html'>get</a></span>(<span class='st'>"density"</span>),
+  svg_max = <span class='kw'>tex_opts</span><span class='op'>$</span><span class='fu'><a href='https://rdrr.io/r/base/get.html'>get</a></span>(<span class='st'>"svg_max"</span>),
+  print.xtable.opts = <span class='kw'>tex_opts</span><span class='op'>$</span><span class='fu'><a href='https://rdrr.io/r/base/get.html'>get</a></span>(<span class='st'>"print.xtable.opts"</span>),
+  opts.html = <span class='kw'>tex_opts</span><span class='op'>$</span><span class='fu'><a href='https://rdrr.io/r/base/get.html'>get</a></span>(<span class='st'>"opts.html"</span>),
+  markers = <span class='fu'><a href='https://rdrr.io/r/base/interactive.html'>interactive</a></span>(),
+  <span class='kw'>...</span>
 )</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
@@ -272,7 +272,7 @@ create links for the log file on rendering errors, Default: interactive()</p></t
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
 </div>
 
       </footer>
