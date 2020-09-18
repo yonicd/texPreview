@@ -1,8 +1,8 @@
 [![CRAN\_Status\_Badge](https://www.r-pkg.org/badges/version/texPreview)](https://cran.r-project.org/package=texPreview)
-[![Project Status: Active - The project has reached a stable, usable state and is being actively developed.](http://www.repostatus.org/badges/0.1.0/active.svg)](http://www.repostatus.org/#active) 
+[![Project Status: Active - The project has reached a stable, usable state and is being actively developed.](http://www.repostatus.org/badges/0.1.0/active.svg)](https://www.repostatus.org) 
 [![](https://cranlogs.r-pkg.org/badges/texPreview)](https://cran.r-project.org/package=texPreview)
 [![Coverage Status](https://img.shields.io/codecov/c/github/yonicd/texPreview/master.svg)](https://codecov.io/github/yonicd/texPreview?branch=master)
-[![Covrpage Summary](https://img.shields.io/badge/covrpage-Last_Build_2020_02_14-brightgreen.svg)](http://tinyurl.com/ybkr8fsu)
+[![Covrpage Summary](https://img.shields.io/badge/covrpage-Last_Build_2020_09_17-brightgreen.svg)](http://tinyurl.com/ybkr8fsu)
 [![R-win build
 status](https://github.com/yonicd/texPreview/workflows/R-win/badge.svg)](https://github.com/yonicd/texPreview)
 [![R-mac build

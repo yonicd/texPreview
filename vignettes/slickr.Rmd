@@ -74,7 +74,7 @@ tab%>%
 
 ## Carousel
 
-The images created above are placed in a [slickR](https://github.com/metrumresearchgroup/slickr) carousel.
+The images created above are placed in a [slickR](https://github.com/yonicd/slickr) carousel.
 
 ```{r testOut3}
 
