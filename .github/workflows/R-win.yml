@@ -30,7 +30,9 @@ jobs:
           install.packages('tinytex')
           tinytex::install_tinytex()
           tinytex::tlmgr_install(c('standalone', 'xcolor', 'booktabs', 'multirow', 'amsmath', 'listings', 'setspace', 'caption', 'graphics', 'tools', 'psnfss', 'varwidth', 'colortbl', 'epstopdf-pkg', 'pgf'))
-          cat("::add-path::", tinytex::tinytex_root(), "\\bin\\win32", sep = "")
+          new_path <- paste0(tinytex::tinytex_root(), "\\bin\\win32")
+          new_call <- sprintf("echo '{%s}' >> $GITHUB_PATH",new_path)
+          cat(new_call,sep="")
         shell: Rscript {0}
       
       - run: tlmgr --version
