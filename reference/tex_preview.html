@@ -73,7 +73,7 @@ converts it an image which is sent to Viewer." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">texPreview</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.4.6</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.5</span>
       </span>
     </div>
 
@@ -131,28 +131,28 @@ converts it an image which is sent to Viewer." />
 converts it an image which is sent to Viewer.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>tex_preview</span>(
-  <span class='kw'>obj</span>,
-  tex_lines = <span class='kw'>NULL</span>,
-  stem = <span class='st'>"tex_temp"</span>,
-  overwrite = <span class='fl'>TRUE</span>,
-  keep_pdf = <span class='fl'>FALSE</span>,
-  tex_message = <span class='fl'>FALSE</span>,
-  fileDir = <span class='kw'>tex_opts</span><span class='op'>$</span><span class='fu'><a href='https://rdrr.io/r/base/get.html'>get</a></span>(<span class='st'>"fileDir"</span>),
-  margin = <span class='kw'>tex_opts</span><span class='op'>$</span><span class='fu'><a href='https://rdrr.io/r/base/get.html'>get</a></span>(<span class='st'>"margin"</span>),
-  imgFormat = <span class='kw'>tex_opts</span><span class='op'>$</span><span class='fu'><a href='https://rdrr.io/r/base/get.html'>get</a></span>(<span class='st'>"imgFormat"</span>),
-  returnType = <span class='kw'>tex_opts</span><span class='op'>$</span><span class='fu'><a href='https://rdrr.io/r/base/get.html'>get</a></span>(<span class='st'>"returnType"</span>),
-  resizebox = <span class='kw'>tex_opts</span><span class='op'>$</span><span class='fu'><a href='https://rdrr.io/r/base/get.html'>get</a></span>(<span class='st'>"resizebox"</span>),
-  usrPackages = <span class='kw'>tex_opts</span><span class='op'>$</span><span class='fu'><a href='https://rdrr.io/r/base/get.html'>get</a></span>(<span class='st'>"usrPackages"</span>),
-  engine = <span class='kw'>tex_opts</span><span class='op'>$</span><span class='fu'><a href='https://rdrr.io/r/base/get.html'>get</a></span>(<span class='st'>"engine"</span>),
-  cleanup = <span class='kw'>tex_opts</span><span class='op'>$</span><span class='fu'><a href='https://rdrr.io/r/base/get.html'>get</a></span>(<span class='st'>"cleanup"</span>),
-  density = <span class='kw'>tex_opts</span><span class='op'>$</span><span class='fu'><a href='https://rdrr.io/r/base/get.html'>get</a></span>(<span class='st'>"density"</span>),
-  svg_max = <span class='kw'>tex_opts</span><span class='op'>$</span><span class='fu'><a href='https://rdrr.io/r/base/get.html'>get</a></span>(<span class='st'>"svg_max"</span>),
-  print.xtable.opts = <span class='kw'>tex_opts</span><span class='op'>$</span><span class='fu'><a href='https://rdrr.io/r/base/get.html'>get</a></span>(<span class='st'>"print.xtable.opts"</span>),
-  opts.html = <span class='kw'>tex_opts</span><span class='op'>$</span><span class='fu'><a href='https://rdrr.io/r/base/get.html'>get</a></span>(<span class='st'>"opts.html"</span>),
-  markers = <span class='fu'><a href='https://rdrr.io/r/base/interactive.html'>interactive</a></span>(),
-  <span class='kw'>...</span>
-)</pre>
+    <pre class="usage"><span class='fu'>tex_preview</span><span class='op'>(</span>
+  <span class='va'>obj</span>,
+  tex_lines <span class='op'>=</span> <span class='cn'>NULL</span>,
+  stem <span class='op'>=</span> <span class='st'>"tex_temp"</span>,
+  overwrite <span class='op'>=</span> <span class='cn'>TRUE</span>,
+  keep_pdf <span class='op'>=</span> <span class='cn'>FALSE</span>,
+  tex_message <span class='op'>=</span> <span class='cn'>FALSE</span>,
+  fileDir <span class='op'>=</span> <span class='va'>tex_opts</span><span class='op'>$</span><span class='fu'>get</span><span class='op'>(</span><span class='st'>"fileDir"</span><span class='op'>)</span>,
+  margin <span class='op'>=</span> <span class='va'>tex_opts</span><span class='op'>$</span><span class='fu'>get</span><span class='op'>(</span><span class='st'>"margin"</span><span class='op'>)</span>,
+  imgFormat <span class='op'>=</span> <span class='va'>tex_opts</span><span class='op'>$</span><span class='fu'>get</span><span class='op'>(</span><span class='st'>"imgFormat"</span><span class='op'>)</span>,
+  returnType <span class='op'>=</span> <span class='va'>tex_opts</span><span class='op'>$</span><span class='fu'>get</span><span class='op'>(</span><span class='st'>"returnType"</span><span class='op'>)</span>,
+  resizebox <span class='op'>=</span> <span class='va'>tex_opts</span><span class='op'>$</span><span class='fu'>get</span><span class='op'>(</span><span class='st'>"resizebox"</span><span class='op'>)</span>,
+  usrPackages <span class='op'>=</span> <span class='va'>tex_opts</span><span class='op'>$</span><span class='fu'>get</span><span class='op'>(</span><span class='st'>"usrPackages"</span><span class='op'>)</span>,
+  engine <span class='op'>=</span> <span class='va'>tex_opts</span><span class='op'>$</span><span class='fu'>get</span><span class='op'>(</span><span class='st'>"engine"</span><span class='op'>)</span>,
+  cleanup <span class='op'>=</span> <span class='va'>tex_opts</span><span class='op'>$</span><span class='fu'>get</span><span class='op'>(</span><span class='st'>"cleanup"</span><span class='op'>)</span>,
+  density <span class='op'>=</span> <span class='va'>tex_opts</span><span class='op'>$</span><span class='fu'>get</span><span class='op'>(</span><span class='st'>"density"</span><span class='op'>)</span>,
+  svg_max <span class='op'>=</span> <span class='va'>tex_opts</span><span class='op'>$</span><span class='fu'>get</span><span class='op'>(</span><span class='st'>"svg_max"</span><span class='op'>)</span>,
+  print.xtable.opts <span class='op'>=</span> <span class='va'>tex_opts</span><span class='op'>$</span><span class='fu'>get</span><span class='op'>(</span><span class='st'>"print.xtable.opts"</span><span class='op'>)</span>,
+  opts.html <span class='op'>=</span> <span class='va'>tex_opts</span><span class='op'>$</span><span class='fu'>get</span><span class='op'>(</span><span class='st'>"opts.html"</span><span class='op'>)</span>,
+  markers <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/interactive.html'>interactive</a></span><span class='op'>(</span><span class='op'>)</span>,
+  <span class='va'>...</span>
+<span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -320,12 +320,12 @@ be controlled using the <code>cleanup</code> argument or <code>tex_opts$get('cle
 <p></details></p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span>(<span class='st'>'iris'</span>)
-<span class='co'>if</span>(<span class='fu'><a href='https://rdrr.io/r/base/interactive.html'>interactive</a></span>()){
+    <pre class="examples"><div class='input'><span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span><span class='op'>(</span><span class='st'>'iris'</span><span class='op'>)</span>
+<span class='kw'>if</span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/interactive.html'>interactive</a></span><span class='op'>(</span><span class='op'>)</span><span class='op'>)</span><span class='op'>{</span>
 
 <span class='co'># Raw TeX</span>
 
-<span class='kw'>tex</span> <span class='op'>&lt;-</span> <span class='st'>'\\begin{tabular}{llr}
+<span class='va'>tex</span> <span class='op'>&lt;-</span> <span class='st'>'\\begin{tabular}{llr}
 \\hline
 \\multicolumn{2}{c}{Item} \\\\
 \\cline{1-2}
@@ -341,25 +341,25 @@ Armadillo &amp; frozen      &amp; 8.99       \\\\
 
 <span class='co'># knitr kable</span>
 
- <span class='kw'>mtcars</span><span class='op'>%&gt;%</span>
-   <span class='fu'><a href='https://rdrr.io/r/utils/head.html'>head</a></span>()<span class='op'>%&gt;%</span>
-   <span class='kw'>knitr</span>::<span class='fu'><a href='https://rdrr.io/pkg/knitr/man/kable.html'>kable</a></span>(<span class='st'>"latex"</span>)<span class='op'>%&gt;%</span>
-   <span class='fu'>tex_preview</span>()
+ <span class='va'>mtcars</span><span class='op'>%&gt;%</span>
+   <span class='fu'><a href='https://rdrr.io/r/utils/head.html'>head</a></span><span class='op'>(</span><span class='op'>)</span><span class='op'>%&gt;%</span>
+   <span class='fu'>knitr</span><span class='fu'>::</span><span class='fu'><a href='https://rdrr.io/pkg/knitr/man/kable.html'>kable</a></span><span class='op'>(</span><span class='st'>"latex"</span><span class='op'>)</span><span class='op'>%&gt;%</span>
+   <span class='fu'>tex_preview</span><span class='op'>(</span><span class='op'>)</span>
 
 <span class='co'># with svg output pan/zoom is enabled in the internal viewer</span>
 
-<span class='fu'>tex_preview</span>(obj = <span class='kw'>tex</span>,stem = <span class='st'>'eq'</span>,imgFormat = <span class='st'>'svg'</span>)
+<span class='fu'>tex_preview</span><span class='op'>(</span>obj <span class='op'>=</span> <span class='va'>tex</span>,stem <span class='op'>=</span> <span class='st'>'eq'</span>,imgFormat <span class='op'>=</span> <span class='st'>'svg'</span><span class='op'>)</span>
 
 <span class='co'># use tex_lines parameter to pass full document</span>
 
-<span class='kw'>tikz_path</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/system.file.html'>system.file</a></span>(
+<span class='va'>tikz_path</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/system.file.html'>system.file</a></span><span class='op'>(</span>
                   <span class='st'>'examples/tikz/credit_rationing.tex'</span>,
-                  package = <span class='st'>'texPreview'</span>
-                  )
+                  package <span class='op'>=</span> <span class='st'>'texPreview'</span>
+                  <span class='op'>)</span>
 
-<span class='fu'>tex_preview</span>(tex_lines = <span class='fu'><a href='https://rdrr.io/r/base/readLines.html'>readLines</a></span>(<span class='kw'>tikz_path</span>))
+<span class='fu'>tex_preview</span><span class='op'>(</span>tex_lines <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/readLines.html'>readLines</a></span><span class='op'>(</span><span class='va'>tikz_path</span><span class='op'>)</span><span class='op'>)</span>
 
-}
+<span class='op'>}</span>
 </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">

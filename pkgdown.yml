@@ -6,9 +6,8 @@ articles:
   engine: engine.html
   kable: kable.html
   rmarkdown: rmarkdown.html
-  slickr: slickr.html
   tests_and_coverage: tests_and_coverage.html
   tex_packages: tex_packages.html
   tikz: tikz.html
-last_built: 2020-09-18T00:19Z
+last_built: 2020-12-10T10:42Z
 
