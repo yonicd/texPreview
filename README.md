@@ -8,7 +8,7 @@ status](https://github.com/yonicd/texPreview/workflows/R-win/badge.svg)](https:/
 [![R-mac build
 status](https://github.com/yonicd/texPreview/workflows/R-mac/badge.svg)](https://github.com/yonicd/texPreview)
 [![R-linux build
-status](https://github.com/yonicd/texPreview/workflows/R-linux/badge.svg)](https://github.com/yonicd/texPreview)
+status](https://github.com/yonicd/texPreview/workflows/R-linux/badge.svg)](https://github.com/yonicd/texPreview) 
 
 # texPreview
 
