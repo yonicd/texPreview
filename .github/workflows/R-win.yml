@@ -26,17 +26,16 @@ jobs:
           r-version: ${{ matrix.config.r }}
 
       - name: install tinytex
-        run: |
-          install.packages('tinytex')
-          tinytex::install_tinytex()
-          tinytex::tlmgr_install(c('standalone', 'xcolor', 'booktabs', 'multirow', 'amsmath', 'listings', 'setspace', 'caption', 'graphics', 'tools', 'psnfss', 'varwidth', 'colortbl', 'epstopdf-pkg', 'pgf'))
-          new_path <- paste0(tinytex::tinytex_root(), "\\bin\\win32")
-          new_call <- sprintf("echo '{%s}' >> $GITHUB_PATH",new_path)
-          system(new_call)
-        shell: Rscript {0}
+      - uses: r-lib/actions/setup-tinytex@v1
       
       - run: tlmgr --version
       - run: pdflatex --version
+    
+      - name: install tex libs
+        run: |
+          install.packages('tinytex')
+          tinytex::tlmgr_install(c('standalone', 'xcolor', 'booktabs', 'multirow', 'amsmath', 'listings', 'setspace', 'caption', 'graphics', 'tools', 'psnfss', 'varwidth', 'colortbl', 'epstopdf-pkg', 'pgf'))
+        shell: Rscript {0}
     
       - name: Query dependencies
         run: |
