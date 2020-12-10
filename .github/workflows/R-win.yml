@@ -26,8 +26,8 @@ jobs:
           r-version: ${{ matrix.config.r }}
 
       - name: install tinytex
-      - uses: r-lib/actions/setup-tinytex@v1
-      
+        uses: r-lib/actions/setup-tinytex@v1
+        
       - run: tlmgr --version
       - run: pdflatex --version
     
