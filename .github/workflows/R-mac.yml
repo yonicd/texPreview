@@ -44,7 +44,10 @@ jobs:
         run: brew install imagemagick
         
       - name: Install texlibs
-        run: tlmgr install standalone xcolor booktabs multirow amsmath listings setspace caption graphics tools psnfss varwidth colortbl epstopdf-pkg pgf
+        run: |
+          tlmgr install standalone xcolor booktabs multirow amsmath listings setspace caption graphics tools psnfss varwidth colortbl epstopdf-pkg pgf
+          tlmgr init-usertree
+          tlmgr --usermode install koma-script
 
       - name: Install dependencies
         run: Rscript -e "install.packages('remotes')" -e "remotes::install_deps(dependencies = TRUE)" -e "remotes::install_cran('rcmdcheck')"
