@@ -12,7 +12,6 @@ jobs:
       fail-fast: false
       matrix:
         config:
-        - {os: ubuntu-16.04, r: '4.1', cran: "https://cran.r-project.org", args: "--no-manual"}
         - {os: ubuntu-18.04, r: '4.1', cran: "https://packagemanager.rstudio.com/cran/__linux__/bionic/latest", args: "--no-manual"}
         - {os: ubuntu-20.04, r: '4.1', cran: "https://packagemanager.rstudio.com/cran/__linux__/focal/latest", args: "--no-manual"}
     env:
