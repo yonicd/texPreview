@@ -24,6 +24,9 @@ jobs:
       - uses: r-lib/actions/setup-r@master
         with:
           r-version: ${{ matrix.config.r }}
+          
+      - name: install pandoc
+        uses: r-lib/actions/setup-pandoc@master
 
       - name: install tinytex
         uses: r-lib/actions/setup-tinytex@v1
