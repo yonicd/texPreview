@@ -20,6 +20,7 @@ testthat::describe('html',{
 
 testthat::describe('pdf',{
 testthat::skip_on_cran()
+testthat::skip_on_os('windows')
   safe_render(input = '../assets/input/test_pdf.Rmd',output_dir = path, render_params = list(path = path), cran = TRUE, quiet = TRUE)
   
   it('output device', {
