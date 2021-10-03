@@ -37,7 +37,7 @@ jobs:
         run: |
           sudo apt-get -qq update
           sudo apt-get install -y texlive-base texlive-latex-base texlive-latex-extra texlive-fonts-recommended texlive-fonts-extra
-          tlmgr install standalone xcolor booktabs multirow amsmath listings setspace caption graphics tools psnfss varwidth colortbl epstopdf-pkg pgf
+          tlmgr install standalone xcolor booktabs multirow amsmath listings setspace caption graphics tools psnfss varwidth colortbl epstopdf-pkg pgf snapshot
 
       - name: Install system dependencies
         if: runner.os == 'Linux'
