@@ -35,6 +35,8 @@ jobs:
         run: |
           install.packages('tinytex')
           tinytex::tlmgr_install(c('standalone', 'xcolor', 'booktabs', 'multirow', 'amsmath', 'listings', 'setspace', 'caption', 'graphics', 'tools', 'psnfss', 'varwidth', 'colortbl', 'epstopdf-pkg', 'pgf','snapshot'))
+          tinytex::tlmgr('init-usertree')
+          tinytex::tlmgr_install(c('koma-script', 'xcolor'), usermode = TRUE)
         shell: Rscript {0}
     
       - name: Query dependencies
