@@ -4,7 +4,7 @@
 
 #' @importFrom utils getFromNamespace
 #' @importFrom htmltools html_print tags
-#' @importFrom knitr engine_output
+#' @importFrom knitr engine_output sew
 eng_texpreview <- function (options) {
 
   type <- options$type %n% "texpreview"
@@ -41,11 +41,12 @@ eng_texpreview <- function (options) {
 
   if(options$texpreview.return%in%c('engine','viewer','html')){
   
-  wrap_path <- utils::getFromNamespace('wrap.knit_image_paths','knitr')
+  
   plot_counter <- utils::getFromNamespace("plot_counter", "knitr")
   in_base_dir <- utils::getFromNamespace("in_base_dir", "knitr")
 
   tmp <- knitr::fig_path('png', number = plot_counter())
+  tmp <- structure(tmp,class = c('knit_image_paths',class(tmp)))
   
   if(!grepl('^-',tmp)){
   
@@ -54,7 +55,7 @@ eng_texpreview <- function (options) {
       file.copy(output_code,tmp,overwrite = TRUE)
     })
 
-    code <- wrap_path(tmp)
+    code <- knitr::sew(tmp)
 
     output_code <- paste0(code,collapse = '\n')
     

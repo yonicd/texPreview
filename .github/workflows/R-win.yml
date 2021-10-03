@@ -12,7 +12,7 @@ jobs:
       fail-fast: false
       matrix:
         config:
-        - { os: windows-latest, r: '3.6'}
+        - { os: windows-latest, r: '4.1'}
     env:
       R_REMOTES_NO_ERRORS_FROM_WARNINGS: true
       CRAN: ${{ matrix.config.cran }}
@@ -24,6 +24,9 @@ jobs:
       - uses: r-lib/actions/setup-r@master
         with:
           r-version: ${{ matrix.config.r }}
+          
+      - name: install pandoc
+        uses: r-lib/actions/setup-pandoc@master
 
       - name: install tinytex
         uses: r-lib/actions/setup-tinytex@v1
@@ -34,7 +37,10 @@ jobs:
       - name: install tex libs
         run: |
           install.packages('tinytex')
-          tinytex::tlmgr_install(c('standalone', 'xcolor', 'booktabs', 'multirow', 'amsmath', 'listings', 'setspace', 'caption', 'graphics', 'tools', 'psnfss', 'varwidth', 'colortbl', 'epstopdf-pkg', 'pgf'))
+          tinytex::tlmgr_install(c('standalone', 'xcolor', 'booktabs', 'multirow', 'amsmath', 'listings', 'setspace', 'caption', 'graphics', 'tools', 'psnfss', 'varwidth', 'colortbl', 'epstopdf-pkg', 'pgf','snapshot','makeindex'))
+          tinytex::tlmgr('init-usertree')
+          tinytex::tlmgr_install(c('koma-script', 'xcolor'), usermode = TRUE)
+          list.files(tinytex:::win_app_dir('TinyTeX', 'bin', 'win32')) 
         shell: Rscript {0}
     
       - name: Query dependencies

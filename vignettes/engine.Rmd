@@ -16,7 +16,7 @@ knitr::opts_chunk$set(
 
 `texPreview` contains inside its own `knitr` engine to render TeX snippets more naturally within the RMarkdown workflow. We achieve this by leveraging texPreview's integration via S3 for various classes. 
 
-The following inputs can be run inside texpreview chunks in RStudio version [1.2.5033](https://rstudio.com/products/rstudio/download/#download) and above. They will render in the same fashion as would a regular `texPreview::tex_preview` call. 
+The following inputs can be run inside texpreview chunks in RStudio version [1.2.5033](https://www.rstudio.com/products/rstudio/download/) and above. They will render in the same fashion as would a regular `texPreview::tex_preview` call. 
 
    - Raw TeX
    - TeX in a character vector
