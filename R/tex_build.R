@@ -1,3 +1,4 @@
+#' @importFrom tinytex latexmk
 tex_build <- function(tex_lines,
                       stem = "tex_temp",
                       tex_message,
@@ -11,21 +12,16 @@ tex_build <- function(tex_lines,
   
   setwd(fileDir)
   
-  interaction_mode <- ifelse(tex_message, "nonstopmode", "batchmode")
-  
   temp_tex    <- sprintf("%sDoc.tex",stem)
   temp_log    <- sprintf('%sDoc.log',stem)
-  temp_out <- sprintf('%s_stdout.txt',stem)
-  temp_err <- sprintf('%s_stderr.txt',stem)
-  
-  tex_args <- c('-synctex=1',
-                sprintf('-interaction=%s',interaction_mode),
-                '--halt-on-error',
-                temp_tex)
   
   writeLines(tex_lines, con = temp_tex)
-
-  system2(engine, args = tex_args, stdout = temp_out, stderr = temp_err,...)
+  
+  tinytex::latexmk(file        = temp_tex, 
+                   engine      = engine,
+                   engine_args = '-synctex=1',
+                   clean       = FALSE,
+                   ...)
   
   log_lines <- readLines(temp_log)
   

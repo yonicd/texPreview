@@ -233,7 +233,7 @@ tex_preview.default <- function(obj,
   
   class(tab_lines) <- sprintf('texpreview_%s',tex_opts$get('returnType'))
   
-  tex_log <- tex_build(tex_lines,stem,tex_message,...)
+  tex_log <- tex_build(tex_lines, stem, tex_message, ...)
 
   keep_log <- attr(tex_log,'error')
   

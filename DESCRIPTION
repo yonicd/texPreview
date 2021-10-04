@@ -35,7 +35,8 @@ Imports:
     svgPanZoom,
     utils,
     whisker,
-    xml2
+    xml2,
+    tinytex
 Suggests:
     covr,
     kableExtra,
