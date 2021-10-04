@@ -45,7 +45,7 @@ jobs:
         
       - name: Install texlibs
         run: |
-          tlmgr install standalone xcolor booktabs multirow amsmath listings setspace caption graphics tools psnfss varwidth colortbl epstopdf-pkg pgf snapshot
+          tlmgr install standalone xcolor booktabs multirow amsmath listings setspace caption graphics tools psnfss varwidth colortbl epstopdf-pkg pgf
           tlmgr init-usertree
           tlmgr --usermode install koma-script
 
