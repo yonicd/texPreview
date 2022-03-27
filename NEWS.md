@@ -1,3 +1,6 @@
+# texPreview 1.5.1
+* Replace knitr::wrap with knitr::sew
+
 # texPreview 1.4.4
 * Add knitr engine for package
 * Move details from Suggests to Imports
