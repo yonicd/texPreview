@@ -38,13 +38,14 @@ jobs:
           sudo apt-get -y install libmagick++-dev
           sudo ldconfig /usr/local/lib
 
-      - name: Install texlibs
+      - name: install tex libs
         run: |
-          sudo apt-get -qq update
-          sudo apt-get install -y texlive-base texlive-latex-base texlive-latex-extra texlive-fonts-recommended texlive-fonts-extra
-          tlmgr install standalone xcolor booktabs multirow amsmath listings setspace caption graphics tools psnfss varwidth colortbl epstopdf-pkg pgf
-          tlmgr init-usertree
-          tlmgr --usermode install koma-script
+          install.packages('tinytex')
+          tinytex::tlmgr_install(c('standalone', 'xcolor', 'booktabs', 'multirow', 'amsmath', 'listings', 'setspace', 'caption', 'graphics', 'tools', 'psnfss', 'varwidth', 'colortbl', 'epstopdf-pkg', 'pgf','makeindex'))
+          tinytex::tlmgr('init-usertree')
+          tinytex::tlmgr_install(c('koma-script', 'xcolor'), usermode = TRUE)
+          list.files(tinytex:::win_app_dir('TinyTeX', 'bin', 'win32')) 
+        shell: Rscript {0}
 
       - uses: r-lib/actions/setup-r-dependencies@v2
         with:
