@@ -23,7 +23,6 @@ jobs:
       - uses: actions/checkout@v2
       
       - uses: r-lib/actions/setup-tinytex@master
-        if: contains(matrix.config.args, 'no-manual') == false
 
       - uses: r-lib/actions/setup-pandoc@v2
 
