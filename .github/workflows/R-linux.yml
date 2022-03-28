@@ -41,9 +41,6 @@ jobs:
         run: |
           install.packages('tinytex')
           tinytex::tlmgr_install(c('standalone', 'xcolor', 'booktabs', 'multirow', 'amsmath', 'listings', 'setspace', 'caption', 'graphics', 'tools', 'psnfss', 'varwidth', 'colortbl', 'epstopdf-pkg', 'pgf','makeindex'))
-          tinytex::tlmgr('init-usertree')
-          tinytex::tlmgr_install(c('koma-script', 'xcolor'), usermode = TRUE)
-          list.files(tinytex:::win_app_dir('TinyTeX', 'bin', 'win32')) 
         shell: Rscript {0}
 
       - uses: r-lib/actions/setup-r-dependencies@v2
