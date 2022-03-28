@@ -53,31 +53,32 @@ jobs:
 
       - uses: r-lib/actions/setup-r-dependencies@v2
         with:
-          extra-packages: any::rcmdcheck
-          needs: check
+          extra-packages: any::rcmdcheck, any::pkgdown, yonicd/covrpage@actions, local::.
+          needs: |
+            check
+            website
 
       - uses: r-lib/actions/check-r-package@v2
         with:
           upload-snapshots: true
-
-      - name: Install package
-        run: R CMD INSTALL .
 
       - name: covrpage
         if: github.ref == 'refs/heads/master'
         run: |
           git config --local user.email "actions@github.com"
           git config --local user.name "GitHub Actions"
-          Rscript -e 'install.packages("remotes")' \
-                  -e 'remotes::install_github("yonicd/covrpage@actions")' \
-                  -e 'covrpage::covrpage_ci()'
+          Rscript -e 'covrpage::covrpage_ci()'
           git commit tests/README.md -m 'Update tests/README.Rmd' || echo "No changes to commit"
           git push https://${{github.actor}}:${{secrets.GITHUB_PAT}}@github.com/${{github.repository}}.git HEAD:${{ github.ref }} || echo "No changes to commit"
+      
+      - name: Build site
+        run: pkgdown::build_site_github_pages(new_process = FALSE, install = FALSE)
+        shell: Rscript {0}
 
-      - name: Deploy package
-        if: github.ref == 'refs/heads/master'
-        run: |
-          git config --local user.email "actions@github.com"
-          git config --local user.name "GitHub Actions"
-          Rscript -e 'install.packages("pkgdown")' \
-                  -e 'pkgdown::deploy_to_branch(new_process = FALSE)'
+      - name: Deploy to GitHub pages 🚀
+        if: github.event_name != 'pull_request'
+        uses: JamesIves/github-pages-deploy-action@4.1.4
+        with:
+          clean: false
+          branch: gh-pages
+          folder: docs
