@@ -1,5 +1,5 @@
-pandoc: 2.7.3
-pkgdown: 1.6.1
+pandoc: 2.14.2
+pkgdown: 2.0.2
 pkgdown_sha: ~
 articles:
   classes: classes.html
@@ -9,5 +9,5 @@ articles:
   tests_and_coverage: tests_and_coverage.html
   tex_packages: tex_packages.html
   tikz: tikz.html
-last_built: 2021-10-04T00:52Z
+last_built: 2022-03-28T15:40Z
 

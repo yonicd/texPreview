@@ -19,6 +19,8 @@
 <![endif]-->
 </head>
 <body data-spy="scroll" data-target="#toc">
+    
+
     <div class="container template-article">
       <header><div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
   <div class="container">
@@ -31,18 +33,12 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">texPreview</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.5.1</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">2.0.0</span>
       </span>
     </div>
 
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
-<li>
-  <a href="../index.html">
-    <span class="fas fa-home fa-lg"></span>
-     
-  </a>
-</li>
 <li>
   <a href="../reference/index.html">Reference</a>
 </li>
@@ -55,13 +51,13 @@
       </ul>
 <ul class="nav navbar-nav navbar-right">
 <li>
-  <a href="https://github.com/metrumresearchgroup/texPreview">
+  <a href="https://github.com/metrumresearchgroup/texPreview" class="external-link">
     <span class="fa fa-github fa-lg"></span>
      
   </a>
 </li>
 <li>
-  <a href="http://twitter.com/MetrumRG">
+  <a href="http://twitter.com/MetrumRG" class="external-link">
     <span class="fa fa-lg fa-twitter"></span>
      
   </a>
@@ -76,13 +72,13 @@
 
       
 
-      </header><script src="engine_files/accessible-code-block-0.0.1/empty-anchor.js"></script><div class="row">
+      </header><div class="row">
   <div class="col-md-9 contents">
     <div class="page-header toc-ignore">
       <h1 data-toc-skip>Using texPreview Built-in Knitr Engine</h1>
             
       
-      <small class="dont-index">Source: <a href="https://github.com/yonicd/texPreview/blob/master/vignettes/engine.Rmd"><code>vignettes/engine.Rmd</code></a></small>
+      <small class="dont-index">Source: <a href="https://github.com/yonicd/texPreview/blob/HEAD/vignettes/engine.Rmd" class="external-link"><code>vignettes/engine.Rmd</code></a></small>
       <div class="hidden name"><code>engine.Rmd</code></div>
 
     </div>
@@ -90,7 +86,7 @@
     
     
 <p><code>texPreview</code> contains inside its own <code>knitr</code> engine to render TeX snippets more naturally within the RMarkdown workflow. We achieve this by leveraging texPreview’s integration via S3 for various classes.</p>
-<p>The following inputs can be run inside texpreview chunks in RStudio version <a href="https://www.rstudio.com/products/rstudio/download/">1.2.5033</a> and above. They will render in the same fashion as would a regular <code><a href="../reference/tex_preview.html">texPreview::tex_preview</a></code> call.</p>
+<p>The following inputs can be run inside texpreview chunks in RStudio version <a href="https://www.rstudio.com/products/rstudio/download/" class="external-link">1.2.5033</a> and above. They will render in the same fashion as would a regular <code><a href="../reference/tex_preview.html">texPreview::tex_preview</a></code> call.</p>
 <ul>
 <li>Raw TeX</li>
 <li>TeX in a character vector</li>
@@ -128,67 +124,67 @@
 <p>Rendering the chunk interactively will have different side effects depending on the <code>texpreview.return</code> setting. These settings have the same side effects as the returnType settings with one addition ‘engine’ which mimics returnType=‘viewer’. It should be the preferred settings when working with RMarkdown documents that return HTML outputs.</p>
 <p>The following are examples of some uses of the <code>texpreview</code> engine.</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/yonicd/texPreview">texPreview</a></span><span class="op">)</span>
-<span class="fu"><a href="https://rdrr.io/r/base/files2.html">dir.create</a></span><span class="op">(</span><span class="st">'images'</span>,showWarnings <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></code></pre></div>
-<div id="default" class="section level2">
-<h2 class="hasAnchor">
-<a href="#default" class="anchor"></a>Default</h2>
-<div id="chunk-call" class="section level3">
-<h3 class="hasAnchor">
-<a href="#chunk-call" class="anchor"></a>Chunk Call</h3>
-<div class="sourceCode" id="cb2"><pre class="sourceCode markdown"><code class="sourceCode markdown"><span id="cb2-1"><a href="#cb2-1"></a><span class="bn">```{texpreview, echo = FALSE}</span></span>
-<span id="cb2-2"><a href="#cb2-2"></a><span class="bn">knitr::kable(head(iris),format = 'latex',booktabs = TRUE)</span></span>
-<span id="cb2-3"><a href="#cb2-3"></a><span class="bn">```</span></span></code></pre></div>
+<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/yonicd/texPreview" class="external-link">texPreview</a></span><span class="op">)</span>
+<span class="fu"><a href="https://rdrr.io/r/base/files2.html" class="external-link">dir.create</a></span><span class="op">(</span><span class="st">'images'</span>,showWarnings <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></code></pre></div>
+<div class="section level2">
+<h2 id="default">Default<a class="anchor" aria-label="anchor" href="#default"></a>
+</h2>
+<div class="section level3">
+<h3 id="chunk-call">Chunk Call<a class="anchor" aria-label="anchor" href="#chunk-call"></a>
+</h3>
+<div class="sourceCode" id="cb2"><pre class="sourceCode markdown"><code class="sourceCode markdown"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="in">```{texpreview, echo = FALSE}</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="in">knitr::kable(head(iris),format = 'latex',booktabs = TRUE)</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code></pre></div>
 </div>
-<div id="output" class="section level3">
-<h3 class="hasAnchor">
-<a href="#output" class="anchor"></a>Output</h3>
-<pre class="texpreview"><code><a href="https://rdrr.io/pkg/knitr/man/kable.html">knitr::kable(head(iris),format = 'latex',booktabs = TRUE)</a></code></pre>
+<div class="section level3">
+<h3 id="output">Output<a class="anchor" aria-label="anchor" href="#output"></a>
+</h3>
+<pre class="texpreview"><code><span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html" class="external-link">kable</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">iris</span><span class="op">)</span>,format <span class="op">=</span> <span class="st">'latex'</span>,booktabs <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></code></pre>
 <p><img src="engine_files/figure-html/unnamed-chunk-2-1.png" width="758"></p>
 </div>
 </div>
-<div id="no-echo" class="section level2">
-<h2 class="hasAnchor">
-<a href="#no-echo" class="anchor"></a>No Echo</h2>
+<div class="section level2">
+<h2 id="no-echo">No Echo<a class="anchor" aria-label="anchor" href="#no-echo"></a>
+</h2>
 <p>The texpreview engine respects regular ‘r’ engine chunk options such as ‘echo’:</p>
-<div id="chunk-call-1" class="section level3">
-<h3 class="hasAnchor">
-<a href="#chunk-call-1" class="anchor"></a>Chunk Call</h3>
-<div class="sourceCode" id="cb4"><pre class="sourceCode markdown"><code class="sourceCode markdown"><span id="cb4-1"><a href="#cb4-1"></a><span class="bn">```{texpreview, echo = FALSE}</span></span>
-<span id="cb4-2"><a href="#cb4-2"></a><span class="bn">knitr::kable(head(iris),format = 'latex',booktabs = TRUE)</span></span>
-<span id="cb4-3"><a href="#cb4-3"></a><span class="bn">```</span></span></code></pre></div>
+<div class="section level3">
+<h3 id="chunk-call-1">Chunk Call<a class="anchor" aria-label="anchor" href="#chunk-call-1"></a>
+</h3>
+<div class="sourceCode" id="cb4"><pre class="sourceCode markdown"><code class="sourceCode markdown"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="in">```{texpreview, echo = FALSE}</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="in">knitr::kable(head(iris),format = 'latex',booktabs = TRUE)</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code></pre></div>
 </div>
-<div id="output-1" class="section level3">
-<h3 class="hasAnchor">
-<a href="#output-1" class="anchor"></a>Output</h3>
+<div class="section level3">
+<h3 id="output-1">Output<a class="anchor" aria-label="anchor" href="#output-1"></a>
+</h3>
 <p><img src="engine_files/figure-html/unnamed-chunk-3-3.png" width="758"></p>
 </div>
 </div>
-<div id="raw-tex-table" class="section level2">
-<h2 class="hasAnchor">
-<a href="#raw-tex-table" class="anchor"></a>Raw TeX Table</h2>
-<div id="chunk-call-2" class="section level3">
-<h3 class="hasAnchor">
-<a href="#chunk-call-2" class="anchor"></a>Chunk Call</h3>
-<div class="sourceCode" id="cb5"><pre class="sourceCode markdown"><code class="sourceCode markdown"><span id="cb5-1"><a href="#cb5-1"></a><span class="bn">```{texpreview}</span></span>
-<span id="cb5-2"><a href="#cb5-2"></a><span class="bn">\begin{tabular}{llr}</span></span>
-<span id="cb5-3"><a href="#cb5-3"></a><span class="bn">\hline</span></span>
-<span id="cb5-4"><a href="#cb5-4"></a><span class="bn">\multicolumn{2}{c}{Item} \\</span></span>
-<span id="cb5-5"><a href="#cb5-5"></a><span class="bn">\cline{1-2}</span></span>
-<span id="cb5-6"><a href="#cb5-6"></a><span class="bn">Animal    &amp; Description &amp; Price (\$) \\</span></span>
-<span id="cb5-7"><a href="#cb5-7"></a><span class="bn">\hline</span></span>
-<span id="cb5-8"><a href="#cb5-8"></a><span class="bn">Gnat      &amp; per gram    &amp; 13.65      \\</span></span>
-<span id="cb5-9"><a href="#cb5-9"></a><span class="bn">          &amp; each        &amp; 0.01       \\</span></span>
-<span id="cb5-10"><a href="#cb5-10"></a><span class="bn">Gnu       &amp; stuffed     &amp; 92.50      \\</span></span>
-<span id="cb5-11"><a href="#cb5-11"></a><span class="bn">Emu       &amp; stuffed     &amp; 33.33      \\</span></span>
-<span id="cb5-12"><a href="#cb5-12"></a><span class="bn">Armadillo &amp; frozen      &amp; 8.99       \\</span></span>
-<span id="cb5-13"><a href="#cb5-13"></a><span class="bn">\hline</span></span>
-<span id="cb5-14"><a href="#cb5-14"></a><span class="bn">\end{tabular}</span></span>
-<span id="cb5-15"><a href="#cb5-15"></a><span class="bn">```</span></span></code></pre></div>
+<div class="section level2">
+<h2 id="raw-tex-table">Raw TeX Table<a class="anchor" aria-label="anchor" href="#raw-tex-table"></a>
+</h2>
+<div class="section level3">
+<h3 id="chunk-call-2">Chunk Call<a class="anchor" aria-label="anchor" href="#chunk-call-2"></a>
+</h3>
+<div class="sourceCode" id="cb5"><pre class="sourceCode markdown"><code class="sourceCode markdown"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="in">```{texpreview}</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="in">\begin{tabular}{llr}</span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="in">\hline</span></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="in">\multicolumn{2}{c}{Item} \\</span></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a><span class="in">\cline{1-2}</span></span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a><span class="in">Animal    &amp; Description &amp; Price (\$) \\</span></span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a><span class="in">\hline</span></span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a><span class="in">Gnat      &amp; per gram    &amp; 13.65      \\</span></span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a><span class="in">          &amp; each        &amp; 0.01       \\</span></span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a><span class="in">Gnu       &amp; stuffed     &amp; 92.50      \\</span></span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a><span class="in">Emu       &amp; stuffed     &amp; 33.33      \\</span></span>
+<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a><span class="in">Armadillo &amp; frozen      &amp; 8.99       \\</span></span>
+<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a><span class="in">\hline</span></span>
+<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a><span class="in">\end{tabular}</span></span>
+<span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code></pre></div>
 </div>
-<div id="output-2" class="section level3">
-<h3 class="hasAnchor">
-<a href="#output-2" class="anchor"></a>Output</h3>
+<div class="section level3">
+<h3 id="output-2">Output<a class="anchor" aria-label="anchor" href="#output-2"></a>
+</h3>
 <pre class="texpreview"><code>\begin{tabular}{llr}
 \hline
 \multicolumn{2}{c}{Item} \\
@@ -205,55 +201,53 @@ Armadillo &amp; frozen      &amp; 8.99       \\
 <p><img src="engine_files/figure-html/unnamed-chunk-4-5.png" width="758"></p>
 </div>
 </div>
-<div id="output-path" class="section level2">
-<h2 class="hasAnchor">
-<a href="#output-path" class="anchor"></a>Output Path</h2>
-<div id="chunk-call-3" class="section level3">
-<h3 class="hasAnchor">
-<a href="#chunk-call-3" class="anchor"></a>Chunk Call</h3>
-<div class="sourceCode" id="cb7"><pre class="sourceCode markdown"><code class="sourceCode markdown"><span id="cb7-1"><a href="#cb7-1"></a><span class="bn">```{texpreview, echo = FALSE, texpreview.path = 'images',texpreview.stem = 'example'}</span></span>
-<span id="cb7-2"><a href="#cb7-2"></a><span class="bn">knitr::kable(head(iris),format = 'latex',booktabs = TRUE)</span></span>
-<span id="cb7-3"><a href="#cb7-3"></a><span class="bn">```</span></span></code></pre></div>
+<div class="section level2">
+<h2 id="output-path">Output Path<a class="anchor" aria-label="anchor" href="#output-path"></a>
+</h2>
+<div class="section level3">
+<h3 id="chunk-call-3">Chunk Call<a class="anchor" aria-label="anchor" href="#chunk-call-3"></a>
+</h3>
+<div class="sourceCode" id="cb7"><pre class="sourceCode markdown"><code class="sourceCode markdown"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="in">```{texpreview, echo = FALSE, texpreview.path = 'images',texpreview.stem = 'example'}</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="in">knitr::kable(head(iris),format = 'latex',booktabs = TRUE)</span></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code></pre></div>
 </div>
-<div id="output-3" class="section level3">
-<h3 class="hasAnchor">
-<a href="#output-3" class="anchor"></a>Output</h3>
+<div class="section level3">
+<h3 id="output-3">Output<a class="anchor" aria-label="anchor" href="#output-3"></a>
+</h3>
 <p><img src="engine_files/figure-html/unnamed-chunk-5-7.png" width="758"></p>
 <div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/list.files.html">list.files</a></span><span class="op">(</span><span class="st">'images'</span><span class="op">)</span>
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/list.files.html" class="external-link">list.files</a></span><span class="op">(</span><span class="st">'images'</span><span class="op">)</span>
 <span class="co">#&gt; [1] "example.png" "example.tex"</span></code></pre></div>
 </div>
 </div>
-<div id="pdf-documents" class="section level2">
-<h2 class="hasAnchor">
-<a href="#pdf-documents" class="anchor"></a>PDF Documents</h2>
+<div class="section level2">
+<h2 id="pdf-documents">PDF Documents<a class="anchor" aria-label="anchor" href="#pdf-documents"></a>
+</h2>
 <p>Setting texpreview.return = ‘input’ will have the chunk return an LateX ‘input’ call with the results ‘asis’ so the user can render the lines as part of a Rmarkdown pdf document.</p>
-<div class="sourceCode" id="cb9"><pre class="sourceCode markdown"><code class="sourceCode markdown"><span id="cb9-1"><a href="#cb9-1"></a><span class="bn">```{texpreview,texpreview.return = 'input', texpreview.path = 'images',texpreview.stem = 'example'}</span></span>
-<span id="cb9-2"><a href="#cb9-2"></a><span class="bn">knitr::kable(head(iris),format = 'latex',booktabs = TRUE)</span></span>
-<span id="cb9-3"><a href="#cb9-3"></a><span class="bn">```</span></span>
-<span id="cb9-4"><a href="#cb9-4"></a>\input{images/example.tex}</span></code></pre></div>
-
+<div class="sourceCode" id="cb9"><pre class="sourceCode markdown"><code class="sourceCode markdown"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="in">```{texpreview,texpreview.return = 'input', texpreview.path = 'images',texpreview.stem = 'example'}</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="in">knitr::kable(head(iris),format = 'latex',booktabs = TRUE)</span></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>\input{images/example.tex}</span></code></pre></div>
 <p>Setting texpreview.return = ‘tex’ will have the chunk return the tex lines output with the results ‘asis’ so the user can render the lines as part of a Rmarkdown pdf document.</p>
-<div class="sourceCode" id="cb10"><pre class="sourceCode markdown"><code class="sourceCode markdown"><span id="cb10-1"><a href="#cb10-1"></a><span class="bn">```{texpreview,texpreview.return = 'tex'}</span></span>
-<span id="cb10-2"><a href="#cb10-2"></a><span class="bn">knitr::kable(head(iris),format = 'latex',booktabs = TRUE)</span></span>
-<span id="cb10-3"><a href="#cb10-3"></a><span class="bn">```</span></span>
-<span id="cb10-4"><a href="#cb10-4"></a></span>
-<span id="cb10-5"><a href="#cb10-5"></a>\resizebox{\textwidth}{!}{</span>
-<span id="cb10-6"><a href="#cb10-6"></a>\begin{tabular}{rrrrl}</span>
-<span id="cb10-7"><a href="#cb10-7"></a>\toprule</span>
-<span id="cb10-8"><a href="#cb10-8"></a>Sepal.Length &amp; Sepal.Width &amp; Petal.Length &amp; Petal.Width &amp; Species\\</span>
-<span id="cb10-9"><a href="#cb10-9"></a>\midrule</span>
-<span id="cb10-10"><a href="#cb10-10"></a>5.1 &amp; 3.5 &amp; 1.4 &amp; 0.2 &amp; setosa\\</span>
-<span id="cb10-11"><a href="#cb10-11"></a>4.9 &amp; 3.0 &amp; 1.4 &amp; 0.2 &amp; setosa\\</span>
-<span id="cb10-12"><a href="#cb10-12"></a>4.7 &amp; 3.2 &amp; 1.3 &amp; 0.2 &amp; setosa\\</span>
-<span id="cb10-13"><a href="#cb10-13"></a>4.6 &amp; 3.1 &amp; 1.5 &amp; 0.2 &amp; setosa\\</span>
-<span id="cb10-14"><a href="#cb10-14"></a>5.0 &amp; 3.6 &amp; 1.4 &amp; 0.2 &amp; setosa\\</span>
-<span id="cb10-15"><a href="#cb10-15"></a>\addlinespace</span>
-<span id="cb10-16"><a href="#cb10-16"></a>5.4 &amp; 3.9 &amp; 1.7 &amp; 0.4 &amp; setosa\\</span>
-<span id="cb10-17"><a href="#cb10-17"></a>\bottomrule</span>
-<span id="cb10-18"><a href="#cb10-18"></a>\end{tabular}</span>
-<span id="cb10-19"><a href="#cb10-19"></a>}</span></code></pre></div>
-
+<div class="sourceCode" id="cb10"><pre class="sourceCode markdown"><code class="sourceCode markdown"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="in">```{texpreview,texpreview.return = 'tex'}</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="in">knitr::kable(head(iris),format = 'latex',booktabs = TRUE)</span></span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>\resizebox{\textwidth}{!}{</span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>\begin{tabular}{rrrrl}</span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a>\toprule</span>
+<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a>Sepal.Length &amp; Sepal.Width &amp; Petal.Length &amp; Petal.Width &amp; Species<span class="sc">\\</span></span>
+<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a>\midrule</span>
+<span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a>5.1 &amp; 3.5 &amp; 1.4 &amp; 0.2 &amp; setosa<span class="sc">\\</span></span>
+<span id="cb10-11"><a href="#cb10-11" aria-hidden="true" tabindex="-1"></a>4.9 &amp; 3.0 &amp; 1.4 &amp; 0.2 &amp; setosa<span class="sc">\\</span></span>
+<span id="cb10-12"><a href="#cb10-12" aria-hidden="true" tabindex="-1"></a>4.7 &amp; 3.2 &amp; 1.3 &amp; 0.2 &amp; setosa<span class="sc">\\</span></span>
+<span id="cb10-13"><a href="#cb10-13" aria-hidden="true" tabindex="-1"></a>4.6 &amp; 3.1 &amp; 1.5 &amp; 0.2 &amp; setosa<span class="sc">\\</span></span>
+<span id="cb10-14"><a href="#cb10-14" aria-hidden="true" tabindex="-1"></a>5.0 &amp; 3.6 &amp; 1.4 &amp; 0.2 &amp; setosa<span class="sc">\\</span></span>
+<span id="cb10-15"><a href="#cb10-15" aria-hidden="true" tabindex="-1"></a>\addlinespace</span>
+<span id="cb10-16"><a href="#cb10-16" aria-hidden="true" tabindex="-1"></a>5.4 &amp; 3.9 &amp; 1.7 &amp; 0.4 &amp; setosa<span class="sc">\\</span></span>
+<span id="cb10-17"><a href="#cb10-17" aria-hidden="true" tabindex="-1"></a>\bottomrule</span>
+<span id="cb10-18"><a href="#cb10-18" aria-hidden="true" tabindex="-1"></a>\end{tabular}</span>
+<span id="cb10-19"><a href="#cb10-19" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
 </div>
   </div>
 
@@ -268,11 +262,13 @@ Armadillo &amp; frozen      &amp; 8.99       \\
 
 
       <footer><div class="copyright">
-  <p>Developed by Jonathan Sidi, Daniel Polhamus.</p>
+  <p></p>
+<p>Developed by Jonathan Sidi, Daniel Polhamus.</p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
+  <p></p>
+<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.2.</p>
 </div>
 
       </footer>
@@ -280,6 +276,8 @@ Armadillo &amp; frozen      &amp; 8.99       \\
 
   
 
+
+  
 
   </body>
 </html>
