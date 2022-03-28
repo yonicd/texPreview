@@ -2,7 +2,7 @@ Type: Package
 Package: texPreview
 Title: Compile and Preview Snippets of 'LaTeX'
 Version: 2.0.0
-Date: 2021-10-05
+Date: 2022-03-28
 Authors@R: 
     c(person(given = "Jonathan",
              family = "Sidi",
@@ -29,7 +29,6 @@ Imports:
     knitr,
     lifecycle,
     magick,
-    magrittr,
     rematch2,
     rstudioapi,
     svgPanZoom,
@@ -55,5 +54,5 @@ RdMacros:
 LazyData: false
 NeedsCompilation: no
 Roxygen: list(markdown = TRUE)
-RoxygenNote: 7.1.1
+RoxygenNote: 7.1.2
 License: MIT + file LICENSE

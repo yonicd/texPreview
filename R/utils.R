@@ -1,12 +1,3 @@
-#' @title re-export magrittr pipe operators
-#'
-#' @importFrom magrittr %>%
-#' @name %>%
-#' @rdname pipe
-#' @export
-NULL
-
-
 parse_log <- function(obj, lines = FALSE){
   
   idx <- range(grep('[!]',obj))

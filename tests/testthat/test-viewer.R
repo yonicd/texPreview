@@ -18,9 +18,9 @@ testthat::describe('viewer output',{
   
   it('validate viewer',{
     testthat::expect_output(
-      mtcars%>%
-        utils::head(5)%>%
-        knitr::kable(format = 'latex',caption = 'my table',label = 'tbl1')%>%
+      mtcars |>
+        utils::head(5) |>
+        knitr::kable(format = 'latex',caption = 'my table',label = 'tbl1') |>
         tex_preview(returnType = 'viewer',stem = 'test_viewer'),
       regexp = 'index.html'
     )
@@ -34,9 +34,9 @@ testthat::describe('shiny output',{
   
   it('validate shiny output',{
     testthat::expect_null(
-      mtcars%>%
-        utils::head(5)%>%
-        knitr::kable(format = 'latex',caption = 'my table',label = 'tbl1')%>%
+      mtcars |>
+        utils::head(5) |>
+        knitr::kable(format = 'latex',caption = 'my table',label = 'tbl1') |>
         tex_preview(returnType = 'shiny',stem = 'test_shiny')
     )
   })

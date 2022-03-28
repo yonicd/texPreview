@@ -125,9 +125,9 @@
 #' 
 #' # knitr kable
 #' 
-#'  mtcars%>%
-#'    head()%>%
-#'    knitr::kable("latex")%>%
+#'  mtcars |>
+#'    head() |>
+#'    knitr::kable("latex") |>
 #'    tex_preview()
 #' 
 #' # with svg output pan/zoom is enabled in the internal viewer

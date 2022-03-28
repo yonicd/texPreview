@@ -39,7 +39,6 @@ articles:
   - kable
   - classes
   - tikz
-  - slickr
 - title: Utilities
   contents: tex_packages
 - title: Unit Tests
