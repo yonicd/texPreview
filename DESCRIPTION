@@ -27,7 +27,6 @@ Imports:
     fs,
     htmltools,
     knitr,
-    lifecycle,
     magick,
     rematch2,
     rstudioapi,
@@ -49,8 +48,7 @@ Suggests:
 VignetteBuilder: 
     knitr
 RdMacros: 
-    details,
-    lifecycle
+    details
 LazyData: false
 NeedsCompilation: no
 Roxygen: list(markdown = TRUE)

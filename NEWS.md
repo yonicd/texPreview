@@ -1,3 +1,7 @@
+# texPreview 2.0.0
+* Replace direct system2 call to pdflatex with tinytex backend
+* Remove depreciated functions from package
+
 # texPreview 1.5.1
 * Replace knitr::wrap with knitr::sew
 
