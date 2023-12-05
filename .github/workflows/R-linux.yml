@@ -34,7 +34,7 @@ jobs:
       - name: Install magick libs
         run: |
           sudo apt-get -qq update
-          sudo apt-get -y install libmagick++-dev
+          sudo apt-get -y install libmagick++-dev potrace
           sudo ldconfig /usr/local/lib
 
       - name: install tex libs
