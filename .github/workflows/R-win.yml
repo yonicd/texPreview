@@ -20,9 +20,9 @@ jobs:
       
     steps:
     
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
       
-      - uses: r-lib/actions/setup-tinytex@master
+      - uses: r-lib/actions/setup-tinytex@v2
         if: contains(matrix.config.args, 'no-manual') == false
 
       - uses: r-lib/actions/setup-pandoc@v2
@@ -42,7 +42,7 @@ jobs:
           tinytex::tlmgr_install(c('standalone', 'xcolor', 'booktabs', 'multirow', 'amsmath', 'listings', 'setspace', 'caption', 'graphics', 'tools', 'psnfss', 'varwidth', 'colortbl', 'epstopdf-pkg', 'pgf','makeindex'))
           tinytex::tlmgr('init-usertree')
           tinytex::tlmgr_install(c('koma-script', 'xcolor'), usermode = TRUE)
-          list.files(tinytex:::win_app_dir('TinyTeX', 'bin', 'win32')) 
+          list.files(tinytex:::win_app_dir("TinyTeX/bin/windows")) 
         shell: Rscript {0}
     
       - name: Query dependencies

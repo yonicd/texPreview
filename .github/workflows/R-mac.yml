@@ -20,9 +20,9 @@ jobs:
       GITHUB_PAT: ${{secrets.GH_PAT}}
       
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
       
-      - uses: r-lib/actions/setup-tinytex@master
+      - uses: r-lib/actions/setup-tinytex@v2
 
       - uses: r-lib/actions/setup-pandoc@v2
 
@@ -43,7 +43,7 @@ jobs:
           key: ${{ runner.os }}-r-${{ matrix.config.r }}-${{ hashFiles('DESCRIPTION') }}
 
       - name: Install magick
-        run: brew install imagemagick
+        run: brew install imagemagick potrace
         
       - name: install tex libs
         run: |

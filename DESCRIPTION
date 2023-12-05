@@ -1,8 +1,8 @@
 Type: Package
 Package: texPreview
 Title: Compile and Preview Snippets of 'LaTeX'
-Version: 2.0.0
-Date: 2022-03-28
+Version: 2.0.1
+Date: 2023-12-04
 Authors@R: 
     c(person(given = "Jonathan",
              family = "Sidi",
