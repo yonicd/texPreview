@@ -33,7 +33,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">texPreview</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">2.0.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">2.0.1</span>
       </span>
     </div>
 
@@ -75,10 +75,12 @@
       </header><div class="row">
   <div class="col-md-9 contents">
     <div class="page-header toc-ignore">
-      <h1 data-toc-skip>Using texPreview in Rmarkdown HTML Documents</h1>
-                        <h4 data-toc-skip class="author">Jonathan Sidi</h4>
+      <h1 data-toc-skip>Using texPreview in Rmarkdown HTML
+Documents</h1>
+                        <h4 data-toc-skip class="author">Jonathan
+Sidi</h4>
             
-            <h4 data-toc-skip class="date">2022-03-29</h4>
+            <h4 data-toc-skip class="date">2023-12-05</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/yonicd/texPreview/blob/HEAD/vignettes/rmarkdown.Rmd" class="external-link"><code>vignettes/rmarkdown.Rmd</code></a></small>
       <div class="hidden name"><code>rmarkdown.Rmd</code></div>
@@ -88,50 +90,46 @@
     
     
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/yonicd/texPreview" class="external-link">texPreview</a></span><span class="op">)</span>
-
-<span class="va">tex_opts</span><span class="op">$</span><span class="fu">set</span><span class="op">(</span> 
-  returnType <span class="op">=</span> <span class="st">'html'</span>,
-  opts.html   <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>width <span class="op">=</span> <span class="st">'75%'</span>, height <span class="op">=</span> <span class="st">'75%'</span><span class="op">)</span>
-<span class="op">)</span></code></pre></div>
-<p>The following examples use <code>kable</code> to generate LaTeX table outputs and raw LaTeX to pipe into <code>tex_preview</code> to render the in the document.</p>
+<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/yonicd/texPreview" class="external-link">texPreview</a></span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">tex_opts</span><span class="op">$</span><span class="fu">set</span><span class="op">(</span> </span>
+<span>  returnType <span class="op">=</span> <span class="st">'html'</span>,</span>
+<span>  opts.html   <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>width <span class="op">=</span> <span class="st">'75%'</span>, height <span class="op">=</span> <span class="st">'75%'</span><span class="op">)</span></span>
+<span><span class="op">)</span></span></code></pre></div>
+<p>The following examples use <code>kable</code> to generate LaTeX table
+outputs and raw LaTeX to pipe into <code>tex_preview</code> to render
+the in the document.</p>
 <div class="section level2">
 <h2 id="kable-input">Kable Input<a class="anchor" aria-label="anchor" href="#kable-input"></a>
 </h2>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
-<code class="sourceCode R">
-<span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html" class="external-link">kable</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">iris</span>,<span class="fl">5</span><span class="op">)</span>,format <span class="op">=</span> <span class="st">'latex'</span><span class="op">)</span> |&gt;
-<span class="fu"><a href="../reference/tex_preview.html">tex_preview</a></span><span class="op">(</span><span class="op">)</span>
-<span class="co">#&gt; Warning in knitr::include_graphics(tmp): It is highly recommended to use</span>
-<span class="co">#&gt; relative paths for images. You had absolute paths: "/Users/runner/work/</span>
-<span class="co">#&gt; texPreview/texPreview/docs/articles/rmarkdown_files/figure-html/testOut-1.png"</span></code></pre></div>
-<p><img src="rmarkdown_files/figure-html/testOut-1.png" width="284"></p>
+<code class="sourceCode R"><span></span>
+<span><span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html" class="external-link">kable</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">iris</span>,<span class="fl">5</span><span class="op">)</span>,format <span class="op">=</span> <span class="st">'latex'</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span><span class="fu"><a href="../reference/tex_preview.html">tex_preview</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
+<p><img src="../docs/articles/rmarkdown_files/figure-html/testOut-1.png" width="284"></p>
 </div>
 <div class="section level2">
 <h2 id="tex-input">TeX Input<a class="anchor" aria-label="anchor" href="#tex-input"></a>
 </h2>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">tab</span><span class="op">=</span><span class="st">'
-\\begin{tabular}{llr}
-\\hline
-\\multicolumn{2}{c}{Item} \\\\
-\\cline{1-2}
-Animal    &amp; Description &amp; Price (\\$) \\\\
-\\hline
-Gnat      &amp; per gram    &amp; 13.65      \\\\
-          &amp; each        &amp; 0.01       \\\\
-Gnu       &amp; stuffed     &amp; 92.50      \\\\
-Emu       &amp; stuffed     &amp; 33.33      \\\\
-Armadillo &amp; frozen      &amp; 8.99       \\\\
-\\hline
-\\end{tabular}'</span>
-
-<span class="va">tab</span> |&gt;
-  <span class="fu"><a href="../reference/tex_preview.html">tex_preview</a></span><span class="op">(</span><span class="op">)</span>
-<span class="co">#&gt; Warning in knitr::include_graphics(tmp): It is highly recommended to use</span>
-<span class="co">#&gt; relative paths for images. You had absolute paths: "/Users/runner/work/</span>
-<span class="co">#&gt; texPreview/texPreview/docs/articles/rmarkdown_files/figure-html/testOut2-1.png"</span></code></pre></div>
-<p><img src="rmarkdown_files/figure-html/testOut2-1.png" width="284"></p>
+<code class="sourceCode R"><span><span class="va">tab</span><span class="op">=</span><span class="st">'</span></span>
+<span><span class="st">\\begin{tabular}{llr}</span></span>
+<span><span class="st">\\hline</span></span>
+<span><span class="st">\\multicolumn{2}{c}{Item} \\\\</span></span>
+<span><span class="st">\\cline{1-2}</span></span>
+<span><span class="st">Animal    &amp; Description &amp; Price (\\$) \\\\</span></span>
+<span><span class="st">\\hline</span></span>
+<span><span class="st">Gnat      &amp; per gram    &amp; 13.65      \\\\</span></span>
+<span><span class="st">          &amp; each        &amp; 0.01       \\\\</span></span>
+<span><span class="st">Gnu       &amp; stuffed     &amp; 92.50      \\\\</span></span>
+<span><span class="st">Emu       &amp; stuffed     &amp; 33.33      \\\\</span></span>
+<span><span class="st">Armadillo &amp; frozen      &amp; 8.99       \\\\</span></span>
+<span><span class="st">\\hline</span></span>
+<span><span class="st">\\end{tabular}'</span></span>
+<span></span>
+<span><span class="va">tab</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="../reference/tex_preview.html">tex_preview</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
+<p><img src="../docs/articles/rmarkdown_files/figure-html/testOut2-1.png" width="284"></p>
 </div>
   </div>
 
@@ -152,7 +150,7 @@ Armadillo &amp; frozen      &amp; 8.99       \\\\
 
 <div class="pkgdown">
   <p></p>
-<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.2.</p>
+<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.7.</p>
 </div>
 
       </footer>

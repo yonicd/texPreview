@@ -17,7 +17,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">texPreview</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">2.0.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">2.0.1</span>
       </span>
     </div>
 
@@ -62,22 +62,27 @@
     </div>
 
     <div id="ref-usage">
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="fu">tex_requirements</span><span class="op">(</span>
-  file <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/system.file.html" class="external-link">system.file</a></span><span class="op">(</span><span class="st">"tmpl.tex"</span>, package <span class="op">=</span> <span class="st">"texPreview"</span><span class="op">)</span>,
-  lines <span class="op">=</span> <span class="cn">NULL</span>
-<span class="op">)</span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">tex_requirements</span><span class="op">(</span></span>
+<span>  file <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/system.file.html" class="external-link">system.file</a></span><span class="op">(</span><span class="st">"tmpl.tex"</span>, package <span class="op">=</span> <span class="st">"texPreview"</span><span class="op">)</span>,</span>
+<span>  lines <span class="op">=</span> <span class="cn">NULL</span></span>
+<span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div id="arguments">
     <h2>Arguments</h2>
     <dl><dt>file</dt>
 <dd><p>character, Path to TeX file, Default: system.file("tmpl.tex", package = "texPreview")</p></dd>
+
+
 <dt>lines</dt>
 <dd><p>character, character vector containing TeX script, Default: NULL</p></dd>
+
 </dl></div>
     <div id="value">
     <h2>Value</h2>
-    <p>character</p>
+    
+
+<p>character</p>
     </div>
     <div id="details">
     <h2>Details</h2>
@@ -87,7 +92,7 @@ The default path used in file is the internal template that the package uses.</p
 
     <div id="ref-examples">
     <h2>Examples</h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span class="fu">tex_requirements</span><span class="op">(</span><span class="op">)</span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="fu">tex_requirements</span><span class="op">(</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  [1] "xcolor"   "booktabs" "multirow" "array"    "helvet"   "amsmath" </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  [7] "rotating" "listings" "graphicx" "setspace" "caption" </span>
 </code></pre></div>
@@ -104,7 +109,7 @@ The default path used in file is the internal template that the package uses.</p
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.2.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.7.</p>
 </div>
 
       </footer></div>

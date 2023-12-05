@@ -33,7 +33,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">texPreview</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">2.0.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">2.0.1</span>
       </span>
     </div>
 
@@ -85,8 +85,14 @@
 
     
     
-<p><code>texPreview</code> contains inside its own <code>knitr</code> engine to render TeX snippets more naturally within the RMarkdown workflow. We achieve this by leveraging texPreview’s integration via S3 for various classes.</p>
-<p>The following inputs can be run inside texpreview chunks in RStudio version <a href="https://www.rstudio.com/products/rstudio/download/" class="external-link">1.2.5033</a> and above. They will render in the same fashion as would a regular <code><a href="../reference/tex_preview.html">texPreview::tex_preview</a></code> call.</p>
+<p><code>texPreview</code> contains inside its own <code>knitr</code>
+engine to render TeX snippets more naturally within the RMarkdown
+workflow. We achieve this by leveraging texPreview’s integration via S3
+for various classes.</p>
+<p>The following inputs can be run inside texpreview chunks in RStudio
+version <a href="https://www.rstudio.com/products/rstudio/download/" class="external-link">1.2.5033</a>
+and above. They will render in the same fashion as would a regular
+<code><a href="../reference/tex_preview.html">texPreview::tex_preview</a></code> call.</p>
 <ul>
 <li>Raw TeX</li>
 <li>TeX in a character vector</li>
@@ -95,7 +101,10 @@
 <li>texreg</li>
 <li>equatiomatic</li>
 </ul>
-<p>Arguments that were used in the <code><a href="../reference/tex_preview.html">texPreview::tex_preview</a></code> function are now set in the chunk options. To make them unique to this engine we prefix them with <code>texpreview</code>, below is a table with the chunk options and their tex_preview analogue.</p>
+<p>Arguments that were used in the <code><a href="../reference/tex_preview.html">texPreview::tex_preview</a></code>
+function are now set in the chunk options. To make them unique to this
+engine we prefix them with <code>texpreview</code>, below is a table
+with the chunk options and their tex_preview analogue.</p>
 <table class="table">
 <thead><tr class="header">
 <th align="left">tex_preview argument</th>
@@ -120,12 +129,21 @@
 </tr>
 </tbody>
 </table>
-<p>The user still has the option to use <code><a href="../reference/tex_opts.html">texPreview::tex_opts</a></code> to control chunk outputs as they are passed into the call internally. The chunk options will override any settings that are in <code><a href="../reference/tex_opts.html">texPreview::tex_opts</a></code>.</p>
-<p>Rendering the chunk interactively will have different side effects depending on the <code>texpreview.return</code> setting. These settings have the same side effects as the returnType settings with one addition ‘engine’ which mimics returnType=‘viewer’. It should be the preferred settings when working with RMarkdown documents that return HTML outputs.</p>
-<p>The following are examples of some uses of the <code>texpreview</code> engine.</p>
+<p>The user still has the option to use
+<code><a href="../reference/tex_opts.html">texPreview::tex_opts</a></code> to control chunk outputs as they are
+passed into the call internally. The chunk options will override any
+settings that are in <code><a href="../reference/tex_opts.html">texPreview::tex_opts</a></code>.</p>
+<p>Rendering the chunk interactively will have different side effects
+depending on the <code>texpreview.return</code> setting. These settings
+have the same side effects as the returnType settings with one addition
+‘engine’ which mimics returnType=‘viewer’. It should be the preferred
+settings when working with RMarkdown documents that return HTML
+outputs.</p>
+<p>The following are examples of some uses of the
+<code>texpreview</code> engine.</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/yonicd/texPreview" class="external-link">texPreview</a></span><span class="op">)</span>
-<span class="fu"><a href="https://rdrr.io/r/base/files2.html" class="external-link">dir.create</a></span><span class="op">(</span><span class="st">'images'</span>,showWarnings <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/yonicd/texPreview" class="external-link">texPreview</a></span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/files2.html" class="external-link">dir.create</a></span><span class="op">(</span><span class="st">'images'</span>,showWarnings <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span></code></pre></div>
 <div class="section level2">
 <h2 id="default">Default<a class="anchor" aria-label="anchor" href="#default"></a>
 </h2>
@@ -139,14 +157,15 @@
 <div class="section level3">
 <h3 id="output">Output<a class="anchor" aria-label="anchor" href="#output"></a>
 </h3>
-<pre class="texpreview"><code><span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html" class="external-link">kable</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">iris</span><span class="op">)</span>,format <span class="op">=</span> <span class="st">'latex'</span>,booktabs <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></code></pre>
+<pre class="texpreview"><code><span><span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html" class="external-link">kable</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">iris</span><span class="op">)</span>,format <span class="op">=</span> <span class="st">'latex'</span>,booktabs <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></code></pre>
 <p><img src="engine_files/figure-html/unnamed-chunk-2-1.png" width="758"></p>
 </div>
 </div>
 <div class="section level2">
 <h2 id="no-echo">No Echo<a class="anchor" aria-label="anchor" href="#no-echo"></a>
 </h2>
-<p>The texpreview engine respects regular ‘r’ engine chunk options such as ‘echo’:</p>
+<p>The texpreview engine respects regular ‘r’ engine chunk options such
+as ‘echo’:</p>
 <div class="section level3">
 <h3 id="chunk-call-1">Chunk Call<a class="anchor" aria-label="anchor" href="#chunk-call-1"></a>
 </h3>
@@ -216,19 +235,23 @@ Armadillo &amp; frozen      &amp; 8.99       \\
 </h3>
 <p><img src="engine_files/figure-html/unnamed-chunk-5-7.png" width="758"></p>
 <div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/list.files.html" class="external-link">list.files</a></span><span class="op">(</span><span class="st">'images'</span><span class="op">)</span>
-<span class="co">#&gt; [1] "example.png" "example.tex"</span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/list.files.html" class="external-link">list.files</a></span><span class="op">(</span><span class="st">'images'</span><span class="op">)</span></span>
+<span><span class="co">#&gt; [1] "example.png" "example.tex"</span></span></code></pre></div>
 </div>
 </div>
 <div class="section level2">
 <h2 id="pdf-documents">PDF Documents<a class="anchor" aria-label="anchor" href="#pdf-documents"></a>
 </h2>
-<p>Setting texpreview.return = ‘input’ will have the chunk return an LateX ‘input’ call with the results ‘asis’ so the user can render the lines as part of a Rmarkdown pdf document.</p>
+<p>Setting texpreview.return = ‘input’ will have the chunk return an
+LateX ‘input’ call with the results ‘asis’ so the user can render the
+lines as part of a Rmarkdown pdf document.</p>
 <div class="sourceCode" id="cb9"><pre class="sourceCode markdown"><code class="sourceCode markdown"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="in">```{texpreview,texpreview.return = 'input', texpreview.path = 'images',texpreview.stem = 'example'}</span></span>
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="in">knitr::kable(head(iris),format = 'latex',booktabs = TRUE)</span></span>
 <span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
 <span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>\input{images/example.tex}</span></code></pre></div>
-<p>Setting texpreview.return = ‘tex’ will have the chunk return the tex lines output with the results ‘asis’ so the user can render the lines as part of a Rmarkdown pdf document.</p>
+<p>Setting texpreview.return = ‘tex’ will have the chunk return the tex
+lines output with the results ‘asis’ so the user can render the lines as
+part of a Rmarkdown pdf document.</p>
 <div class="sourceCode" id="cb10"><pre class="sourceCode markdown"><code class="sourceCode markdown"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="in">```{texpreview,texpreview.return = 'tex'}</span></span>
 <span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="in">knitr::kable(head(iris),format = 'latex',booktabs = TRUE)</span></span>
 <span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
@@ -268,7 +291,7 @@ Armadillo &amp; frozen      &amp; 8.99       \\
 
 <div class="pkgdown">
   <p></p>
-<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.2.</p>
+<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.7.</p>
 </div>
 
       </footer>

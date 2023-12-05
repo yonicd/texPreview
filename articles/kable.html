@@ -33,7 +33,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">texPreview</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">2.0.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">2.0.1</span>
       </span>
     </div>
 
@@ -75,7 +75,8 @@
       </header><div class="row">
   <div class="col-md-9 contents">
     <div class="page-header toc-ignore">
-      <h1 data-toc-skip>Using texPreview to Convert TeX lines to Kable Objects</h1>
+      <h1 data-toc-skip>Using texPreview to Convert TeX lines to Kable
+Objects</h1>
             
       
       <small class="dont-index">Source: <a href="https://github.com/yonicd/texPreview/blob/HEAD/vignettes/kable.Rmd" class="external-link"><code>vignettes/kable.Rmd</code></a></small>
@@ -86,66 +87,58 @@
     
     
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/yonicd/texPreview" class="external-link">texPreview</a></span><span class="op">)</span>
-
-<span class="va">tex_opts</span><span class="op">$</span><span class="fu">set</span><span class="op">(</span> 
-  returnType <span class="op">=</span> <span class="st">'html'</span>,
-  opts.html   <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>width <span class="op">=</span> <span class="st">'50%'</span>, height <span class="op">=</span> <span class="st">'50%'</span><span class="op">)</span>
-<span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/yonicd/texPreview" class="external-link">texPreview</a></span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">tex_opts</span><span class="op">$</span><span class="fu">set</span><span class="op">(</span> </span>
+<span>  returnType <span class="op">=</span> <span class="st">'html'</span>,</span>
+<span>  opts.html   <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>width <span class="op">=</span> <span class="st">'50%'</span>, height <span class="op">=</span> <span class="st">'50%'</span><span class="op">)</span></span>
+<span><span class="op">)</span></span></code></pre></div>
 <div class="section level2">
 <h2 id="read-the-lines-in-the-tex-file">read the lines in the tex file<a class="anchor" aria-label="anchor" href="#read-the-lines-in-the-tex-file"></a>
 </h2>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
-<code class="sourceCode R">
-<span class="va">tex_file</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/system.file.html" class="external-link">system.file</a></span><span class="op">(</span><span class="st">'examples/toy/toy.tex'</span>,package <span class="op">=</span> <span class="st">'texPreview'</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span></span>
+<span><span class="va">tex_file</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/system.file.html" class="external-link">system.file</a></span><span class="op">(</span><span class="st">'examples/toy/toy.tex'</span>,package <span class="op">=</span> <span class="st">'texPreview'</span><span class="op">)</span></span></code></pre></div>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
-<code class="sourceCode R">
-<span class="fu"><a href="https://rdrr.io/r/base/readLines.html" class="external-link">readLines</a></span><span class="op">(</span><span class="va">tex_file</span><span class="op">)</span>
-<span class="co">#&gt;  [1] "\\begin{tabular}{cccc}" "\\toprule"              "C1 &amp; C2 &amp; C3 &amp; C4\\\\" </span>
-<span class="co">#&gt;  [4] "\\midrule"              "a &amp; c &amp; 1 &amp; 1\\\\"      "a &amp; c &amp; 2 &amp; 1\\\\"     </span>
-<span class="co">#&gt;  [7] "a &amp; c &amp; 3 &amp; 1\\\\"      "a &amp; c &amp; 4 &amp; 0\\\\"      "a &amp; c &amp; 5 &amp; 0\\\\"     </span>
-<span class="co">#&gt; [10] "\\addlinespace"         "a &amp; c &amp; 6 &amp; 1\\\\"      "a &amp; c &amp; 7 &amp; 1\\\\"     </span>
-<span class="co">#&gt; [13] "a &amp; d &amp; 8 &amp; 0\\\\"      "a &amp; d &amp; 9 &amp; 0\\\\"      "a &amp; d &amp; 10 &amp; 0\\\\"    </span>
-<span class="co">#&gt; [16] "\\addlinespace"         "b &amp; c &amp; 11 &amp; 0\\\\"     "b &amp; c &amp; 12 &amp; 0\\\\"    </span>
-<span class="co">#&gt; [19] "b &amp; d &amp; 13 &amp; 1\\\\"     "b &amp; d &amp; 14 &amp; 1\\\\"     "b &amp; d &amp; 15 &amp; 0\\\\"    </span>
-<span class="co">#&gt; [22] "\\bottomrule"           "\\end{tabular}"</span></code></pre></div>
+<code class="sourceCode R"><span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/readLines.html" class="external-link">readLines</a></span><span class="op">(</span><span class="va">tex_file</span><span class="op">)</span></span>
+<span><span class="co">#&gt;  [1] "\\begin{tabular}{cccc}" "\\toprule"              "C1 &amp; C2 &amp; C3 &amp; C4\\\\" </span></span>
+<span><span class="co">#&gt;  [4] "\\midrule"              "a &amp; c &amp; 1 &amp; 1\\\\"      "a &amp; c &amp; 2 &amp; 1\\\\"     </span></span>
+<span><span class="co">#&gt;  [7] "a &amp; c &amp; 3 &amp; 1\\\\"      "a &amp; c &amp; 4 &amp; 0\\\\"      "a &amp; c &amp; 5 &amp; 0\\\\"     </span></span>
+<span><span class="co">#&gt; [10] "\\addlinespace"         "a &amp; c &amp; 6 &amp; 1\\\\"      "a &amp; c &amp; 7 &amp; 1\\\\"     </span></span>
+<span><span class="co">#&gt; [13] "a &amp; d &amp; 8 &amp; 0\\\\"      "a &amp; d &amp; 9 &amp; 0\\\\"      "a &amp; d &amp; 10 &amp; 0\\\\"    </span></span>
+<span><span class="co">#&gt; [16] "\\addlinespace"         "b &amp; c &amp; 11 &amp; 0\\\\"     "b &amp; c &amp; 12 &amp; 0\\\\"    </span></span>
+<span><span class="co">#&gt; [19] "b &amp; d &amp; 13 &amp; 1\\\\"     "b &amp; d &amp; 14 &amp; 1\\\\"     "b &amp; d &amp; 15 &amp; 0\\\\"    </span></span>
+<span><span class="co">#&gt; [22] "\\bottomrule"           "\\end{tabular}"</span></span></code></pre></div>
 </div>
 <div class="section level2">
 <h2 id="convert-lines-into-knitr_kable">convert lines into knitr_kable<a class="anchor" aria-label="anchor" href="#convert-lines-into-knitr_kable"></a>
 </h2>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
-<code class="sourceCode R">
-<span class="va">kbl</span> <span class="op">&lt;-</span> <span class="va">tex_file</span> |&gt;
-  <span class="fu">texPreview</span><span class="fu">::</span><span class="fu"><a href="../reference/as_kable.html">as.kable</a></span><span class="op">(</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span></span>
+<span><span class="va">kbl</span> <span class="op">&lt;-</span> <span class="va">tex_file</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu">texPreview</span><span class="fu">::</span><span class="fu"><a href="../reference/as_kable.html">as.kable</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
 </div>
 <div class="section level2">
 <h2 id="preview-the-table">preview the table<a class="anchor" aria-label="anchor" href="#preview-the-table"></a>
 </h2>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
-<code class="sourceCode R">
-<span class="va">kbl</span> |&gt;
-  <span class="fu">texPreview</span><span class="fu">::</span><span class="fu"><a href="../reference/tex_preview.html">tex_preview</a></span><span class="op">(</span><span class="op">)</span>
-<span class="co">#&gt; Warning in knitr::include_graphics(tmp): It is highly recommended to use</span>
-<span class="co">#&gt; relative paths for images. You had absolute paths: "/Users/runner/work/</span>
-<span class="co">#&gt; texPreview/texPreview/docs/articles/kable_files/figure-html/unnamed-</span>
-<span class="co">#&gt; chunk-5-1.png"</span></code></pre></div>
-<p><img src="kable_files/figure-html/unnamed-chunk-5-1.png" width="190"></p>
+<code class="sourceCode R"><span></span>
+<span><span class="va">kbl</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu">texPreview</span><span class="fu">::</span><span class="fu"><a href="../reference/tex_preview.html">tex_preview</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
+<p><img src="../docs/articles/kable_files/figure-html/unnamed-chunk-5-1.png" width="190"></p>
 </div>
 <div class="section level2">
 <h2 id="use-kableextra-to-manipulate-the-table-and-preview">use kableExtra to manipulate the table and preview<a class="anchor" aria-label="anchor" href="#use-kableextra-to-manipulate-the-table-and-preview"></a>
 </h2>
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
-<code class="sourceCode R">
-<span class="va">kbl</span> |&gt;  
-  <span class="fu">kableExtra</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/kableExtra/man/collapse_rows.html" class="external-link">collapse_rows</a></span><span class="op">(</span>columns <span class="op">=</span> <span class="fl">1</span><span class="op">:</span><span class="fl">2</span>, 
-                            latex_hline <span class="op">=</span> <span class="st">"major"</span>, 
-                            valign <span class="op">=</span> <span class="st">"middle"</span><span class="op">)</span> |&gt;
-  <span class="fu">texPreview</span><span class="fu">::</span><span class="fu"><a href="../reference/tex_preview.html">tex_preview</a></span><span class="op">(</span><span class="op">)</span>
-<span class="co">#&gt; Warning in knitr::include_graphics(tmp): It is highly recommended to use</span>
-<span class="co">#&gt; relative paths for images. You had absolute paths: "/Users/runner/work/</span>
-<span class="co">#&gt; texPreview/texPreview/docs/articles/kable_files/figure-html/unnamed-</span>
-<span class="co">#&gt; chunk-6-1.png"</span></code></pre></div>
-<p><img src="kable_files/figure-html/unnamed-chunk-6-1.png" width="190"></p>
+<code class="sourceCode R"><span></span>
+<span><span class="va">kbl</span> <span class="op">|&gt;</span>  </span>
+<span>  <span class="fu">kableExtra</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/kableExtra/man/collapse_rows.html" class="external-link">collapse_rows</a></span><span class="op">(</span>columns <span class="op">=</span> <span class="fl">1</span><span class="op">:</span><span class="fl">2</span>, </span>
+<span>                            latex_hline <span class="op">=</span> <span class="st">"major"</span>, </span>
+<span>                            valign <span class="op">=</span> <span class="st">"middle"</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu">texPreview</span><span class="fu">::</span><span class="fu"><a href="../reference/tex_preview.html">tex_preview</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
+<p><img src="../docs/articles/kable_files/figure-html/unnamed-chunk-6-1.png" width="190"></p>
 </div>
   </div>
 
@@ -166,7 +159,7 @@
 
 <div class="pkgdown">
   <p></p>
-<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.2.</p>
+<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.7.</p>
 </div>
 
       </footer>

@@ -18,7 +18,7 @@ converts it an image which is sent to Viewer."><!-- mathjax --><script src="http
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">texPreview</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">2.0.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">2.0.1</span>
       </span>
     </div>
 
@@ -64,95 +64,136 @@ converts it an image which is sent to Viewer.</p>
     </div>
 
     <div id="ref-usage">
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="fu">tex_preview</span><span class="op">(</span>
-  <span class="va">obj</span>,
-  tex_lines <span class="op">=</span> <span class="cn">NULL</span>,
-  stem <span class="op">=</span> <span class="st">"tex_temp"</span>,
-  overwrite <span class="op">=</span> <span class="cn">TRUE</span>,
-  keep_pdf <span class="op">=</span> <span class="cn">FALSE</span>,
-  tex_message <span class="op">=</span> <span class="cn">FALSE</span>,
-  fileDir <span class="op">=</span> <span class="va">tex_opts</span><span class="op">$</span><span class="fu">get</span><span class="op">(</span><span class="st">"fileDir"</span><span class="op">)</span>,
-  margin <span class="op">=</span> <span class="va">tex_opts</span><span class="op">$</span><span class="fu">get</span><span class="op">(</span><span class="st">"margin"</span><span class="op">)</span>,
-  imgFormat <span class="op">=</span> <span class="va">tex_opts</span><span class="op">$</span><span class="fu">get</span><span class="op">(</span><span class="st">"imgFormat"</span><span class="op">)</span>,
-  returnType <span class="op">=</span> <span class="va">tex_opts</span><span class="op">$</span><span class="fu">get</span><span class="op">(</span><span class="st">"returnType"</span><span class="op">)</span>,
-  resizebox <span class="op">=</span> <span class="va">tex_opts</span><span class="op">$</span><span class="fu">get</span><span class="op">(</span><span class="st">"resizebox"</span><span class="op">)</span>,
-  usrPackages <span class="op">=</span> <span class="va">tex_opts</span><span class="op">$</span><span class="fu">get</span><span class="op">(</span><span class="st">"usrPackages"</span><span class="op">)</span>,
-  engine <span class="op">=</span> <span class="va">tex_opts</span><span class="op">$</span><span class="fu">get</span><span class="op">(</span><span class="st">"engine"</span><span class="op">)</span>,
-  cleanup <span class="op">=</span> <span class="va">tex_opts</span><span class="op">$</span><span class="fu">get</span><span class="op">(</span><span class="st">"cleanup"</span><span class="op">)</span>,
-  density <span class="op">=</span> <span class="va">tex_opts</span><span class="op">$</span><span class="fu">get</span><span class="op">(</span><span class="st">"density"</span><span class="op">)</span>,
-  svg_max <span class="op">=</span> <span class="va">tex_opts</span><span class="op">$</span><span class="fu">get</span><span class="op">(</span><span class="st">"svg_max"</span><span class="op">)</span>,
-  print.xtable.opts <span class="op">=</span> <span class="va">tex_opts</span><span class="op">$</span><span class="fu">get</span><span class="op">(</span><span class="st">"print.xtable.opts"</span><span class="op">)</span>,
-  opts.html <span class="op">=</span> <span class="va">tex_opts</span><span class="op">$</span><span class="fu">get</span><span class="op">(</span><span class="st">"opts.html"</span><span class="op">)</span>,
-  markers <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/interactive.html" class="external-link">interactive</a></span><span class="op">(</span><span class="op">)</span>,
-  <span class="va">...</span>
-<span class="op">)</span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">tex_preview</span><span class="op">(</span></span>
+<span>  <span class="va">obj</span>,</span>
+<span>  tex_lines <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  stem <span class="op">=</span> <span class="st">"tex_temp"</span>,</span>
+<span>  overwrite <span class="op">=</span> <span class="cn">TRUE</span>,</span>
+<span>  keep_pdf <span class="op">=</span> <span class="cn">FALSE</span>,</span>
+<span>  tex_message <span class="op">=</span> <span class="cn">FALSE</span>,</span>
+<span>  fileDir <span class="op">=</span> <span class="va">tex_opts</span><span class="op">$</span><span class="fu">get</span><span class="op">(</span><span class="st">"fileDir"</span><span class="op">)</span>,</span>
+<span>  margin <span class="op">=</span> <span class="va">tex_opts</span><span class="op">$</span><span class="fu">get</span><span class="op">(</span><span class="st">"margin"</span><span class="op">)</span>,</span>
+<span>  imgFormat <span class="op">=</span> <span class="va">tex_opts</span><span class="op">$</span><span class="fu">get</span><span class="op">(</span><span class="st">"imgFormat"</span><span class="op">)</span>,</span>
+<span>  returnType <span class="op">=</span> <span class="va">tex_opts</span><span class="op">$</span><span class="fu">get</span><span class="op">(</span><span class="st">"returnType"</span><span class="op">)</span>,</span>
+<span>  resizebox <span class="op">=</span> <span class="va">tex_opts</span><span class="op">$</span><span class="fu">get</span><span class="op">(</span><span class="st">"resizebox"</span><span class="op">)</span>,</span>
+<span>  usrPackages <span class="op">=</span> <span class="va">tex_opts</span><span class="op">$</span><span class="fu">get</span><span class="op">(</span><span class="st">"usrPackages"</span><span class="op">)</span>,</span>
+<span>  engine <span class="op">=</span> <span class="va">tex_opts</span><span class="op">$</span><span class="fu">get</span><span class="op">(</span><span class="st">"engine"</span><span class="op">)</span>,</span>
+<span>  cleanup <span class="op">=</span> <span class="va">tex_opts</span><span class="op">$</span><span class="fu">get</span><span class="op">(</span><span class="st">"cleanup"</span><span class="op">)</span>,</span>
+<span>  density <span class="op">=</span> <span class="va">tex_opts</span><span class="op">$</span><span class="fu">get</span><span class="op">(</span><span class="st">"density"</span><span class="op">)</span>,</span>
+<span>  svg_max <span class="op">=</span> <span class="va">tex_opts</span><span class="op">$</span><span class="fu">get</span><span class="op">(</span><span class="st">"svg_max"</span><span class="op">)</span>,</span>
+<span>  print.xtable.opts <span class="op">=</span> <span class="va">tex_opts</span><span class="op">$</span><span class="fu">get</span><span class="op">(</span><span class="st">"print.xtable.opts"</span><span class="op">)</span>,</span>
+<span>  opts.html <span class="op">=</span> <span class="va">tex_opts</span><span class="op">$</span><span class="fu">get</span><span class="op">(</span><span class="st">"opts.html"</span><span class="op">)</span>,</span>
+<span>  markers <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/interactive.html" class="external-link">interactive</a></span><span class="op">(</span><span class="op">)</span>,</span>
+<span>  <span class="va">...</span></span>
+<span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div id="arguments">
     <h2>Arguments</h2>
     <dl><dt>obj</dt>
 <dd><p>object to convert to TeX script</p></dd>
+
+
 <dt>tex_lines</dt>
 <dd><p>vector of character, in case of special needs, instead of
 asking texPreview to build up, you may choose to pass in the contents of the
 complete LaTeX file directly. It should be a vector of character with each
 element as a line of raw TeX code.</p></dd>
+
+
 <dt>stem</dt>
 <dd><p>character, name to use in output files, Default: "tex_temp"</p></dd>
+
+
 <dt>overwrite</dt>
 <dd><p>logical, controls if overwriting of output
 stem* files given their existences, Default: TRUE</p></dd>
+
+
 <dt>keep_pdf</dt>
 <dd><p>logical, controls if the rendered pdf file should be kept
 or deleted, Default: FALSE</p></dd>
+
+
 <dt>tex_message</dt>
 <dd><p>logical, controls if latex executing messages
 are displayed in console. Default: FALSE</p></dd>
+
+
 <dt>fileDir</dt>
 <dd><p>character, output destination. If NULL a temp.dir()
 will be used and no output will be saved, Default: tex_opts$get('fileDir')</p></dd>
+
+
 <dt>margin</dt>
 <dd><p>table margin for pdflatex call, Default: tex_opts$get('margin')</p></dd>
+
+
 <dt>imgFormat</dt>
 <dd><p>character, defines the type of image the PDF is
 converted to Default: tex_opts$get('imgFormat')</p></dd>
+
+
 <dt>returnType</dt>
 <dd><p>character, one of "viewer", "html", or "tex"
 determining appropriate return type for the rendering process,
 Default: tex_opts$get('returnType')</p></dd>
+
+
 <dt>resizebox</dt>
 <dd><p>logical, forces a tabular tex object to be constrained on the
 margins of the document, Default: tex_opts$get('resizebox')</p></dd>
+
+
 <dt>usrPackages</dt>
 <dd><p>character, vector of usepackage commands,
 see details for string format</p></dd>
+
+
 <dt>engine</dt>
 <dd><p>character, specifies which latex to pdf engine to use
 ('pdflatex','xelatex','lualatex'), Default: tex_opts$get('engine')</p></dd>
+
+
 <dt>cleanup</dt>
 <dd><p>character, vector of file extensions to clean up after
 building pdf, Default: tex_opts$get('cleanup')</p></dd>
+
+
 <dt>density</dt>
 <dd><p>numeric, controls the density of the image.
 Default is 150: tex_opts$get('density)</p></dd>
+
+
 <dt>svg_max</dt>
 <dd><p>numeric, maximum svg file size allowable to preview,
 Default: tex_opts$get('svg_max')</p></dd>
+
+
 <dt>print.xtable.opts</dt>
 <dd><p>list, contains arguments to pass to print.table,
 relevant only if xtable is used as the input,
 Default: tex_opts$get('print.xtable.opts')</p></dd>
+
+
 <dt>opts.html</dt>
 <dd><p>list, html options, Default: tex_opts$get('opts.html')</p></dd>
+
+
 <dt>markers</dt>
 <dd><p>logical, if TRUE then RStudio markers will be invoked to
 create links for the log file on rendering errors, Default: interactive()</p></dd>
+
+
 <dt>...</dt>
 <dd><p>passed to <a href="https://rdrr.io/r/base/system2.html" class="external-link">system2</a></p></dd>
+
 </dl></div>
     <div id="value">
     <h2>Value</h2>
-    <p>The output of the function is dependent on the value of returnType:</p><ul><li><p>viewer: NULL</p><ul><li><p>magick image is printed in the internal viewer</p></li>
+    
+
+<p>The output of the function is dependent on the value of returnType:</p><ul><li><p>viewer: NULL</p><ul><li><p>magick image is printed in the internal viewer</p></li>
 </ul></li>
 <li><p>tex:</p><ul><li><p>character, TeX lines</p></li>
 <li><p>printed 'asis' in RMarkdown</p></li>
@@ -195,46 +236,46 @@ be controlled using the <code>cleanup</code> argument or <code>tex_opts$get('cle
 
     <div id="ref-examples">
     <h2>Examples</h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span class="fu"><a href="https://rdrr.io/r/utils/data.html" class="external-link">data</a></span><span class="op">(</span><span class="st">'iris'</span><span class="op">)</span></span>
-<span class="r-in"><span class="kw">if</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/interactive.html" class="external-link">interactive</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span><span class="op">{</span></span>
-<span class="r-in"></span>
-<span class="r-in"><span class="co"># Raw TeX</span></span>
-<span class="r-in"></span>
-<span class="r-in"><span class="va">tex</span> <span class="op">&lt;-</span> <span class="st">'\\begin{tabular}{llr}</span>
-<span class="r-in">\\hline</span>
-<span class="r-in">\\multicolumn{2}{c}{Item} \\\\</span>
-<span class="r-in">\\cline{1-2}</span>
-<span class="r-in">Animal    &amp; Description &amp; Price (\\$) \\\\</span>
-<span class="r-in">\\hline</span>
-<span class="r-in">Gnat      &amp; per gram    &amp; 13.65      \\\\</span>
-<span class="r-in">&amp; each        &amp; 0.01       \\\\</span>
-<span class="r-in">Gnu       &amp; stuffed     &amp; 92.50      \\\\</span>
-<span class="r-in">Emu       &amp; stuffed     &amp; 33.33      \\\\</span>
-<span class="r-in">Armadillo &amp; frozen      &amp; 8.99       \\\\</span>
-<span class="r-in">\\hline</span>
-<span class="r-in">\\end{tabular}'</span></span>
-<span class="r-in"></span>
-<span class="r-in"><span class="co"># knitr kable</span></span>
-<span class="r-in"></span>
-<span class="r-in"> <span class="va">mtcars</span> |&gt;</span>
-<span class="r-in">   <span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="op">)</span> |&gt;</span>
-<span class="r-in">   <span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html" class="external-link">kable</a></span><span class="op">(</span><span class="st">"latex"</span><span class="op">)</span> |&gt;</span>
-<span class="r-in">   <span class="fu">tex_preview</span><span class="op">(</span><span class="op">)</span></span>
-<span class="r-in"></span>
-<span class="r-in"><span class="co"># with svg output pan/zoom is enabled in the internal viewer</span></span>
-<span class="r-in"></span>
-<span class="r-in"><span class="fu">tex_preview</span><span class="op">(</span>obj <span class="op">=</span> <span class="va">tex</span>,stem <span class="op">=</span> <span class="st">'eq'</span>,imgFormat <span class="op">=</span> <span class="st">'svg'</span><span class="op">)</span></span>
-<span class="r-in"></span>
-<span class="r-in"><span class="co"># use tex_lines parameter to pass full document</span></span>
-<span class="r-in"></span>
-<span class="r-in"><span class="va">tikz_path</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/system.file.html" class="external-link">system.file</a></span><span class="op">(</span></span>
-<span class="r-in">                  <span class="st">'examples/tikz/credit_rationing.tex'</span>,</span>
-<span class="r-in">                  package <span class="op">=</span> <span class="st">'texPreview'</span></span>
-<span class="r-in">                  <span class="op">)</span></span>
-<span class="r-in"></span>
-<span class="r-in"><span class="fu">tex_preview</span><span class="op">(</span>tex_lines <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/readLines.html" class="external-link">readLines</a></span><span class="op">(</span><span class="va">tikz_path</span><span class="op">)</span><span class="op">)</span></span>
-<span class="r-in"></span>
-<span class="r-in"><span class="op">}</span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/utils/data.html" class="external-link">data</a></span><span class="op">(</span><span class="st">'iris'</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="kw">if</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/interactive.html" class="external-link">interactive</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span><span class="op">{</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co"># Raw TeX</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="va">tex</span> <span class="op">&lt;-</span> <span class="st">'\\begin{tabular}{llr}</span></span></span>
+<span class="r-in"><span><span class="st">\\hline</span></span></span>
+<span class="r-in"><span><span class="st">\\multicolumn{2}{c}{Item} \\\\</span></span></span>
+<span class="r-in"><span><span class="st">\\cline{1-2}</span></span></span>
+<span class="r-in"><span><span class="st">Animal    &amp; Description &amp; Price (\\$) \\\\</span></span></span>
+<span class="r-in"><span><span class="st">\\hline</span></span></span>
+<span class="r-in"><span><span class="st">Gnat      &amp; per gram    &amp; 13.65      \\\\</span></span></span>
+<span class="r-in"><span><span class="st">&amp; each        &amp; 0.01       \\\\</span></span></span>
+<span class="r-in"><span><span class="st">Gnu       &amp; stuffed     &amp; 92.50      \\\\</span></span></span>
+<span class="r-in"><span><span class="st">Emu       &amp; stuffed     &amp; 33.33      \\\\</span></span></span>
+<span class="r-in"><span><span class="st">Armadillo &amp; frozen      &amp; 8.99       \\\\</span></span></span>
+<span class="r-in"><span><span class="st">\\hline</span></span></span>
+<span class="r-in"><span><span class="st">\\end{tabular}'</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co"># knitr kable</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span> <span class="va">mtcars</span> <span class="op">|&gt;</span></span></span>
+<span class="r-in"><span>   <span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span></span></span>
+<span class="r-in"><span>   <span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html" class="external-link">kable</a></span><span class="op">(</span><span class="st">"latex"</span><span class="op">)</span> <span class="op">|&gt;</span></span></span>
+<span class="r-in"><span>   <span class="fu">tex_preview</span><span class="op">(</span><span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co"># with svg output pan/zoom is enabled in the internal viewer</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="fu">tex_preview</span><span class="op">(</span>obj <span class="op">=</span> <span class="va">tex</span>,stem <span class="op">=</span> <span class="st">'eq'</span>,imgFormat <span class="op">=</span> <span class="st">'svg'</span><span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co"># use tex_lines parameter to pass full document</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="va">tikz_path</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/system.file.html" class="external-link">system.file</a></span><span class="op">(</span></span></span>
+<span class="r-in"><span>                  <span class="st">'examples/tikz/credit_rationing.tex'</span>,</span></span>
+<span class="r-in"><span>                  package <span class="op">=</span> <span class="st">'texPreview'</span></span></span>
+<span class="r-in"><span>                  <span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="fu">tex_preview</span><span class="op">(</span>tex_lines <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/readLines.html" class="external-link">readLines</a></span><span class="op">(</span><span class="va">tikz_path</span><span class="op">)</span><span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="op">}</span></span></span>
 </code></pre></div>
     </div>
   </div>
@@ -249,7 +290,7 @@ be controlled using the <code>cleanup</code> argument or <code>tex_opts$get('cle
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.2.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.7.</p>
 </div>
 
       </footer></div>
