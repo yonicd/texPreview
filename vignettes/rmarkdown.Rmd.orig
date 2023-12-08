@@ -1,7 +1,7 @@
 ---
 title: "Using texPreview in Rmarkdown HTML Documents"
 author: "Jonathan Sidi"
-date: "2023-12-08"
+date: "`r Sys.Date()`"
 output: rmarkdown::html_vignette
 vignette: >
   %\VignetteIndexEntry{Using texPreview in Rmarkdown HTML Documents}
@@ -9,36 +9,39 @@ vignette: >
   %\VignetteEncoding{UTF-8}
 ---
 
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>",
+  fig.path = "figure/rmarkdown/"
+)
+```
 
 
-
-
-```r
+```{r}
 library(texPreview)
 
 tex_opts$set( 
   returnType = 'html',
   opts.html   = list(width = '75%', height = '75%')
 )
+
 ```
 
 The following examples use `kable` to generate LaTeX table outputs and raw LaTeX to pipe into `tex_preview` to render the in the document.
 
 ## Kable Input
 
-
-```r
+```{r testOut}
 
 knitr::kable(head(iris,5),format = 'latex') |>
 tex_preview()
-```
 
-![plot of chunk testOut](figure/rmarkdown/testOut-1.png)
+```
 
 ## TeX Input
 
-
-```r
+```{r testOut2}
 tab='
 \\begin{tabular}{llr}
 \\hline
@@ -56,6 +59,5 @@ Armadillo & frozen      & 8.99       \\\\
 
 tab |>
   tex_preview()
-```
 
-![plot of chunk testOut2](figure/rmarkdown/testOut2-1.png)
+```

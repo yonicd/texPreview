@@ -79,14 +79,15 @@ texpreview_base_req <- c('standalone', 'xcolor', 'booktabs', 'multirow', 'amsmat
 'colortbl', 'epstopdf-pkg', 'pgf','makeindex')
 
 #' @importFrom tinytex check_installed tlmgr_install
+#' @importFrom utils menu
 check_base_req <- function(){
   chk <- texpreview_base_req[!tinytex::check_installed(texpreview_base_req)]
   if(length(chk)>0){
     update_pkgs <- TRUE
-
+    warning( sprintf( 'missing tex packages needed for texPreview: %s', paste0( chk, collapse = ', ' ) ) )
     if(interactive()){
       update_pkgs <- switch(
-        menu(
+        utils::menu(
           title = 'Install missing tex packages?',
           choices = c("Yes", "No")) + 1,
             cat("Nothing done\n"), 
