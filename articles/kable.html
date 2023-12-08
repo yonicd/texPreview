@@ -102,13 +102,9 @@ Objects</h1>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/readLines.html" class="external-link">readLines</a></span><span class="op">(</span><span class="va">tex_file</span><span class="op">)</span></span>
-<span><span class="co">#&gt;  [1] "\\begin{tabular}{cccc}" "\\toprule"              "C1 &amp; C2 &amp; C3 &amp; C4\\\\" </span></span>
-<span><span class="co">#&gt;  [4] "\\midrule"              "a &amp; c &amp; 1 &amp; 1\\\\"      "a &amp; c &amp; 2 &amp; 1\\\\"     </span></span>
-<span><span class="co">#&gt;  [7] "a &amp; c &amp; 3 &amp; 1\\\\"      "a &amp; c &amp; 4 &amp; 0\\\\"      "a &amp; c &amp; 5 &amp; 0\\\\"     </span></span>
-<span><span class="co">#&gt; [10] "\\addlinespace"         "a &amp; c &amp; 6 &amp; 1\\\\"      "a &amp; c &amp; 7 &amp; 1\\\\"     </span></span>
-<span><span class="co">#&gt; [13] "a &amp; d &amp; 8 &amp; 0\\\\"      "a &amp; d &amp; 9 &amp; 0\\\\"      "a &amp; d &amp; 10 &amp; 0\\\\"    </span></span>
-<span><span class="co">#&gt; [16] "\\addlinespace"         "b &amp; c &amp; 11 &amp; 0\\\\"     "b &amp; c &amp; 12 &amp; 0\\\\"    </span></span>
-<span><span class="co">#&gt; [19] "b &amp; d &amp; 13 &amp; 1\\\\"     "b &amp; d &amp; 14 &amp; 1\\\\"     "b &amp; d &amp; 15 &amp; 0\\\\"    </span></span>
+<span><span class="co">#&gt;  [1] "\\begin{tabular}{cccc}" "\\toprule"              "C1 &amp; C2 &amp; C3 &amp; C4\\\\"  "\\midrule"              "a &amp; c &amp; 1 &amp; 1\\\\"      "a &amp; c &amp; 2 &amp; 1\\\\"      "a &amp; c &amp; 3 &amp; 1\\\\"     </span></span>
+<span><span class="co">#&gt;  [8] "a &amp; c &amp; 4 &amp; 0\\\\"      "a &amp; c &amp; 5 &amp; 0\\\\"      "\\addlinespace"         "a &amp; c &amp; 6 &amp; 1\\\\"      "a &amp; c &amp; 7 &amp; 1\\\\"      "a &amp; d &amp; 8 &amp; 0\\\\"      "a &amp; d &amp; 9 &amp; 0\\\\"     </span></span>
+<span><span class="co">#&gt; [15] "a &amp; d &amp; 10 &amp; 0\\\\"     "\\addlinespace"         "b &amp; c &amp; 11 &amp; 0\\\\"     "b &amp; c &amp; 12 &amp; 0\\\\"     "b &amp; d &amp; 13 &amp; 1\\\\"     "b &amp; d &amp; 14 &amp; 1\\\\"     "b &amp; d &amp; 15 &amp; 0\\\\"    </span></span>
 <span><span class="co">#&gt; [22] "\\bottomrule"           "\\end{tabular}"</span></span></code></pre></div>
 </div>
 <div class="section level2">
@@ -126,7 +122,9 @@ Objects</h1>
 <code class="sourceCode R"><span></span>
 <span><span class="va">kbl</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu">texPreview</span><span class="fu">::</span><span class="fu"><a href="../reference/tex_preview.html">tex_preview</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
-<p><img src="../docs/articles/kable_files/figure-html/unnamed-chunk-5-1.png" width="190"></p>
+<div class="figure">
+<img src="figure/kable/unnamed-chunk-5-1.png" alt=""><p class="caption">plot of chunk unnamed-chunk-5</p>
+</div>
 </div>
 <div class="section level2">
 <h2 id="use-kableextra-to-manipulate-the-table-and-preview">use kableExtra to manipulate the table and preview<a class="anchor" aria-label="anchor" href="#use-kableextra-to-manipulate-the-table-and-preview"></a>
@@ -138,7 +136,9 @@ Objects</h1>
 <span>                            latex_hline <span class="op">=</span> <span class="st">"major"</span>, </span>
 <span>                            valign <span class="op">=</span> <span class="st">"middle"</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu">texPreview</span><span class="fu">::</span><span class="fu"><a href="../reference/tex_preview.html">tex_preview</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
-<p><img src="../docs/articles/kable_files/figure-html/unnamed-chunk-6-1.png" width="190"></p>
+<div class="figure">
+<img src="figure/kable/unnamed-chunk-6-1.png" alt=""><p class="caption">plot of chunk unnamed-chunk-6</p>
+</div>
 </div>
   </div>
 
