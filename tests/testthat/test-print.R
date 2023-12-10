@@ -1,5 +1,7 @@
 testthat::context('utilities')
 
+skip_logic()
+
 path <- file.path(tempdir(),'tex')
 
 cleanup(path)

@@ -2,8 +2,6 @@ library(texPreview)
 
 testthat::context('utility functions of package')
 
- #testthat::skip_on_cran()
-
 testthat::describe('build usepackage call',{
  
   it('basic call', {
@@ -48,7 +46,7 @@ testthat::describe('build usepackage multiple calls',{
 
 testthat::describe('find packages',{
   
-  skip_on_windows()
+  skip_logic()
   
   if(length(system('tlmgr --version',intern = TRUE))>0){
     

@@ -54,3 +54,4 @@ NeedsCompilation: no
 Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.2.3
 License: MIT + file LICENSE
+Encoding: UTF-8

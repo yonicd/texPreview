@@ -49,7 +49,7 @@ names(tikz_code) <- basename(tikz_examples)
 tex_preview(obj = tikz_code$pk_model.tex,stem = 'tikz-1')
 ```
 
-![plot of chunk unnamed-chunk-4](figure/unnamed-chunk-4-1.png)
+![plot of chunk unnamed-chunk-4](images/tikz/unnamed-chunk-4-1.png)
 
 <details closed>
 <summary> <span title='Click to Expand'> Click to view TeX </span> </summary>
@@ -112,7 +112,12 @@ For a full TeX document use the `tex_lines` argument instead of the `obj`. This 
 tex_preview(tex_lines = tikz_code$credit_rationing.tex,stem = 'tikz-2')
 ```
 
-![plot of chunk unnamed-chunk-6](figure/unnamed-chunk-6-1.png)
+![plot of chunk unnamed-chunk-6](images/tikz/unnamed-chunk-6-1.png)
+
+
+```r
+unlink(dirname(objpath), force = TRUE, recursive = TRUE)
+```
 
 <details closed>
 <summary> <span title='Click to Expand'> Click to view TeX </span> </summary>

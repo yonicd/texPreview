@@ -1,7 +1,7 @@
 [![CRAN\_Status\_Badge](https://www.r-pkg.org/badges/version/texPreview)](https://cran.r-project.org/package=texPreview)
 [![Project Status: Active - The project has reached a stable, usable state and is being actively developed.](http://www.repostatus.org/badges/0.1.0/active.svg)](https://www.repostatus.org) 
 [![](https://cranlogs.r-pkg.org/badges/texPreview)](https://cran.r-project.org/package=texPreview)
-[![Coverage Status](https://img.shields.io/codecov/c/github/yonicd/texPreview/master.svg)](https://codecov.io/github/yonicd/texPreview?branch=master)
+[![Coverage Status](https://img.shields.io/codecov/c/github/yonicd/texPreview/master.svg)](https://app.codecov.io/github/yonicd/texPreview?branch=master)
 [![Covrpage Summary](https://img.shields.io/badge/covrpage-Last_Build_2022_03_28-yellowgreen.svg)](http://tinyurl.com/ybkr8fsu)
 [![R-win build
 status](https://github.com/yonicd/texPreview/workflows/R-win/badge.svg)](https://github.com/yonicd/texPreview)
@@ -33,7 +33,7 @@ Efficiently iterate, refine and share snippets of LaTeX in R with ease.
   - __System Requirements__: 
     - Must have pdflatex in PATH, Windows users can install by running [installr::install.MikTeX](http://talgalili.github.io/installr/reference/install.MikTeX.html)
     - TeX libraries that are used: `standalone`, `xcolor`, `booktabs`, `multirow`, `array`, `helvet`, `amsmath`, `rotating`, `listings`, `graphicx`, `setspace`, `caption`
-      - Using [tinytex](https://github.com/yihui/tinytex) you can run
+      - Using [tinytex](hhttps://github.com/rstudio/tinytex) you can run
       
           ```
           install.packages('tinytex')
@@ -42,7 +42,7 @@ Efficiently iterate, refine and share snippets of LaTeX in R with ease.
           'colortbl', 'epstopdf-pkg', 'pgf','makeindex'))
           ```
       - To Check if the system is in compliance with these libraries run `texPreview::check_requirements()`.
-    - Ghostscript: If you are installing TeX with [tinytex](https://github.com/yihui/tinytex) make sure to install ghostscript onto your system.
+    - Ghostscript: If you are installing TeX with [tinytex](https://github.com/rstudio/tinytex) make sure to install ghostscript onto your system.
     
 ## Examples
 

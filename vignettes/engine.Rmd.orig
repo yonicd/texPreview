@@ -11,14 +11,14 @@ vignette: >
 knitr::opts_chunk$set(
   collapse = TRUE,
   comment = "#>",
-  fig.path = "figure/engine/"
+  fig.path = "images/engine/"
 )
 ```
 
 
 `texPreview` contains inside its own `knitr` engine to render TeX snippets more naturally within the RMarkdown workflow. We achieve this by leveraging texPreview's integration via S3 for various classes. 
 
-The following inputs can be run inside texpreview chunks in RStudio version [1.2.5033](https://www.rstudio.com/products/rstudio/download/) and above. They will render in the same fashion as would a regular `texPreview::tex_preview` call. 
+The following inputs can be run inside texpreview chunks in RStudio version [1.2.5033](https://posit.co/download/rstudio-desktop/) and above. They will render in the same fashion as would a regular `texPreview::tex_preview` call. 
 
    - Raw TeX
    - TeX in a character vector
@@ -43,7 +43,7 @@ The following are examples of some uses of the `texpreview` engine.
 
 ```{r setup}
 library(texPreview)
-dir.create('images',showWarnings = FALSE)
+dir.create('images/engine',showWarnings = FALSE)
 ```
 
 
@@ -126,19 +126,19 @@ Armadillo & frozen      & 8.99       \\
 ### Chunk Call
 
 ````markdown
-```{texpreview, echo = FALSE, texpreview.path = 'images',texpreview.stem = 'example'}`r ''`
+```{texpreview, echo = FALSE, texpreview.path = 'images/engine',texpreview.stem = 'example'}`r ''`
 knitr::kable(head(iris),format = 'latex',booktabs = TRUE)
 ```
 ````
 
 ### Output
 
-```{texpreview, echo = FALSE, texpreview.path = 'images',texpreview.stem = 'example'}
+```{texpreview, echo = FALSE, texpreview.path = 'images/engine',texpreview.stem = 'example'}
 knitr::kable(head(iris),format = 'latex',booktabs = TRUE)
 ```
 
 ```{r}
-list.files('images')
+list.files('images/engine')
 ```
 
 ## PDF Documents
@@ -146,13 +146,13 @@ list.files('images')
 Setting texpreview.return = 'input' will have the chunk return an LateX 'input' call with the results 'asis' so the user can render the lines as part of a Rmarkdown pdf document.
 
 ````markdown
-```{texpreview,texpreview.return = 'input', texpreview.path = 'images',texpreview.stem = 'example'}`r ''`
+```{texpreview,texpreview.return = 'input', texpreview.path = 'images/engine',texpreview.stem = 'example'}`r ''`
 knitr::kable(head(iris),format = 'latex',booktabs = TRUE)
 ```
-\input{images/example.tex}
+\input{images/engine/example.tex}
 ````
 
-```{texpreview,texpreview.return = 'input',echo = FALSE, texpreview.path = 'images',texpreview.stem = 'example'}
+```{texpreview,texpreview.return = 'input',echo = FALSE, texpreview.path = 'images/engine',texpreview.stem = 'example'}
 knitr::kable(head(iris),format = 'latex',booktabs = TRUE)
 ```
 

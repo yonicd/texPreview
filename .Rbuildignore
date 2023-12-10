@@ -8,6 +8,12 @@
 ^revdep$
 ^data-raw$
 ^pkgdown$
+^vignettes/post\_render\.R$
+^vignettes/classes\.Rmd\.orig$
+^vignettes/engine\.Rmd\.orig$
+^vignettes/kable\.Rmd\.orig$
+^vignettes/rmarkdown\.Rmd\.orig$
+^vignettes/tikz\.Rmd\.orig$
 ^CRAN-RELEASE$
 ^\.github$
 ^LICENSE\.md$

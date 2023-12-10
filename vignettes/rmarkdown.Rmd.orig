@@ -13,7 +13,7 @@ vignette: >
 knitr::opts_chunk$set(
   collapse = TRUE,
   comment = "#>",
-  fig.path = "figure/rmarkdown/"
+  fig.path = "images/rmarkdown/"
 )
 ```
 

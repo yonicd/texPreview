@@ -12,7 +12,7 @@ vignette: >
 
 `texPreview` contains inside its own `knitr` engine to render TeX snippets more naturally within the RMarkdown workflow. We achieve this by leveraging texPreview's integration via S3 for various classes. 
 
-The following inputs can be run inside texpreview chunks in RStudio version [1.2.5033](https://www.rstudio.com/products/rstudio/download/) and above. They will render in the same fashion as would a regular `texPreview::tex_preview` call. 
+The following inputs can be run inside texpreview chunks in RStudio version [1.2.5033](https://posit.co/download/rstudio-desktop/) and above. They will render in the same fashion as would a regular `texPreview::tex_preview` call. 
 
    - Raw TeX
    - TeX in a character vector
@@ -38,7 +38,7 @@ The following are examples of some uses of the `texpreview` engine.
 
 ```r
 library(texPreview)
-dir.create('images',showWarnings = FALSE)
+dir.create('images/engine',showWarnings = FALSE)
 ```
 
 
@@ -60,7 +60,7 @@ knitr::kable(head(iris),format = 'latex',booktabs = TRUE)
 ```
 
 
-<img src="figure/engine/unnamed-chunk-2-1.png" width="1011" />
+<img src="images/engine/unnamed-chunk-2-1.png" width="1011" />
 
 ## No Echo
 
@@ -76,7 +76,7 @@ knitr::kable(head(iris),format = 'latex',booktabs = TRUE)
 
 ### Output
 
-<img src="figure/engine/unnamed-chunk-3-3.png" width="1011" />
+<img src="images/engine/unnamed-chunk-3-3.png" width="1011" />
 
 ## Raw TeX Table
 
@@ -120,26 +120,27 @@ Armadillo & frozen      & 8.99       \\
 ```
 
 
-<img src="figure/engine/unnamed-chunk-4-5.png" width="1011" />
+<img src="images/engine/unnamed-chunk-4-5.png" width="1011" />
 
 ## Output Path
 
 ### Chunk Call
 
 ````markdown
-```{texpreview, echo = FALSE, texpreview.path = 'images',texpreview.stem = 'example'}
+```{texpreview, echo = FALSE, texpreview.path = 'images/engine',texpreview.stem = 'example'}
 knitr::kable(head(iris),format = 'latex',booktabs = TRUE)
 ```
 ````
 
 ### Output
 
-<img src="figure/engine/unnamed-chunk-5-7.png" width="1011" />
+<img src="images/engine/unnamed-chunk-5-7.png" width="1011" />
 
 
 ```r
-list.files('images')
-#> [1] "example.png" "example.tex"
+list.files('images/engine')
+#> [1] "example.png"           "example.tex"           "unnamed-chunk-2-1.png"
+#> [4] "unnamed-chunk-3-3.png" "unnamed-chunk-4-5.png" "unnamed-chunk-5-7.png"
 ```
 
 ## PDF Documents
@@ -147,13 +148,13 @@ list.files('images')
 Setting texpreview.return = 'input' will have the chunk return an LateX 'input' call with the results 'asis' so the user can render the lines as part of a Rmarkdown pdf document.
 
 ````markdown
-```{texpreview,texpreview.return = 'input', texpreview.path = 'images',texpreview.stem = 'example'}
+```{texpreview,texpreview.return = 'input', texpreview.path = 'images/engine',texpreview.stem = 'example'}
 knitr::kable(head(iris),format = 'latex',booktabs = TRUE)
 ```
-\input{images/example.tex}
+\input{images/engine/example.tex}
 ````
 
-\input{images/example.tex}
+\input{images/engine/example.tex}
 
 Setting texpreview.return = 'tex' will have the chunk return the tex lines output with the results 'asis' so the user can render the lines as part of a Rmarkdown pdf document.
 

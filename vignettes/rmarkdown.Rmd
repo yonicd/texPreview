@@ -1,7 +1,7 @@
 ---
 title: "Using texPreview in Rmarkdown HTML Documents"
 author: "Jonathan Sidi"
-date: "2023-12-08"
+date: "2023-12-09"
 output: rmarkdown::html_vignette
 vignette: >
   %\VignetteIndexEntry{Using texPreview in Rmarkdown HTML Documents}
@@ -33,7 +33,7 @@ knitr::kable(head(iris,5),format = 'latex') |>
 tex_preview()
 ```
 
-![plot of chunk testOut](figure/rmarkdown/testOut-1.png)
+![plot of chunk testOut](images/rmarkdown/testOut-1.png)
 
 ## TeX Input
 
@@ -58,4 +58,4 @@ tab |>
   tex_preview()
 ```
 
-![plot of chunk testOut2](figure/rmarkdown/testOut2-1.png)
+![plot of chunk testOut2](images/rmarkdown/testOut2-1.png)

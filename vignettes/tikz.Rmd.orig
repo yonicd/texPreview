@@ -10,7 +10,8 @@ vignette: >
 ```{r, include = FALSE}
 knitr::opts_chunk$set(
   collapse = TRUE,
-  comment = "#>"
+  comment = "#>",
+  fig.path = "images/tikz/"
 )
 ```
 
@@ -60,6 +61,10 @@ For a full TeX document use the `tex_lines` argument instead of the `obj`. This 
 
 ```{r}
 tex_preview(tex_lines = tikz_code$credit_rationing.tex,stem = 'tikz-2')
+```
+
+```{r}
+unlink(dirname(objpath), force = TRUE, recursive = TRUE)
 ```
 
 ```{r,echo=FALSE}

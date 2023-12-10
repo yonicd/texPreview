@@ -1,7 +1,8 @@
-library(texPreview)
-
-
 testthat::context('core tex function')
+
+skip_logic()
+
+library(texPreview)
 
 path <- file.path(tempdir(),'tex')
 
@@ -10,7 +11,7 @@ cleanup(path)
 tex_opts$set(returnType = 'tex',fileDir = path)
   
   testthat::describe('porting to tex',{
-    
+
       x <- texPreview::tex_preview(obj = xtable::xtable(head(iris,10)))
     
       it('files generated', {
@@ -28,7 +29,7 @@ tex_opts$set(returnType = 'tex',fileDir = path)
   tex_opts$set(returnType = 'tex')
   
   testthat::describe('porting to tex no filedir',{
-    
+
     x <- texPreview::tex_preview(obj = xtable::xtable(head(iris,10)))
 
     it('no files generated', {
@@ -46,7 +47,7 @@ tex_opts$set(returnType = 'tex',fileDir = path)
   tex_opts$set(returnType = 'tex',fileDir = path)
   
   testthat::describe('keep pdf as an output',{
-  
+
     x <- texPreview::tex_preview(obj = xtable::xtable(head(iris,10)),keep_pdf = TRUE)
   
     it('files generated', {
@@ -64,7 +65,7 @@ tex_opts$set(returnType = 'tex',fileDir = path)
   tex_opts$set(returnType = 'html',fileDir = path)
   
   testthat::describe('html output',{
-  
+
     it('return magick object', {
       
       x <- texPreview::tex_preview(obj = xtable::xtable(head(iris,10)))
@@ -80,7 +81,7 @@ tex_opts$set(returnType = 'tex',fileDir = path)
   tex_opts$set(returnType = 'tex',fileDir = path)
 
   testthat::describe('tex lines directly input',{
-    
+
     tex='\\begin{tabular}{llr}
     \\hline
     \\multicolumn{2}{c}{Item} \\\\
@@ -113,7 +114,7 @@ tex_opts$set(returnType = 'tex',fileDir = path)
     tex_opts$set(returnType = 'viewer',fileDir = path,imgFormat='svg',svg_max=Inf)
     
     testthat::describe('use svg device',{
-      testthat::skip_on_cran()
+
       x <- texPreview::tex_preview(obj = xtable::xtable(head(iris,10)), stem="danp-test")
       it('check if file created', {
         testthat::expect_equal(length(list.files(path,pattern = 'svg$')),1)
@@ -129,7 +130,7 @@ tex_opts$set(returnType = 'tex',fileDir = path)
     tex_opts$set(returnType = 'tex',fileDir = path,imgFormat = 'png')
     
     testthat::describe('space in file path',{
-      
+ 
       x <- texPreview::tex_preview(obj = xtable::xtable(head(iris,10)))
       
       it('check if file created', {
