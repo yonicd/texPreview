@@ -90,8 +90,8 @@ engine to render TeX snippets more naturally within the RMarkdown
 workflow. We achieve this by leveraging texPreview’s integration via S3
 for various classes.</p>
 <p>The following inputs can be run inside texpreview chunks in RStudio
-version <a href="https://www.rstudio.com/products/rstudio/download/" class="external-link">1.2.5033</a>
-and above. They will render in the same fashion as would a regular
+version <a href="https://posit.co/download/rstudio-desktop/" class="external-link">1.2.5033</a> and
+above. They will render in the same fashion as would a regular
 <code><a href="../reference/tex_preview.html">texPreview::tex_preview</a></code> call.</p>
 <ul>
 <li>Raw TeX</li>
@@ -143,7 +143,7 @@ outputs.</p>
 <code>texpreview</code> engine.</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/yonicd/texPreview" class="external-link">texPreview</a></span><span class="op">)</span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/base/files2.html" class="external-link">dir.create</a></span><span class="op">(</span><span class="st">'images'</span>,showWarnings <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span></code></pre></div>
+<span><span class="fu"><a href="https://rdrr.io/r/base/files2.html" class="external-link">dir.create</a></span><span class="op">(</span><span class="st">'images/engine'</span>,showWarnings <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span></code></pre></div>
 <div class="section level2">
 <h2 id="default">Default<a class="anchor" aria-label="anchor" href="#default"></a>
 </h2>
@@ -156,7 +156,7 @@ outputs.</p>
 <h3 id="output">Output<a class="anchor" aria-label="anchor" href="#output"></a>
 </h3>
 <pre class="texpreview"><code><span><span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html" class="external-link">kable</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">iris</span><span class="op">)</span>,format <span class="op">=</span> <span class="st">'latex'</span>,booktabs <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></code></pre>
-<p><img src="figure/engine/unnamed-chunk-2-1.png" width="1011"></p>
+<p><img src="images/engine/unnamed-chunk-2-1.png" width="1011"></p>
 </div>
 </div>
 <div class="section level2">
@@ -172,7 +172,7 @@ as ‘echo’:</p>
 <div class="section level3">
 <h3 id="output-1">Output<a class="anchor" aria-label="anchor" href="#output-1"></a>
 </h3>
-<p><img src="figure/engine/unnamed-chunk-3-3.png" width="1011"></p>
+<p><img src="images/engine/unnamed-chunk-3-3.png" width="1011"></p>
 </div>
 </div>
 <div class="section level2">
@@ -214,7 +214,7 @@ Emu       &amp; stuffed     &amp; 33.33      \\
 Armadillo &amp; frozen      &amp; 8.99       \\
 \hline
 \end{tabular}</code></pre>
-<p><img src="figure/engine/unnamed-chunk-4-5.png" width="1011"></p>
+<p><img src="images/engine/unnamed-chunk-4-5.png" width="1011"></p>
 </div>
 </div>
 <div class="section level2">
@@ -228,10 +228,11 @@ Armadillo &amp; frozen      &amp; 8.99       \\
 <div class="section level3">
 <h3 id="output-3">Output<a class="anchor" aria-label="anchor" href="#output-3"></a>
 </h3>
-<p><img src="figure/engine/unnamed-chunk-5-7.png" width="1011"></p>
+<p><img src="images/engine/unnamed-chunk-5-7.png" width="1011"></p>
 <div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/list.files.html" class="external-link">list.files</a></span><span class="op">(</span><span class="st">'images'</span><span class="op">)</span></span>
-<span><span class="co">#&gt; [1] "example.png" "example.tex"</span></span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/list.files.html" class="external-link">list.files</a></span><span class="op">(</span><span class="st">'images/engine'</span><span class="op">)</span></span>
+<span><span class="co">#&gt; [1] "example.png"           "example.tex"           "unnamed-chunk-2-1.png"</span></span>
+<span><span class="co">#&gt; [4] "unnamed-chunk-3-3.png" "unnamed-chunk-4-5.png" "unnamed-chunk-5-7.png"</span></span></code></pre></div>
 </div>
 </div>
 <div class="section level2">
@@ -244,7 +245,7 @@ lines as part of a Rmarkdown pdf document.</p>
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="in">```texpreview</span></span>
 <span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="in">knitr::kable(head(iris),format = 'latex',booktabs = TRUE)</span></span>
 <span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>\input{images/example.tex}</span></code></pre></div>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>\input{images/engine/example.tex}</span></code></pre></div>
 <p>Setting texpreview.return = ‘tex’ will have the chunk return the tex
 lines output with the results ‘asis’ so the user can render the lines as
 part of a Rmarkdown pdf document.</p>
