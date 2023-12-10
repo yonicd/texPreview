@@ -9,7 +9,7 @@ wenv_init <- function(){
 .onLoad <- function(lib,pkg) {
   wenv_init()
   if(interactive()){
-    check_requirements()
+    check_base_req()
     rc.options(custom.completer = completeme)
     register_completion(thispkg = populate) 
   }
@@ -20,7 +20,7 @@ wenv_init <- function(){
 .onAttach <- function(lib,pkg) {
   wenv_init()
   if(interactive()){
-    check_requirements()
+    check_base_req()
     rc.options(custom.completer = completeme)
     register_completion(thispkg = populate) 
   }

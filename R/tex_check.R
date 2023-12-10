@@ -16,14 +16,16 @@ tex_requirements <- function(file = system.file('tmpl.tex',package = 'texPreview
   if(!is.null(file))
     lines <- readLines(file)
   
-  x <- grep('\\usepackage',lines,value = TRUE)
+  tex_req_type('usepackage', lines)
+   
+}
+
+tex_req_type <- function(arg_type, tex_lines){
+  x <- grep(sprintf('\\\\%s',arg_type), tex_lines, value = TRUE)
   
   x <- gsub('\\[(.*?)\\]','',x)
   
-  ret <- gsub('[{}]','',unlist(regmatches(x, gregexpr('\\{(.*?)\\}', x))))
-  
-  ret
-  
+  gsub('[{}]','',unlist(regmatches(x, gregexpr('\\{(.*?)\\}', x))))
 }
 
 #' @title Check TeX Requirements for Package
@@ -72,3 +74,30 @@ check_texlive <- function(x) length(suppressWarnings(system(sprintf('kpsewhich %
 
 check_mpm <- function(x) length(shell(sprintf("mpm --list-package-names | grep %s",x),intern=TRUE))>0
 
+texpreview_base_req <- c('standalone', 'xcolor', 'booktabs', 'multirow', 'amsmath',
+'listings', 'setspace', 'caption', 'graphics', 'tools', 'psnfss', 'varwidth',
+'colortbl', 'epstopdf-pkg', 'pgf','makeindex')
+
+#' @importFrom tinytex check_installed tlmgr_install
+#' @importFrom utils menu
+check_base_req <- function(){
+  chk <- texpreview_base_req[!tinytex::check_installed(texpreview_base_req)]
+  if(length(chk)>0){
+    update_pkgs <- TRUE
+    warning( sprintf( 'missing tex packages needed for texPreview: %s', paste0( chk, collapse = ', ' ) ) )
+    if(interactive()){
+      update_pkgs <- switch(
+        utils::menu(
+          title = 'Install missing tex packages?',
+          choices = c("Yes", "No")) + 1,
+            cat("Nothing done\n"), 
+            TRUE, 
+            FALSE)
+    }
+
+  if(update_pkgs){
+    tinytex::tlmgr_install(chk)
+  }
+    
+  }
+}

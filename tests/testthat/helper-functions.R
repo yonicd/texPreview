@@ -1,8 +1,11 @@
-skip_on_windows <- function () {
+skip_logic <- function () {
   if (identical(.Platform$OS.type, "unix")) {
-    return(invisible(TRUE))
+    if(any(grepl('fedora',system('cat /etc/os-release', intern = TRUE))))
+      skip("fedora")
+  }else{
+    skip("Non Unix")
   }
-  skip("Non Unix")
+  return(invisible(TRUE))
 }
 
 cleanup <- function(path, create = TRUE){

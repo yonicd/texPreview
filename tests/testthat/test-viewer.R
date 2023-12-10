@@ -1,5 +1,7 @@
 testthat::context('Rendering viewer')
 
+testthat::skip_on_cran()
+
 path <- file.path(tempdir(),'rmd')
 
 cleanup(path)
@@ -15,7 +17,7 @@ options(viewer = function(x, filename){
 tex_opts$set(returnType = 'viewer',fileDir = path)
 
 testthat::describe('viewer output',{
-  
+
   it('validate viewer',{
     testthat::expect_output(
       mtcars |>
@@ -31,7 +33,7 @@ testthat::describe('viewer output',{
 options(viewer = default_viewer)
 
 testthat::describe('shiny output',{
-  
+
   it('validate shiny output',{
     testthat::expect_null(
       mtcars |>

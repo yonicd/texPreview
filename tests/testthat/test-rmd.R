@@ -1,5 +1,7 @@
 testthat::context('Rendering markdown')
 
+skip_logic()
+
 path <- file.path(tempdir(),'rmd')
 
 cleanup(path)

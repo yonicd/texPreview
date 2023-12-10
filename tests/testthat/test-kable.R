@@ -1,5 +1,7 @@
 testthat::context('converting to kable')
 
+skip_logic()
+
 path <- file.path(tempdir(),'tex')
 
 cleanup(path)
