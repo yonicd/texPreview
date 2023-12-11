@@ -33,7 +33,7 @@ Efficiently iterate, refine and share snippets of LaTeX in R with ease.
   - __System Requirements__: 
     - Must have pdflatex in PATH, Windows users can install by running [installr::install.MikTeX](http://talgalili.github.io/installr/reference/install.MikTeX.html)
     - TeX libraries that are used: `standalone`, `xcolor`, `booktabs`, `multirow`, `array`, `helvet`, `amsmath`, `rotating`, `listings`, `graphicx`, `setspace`, `caption`
-      - Using [tinytex](hhttps://github.com/rstudio/tinytex) you can run
+      - Using [tinytex](https://github.com/rstudio/tinytex) you can run
       
           ```
           install.packages('tinytex')
