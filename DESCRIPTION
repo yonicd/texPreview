@@ -2,7 +2,7 @@ Type: Package
 Package: texPreview
 Title: Compile and Preview Snippets of 'LaTeX'
 Version: 2.1.0
-Date: 2023-12-04
+Date: 2024-01-23
 Authors@R: 
     c(person(given = "Jonathan",
              family = "Sidi",

@@ -2,7 +2,7 @@
 [![Project Status: Active - The project has reached a stable, usable state and is being actively developed.](http://www.repostatus.org/badges/0.1.0/active.svg)](https://www.repostatus.org) 
 [![](https://cranlogs.r-pkg.org/badges/texPreview)](https://cran.r-project.org/package=texPreview)
 [![Coverage Status](https://img.shields.io/codecov/c/github/yonicd/texPreview/master.svg)](https://app.codecov.io/github/yonicd/texPreview?branch=master)
-[![Covrpage Summary](https://img.shields.io/badge/covrpage-Last_Build_2022_03_28-yellowgreen.svg)](http://tinyurl.com/ybkr8fsu)
+[![Covrpage Summary](https://img.shields.io/badge/covrpage-Last_Build_2024_01_23-yellowgreen.svg)](https://github.com/yonicd/texPreview/blob/master/tests/README.md)
 [![R-win build
 status](https://github.com/yonicd/texPreview/workflows/R-win/badge.svg)](https://github.com/yonicd/texPreview)
 [![R-mac build
